@@ -38,6 +38,11 @@ editor["JoosepAlviste/nvim-ts-context-commentstring"] = {
 	opt = true,
 	after = "nvim-treesitter",
 }
+editor["windwp/nvim-ts-autotag"] = {
+	opt = true,
+	ft = { "html", "xml" },
+	config = conf.autotag,
+}
 editor["romainl/vim-cool"] = {
 	opt = true,
 	event = { "CursorMoved", "InsertEnter" },

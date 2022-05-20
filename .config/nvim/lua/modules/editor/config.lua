@@ -1,5 +1,4 @@
 local config = {}
-local sessions_dir = vim.fn.stdpath("data") .. "/sessions/"
 
 function config.nvim_treesitter()
   -- vim.api.nvim_command("set foldmethod=expr")
@@ -74,6 +73,19 @@ end
 
 function config.nvim_colorizer()
   require("colorizer").setup()
+end
+
+function config.autotag()
+	require("nvim-ts-autotag").setup({
+		filetypes = {
+			"html",
+			"xml",
+			"javascript",
+			"typescriptreact",
+			"javascriptreact",
+			"vue",
+		},
+	})
 end
 
 function config.toggleterm()
