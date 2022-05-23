@@ -27,16 +27,16 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local function custom_attach(client)
-  require("lsp_signature").on_attach({
-    bind = true,
-    use_lspsaga = false,
-    floating_window = true,
-    fix_pos = true,
-    hint_enable = true,
-    hi_parameter = "Search",
-    hint_prefix = "",
-    handler_opts = { "double" },
-  })
+  -- require("lsp_signature").on_attach({
+  --   bind = true,
+  --   use_lspsaga = false,
+  --   floating_window = true,
+  --   fix_pos = true,
+  --   hint_enable = true,
+  --   hi_parameter = "Search",
+  --   hint_prefix = "",
+  --   handler_opts = { "double" },
+  -- })
   require("illuminate").on_attach(client)
 end
 
