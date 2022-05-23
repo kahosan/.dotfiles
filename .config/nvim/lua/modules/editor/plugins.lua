@@ -65,13 +65,15 @@ editor["abecodes/tabout.nvim"] = {
 	config = conf.tabout,
 }
 editor["akinsho/toggleterm.nvim"] = {
-  opt = false,
+  opt = true,
+	event = "BufRead",
   tag = "v1.*",
   config = conf.toggleterm,
 }
 editor["numtostr/FTerm.nvim"] = {
-	opt = true,
-	event = "BufRead"
+	-- opt = true,
+	-- event = "BufRead"
+	opt = false
 }
 
 return editor

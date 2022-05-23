@@ -63,7 +63,7 @@ local plug_map = {
 	["n|<leader>ft"] = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
 	-- ["t|<leader>fd"] = map_cu([[<C-\><C-n><CMD>lua require("FTerm").toggle()]]):with_noremap():with_silent(),
 	["t|<leader>fd"] = map_cu([[<C-\><C-n><CMD>lua require("FTerm").exit()]]):with_noremap():with_silent(),
-	["n|<Leader>g"] = map_cu("lua require('FTerm').run('lazygit')"):with_noremap():with_silent(),
+	["n|<Leader>G"] = map_cu("lua require('FTerm').run('lazygit')"):with_noremap():with_silent(),
 }
 
 bind.nvim_load_mapping(plug_map)
