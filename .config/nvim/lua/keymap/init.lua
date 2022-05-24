@@ -61,7 +61,7 @@ local plug_map = {
 
 	-- Fterm
 	["n|<leader>ft"] = map_cu('lua require("FTerm").toggle()'):with_noremap():with_silent(),
-	-- ["t|<leader>fd"] = map_cu([[<C-\><C-n><CMD>lua require("FTerm").toggle()]]):with_noremap():with_silent(),
+	["t|<leader>ft"] = map_cu([[<C-\><C-n><CMD>lua require("FTerm").toggle()]]):with_noremap():with_silent(),
 	["t|<leader>fd"] = map_cu([[<C-\><C-n><CMD>lua require("FTerm").exit()]]):with_noremap():with_silent(),
 	["n|<Leader>G"] = map_cu("lua require('FTerm').run('lazygit')"):with_noremap():with_silent(),
 }
