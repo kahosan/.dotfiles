@@ -71,7 +71,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
       cmd = { "gopls", "-remote=auto" },
       settings = {
         gopls = {
-          usePlaceholders = true,
+          usePlaceholders = false,
           analyses = {
             nilness = true,
             shadow = true,
