@@ -10,12 +10,20 @@ ui["catppuccin/nvim"] = {
 	as = "catppuccin",
 	config = conf.catppuccin,
 }
-ui["arkav/lualine-lsp-progress"] = {
-  opt = true, after = "nvim-gps"
+-- ui["arkav/lualine-lsp-progress"] = {
+--   opt = true, after = "nvim-gps"
+-- }
+ui["j-hui/fidget.nvim"] = {
+  opt = true,
+  event = "BufRead",
+  config = function ()
+    require("fidget").setup({})
+  end
 }
 ui["hoob3rt/lualine.nvim"] = {
 	opt = true,
-	after = "lualine-lsp-progress",
+	-- after = "lualine-lsp-progress",
+  after = "nvim-gps",
 	config = conf.lualine,
 }
 ui["SmiteshP/nvim-gps"] = {
