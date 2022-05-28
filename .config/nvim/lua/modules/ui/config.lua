@@ -74,8 +74,8 @@ function config.catppuccin()
       gitsigns = true,
       telescope = true,
       nvimtree = { enabled = true, show_root = true },
-      which_key = true,
-      indent_blankline = { enabled = true, colored_indent_levels = false },
+      which_key = false,
+      indent_blankline = { enabled = false, colored_indent_levels = false },
       dashboard = true,
       neogit = false,
       vim_sneak = false,
@@ -84,8 +84,8 @@ function config.catppuccin()
       bufferline = true,
       markdown = true,
       lightspeed = false,
-      ts_rainbow = true,
-      hop = true,
+      ts_rainbow = false,
+      hop = false,
     },
   })
 end
@@ -109,14 +109,14 @@ function config.lualine()
     lualine_y = {},
     lualine_z = { "location" },
   }
-  local simple_sections = {
-    lualine_a = { "mode" },
-    lualine_b = { "filetype" },
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = { "location" },
-  }
+  -- local simple_sections = {
+  --   lualine_a = { "mode" },
+  --   lualine_b = { "filetype" },
+  --   lualine_c = {},
+  --   lualine_x = {},
+  --   lualine_y = {},
+  --   lualine_z = { "location" },
+  -- }
   local aerial = {
     sections = mini_sections,
     filetypes = { "aerial" },
@@ -160,7 +160,7 @@ function config.lualine()
       lualine_a = { "mode" },
       lualine_b = { { "branch" }, { "diff" } },
       lualine_c = {
-        { "lsp_progress" },
+        -- { "lsp_progress" },
         { gps_content, cond = gps.is_available },
       },
       lualine_x = {
@@ -226,38 +226,8 @@ function config.nvim_gps()
 end
 
 function config.nvim_tree()
-  vim.g.nvim_tree_root_folder_modifier = ":e"
-  vim.g.nvim_tree_icon_padding = " "
-  vim.g.nvim_tree_symlink_arror = "  "
-  vim.g.nvim_tree_respect_buf_cwd = 1
-
-  vim.g.nvim_tree_icons = {
-    ["default"] = "", --
-    ["symlink"] = "",
-    ["git"] = {
-      ["unstaged"] = "",
-      ["staged"] = "", --
-      ["unmerged"] = "שׂ",
-      ["renamed"] = "", --
-      ["untracked"] = "ﲉ",
-      ["deleted"] = "",
-      ["ignored"] = "", --◌
-    },
-    ["folder"] = {
-      -- ['arrow_open'] = "",
-      -- ['arrow_closed'] = "",
-      ["arrow_open"] = "",
-      ["arrow_closed"] = "",
-      ["default"] = "",
-      ["open"] = "",
-      ["empty"] = "",
-      ["empty_open"] = "",
-      ["symlink"] = "",
-      ["symlink_open"] = "",
-    },
-  }
-
   require("nvim-tree").setup({
+    respect_buf_cwd = true,
     auto_reload_on_write = true,
     disable_netrw = false,
     hijack_cursor = true,
@@ -280,13 +250,43 @@ function config.nvim_tree()
       hide_root_folder = false,
     },
     renderer = {
+      root_folder_modifier = ":e",
+      icons = {
+        padding = " ",
+        symlink_arrow = "  ",
+        glyphs = {
+          ["default"] = "", --
+          ["symlink"] = "",
+          ["git"] = {
+            ["unstaged"] = "",
+            ["staged"] = "", --
+            ["unmerged"] = "שׂ",
+            ["renamed"] = "", --
+            ["untracked"] = "ﲉ",
+            ["deleted"] = "",
+            ["ignored"] = "", --◌
+          },
+          ["folder"] = {
+            -- ['arrow_open'] = "",
+            -- ['arrow_closed'] = "",
+            ["arrow_open"] = "",
+            ["arrow_closed"] = "",
+            ["default"] = "",
+            ["open"] = "",
+            ["empty"] = "",
+            ["empty_open"] = "",
+            ["symlink"] = "",
+            ["symlink_open"] = "",
+          },
+        },
+      },
       indent_markers = {
         enable = true,
         icons = {
           corner = "└ ",
           edge = "│ ",
           none = "  ",
-        },
+        }
       },
     },
     hijack_directories = {
