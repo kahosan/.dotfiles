@@ -14,6 +14,7 @@ local global = require("core.global")
 
 local function load_options()
   local global_local = {
+    guicursor = "i:block-iCursor-blinkon1-blinkoff1",
     termguicolors = true,
     mouse = "a",
     hidden = true,
