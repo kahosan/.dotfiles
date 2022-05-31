@@ -238,7 +238,7 @@ local shellcheck = require("efmls-configs.linters.shellcheck")
 local black = require("efmls-configs.formatters.black")
 local luafmt = require("efmls-configs.formatters.stylua")
 local clangfmt = {
-  formatCommand = "clang-format -style='{BasedOnSave: LLVM}'"
+  formatCommand = "clang-format -style='{BasedOnSave: LLVM, IndentWidth: 4}'"
 }
 local prettier = require("efmls-configs.formatters.prettier")
 local shfmt = require("efmls-configs.formatters.shfmt")
