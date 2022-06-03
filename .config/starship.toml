@@ -3,27 +3,25 @@ add_newline = false
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
-success_symbol = "[](bold red) "     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-
-error_symbol = "[](bold red) "
+success_symbol = "[](bold red)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[](bold red)"
 # Disable the package module, hiding it from the prompt completely
 
 [package]
 disabled = true
 
 [git_branch]
-symbol = "🌱 "
 truncation_length = 4
 truncation_symbol = ""
 
 [git_commit]
-commit_hash_length = 8
+commit_hash_length = 7
 style = "bold white"
-disabled = false
+# disabled = false
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style)'
-disabled = false
+# disabled = false
 
 [git_status]
 disabled = true
@@ -37,7 +35,6 @@ disabled = false
 [line_break]
 disabled = false
 
-
 [username]
 disabled = true
 
@@ -46,11 +43,17 @@ truncation_length = 5
 format = "[$path]($style)[$lock_symbol]($lock_style) "
 
 [nodejs]
-disabled = true
+format = "via [nodejs $version](bold green) "
+# disabled = true
 
 [golang]
-disabled = true
+format = "via [go $version](bold cyan) "
+# disabled = true
 
 [python]
-disabled = true
+format = "via [py $version](yellow bold) "
+# disabled = true
 
+[rust]
+format = "via [rust $version](bold red) "
+# disabled = true
