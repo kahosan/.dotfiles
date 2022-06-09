@@ -1,11 +1,43 @@
-# Don't print a new line at the start of the prompt
+# Get editor completions based on the config shcema
+"$schema" = 'https://starship.rs/config-schema.json'
 add_newline = false
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character]                            # The name of the module we are configuring is "character"
-success_symbol = "[](bold red)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+format = """
+$all\
+$fill\
+$time\
+$line_break\
+$character
+"""
+
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[](bold red)"
 error_symbol = "[](bold red)"
-# Disable the package module, hiding it from the prompt completely
+
+[hostname]
+ssh_only = false
+format =  "[megumin](bold red) in "
+trim_at = ".companyname.com"
+disabled = false
+
+[time]
+disabled = false
+style = "bold bright-black"
+format = "[at]($style) [$time]($style)"
+utc_time_offset = "+8"
+
+[username]
+disabled = true
+
+[directory]
+truncation_length = 5
+format = "[$path]($style)[$lock_symbol]($lock_style) "
+
+[line_break]
+disabled = false
 
 [package]
 disabled = true
@@ -25,22 +57,6 @@ format = '[\($state( $progress_current of $progress_total)\)]($style)'
 
 [git_status]
 disabled = true
-
-[hostname]
-ssh_only = false
-format =  "[Megumin](bold red) in "
-trim_at = ".companyname.com"
-disabled = false
-
-[line_break]
-disabled = false
-
-[username]
-disabled = true
-
-[directory]
-truncation_length = 5
-format = "[$path]($style)[$lock_symbol]($lock_style) "
 
 [nodejs]
 format = "via [nodejs $version](bold green) "
