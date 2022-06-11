@@ -48,10 +48,15 @@ ui["akinsho/bufferline.nvim"] = {
 	event = "BufRead",
 	config = conf.nvim_bufferline,
 }
-ui["glepnir/dashboard-nvim"] = {
-  opt = true,
+ui["goolord/alpha-nvim"] = {
+	opt = true,
 	event = "BufWinEnter",
-	config = conf.dashboard,
+	config = conf.alpha,
 }
+-- ui["glepnir/dashboard-nvim"] = {
+--   opt = true,
+-- 	event = "BufWinEnter",
+-- 	config = conf.dashboard,
+-- }
 
 return ui
