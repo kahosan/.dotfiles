@@ -73,3 +73,6 @@ format = "via [py $version](yellow bold) "
 [rust]
 format = "via [rust $version](bold red) "
 # disabled = true
+
+[lua]
+format = "via [lua $version](bold blue) "
