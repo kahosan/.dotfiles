@@ -1,5 +1,3 @@
-local formatting = require("modules.completion.formatting")
-
 vim.cmd([[packadd nvim-lsp-installer]])
 vim.cmd([[packadd lsp_signature.nvim]])
 vim.cmd([[packadd lspsaga.nvim]])
@@ -17,8 +15,8 @@ saga.init_lsp_saga({
   warn_sign = "",
   hint_sign = "",
   infor_sign = "",
-	rename_prompt_prefix = "",
-	code_action_icon = "",
+  rename_prompt_prefix = "",
+  code_action_icon = "",
 })
 
 lsp_installer.setup({})
@@ -35,7 +33,7 @@ local function custom_attach(client)
     hint_enable = true,
     hi_parameter = "Search",
     hint_prefix = "",
-		max_width = 40,
+    max_width = 40,
     handler_opts = { "double" },
   })
   require("illuminate").on_attach(client)
@@ -216,69 +214,3 @@ nvim_lsp.html.setup({
   capabilities = capabilities,
   on_attach = custom_attach,
 })
-
-local efmls = require("efmls-configs")
-
--- Init `efm-langserver` here.
-
-efmls.init({
-  on_attach = custom_attach,
-  capabilities = capabilities,
-  init_options = { documentFormatting = true, codeAction = true },
-})
-
--- Require `efmls-configs-nvim`'s config here
-
-local vint = require("efmls-configs.linters.vint")
-local clangtidy = require("efmls-configs.linters.clang_tidy")
-local eslint = require("efmls-configs.linters.eslint")
-local flake8 = require("efmls-configs.linters.flake8")
-local shellcheck = require("efmls-configs.linters.shellcheck")
-
-local black = require("efmls-configs.formatters.black")
-local luafmt = require("efmls-configs.formatters.stylua")
-local clangfmt = {
-  formatCommand = "clang-format -style='{BasedOnSave: LLVM, IndentWidth: 4}'"
-}
-local prettier = require("efmls-configs.formatters.prettier")
-local shfmt = require("efmls-configs.formatters.shfmt")
-
--- Add your own config for formatter and linter here
-
--- local rustfmt = require("modules.completion.efm.formatters.rustfmt")
-
--- Override default config here
-
-flake8 = vim.tbl_extend("force", flake8, {
-  prefix = "flake8: max-line-length=160, ignore F403 and F405",
-  lintStdin = true,
-  lintIgnoreExitCode = true,
-  lintFormats = { "%f:%l:%c: %t%n%n%n %m" },
-  lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
-})
-
--- Setup formatter and linter for efmls here
-
-efmls.setup({
-  vim = { formatter = vint },
-  lua = { formatter = luafmt },
-  -- cpp = { linter = clangtidy },
-  -- python = { formatter = black },
-  c = { formatter = clangfmt, linter = clangtidy },
-  cpp = { formatter = clangfmt, linter = clangtidy },
-  python = { formatter = black },
-  vue = { formatter = prettier },
-  typescript = { formatter = prettier, linter = eslint },
-  javascript = { formatter = prettier, linter = eslint },
-  typescriptreact = { formatter = prettier, linter = eslint },
-  javascriptreact = { formatter = prettier, linter = eslint },
-  yaml = { formatter = prettier },
-  html = { formatter = prettier },
-  css = { formatter = prettier },
-  scss = { formatter = prettier },
-  sh = { formatter = shfmt, linter = shellcheck },
-  markdown = { formatter = prettier },
-  -- rust = {formatter = rustfmt},
-})
-
-formatting.configure_format_on_save()

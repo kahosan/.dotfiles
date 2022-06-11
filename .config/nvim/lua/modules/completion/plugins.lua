@@ -13,9 +13,9 @@ completion["tami5/lspsaga.nvim"] = {
   opt = true,
   after = "nvim-lspconfig",
 }
-completion["creativenull/efmls-configs-nvim"] = {
-	opt = false,
-	requires = "neovim/nvim-lspconfig",
+completion["jose-elias-alvarez/null-ls.nvim"] = {
+  opt = false,
+  config = conf.null_ls,
 }
 completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
 completion["hrsh7th/nvim-cmp"] = {
