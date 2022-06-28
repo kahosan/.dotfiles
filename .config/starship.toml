@@ -20,7 +20,7 @@ error_symbol = "[](bold red)"
 [hostname]
 ssh_only = false
 format =  "[megumin](bold red) in "
-trim_at = ".companyname.com"
+trim_at = "."
 disabled = false
 
 [time]
@@ -60,6 +60,7 @@ disabled = true
 
 [nodejs]
 format = "via [nodejs $version](bold green) "
+detect_files = ["package.json"]
 # disabled = true
 
 [golang]
