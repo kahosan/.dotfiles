@@ -37,6 +37,8 @@ local function custom_attach(client)
     handler_opts = { "double" },
   })
   require("illuminate").on_attach(client)
+  client.resolved_capabilities.document_formatting = false
+  client.resolved_capabilities.document_range_formatting = false
 end
 
 local function switch_source_header_splitcmd(bufnr, splitcmd)
@@ -191,6 +193,19 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         },
       },
     })
+  elseif server.name == "tsserver" then
+    nvim_lsp.tsserver.setup({
+      capabilities = capabilities,
+      on_attach = custom_attach,
+      filetypes = {
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+      },
+    })
   else
     nvim_lsp[server.name].setup({
       capabilities = capabilities,
@@ -202,7 +217,6 @@ end
 -- https://github.com/vscode-langservers/vscode-html-languageserver-bin
 
 nvim_lsp.html.setup({
-  cmd = { "html-languageserver", "--stdio" },
   filetypes = { "html" },
   init_options = {
     configurationSection = { "html", "css", "javascript" },
@@ -214,3 +228,7 @@ nvim_lsp.html.setup({
   capabilities = capabilities,
   on_attach = custom_attach,
 })
+
+-- eslint
+
+nvim_lsp.eslint.setup({})
