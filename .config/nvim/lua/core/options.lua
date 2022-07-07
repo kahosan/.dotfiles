@@ -38,7 +38,7 @@ local function load_options()
     updatetime = 300,
     redrawtime = 1500,
     -- whichwrap = "h,l,<,>,[,],~",
-		whichwrap = "<,>,[,],~",
+    whichwrap = "<,>,[,],~",
     completeopt = "menuone,noselect",
     shortmess = "aoOTIcF",
     scrolloff = 2,
@@ -59,20 +59,20 @@ local function load_options()
     winblend = 10,
     autoread = true,
     autowrite = true,
-  -- }
-  --
-  -- local bw_local = {
+    -- }
+    --
+    -- local bw_local = {
     undofile = true,
     synmaxcol = 2500,
     formatoptions = "1jcroql",
     -- textwidth = 80,
     -- expandtab = false,
-		expandtab = true,
+    expandtab = true,
     autoindent = true,
     tabstop = 2,
     shiftwidth = 2,
     -- softtabstop = -1,
-		softtabstop = 2,
+    softtabstop = 2,
     breakindentopt = "shift:2,min:20",
     wrap = false,
     linebreak = true,
