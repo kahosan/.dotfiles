@@ -33,7 +33,6 @@ fi
 
 # PATH
 export PATH="/Users/kaho/.local/bin:$PATH"
-export PATH="/Users/kaho/Library/Python/3.8/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="/Users/kaho/.pnpm-global/bin:$PATH"
 
@@ -53,6 +52,7 @@ export LANG="en_US.UTF-8"
 alias nas="ssh kaho@192.168.0.106"
 
 # alias
+alias cat="bat"
 alias vim="nvim"
 alias ls="exa"
 alias la="exa -a"
