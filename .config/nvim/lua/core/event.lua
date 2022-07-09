@@ -54,7 +54,7 @@ function autocmd.load_autocmds()
       -- auto format for eslint
       {
         "BufWritePre",
-        "*.tsx,*.ts,*.jsx,*.js,*.vue",
+        "*.tsx,*.ts,*.jsx,*.js,*.vue,*.mts,*.mjs,*.cjs,*.cts",
         "EslintFixAll",
       },
     },
