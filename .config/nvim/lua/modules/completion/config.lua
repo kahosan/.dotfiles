@@ -190,7 +190,7 @@ function config.null_ls()
           group = augroup,
           buffer = bufnr,
           callback = function()
-            vim.lsp.buf.formatting_seq_sync()
+            vim.lsp.buf.formatting()
           end,
         })
       end
