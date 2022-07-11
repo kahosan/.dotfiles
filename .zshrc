@@ -15,6 +15,7 @@ plugins=(
   # zsh-completion will be added to FPATH directly
   # zsh-completions
   zsh-z
+  zsh-autopair
   # zsh-interactive-cd
   fzf-tab
 )
