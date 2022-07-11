@@ -52,7 +52,11 @@ editor["norcalli/nvim-colorizer.lua"] = {
   event = "BufReadPost",
   config = conf.nvim_colorizer,
 }
-editor["jdhao/better-escape.vim"] = { opt = true, event = "InsertEnter" }
+editor["max397574/better-escape.nvim"] = {
+	opt = true,
+	event = "BufReadPost",
+	config = conf.better_escape,
+}
 editor["famiu/bufdelete.nvim"] = {
   opt = true,
   cmd = { "Bdelete", "Bwipeout", "Bdelete!", "Bwipeout!" },
