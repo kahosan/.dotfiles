@@ -1,16 +1,16 @@
 local global = require("core.global")
 
--- local function bind_option(options)
---   for k, v in pairs(options) do
---     if v == true then
---       vim.cmd("set " .. k)
---     elseif v == false then
---       vim.cmd("set no" .. k)
---     else
---       vim.cmd("set " .. k .. "=" .. v)
---     end
---   end
--- end
+local function bind_option(options)
+  for k, v in pairs(options) do
+    if v == true then
+      vim.cmd("set " .. k)
+    elseif v == false then
+      vim.cmd("set no" .. k)
+    else
+      vim.cmd("set " .. k .. "=" .. v)
+    end
+  end
+end
 
 local function load_options()
   local global_local = {
@@ -59,9 +59,9 @@ local function load_options()
     winblend = 10,
     autoread = true,
     autowrite = true,
-    -- }
-    --
-    -- local bw_local = {
+  }
+  --
+  local bw_local = {
     undofile = true,
     synmaxcol = 2500,
     formatoptions = "1jcroql",
@@ -91,14 +91,14 @@ local function load_options()
       paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
       cache_enabled = 0,
     }
-    vim.g.python_host_prog = "/usr/bin/python"
-    vim.g.python3_host_prog = "/usr/local/bin/python3"
+    -- vim.g.python_host_prog = "/usr/bin/python"
+    -- vim.g.python3_host_prog = "/usr/local/bin/python3"
   end
 
   for name, value in pairs(global_local) do
     vim.o[name] = value
   end
-  -- bind_option(bw_local)
+  bind_option(bw_local)
 end
 
 load_options()
