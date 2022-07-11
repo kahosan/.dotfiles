@@ -15,7 +15,7 @@ ui["catppuccin/nvim"] = {
 -- }
 ui["j-hui/fidget.nvim"] = {
   opt = true,
-  event = "BufRead",
+  event = "BufReadPost",
   config = function ()
     require("fidget").setup({})
   end
@@ -38,14 +38,14 @@ ui["kyazdani42/nvim-tree.lua"] = {
 }
 ui["lewis6991/gitsigns.nvim"] = {
 	opt = true,
-	event = { "BufRead", "BufNewFile" },
+	event = { "BufReadPost", "BufNewFile" },
 	config = conf.gitsigns,
 	requires = { "nvim-lua/plenary.nvim", opt = true },
 }
 ui["akinsho/bufferline.nvim"] = {
 	opt = true,
 	tag = "*",
-	event = "BufRead",
+	event = "BufReadPost",
 	config = conf.nvim_bufferline,
 }
 ui["goolord/alpha-nvim"] = {
