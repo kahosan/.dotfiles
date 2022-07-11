@@ -59,15 +59,15 @@ function config.alpha()
   local function footer()
     local total_plugins = #vim.tbl_keys(packer_plugins)
     return "   Have Fun with neovim"
-        .. "   v"
-        .. vim.version().major
-        .. "."
-        .. vim.version().minor
-        .. "."
-        .. vim.version().patch
-        .. "   "
-        .. total_plugins
-        .. " plugins"
+      .. "   v"
+      .. vim.version().major
+      .. "."
+      .. vim.version().minor
+      .. "."
+      .. vim.version().patch
+      .. "   "
+      .. total_plugins
+      .. " plugins"
   end
 
   dashboard.section.footer.val = footer()
@@ -191,6 +191,11 @@ function config.lualine()
     end
   end
 
+  local function escape_status()
+    local ok, m = pcall(require, "better_escape")
+    return ok and m.waiting and "✺ " or ""
+  end
+
   local mini_sections = {
     lualine_a = {},
     lualine_b = {},
@@ -254,6 +259,7 @@ function config.lualine()
         { gps_content, cond = gps.is_available },
       },
       lualine_x = {
+        { escape_status },
         {
           "diagnostics",
           sources = { "nvim_diagnostic" },
@@ -352,8 +358,8 @@ function config.nvim_tree()
             renamed = "➜",
             untracked = "",
             deleted = "",
-            ignored = "◌"
-          }
+            ignored = "◌",
+          },
           -- ["default"] = "", --
           -- ["symlink"] = "",
           -- ["git"] = {
@@ -385,7 +391,7 @@ function config.nvim_tree()
           corner = "└ ",
           edge = "│ ",
           none = "  ",
-        }
+        },
       },
     },
     hijack_directories = {
@@ -426,7 +432,7 @@ function config.nvim_tree()
 end
 
 function config.nvim_bufferline()
-  require("bufferline").setup {
+  require("bufferline").setup({
     options = {
       -- 关闭 Tab 的命令，这里使用 moll/vim-bbye 的 :Bdelete 命令
       close_command = "Bdelete! %d",
@@ -434,14 +440,16 @@ function config.nvim_bufferline()
       -- 使用 nvim 内置lsp
       diagnostics = "nvim_lsp",
       -- 左侧让出 nvim-tree 的位置
-      offsets = { {
-        filetype = "NvimTree",
-        text = "File Explorer",
-        highlight = "Directory",
-        text_align = "right"
-      } }
-    }
-  }
+      offsets = {
+        {
+          filetype = "NvimTree",
+          text = "File Explorer",
+          highlight = "Directory",
+          text_align = "right",
+        },
+      },
+    },
+  })
 end
 
 function config.gitsigns()
