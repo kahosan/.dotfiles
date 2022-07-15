@@ -37,6 +37,9 @@ export PATH="/Users/kaho/.local/bin:$PATH"
 export PATH="$(go env GOPATH)/bin:$PATH"
 export PATH="/Users/kaho/.pnpm-global/bin:$PATH"
 
+# ni
+export NI_CONFIG_FILE="$HOME/.config/ni/nirc"
+
 # straship
 eval "$(starship init zsh)"
 
