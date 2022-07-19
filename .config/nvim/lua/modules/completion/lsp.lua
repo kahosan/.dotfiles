@@ -193,19 +193,6 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         },
       },
     })
-  elseif server.name == "tsserver" then
-    nvim_lsp.tsserver.setup({
-      capabilities = capabilities,
-      on_attach = custom_attach,
-      filetypes = {
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-      },
-    })
   else
     nvim_lsp[server.name].setup({
       capabilities = capabilities,
