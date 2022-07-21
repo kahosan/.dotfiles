@@ -41,7 +41,7 @@ local function load_options()
     whichwrap = "<,>,[,],~",
     completeopt = "menuone,noselect",
     shortmess = "aoOTIcF",
-    scrolloff = 2,
+    scrolloff = 5,
     sidescrolloff = 5,
     cursorline = true,
     pumheight = 15,
