@@ -90,46 +90,6 @@ function config.alpha()
   alpha.setup(dashboard.opts)
 end
 
--- function config.dashboard()
---   vim.g.dashboard_default_executive = "Telescope"
-
---   vim.g.dashboard_custom_section = {
---     a = {
---       description = { "     New file       SPC f o" },
---       command = "DashboardNewFile",
---     },
---     b = {
---       description = { "     Find file      SPC f f" },
---       -- command = "Telescope fd",
---       command = "Telescope fd find_command=fd,--hidden",
---     },
---     d = {
---       description = { "     Jump marks     SPC f m" },
---       command = "Telescope marks",
---     },
---     e = {
---       description = { "     Find word      SPC f w" },
---       command = "Telescope live_grep",
---     },
---     f = {
---       description = { "     Colorscheme    SPC t c" },
---       command = "Telescope colorscheme",
---     },
---     h = {
---       description = { "     Help           SPC f a" },
---       command = "Telescope man_pages",
---     },
---   }
-
---   vim.g.dashboard_custom_header = {
---     [[██╗  ██╗ █████╗ ██╗  ██╗ ██████╗ ███████╗ █████╗ ███╗   ██╗]],
---     [[██║ ██╔╝██╔══██╗██║  ██║██╔═══██╗██╔════╝██╔══██╗████╗  ██║]],
---     [[█████╔╝ ███████║███████║██║   ██║███████╗███████║██╔██╗ ██║]],
---     [[██╔═██╗ ██╔══██║██╔══██║██║   ██║╚════██║██╔══██║██║╚██╗██║]],
---     [[██║  ██╗██║  ██║██║  ██║╚██████╔╝███████║██║  ██║██║ ╚████║]],
---     [[╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝]] }
--- end
-
 function config.catppuccin()
   require("catppuccin").setup({
     transparent_background = true,

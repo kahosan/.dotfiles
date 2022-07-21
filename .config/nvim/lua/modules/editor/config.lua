@@ -25,6 +25,10 @@ function config.nvim_treesitter()
       "css",
     },
     highlight = { enable = true, disable = { "vim" } },
+    indent = {
+      enable = true,
+      disable = { "python", "go", "rust", "c", "cpp" }
+    },
     textobjects = {
       select = {
         enable = true,
