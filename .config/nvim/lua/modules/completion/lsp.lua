@@ -136,6 +136,25 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         },
       },
     })
+  elseif server.name == "tsserver" then
+    local function organize_imports()
+      local params = {
+        command = "_typescript.organizeImports",
+        arguments = { vim.api.nvim_buf_get_name(0) },
+        title = "",
+      }
+      vim.lsp.buf.execute_command(params)
+    end
+    nvim_lsp.tsserver.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      commands = {
+        OrganizeImports = {
+          organize_imports,
+          description = "Organize Imports",
+        },
+      },
+    })
   elseif server.name == "jsonls" then
     nvim_lsp.jsonls.setup({
       flags = { debounce_text_changes = 500 },
