@@ -67,6 +67,7 @@ alias python="python3"
 alias pip="pip3"
 alias c="clear"
 alias bry="hexyl"
+alias nio="ni --prefer-offline"
 
 # plugins setting
 
