@@ -5,7 +5,6 @@ ui["kyazdani42/nvim-web-devicons"] = {
   opt = false,
 }
 ui["catppuccin/nvim"] = {
-  commit = "8a67df6",
   opt = false,
   as = "catppuccin",
   config = conf.catppuccin,
