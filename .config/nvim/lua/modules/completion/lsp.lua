@@ -11,14 +11,14 @@ local mason_lsp = require("mason-lspconfig")
 mason.setup()
 mason_lsp.setup({
   ensure_installed = {
-    "sumneko_lua",
+    "bash-language-server",
+    "lua-language-server",
     "rust_analyzer",
     "gopls",
-    "tsserver",
-    "eslint",
-    "html",
+    "typescript-language-server",
+    "html-lsp",
     "pyright",
-  }
+  },
 })
 
 -- Override diagnostics symbol
