@@ -1,4 +1,3 @@
-vim.cmd([[packadd nvim-lsp-installer]])
 vim.cmd([[packadd lsp_signature.nvim]])
 vim.cmd([[packadd lspsaga.nvim]])
 vim.cmd([[packadd cmp-nvim-lsp]])
@@ -6,7 +5,21 @@ vim.cmd([[packadd vim-illuminate]])
 
 local nvim_lsp = require("lspconfig")
 local saga = require("lspsaga")
-local lsp_installer = require("nvim-lsp-installer")
+local mason = require("mason")
+local mason_lsp = require("mason-lspconfig")
+
+mason.setup()
+mason_lsp.setup({
+  ensure_installed = {
+    "sumneko_lua",
+    "rust_analyzer",
+    "gopls",
+    "tsserver",
+    "eslint",
+    "html",
+    "pyright",
+  }
+})
 
 -- Override diagnostics symbol
 
@@ -18,8 +31,6 @@ saga.init_lsp_saga({
   rename_prompt_prefix = "",
   code_action_icon = "",
 })
-
-lsp_installer.setup({})
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
@@ -63,8 +74,8 @@ end
 
 -- Override server settings here
 
-for _, server in ipairs(lsp_installer.get_installed_servers()) do
-  if server.name == "gopls" then
+for _, server in ipairs(mason_lsp.get_installed_servers()) do
+  if server == "gopls" then
     nvim_lsp.gopls.setup({
       on_attach = custom_attach,
       flags = { debounce_text_changes = 500 },
@@ -82,7 +93,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         },
       },
     })
-  elseif server.name == "sumneko_lua" then
+  elseif server == "sumneko_lua" then
     nvim_lsp.sumneko_lua.setup({
       capabilities = capabilities,
       on_attach = custom_attach,
@@ -101,7 +112,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         },
       },
     })
-  elseif server.name == "clangd" then
+  elseif server == "clangd" then
     local copy_capabilities = capabilities
     copy_capabilities.offsetEncoding = { "utf-16" }
     nvim_lsp.clangd.setup({
@@ -136,7 +147,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         },
       },
     })
-  elseif server.name == "tsserver" then
+  elseif server == "tsserver" then
     local function organize_imports()
       local params = {
         command = "_typescript.organizeImports",
@@ -146,7 +157,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
       vim.lsp.buf.execute_command(params)
     end
     nvim_lsp.tsserver.setup({
-      on_attach = on_attach,
+      on_attach = custom_attach,
       capabilities = capabilities,
       commands = {
         OrganizeImports = {
@@ -155,7 +166,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
         },
       },
     })
-  elseif server.name == "jsonls" then
+  elseif server == "jsonls" then
     nvim_lsp.jsonls.setup({
       flags = { debounce_text_changes = 500 },
       capabilities = capabilities,
@@ -213,7 +224,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
       },
     })
   else
-    nvim_lsp[server.name].setup({
+    nvim_lsp[server].setup({
       capabilities = capabilities,
       on_attach = custom_attach,
     })

@@ -6,8 +6,11 @@ completion["neovim/nvim-lspconfig"] = {
   event = "BufReadPre",
   config = conf.nvim_lsp,
 }
-completion["williamboman/nvim-lsp-installer"] = {
-  opt = false,
+completion["williamboman/mason.nvim"] = {
+	requires = {
+		{ "williamboman/mason-lspconfig.nvim", },
+		{ "WhoIsSethDaniel/mason-tool-installer.nvim", config = conf.mason_install },
+	},
 }
 completion["tami5/lspsaga.nvim"] = {
   opt = true,
