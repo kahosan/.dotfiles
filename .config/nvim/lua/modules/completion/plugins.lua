@@ -12,9 +12,10 @@ completion["williamboman/mason.nvim"] = {
 		{ "WhoIsSethDaniel/mason-tool-installer.nvim", config = conf.mason_install },
 	},
 }
-completion["tami5/lspsaga.nvim"] = {
-  opt = true,
-  after = "nvim-lspconfig",
+completion["glepnir/lspsaga.nvim"] = {
+	opt = true,
+	after = "nvim-lspconfig",
+	config = conf.lspsaga,
 }
 completion["jose-elias-alvarez/null-ls.nvim"] = {
   opt = false,

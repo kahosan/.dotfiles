@@ -228,7 +228,7 @@ function config.catppuccin()
       neotree = { enabled = false, show_root = true, transparent_panel = false },
       telekasten = false,
       mini = false,
-      aerial = true,
+      aerial = false,
       vimwiki = true,
       beacon = false,
       navic = false,
@@ -405,9 +405,9 @@ function config.lualine()
   --   lualine_y = {},
   --   lualine_z = { "location" },
   -- }
-  local aerial = {
+  local outline = {
     sections = mini_sections,
-    filetypes = { "aerial" },
+    filetypes = { "lspsagaoutline" },
   }
 
   local function python_venv()
@@ -487,7 +487,7 @@ function config.lualine()
     extensions = {
       "nvim-tree",
       "toggleterm",
-      aerial,
+      outline,
     },
   })
 end

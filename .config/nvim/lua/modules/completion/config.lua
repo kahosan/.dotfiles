@@ -198,6 +198,11 @@ function config.null_ls()
   })
 end
 
+function config.lspsaga()
+	local saga = require("lspsaga")
+	saga.init_lsp_saga()
+end
+
 function config.mason_install()
 	require("mason-tool-installer").setup({
 
