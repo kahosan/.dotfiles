@@ -225,7 +225,7 @@ function config.catppuccin()
       ts_rainbow = false,
       hop = false,
       cmp = true,
-      notify = true,
+      notify = false,
       symbols_outline = false,
       coc_nvim = false,
       leap = false,
