@@ -204,8 +204,8 @@ function config.lspsaga()
 	local diagnostic_icons = {
 		Error = " ",
 		Warn = " ",
-		Info = " ",
-		Hint = " ",
+    Info = " ",
+		Hint = " ",
 	}
 	for type, icon in pairs(diagnostic_icons) do
 		local hl = "DiagnosticSign" .. type
@@ -230,7 +230,9 @@ function config.lspsaga()
 	kind[26][2] = " "
 
 	local saga = require("lspsaga")
-	saga.init_lsp_saga()
+  saga.init_lsp_saga({
+		diagnostic_header = { " ", " ", "  ", " " },
+	})
 end
 
 function config.mason_install()
