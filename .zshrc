@@ -17,7 +17,7 @@ plugins=(
   zsh-z
   zsh-autopair
   # zsh-interactive-cd
-  fzf-tab
+  # fzf-tab
 )
 
 # init oh-my-zsh
