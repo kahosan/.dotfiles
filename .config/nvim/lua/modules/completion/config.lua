@@ -232,6 +232,7 @@ function config.lspsaga()
 	local saga = require("lspsaga")
   saga.init_lsp_saga({
 		diagnostic_header = { " ", " ", "  ", " " },
+    code_action_icon = "",
 	})
 end
 
