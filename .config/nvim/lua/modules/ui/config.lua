@@ -231,7 +231,7 @@ function config.catppuccin()
       aerial = false,
       vimwiki = true,
       beacon = false,
-      navic = false,
+      navic = true,
       overseer = false,
     },
     color_overrides = {
@@ -375,14 +375,23 @@ end
 
 function config.lualine()
   local gps = require("nvim-gps")
+  local navic = require("nvim-navic")
 
-  local function gps_content()
-    if gps.is_available() then
+  local function code_context()
+    if navic.is_available() and navic.get_location() ~= "" then
+      return navic.get_location()
+    elseif gps.is_available() then
       return gps.get_location()
     else
       return ""
     end
   end
+
+  local conditions = {
+    check_code_context = function()
+      return gps.is_available() or navic.is_available()
+    end,
+  }
 
   local function escape_status()
     local ok, m = pcall(require, "better_escape")
@@ -448,8 +457,7 @@ function config.lualine()
       lualine_a = { "mode" },
       lualine_b = { { "branch" }, { "diff" } },
       lualine_c = {
-        -- { "lsp_progress" },
-        { gps_content, cond = gps.is_available },
+        { code_context, cond = conditions.check_code_context },
       },
       lualine_x = {
         { escape_status },
@@ -492,6 +500,45 @@ function config.lualine()
   })
 end
 
+function config.nvim_navic()
+  vim.g.navic_silence = true
+
+  require("nvim-navic").setup({
+    icons = {
+      Method = " ",
+      Function = " ",
+      Constructor = " ",
+      Field = " ",
+      Variable = " ",
+      Class = "ﴯ ",
+      Interface = " ",
+      Module = " ",
+      Property = "ﰠ ",
+      Enum = " ",
+      File = " ",
+      EnumMember = " ",
+      Constant = " ",
+      Struct = " ",
+      Event = " ",
+      Operator = " ",
+      TypeParameter = " ",
+      Namespace = " ",
+      Object = " ",
+      Array = " ",
+      Boolean = " ",
+      Number = " ",
+      Null = "ﳠ ",
+      Key = " ",
+      String = " ",
+      Package = " ",
+    },
+    highlight = true,
+    separator = " > ",
+    depth_limit = 0,
+    depth_limit_indicator = "..",
+  })
+end
+
 function config.nvim_gps()
   require("nvim-gps").setup({
     icons = {
@@ -517,350 +564,178 @@ end
 function config.nvim_tree()
   require("nvim-tree").setup({
     create_in_closed_folder = false,
-		respect_buf_cwd = true,
-		auto_reload_on_write = true,
-		disable_netrw = false,
-		hijack_cursor = true,
-		hijack_netrw = true,
-		hijack_unnamed_buffer_when_opening = false,
-		ignore_buffer_on_setup = false,
-		open_on_setup = false,
-		open_on_setup_file = false,
-		open_on_tab = false,
-		sort_by = "name",
-		update_cwd = true,
-		view = {
-			adaptive_size = false,
-			centralize_selection = false,
-			width = 30,
-			height = 30,
-			side = "left",
-			preserve_window_proportions = false,
-			number = false,
-			relativenumber = false,
-			signcolumn = "yes",
-			hide_root_folder = false,
-			float = {
-				enable = false,
-				open_win_config = {
-					relative = "editor",
-					border = "rounded",
-					width = 30,
-					height = 30,
-					row = 1,
-					col = 1,
-				},
-			},
-		},
-		renderer = {
-			add_trailing = false,
-			group_empty = true,
-			highlight_git = false,
-			full_name = false,
-			highlight_opened_files = "none",
-			special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "CMakeLists.txt" },
-			symlink_destination = true,
-			indent_markers = {
-				enable = true,
-				icons = {
-					corner = "└ ",
-					edge = "│ ",
-					item = "│ ",
-					none = "  ",
-				},
-			},
-			root_folder_modifier = ":e",
-			icons = {
-				webdev_colors = true,
-				git_placement = "before",
-				show = {
-					file = true,
-					folder = true,
-					folder_arrow = false,
-					git = true,
-				},
-				padding = " ",
-				symlink_arrow = "  ",
-				glyphs = {
-					default = "", --
-					symlink = "",
-					bookmark = "",
-					git = {
-						unstaged = "",
-						staged = "", --
-						unmerged = "שׂ",
-						renamed = "", --
-						untracked = "ﲉ",
-						deleted = "",
-						ignored = "", --◌
-					},
-					folder = {
-						-- arrow_open = "",
-						-- arrow_closed = "",
-						arrow_open = "",
-						arrow_closed = "",
-						default = "",
-						open = "",
-						empty = "",
-						empty_open = "",
-						symlink = "",
-						symlink_open = "",
-					},
-				},
-			},
-		},
-		hijack_directories = {
-			enable = true,
-			auto_open = true,
-		},
-		update_focused_file = {
-			enable = true,
-			update_cwd = true,
-			ignore_list = {},
-		},
-		ignore_ft_on_setup = {},
-		filters = {
-			dotfiles = false,
-			custom = { ".DS_Store" },
-			exclude = {},
-		},
-		actions = {
-			use_system_clipboard = true,
-			change_dir = {
-				enable = true,
-				global = false,
-			},
-			open_file = {
-				quit_on_open = false,
-				resize_window = false,
-				window_picker = {
-					enable = true,
-					chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-					exclude = {
-						filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-						buftype = { "nofile", "terminal", "help" },
-					},
-				},
-			},
-			remove_file = {
-				close_window = true,
-			},
-		},
-		diagnostics = {
-			enable = false,
-			show_on_dirs = false,
-			debounce_delay = 50,
-			icons = {
-				hint = "",
-				info = "",
-				warning = "",
-				error = "",
-			},
-		},
-		filesystem_watchers = {
-			enable = true,
-			debounce_delay = 50,
-		},
-		git = {
-			enable = true,
-			ignore = true,
-			show_on_dirs = true,
-			timeout = 400,
-		},
-		trash = {
-			cmd = "gio trash",
-			require_confirm = true,
-		},
-		live_filter = {
-			prefix = "[FILTER]: ",
-			always_show_folders = true,
-		},
-		log = {
-			enable = false,
-			truncate = false,
-			types = {
-				all = false,
-				config = false,
-				copy_paste = false,
-				dev = false,
-				diagnostics = false,
-				git = false,
-				profile = false,
-				watcher = false,
-			},
-		},create_in_closed_folder = false,
-		respect_buf_cwd = true,
-		auto_reload_on_write = true,
-		disable_netrw = false,
-		hijack_cursor = true,
-		hijack_netrw = true,
-		hijack_unnamed_buffer_when_opening = false,
-		ignore_buffer_on_setup = false,
-		open_on_setup = false,
-		open_on_setup_file = false,
-		open_on_tab = false,
-		sort_by = "name",
-		update_cwd = true,
-		view = {
-			adaptive_size = false,
-			centralize_selection = false,
-			width = 30,
-			height = 30,
-			side = "left",
-			preserve_window_proportions = false,
-			number = false,
-			relativenumber = false,
-			signcolumn = "yes",
-			hide_root_folder = false,
-			float = {
-				enable = false,
-				open_win_config = {
-					relative = "editor",
-					border = "rounded",
-					width = 30,
-					height = 30,
-					row = 1,
-					col = 1,
-				},
-			},
-		},
-		renderer = {
-			add_trailing = false,
-			group_empty = true,
-			highlight_git = false,
-			full_name = false,
-			highlight_opened_files = "none",
-			special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "CMakeLists.txt" },
-			symlink_destination = true,
-			indent_markers = {
-				enable = true,
-				icons = {
-					corner = "└ ",
-					edge = "│ ",
-					item = "│ ",
-					none = "  ",
-				},
-			},
-			root_folder_modifier = ":e",
-			icons = {
-				webdev_colors = true,
-				git_placement = "before",
-				show = {
-					file = true,
-					folder = true,
-					folder_arrow = false,
-					git = true,
-				},
-				padding = " ",
-				symlink_arrow = "  ",
-				glyphs = {
-					default = "", --
-					symlink = "",
-					bookmark = "",
-					git = {
-						unstaged = "",
-						staged = "", --
-						unmerged = "שׂ",
-						renamed = "", --
-						untracked = "ﲉ",
-						deleted = "",
-						ignored = "", --◌
-					},
-					folder = {
-						-- arrow_open = "",
-						-- arrow_closed = "",
-						arrow_open = "",
-						arrow_closed = "",
-						default = "",
-						open = "",
-						empty = "",
-						empty_open = "",
-						symlink = "",
-						symlink_open = "",
-					},
-				},
-			},
-		},
-		hijack_directories = {
-			enable = true,
-			auto_open = true,
-		},
-		update_focused_file = {
-			enable = true,
-			update_cwd = true,
-			ignore_list = {},
-		},
-		ignore_ft_on_setup = {},
-		filters = {
-			dotfiles = false,
-			custom = { ".DS_Store" },
-			exclude = {},
-		},
-		actions = {
-			use_system_clipboard = true,
-			change_dir = {
-				enable = true,
-				global = false,
-			},
-			open_file = {
-				quit_on_open = false,
-				resize_window = false,
-				window_picker = {
-					enable = true,
-					chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-					exclude = {
-						filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-						buftype = { "nofile", "terminal", "help" },
-					},
-				},
-			},
-			remove_file = {
-				close_window = true,
-			},
-		},
-		diagnostics = {
-			enable = false,
-			show_on_dirs = false,
-			debounce_delay = 50,
-			icons = {
-				hint = "",
-				info = "",
-				warning = "",
-				error = "",
-			},
-		},
-		filesystem_watchers = {
-			enable = true,
-			debounce_delay = 50,
-		},
-		git = {
-			enable = true,
-			ignore = true,
-			show_on_dirs = true,
-			timeout = 400,
-		},
-		trash = {
-			cmd = "gio trash",
-			require_confirm = true,
-		},
-		live_filter = {
-			prefix = "[FILTER]: ",
-			always_show_folders = true,
-		},
-		log = {
-			enable = false,
-			truncate = false,
-			types = {
-				all = false,
-				config = false,
-				copy_paste = false,
-				dev = false,
-				diagnostics = false,
-				git = false,
-				profile = false,
-				watcher = false,
-			},
-		},
+    respect_buf_cwd = true,
+    auto_reload_on_write = true,
+    disable_netrw = false,
+    hijack_cursor = true,
+    hijack_netrw = true,
+    hijack_unnamed_buffer_when_opening = false,
+    ignore_buffer_on_setup = false,
+    open_on_setup = false,
+    open_on_setup_file = false,
+    open_on_tab = false,
+    sort_by = "name",
+    update_cwd = true,
+    view = {
+      adaptive_size = false,
+      centralize_selection = false,
+      width = 30,
+      height = 30,
+      side = "left",
+      preserve_window_proportions = false,
+      number = false,
+      relativenumber = false,
+      signcolumn = "yes",
+      hide_root_folder = false,
+      float = {
+        enable = false,
+        open_win_config = {
+          relative = "editor",
+          border = "rounded",
+          width = 30,
+          height = 30,
+          row = 1,
+          col = 1,
+        },
+      },
+    },
+    renderer = {
+      add_trailing = false,
+      group_empty = true,
+      highlight_git = false,
+      full_name = false,
+      highlight_opened_files = "none",
+      special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "CMakeLists.txt" },
+      symlink_destination = true,
+      indent_markers = {
+        enable = true,
+        icons = {
+          corner = "└ ",
+          edge = "│ ",
+          item = "│ ",
+          none = "  ",
+        },
+      },
+      root_folder_modifier = ":e",
+      icons = {
+        webdev_colors = true,
+        git_placement = "before",
+        show = {
+          file = true,
+          folder = true,
+          folder_arrow = false,
+          git = true,
+        },
+        padding = " ",
+        symlink_arrow = "  ",
+        glyphs = {
+          default = "", --
+          symlink = "",
+          bookmark = "",
+          git = {
+            unstaged = "",
+            staged = "", --
+            unmerged = "שׂ",
+            renamed = "", --
+            untracked = "ﲉ",
+            deleted = "",
+            ignored = "", --◌
+          },
+          folder = {
+            -- arrow_open = "",
+            -- arrow_closed = "",
+            arrow_open = "",
+            arrow_closed = "",
+            default = "",
+            open = "",
+            empty = "",
+            empty_open = "",
+            symlink = "",
+            symlink_open = "",
+          },
+        },
+      },
+    },
+    hijack_directories = {
+      enable = true,
+      auto_open = true,
+    },
+    update_focused_file = {
+      enable = true,
+      update_cwd = true,
+      ignore_list = {},
+    },
+    ignore_ft_on_setup = {},
+    filters = {
+      dotfiles = false,
+      custom = { ".DS_Store" },
+      exclude = {},
+    },
+    actions = {
+      use_system_clipboard = true,
+      change_dir = {
+        enable = true,
+        global = false,
+      },
+      open_file = {
+        quit_on_open = false,
+        resize_window = false,
+        window_picker = {
+          enable = true,
+          chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+          exclude = {
+            filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+            buftype = { "nofile", "terminal", "help" },
+          },
+        },
+      },
+      remove_file = {
+        close_window = true,
+      },
+    },
+    diagnostics = {
+      enable = false,
+      show_on_dirs = false,
+      debounce_delay = 50,
+      icons = {
+        hint = "",
+        info = "",
+        warning = "",
+        error = "",
+      },
+    },
+    filesystem_watchers = {
+      enable = true,
+      debounce_delay = 50,
+    },
+    git = {
+      enable = true,
+      ignore = true,
+      show_on_dirs = true,
+      timeout = 400,
+    },
+    trash = {
+      cmd = "gio trash",
+      require_confirm = true,
+    },
+    live_filter = {
+      prefix = "[FILTER]: ",
+      always_show_folders = true,
+    },
+    log = {
+      enable = false,
+      truncate = false,
+      types = {
+        all = false,
+        config = false,
+        copy_paste = false,
+        dev = false,
+        diagnostics = false,
+        git = false,
+        profile = false,
+        watcher = false,
+      },
+    },
   })
 end
 
