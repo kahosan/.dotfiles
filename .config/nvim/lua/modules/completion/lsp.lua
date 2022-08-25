@@ -1,7 +1,6 @@
 vim.cmd([[packadd lsp_signature.nvim]])
 vim.cmd([[packadd lspsaga.nvim]])
 vim.cmd([[packadd cmp-nvim-lsp]])
-vim.cmd([[packadd vim-illuminate]])
 
 local nvim_lsp = require("lspconfig")
 local mason = require("mason")
@@ -35,7 +34,6 @@ local function custom_attach(client)
     max_width = 40,
     handler_opts = { "double" },
   })
-  require("illuminate").on_attach(client)
   client.resolved_capabilities.document_formatting = false
   client.resolved_capabilities.document_range_formatting = false
 end

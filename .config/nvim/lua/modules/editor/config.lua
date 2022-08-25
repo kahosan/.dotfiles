@@ -1,5 +1,39 @@
 local config = {}
 
+
+function config.illuminate()
+  -- Use background for "Visual" as highlight for words. Change this behavior here!
+	if vim.api.nvim_get_hl_by_name("Visual", true).background then
+		local illuminate_bg = string.format("#%06x", vim.api.nvim_get_hl_by_name("Visual", true).background)
+
+		vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = illuminate_bg })
+		vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = illuminate_bg })
+		vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = illuminate_bg })
+	end
+
+	require("illuminate").configure({
+		providers = {
+			"lsp",
+			"treesitter",
+			"regex",
+		},
+		delay = 100,
+		filetypes_denylist = {
+			"alpha",
+			"dashboard",
+			"DoomInfo",
+			"fugitive",
+			"help",
+			"norg",
+			"NvimTree",
+			"Outline",
+			"packer",
+			"toggleterm",
+		},
+		under_cursor = false,
+	})
+end
+
 function config.nvim_treesitter()
   -- vim.api.nvim_command("set foldmethod=expr")
   vim.api.nvim_command("set foldexpr=nvim_treesitter#foldexpr()")

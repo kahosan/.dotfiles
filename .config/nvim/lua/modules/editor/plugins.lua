@@ -2,21 +2,9 @@ local editor = {}
 local conf = require("modules.editor.config")
 
 editor["RRethy/vim-illuminate"] = {
+  opt = true,
   event = "BufReadPost",
-  config = function()
-    vim.g.Illuminate_highlightUnderCursor = 0
-    vim.g.Illuminate_ftblacklist = {
-      "help",
-      "dashboard",
-      "alpha",
-      "packer",
-      "norg",
-      "DoomInfo",
-      "NvimTree",
-      "Outline",
-      "toggleterm",
-    }
-  end,
+  config = conf.illuminate,
 }
 editor["terrortylor/nvim-comment"] = {
   opt = false,
