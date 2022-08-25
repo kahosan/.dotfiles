@@ -199,6 +199,18 @@ function config.null_ls()
 end
 
 function config.lspsaga()
+  -- Set icons for sidebar.
+	local diagnostic_icons = {
+		Error = " ",
+		Warn = " ",
+		Info = " ",
+		Hint = " ",
+	}
+	for type, icon in pairs(diagnostic_icons) do
+		local hl = "DiagnosticSign" .. type
+		vim.fn.sign_define(hl, { text = icon, texthl = hl })
+	end
+
 	local saga = require("lspsaga")
 	saga.init_lsp_saga()
 end
