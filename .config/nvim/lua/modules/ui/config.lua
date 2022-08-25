@@ -757,7 +757,7 @@ function config.nvim_bufferline()
           text_align = "right",
         },
       },
-      diagnostic_indicator = function(count, level, diagnostics_dict, context)
+      diagnostics_indicator = function(count)
         return "(" .. count .. ")"
       end,
     },
