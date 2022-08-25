@@ -18,13 +18,8 @@ ui["j-hui/fidget.nvim"] = {
 }
 ui["hoob3rt/lualine.nvim"] = {
   opt = true,
-  after = { "nvim-gps", "nvim-navic" },
+  after = { "nvim-navic" },
   config = conf.lualine,
-}
-ui["SmiteshP/nvim-gps"] = {
-  opt = true,
-  after = "nvim-treesitter",
-  config = conf.nvim_gps,
 }
 ui["SmiteshP/nvim-navic"] = {
 	opt = true,
