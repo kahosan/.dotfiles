@@ -66,6 +66,7 @@ alias df="duf"
 alias python="python3"
 alias pip="pip3"
 alias c="clear"
+alias cl="clear"
 alias bry="hexyl"
 alias nio="ni --prefer-offline"
 
@@ -73,7 +74,6 @@ alias nio="ni --prefer-offline"
 
 # fzf-tab
 zstyle ':fzf-tab:*' fzf-bindings 'space:accept'
-
 
 # SUKKA SETTING
 
