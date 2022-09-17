@@ -70,6 +70,9 @@ alias cl="clear"
 alias bry="hexyl"
 alias nio="ni --prefer-offline"
 
+# git alias
+alias glo="git log --oneline --graph"
+
 # plugins setting
 
 # fzf-tab
