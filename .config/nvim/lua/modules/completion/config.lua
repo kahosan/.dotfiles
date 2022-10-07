@@ -14,69 +14,33 @@ function config.cmp()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
+  local compare = require("cmp.config.compare")
+  local lspkind = require("lspkind")
   local cmp = require("cmp")
+
   cmp.setup({
     sorting = {
       priority_weight = 2,
       comparators = {
         require("copilot_cmp.comparators").prioritize,
         require("copilot_cmp.comparators").score,
-        cmp.config.compare.offset,
-        cmp.config.compare.exact,
-        cmp.config.compare.score,
+        compare.offset,
+        compare.exact,
+        compare.score,
         require("cmp-under-comparator").under,
-        cmp.config.compare.kind,
-        cmp.config.compare.sort_text,
-        cmp.config.compare.length,
-        cmp.config.compare.order,
+        compare.kind,
+        compare.sort_text,
+        compare.length,
+        compare.order,
       },
     },
     formatting = {
-      format = function(entry, vim_item)
-        local lspkind_icons = {
-          Text = "",
-          Method = "",
-          Function = "",
-          Constructor = "",
-          Field = "",
-          Variable = "",
-          Class = "ﴯ",
-          Interface = "",
-          Module = "",
-          Property = "ﰠ",
-          Unit = "",
-          Value = "",
-          Enum = "",
-          Keyword = "",
-          Snippet = "",
-          Color = "",
-          File = "",
-          Reference = "",
-          Folder = "",
-          EnumMember = "",
-          Constant = "",
-          Struct = "",
-          Event = "",
-          Operator = "",
-          TypeParameter = "",
-        }
-        -- load lspkind icons
-        vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
-
-        vim_item.menu = ({
-          -- cmp_tabnine = "[TN]",
-          buffer = "[BUF]",
-          orgmode = "[ORG]",
-          nvim_lsp = "[LSP]",
-          nvim_lua = "[LUA]",
-          path = "[PATH]",
-          tmux = "[TMUX]",
-          luasnip = "[SNIP]",
-          spell = "[SPELL]",
-        })[entry.source.name]
-
-        return vim_item
-      end,
+      format = lspkind.cmp_format({
+        mode = "symbol_text",
+        maxwidth = 50,
+        ellipsis_char = "...",
+        symbol_map = { Copilot = "" },
+      }),
     },
     -- You can set mappings if you want
     mapping = cmp.mapping.preset.insert({
