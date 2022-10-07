@@ -219,6 +219,7 @@ function config.catppuccin()
       lightspeed = false,
       ts_rainbow = false,
       hop = false,
+      illuminate = true,
       cmp = true,
       notify = false,
       symbols_outline = false,

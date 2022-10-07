@@ -1,42 +1,32 @@
 local config = {}
 
-
 function config.illuminate()
-  -- Use background for "Visual" as highlight for words. Change this behavior here!
-	if vim.api.nvim_get_hl_by_name("Visual", true).background then
-		local illuminate_bg = string.format("#%06x", vim.api.nvim_get_hl_by_name("Visual", true).background)
-
-		vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = illuminate_bg })
-		vim.api.nvim_set_hl(0, "IlluminatedWordRead", { bg = illuminate_bg })
-		vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { bg = illuminate_bg })
-	end
-
-	require("illuminate").configure({
-		providers = {
-			"lsp",
-			"treesitter",
-			"regex",
-		},
-		delay = 100,
-		filetypes_denylist = {
-			"alpha",
-			"dashboard",
-			"DoomInfo",
-			"fugitive",
-			"help",
-			"norg",
-			"NvimTree",
-			"Outline",
-			"packer",
-			"toggleterm",
-		},
-		under_cursor = false,
-	})
+  require("illuminate").configure({
+    providers = {
+      "lsp",
+      "treesitter",
+      "regex",
+    },
+    delay = 100,
+    filetypes_denylist = {
+      "alpha",
+      "dashboard",
+      "DoomInfo",
+      "fugitive",
+      "help",
+      "norg",
+      "NvimTree",
+      "Outline",
+      "packer",
+      "toggleterm",
+    },
+    under_cursor = false,
+  })
 end
 
 function config.nvim_treesitter()
   vim.api.nvim_set_option_value("foldmethod", "expr", {})
-	-- vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
+  -- vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
 
   require("nvim-treesitter.configs").setup({
     ensure_installed = {
@@ -109,10 +99,10 @@ function config.toggleterm()
     end,
     on_open = function()
       -- Prevent infinite calls from freezing neovim.
-			-- Only set these options specific to this terminal buffer.
+      -- Only set these options specific to this terminal buffer.
       vim.api.nvim_set_option_value("foldmethod", "manual", { scope = "local" })
-			vim.api.nvim_set_option_value("foldexpr", "0", { scope = "local" })
-		end,
+      vim.api.nvim_set_option_value("foldexpr", "0", { scope = "local" })
+    end,
     open_mapping = [[<c-\>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
     shade_filetypes = {},
