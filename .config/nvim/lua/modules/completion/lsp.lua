@@ -28,15 +28,13 @@ local function custom_attach(client, bufnr)
     bind = true,
     use_lspsaga = false,
     floating_window = true,
-    fix_pos = false,
-    hint_enable = true,
+    fix_pos = true,
+    hint_enable = false,
     hi_parameter = "Search",
     hint_prefix = "",
     max_width = 40,
     handler_opts = { "double" },
   })
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
   require("nvim-navic").attach(client, bufnr)
 end
 
@@ -108,18 +106,18 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
       single_file_support = true,
       on_attach = custom_attach,
       cmd = {
-				"clangd",
-				"--background-index",
-				"--pch-storage=memory",
-				-- You MUST set this arg ↓ to your clangd executable location (if not included)!
-				"--query-driver=/usr/bin/clang++,/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
-				"--clang-tidy",
-				"--all-scopes-completion",
-				"--cross-file-rename",
-				"--completion-style=detailed",
-				"--header-insertion-decorators",
-				"--header-insertion=iwyu",
-			},
+        "clangd",
+        "--background-index",
+        "--pch-storage=memory",
+        -- You MUST set this arg ↓ to your clangd executable location (if not included)!
+        "--query-driver=/usr/bin/clang++,/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
+        "--clang-tidy",
+        "--all-scopes-completion",
+        "--cross-file-rename",
+        "--completion-style=detailed",
+        "--header-insertion-decorators",
+        "--header-insertion=iwyu",
+      },
       commands = {
         ClangdSwitchSourceHeader = {
           function()
@@ -150,6 +148,7 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
       }
       vim.lsp.buf.execute_command(params)
     end
+
     nvim_lsp.tsserver.setup({
       on_attach = custom_attach,
       capabilities = capabilities,
