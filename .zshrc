@@ -53,7 +53,7 @@ eval "$(fnm env --use-on-cd)"
 export LANG="en_US.UTF-8"
 
 # ssh
-alias nas="ssh kaho@192.168.0.106"
+alias nas="ssh kaho@10.88.88.106"
 
 # alias
 alias cat="bat"
