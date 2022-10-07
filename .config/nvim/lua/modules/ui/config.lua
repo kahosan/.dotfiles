@@ -59,15 +59,15 @@ function config.alpha()
   local function footer()
     local total_plugins = #vim.tbl_keys(packer_plugins)
     return "   Have Fun with neovim"
-      .. "   v"
-      .. vim.version().major
-      .. "."
-      .. vim.version().minor
-      .. "."
-      .. vim.version().patch
-      .. "   "
-      .. total_plugins
-      .. " plugins"
+        .. "   v"
+        .. vim.version().major
+        .. "."
+        .. vim.version().minor
+        .. "."
+        .. vim.version().patch
+        .. "   "
+        .. total_plugins
+        .. " plugins"
   end
 
   dashboard.section.footer.val = footer()
@@ -216,10 +216,10 @@ function config.catppuccin()
       fern = false,
       barbar = false,
       bufferline = {
-				enabled = true,
-				italics = true,
-				bolds = true,
-			},
+        enabled = true,
+        italics = true,
+        bolds = true,
+      },
       markdown = true,
       lightspeed = false,
       ts_rainbow = false,
@@ -298,19 +298,27 @@ function config.catppuccin()
         rainbowcol7 = { bg = cp.none },
 
         -- For bufferline
-				BufferLineInfo = { fg = cp.sky },
-				BufferLineInfoVisible = { fg = cp.sky },
-				BufferLineInfoDiagnostic = { fg = cp.sky },
-				BufferLineInfoDiagnosticVisible = { fg = cp.sky },
-				BufferLineInfoDiagnosticSelected = { fg = cp.sky },
-				BufferLineInfoSelected = { fg = cp.sky },
 
-				BufferLineHint = { fg = cp.rosewater },
-				BufferLineHintVisible = { fg = cp.rosewater },
-				BufferLineHintDiagnostic = { fg = cp.rosewater },
-				BufferLineHintDiagnosticVisible = { fg = cp.rosewater },
-				BufferLineHintSelected = { fg = cp.rosewater },
-				BufferLineHintDiagnosticSelected = { fg = cp.rosewater },
+        BufferLineWarning = { fg = cp.yellow },
+        BufferLineWarningVisible = { fg = cp.yellow },
+        BufferLineWarningDiagnostic = { fg = cp.yellow },
+        BufferLineWarningDiagnosticVisible = { fg = cp.yellow },
+        BufferLineWarningSelected = { fg = cp.yellow },
+        BufferLineWarningDiagnosticSelected = { fg = cp.yellow },
+
+        BufferLineInfo = { fg = cp.sky },
+        BufferLineInfoVisible = { fg = cp.sky },
+        BufferLineInfoDiagnostic = { fg = cp.sky },
+        BufferLineInfoDiagnosticVisible = { fg = cp.sky },
+        BufferLineInfoDiagnosticSelected = { fg = cp.sky },
+        BufferLineInfoSelected = { fg = cp.sky },
+
+        BufferLineHint = { fg = cp.rosewater },
+        BufferLineHintVisible = { fg = cp.rosewater },
+        BufferLineHintDiagnostic = { fg = cp.rosewater },
+        BufferLineHintDiagnosticVisible = { fg = cp.rosewater },
+        BufferLineHintSelected = { fg = cp.rosewater },
+        BufferLineHintDiagnosticSelected = { fg = cp.rosewater },
 
         -- For treesitter.
         TSField = { fg = cp.rosewater },
@@ -400,15 +408,15 @@ function config.lualine()
   end
 
   local function diff_source()
-		local gitsigns = vim.b.gitsigns_status_dict
-		if gitsigns then
-			return {
-				added = gitsigns.added,
-				modified = gitsigns.changed,
-				removed = gitsigns.removed,
-			}
-		end
-	end
+    local gitsigns = vim.b.gitsigns_status_dict
+    if gitsigns then
+      return {
+        added = gitsigns.added,
+        modified = gitsigns.changed,
+        removed = gitsigns.removed,
+      }
+    end
+  end
 
   local mini_sections = {
     lualine_a = {},
