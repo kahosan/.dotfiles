@@ -10,7 +10,7 @@ function config.cmp()
   end
 
   local has_words_before = function()
-    local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
   end
 
@@ -229,6 +229,11 @@ function config.lspsaga()
   local colors = get_palette()
 
   require("lspsaga").init_lsp_saga({
+    code_action_icon = "",
+    code_action_lightbulb = {
+      enable = true,
+      virtual_text = false,
+    },
     diagnostic_header = { " ", " ", "  ", " " },
     custom_kind = {
       File = { " ", colors.rosewater },
