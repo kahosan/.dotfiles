@@ -31,8 +31,8 @@ local plug_map = {
   ["n|gh"] = map_cr("Lspsaga lsp_finder"):with_noremap():with_silent(),
   ["n|K"] = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
   ["n|<leader>ca"] = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
-  ["v|<leader>ca"] = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
-  ["n|gd"] = map_cr("Lspsaga preview_definition"):with_noremap():with_silent(),
+  ["v|<leader>ca"] = map_cu("Lspsaga code_action"):with_noremap():with_silent(),
+  ["n|gd"] = map_cr("Lspsaga peek_definition"):with_noremap():with_silent(),
   ["n|gD"] = map_cr("lua vim.lsp.buf.definition()"):with_noremap():with_silent(),
   -- ["n|gh"] = map_cr("lua vim.lsp.buf.references()"):with_noremap():with_silent(),
 
