@@ -7,16 +7,15 @@ completion["neovim/nvim-lspconfig"] = {
   config = conf.nvim_lsp,
 }
 completion["williamboman/mason.nvim"] = {
-	requires = {
-		{ "williamboman/mason-lspconfig.nvim", },
-		{ "WhoIsSethDaniel/mason-tool-installer.nvim", config = conf.mason_install },
-	},
+  requires = {
+    { "williamboman/mason-lspconfig.nvim" },
+    { "WhoIsSethDaniel/mason-tool-installer.nvim", config = conf.mason_install },
+  },
 }
 completion["glepnir/lspsaga.nvim"] = {
-	opt = true,
-	after = "nvim-lspconfig",
-  requires = { { "antoinemadec/FixCursorHold.nvim", opt = true } },
-	config = conf.lspsaga,
+  opt = true,
+  after = "nvim-lspconfig",
+  config = conf.lspsaga,
 }
 completion["jose-elias-alvarez/null-ls.nvim"] = {
   opt = false,
