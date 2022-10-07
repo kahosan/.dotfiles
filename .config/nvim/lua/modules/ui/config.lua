@@ -235,7 +235,7 @@ function config.catppuccin()
       aerial = false,
       vimwiki = true,
       beacon = false,
-      navic = true,
+      navic = { enabled = true, custom_bg = "NONE" },
       overseer = false,
     },
     color_overrides = {
