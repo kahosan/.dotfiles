@@ -200,72 +200,111 @@ function config.null_ls()
 end
 
 function config.lspsaga()
-  -- Set icons for sidebar.
-	local diagnostic_icons = {
-		Error = " ",
-		Warn = " ",
-    Info = " ",
-		Hint = " ",
-	}
-	for type, icon in pairs(diagnostic_icons) do
-		local hl = "DiagnosticSign" .. type
-		vim.fn.sign_define(hl, { text = icon, texthl = hl })
-	end
+  local function set_sidebar_icons()
+    -- Set icons for sidebar.
+    local diagnostic_icons = {
+      Error = " ",
+      Warn = " ",
+      Info = " ",
+      Hint = " ",
+    }
+    for type, icon in pairs(diagnostic_icons) do
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl })
+    end
+  end
 
-  local kind = require("lspsaga.lspkind")
-	kind[2][2] = " "
-	kind[4][2] = " "
-	kind[5][2] = "ﴯ "
-	kind[6][2] = " "
-	kind[7][2] = "ﰠ "
-	kind[8][2] = " "
-	kind[9][2] = " "
-	kind[10][2] = " "
-	kind[11][2] = " "
-	kind[12][2] = " "
-	kind[13][2] = " "
-	kind[15][2] = " "
-	kind[16][2] = " "
-	kind[23][2] = " "
-	kind[26][2] = " "
+  local function get_palette()
+    if vim.g.colors_name == "catppuccin" then
+      -- If the colorscheme is catppuccin then use the palette.
+      return require("catppuccin.palettes").get_palette()
+    else
+      -- Default behavior: return lspsaga's default palette.
+      local palette = require("lspsaga.lspkind").colors
+      palette.peach = palette.orange
+      palette.flamingo = palette.orange
+      palette.rosewater = palette.yellow
+      palette.mauve = palette.violet
+      palette.sapphire = palette.blue
+      palette.maroon = palette.orange
 
-	local saga = require("lspsaga")
+      return palette
+    end
+  end
+
+  set_sidebar_icons()
+
+  local colors = get_palette()
+
+  local saga = require("lspsaga")
   saga.init_lsp_saga({
-		diagnostic_header = { " ", " ", "  ", " " },
-    code_action_icon = "",
-	})
+    diagnostic_header = { " ", " ", "  ", " " },
+    custom_kind = {
+      File = { " ", colors.rosewater },
+      Module = { " ", colors.blue },
+      Namespace = { " ", colors.blue },
+      Package = { " ", colors.blue },
+      Class = { "ﴯ ", colors.yellow },
+      Method = { " ", colors.blue },
+      Property = { "ﰠ ", colors.teal },
+      Field = { " ", colors.teal },
+      Constructor = { " ", colors.sapphire },
+      Enum = { " ", colors.yellow },
+      Interface = { " ", colors.yellow },
+      Function = { " ", colors.blue },
+      Variable = { " ", colors.peach },
+      Constant = { " ", colors.peach },
+      String = { " ", colors.green },
+      Number = { " ", colors.peach },
+      Boolean = { " ", colors.peach },
+      Array = { " ", colors.peach },
+      Object = { " ", colors.yellow },
+      Key = { " ", colors.red },
+      Null = { "ﳠ ", colors.yellow },
+      EnumMember = { " ", colors.teal },
+      Struct = { " ", colors.yellow },
+      Event = { " ", colors.yellow },
+      Operator = { " ", colors.sky },
+      TypeParameter = { " ", colors.maroon },
+      -- ccls-specific icons.
+      TypeAlias = { " ", colors.green },
+      Parameter = { " ", colors.blue },
+      StaticMethod = { "ﴂ ", colors.peach },
+      Macro = { " ", colors.red },
+    },
+  })
 end
 
 function config.mason_install()
-	require("mason-tool-installer").setup({
+  require("mason-tool-installer").setup({
 
-		-- a list of all tools you want to ensure are installed upon
-		-- start; they should be the names Mason uses for each tool
-		ensure_installed = {
-			-- you can turn off/on auto_update per tool
-			-- "editorconfig-checker",
+    -- a list of all tools you want to ensure are installed upon
+    -- start; they should be the names Mason uses for each tool
+    ensure_installed = {
+      -- you can turn off/on auto_update per tool
+      -- "editorconfig-checker",
 
-			"stylua",
+      "stylua",
 
-			"black",
+      "black",
 
-			"prettier",
+      "prettier",
 
-			"shellcheck",
-			"shfmt",
-		},
+      "shellcheck",
+      "shfmt",
+    },
 
-		-- if set to true this will check each tool for updates. If updates
-		-- are available the tool will be updated.
-		-- Default: false
-		auto_update = false,
+    -- if set to true this will check each tool for updates. If updates
+    -- are available the tool will be updated.
+    -- Default: false
+    auto_update = false,
 
-		-- automatically install / update on startup. If set to false nothing
-		-- will happen on startup. You can use `:MasonToolsUpdate` to install
-		-- tools and check for updates.
-		-- Default: true
-		run_on_start = true,
-	})
+    -- automatically install / update on startup. If set to false nothing
+    -- will happen on startup. You can use `:MasonToolsUpdate` to install
+    -- tools and check for updates.
+    -- Default: true
+    run_on_start = true,
+  })
 end
 
 return config
