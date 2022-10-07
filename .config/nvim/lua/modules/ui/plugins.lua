@@ -13,7 +13,9 @@ ui["j-hui/fidget.nvim"] = {
   opt = true,
   event = "BufReadPost",
   config = function()
-    require("fidget").setup({})
+    require("fidget").setup({
+      window = { blend = 0 },
+    })
   end,
 }
 ui["hoob3rt/lualine.nvim"] = {
@@ -22,9 +24,9 @@ ui["hoob3rt/lualine.nvim"] = {
   config = conf.lualine,
 }
 ui["SmiteshP/nvim-navic"] = {
-	opt = true,
-	after = "nvim-lspconfig",
-	config = conf.nvim_navic,
+  opt = true,
+  after = "nvim-lspconfig",
+  config = conf.nvim_navic,
 }
 ui["kyazdani42/nvim-tree.lua"] = {
   opt = true,
