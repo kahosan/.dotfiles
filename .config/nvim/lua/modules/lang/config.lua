@@ -171,9 +171,6 @@ function config.rust_tools()
       -- standalone file support
       -- setting it to false may improve startup time
       standalone = true,
-      on_attach = function(client, bufnr)
-        require("nvim-navic").attach(client, bufnr)
-      end,
     }, -- rust-analyer options
 
     -- debugging stuff
