@@ -1,7 +1,7 @@
 local global = require("core.global")
 local vim = vim
 
--- Create cache dir and subs dir
+-- Create cache dir and subs dirs
 local createdir = function()
   local data_dir = {
     global.cache_dir .. "backup",
@@ -10,8 +10,7 @@ local createdir = function()
     global.cache_dir .. "tags",
     global.cache_dir .. "undo",
   }
-  -- There only check once that If cache_dir exists
-  -- Then I don't want to check subs dir exists
+  -- Only check whether cache_dir exists, this would be enough.
   if vim.fn.isdirectory(global.cache_dir) == 0 then
     os.execute("mkdir -p " .. global.cache_dir)
     for _, v in pairs(data_dir) do
@@ -51,16 +50,31 @@ local leader_map = function()
 end
 
 local neovide_config = function()
-	vim.g.neovide_refresh_rate = 120
-	vim.g.neovide_cursor_vfx_mode = "railgun"
-	vim.g.neovide_no_idle = true
-	vim.g.neovide_cursor_animation_length = 0.03
-	vim.g.neovide_cursor_trail_length = 0.05
-	vim.g.neovide_cursor_antialiasing = true
-	vim.g.neovide_cursor_vfx_opacity = 200.0
-	vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
-	vim.g.neovide_cursor_vfx_particle_speed = 20.0
-	vim.g.neovide_cursor_vfx_particle_density = 5.0
+  vim.g.neovide_refresh_rate = 120
+  vim.g.neovide_cursor_vfx_mode = "railgun"
+  vim.g.neovide_no_idle = true
+  vim.g.neovide_cursor_animation_length = 0.03
+  vim.g.neovide_cursor_trail_length = 0.05
+  vim.g.neovide_cursor_antialiasing = true
+  vim.g.neovide_cursor_vfx_opacity = 200.0
+  vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
+  vim.g.neovide_cursor_vfx_particle_speed = 20.0
+  vim.g.neovide_cursor_vfx_particle_density = 5.0
+end
+
+local clipboard_config = function()
+  vim.g.clipboard = {
+    name = "win32yank-wsl",
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+    cache_enabled = 0,
+  }
 end
 
 local load_core = function()
@@ -71,7 +85,9 @@ local load_core = function()
 
   pack.ensure_plugins()
   neovide_config()
-  -- clipboard_config()
+  if global.is_windows then
+    clipboard_config()
+  end
 
   require("core.options")
   require("core.mapping")
