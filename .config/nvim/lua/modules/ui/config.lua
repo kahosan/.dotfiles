@@ -231,7 +231,7 @@ function config.catppuccin()
       aerial = false,
       vimwiki = true,
       beacon = false,
-      navic = { enabled = true, custom_bg = "NONE" },
+      navic = { enabled = false },
       overseer = false,
       fidget = true,
     },
@@ -369,8 +369,6 @@ function config.catppuccin()
 end
 
 function config.lualine()
-  local navic = require("nvim-navic")
-
   local function escape_status()
     local ok, m = pcall(require, "better_escape")
     return ok and m.waiting and "✺ " or ""
@@ -445,9 +443,7 @@ function config.lualine()
     sections = {
       lualine_a = { "mode" },
       lualine_b = { { "branch" }, { "diff", source = diff_source } },
-      lualine_c = {
-        { navic.get_location, cond = navic.is_available },
-      },
+      lualine_c = {},
       lualine_x = {
         { escape_status },
         {
@@ -486,45 +482,6 @@ function config.lualine()
       "toggleterm",
       outline,
     },
-  })
-end
-
-function config.nvim_navic()
-  vim.g.navic_silence = true
-
-  require("nvim-navic").setup({
-    icons = {
-      Method = " ",
-      Function = " ",
-      Constructor = " ",
-      Field = " ",
-      Variable = " ",
-      Class = "ﴯ ",
-      Interface = " ",
-      Module = " ",
-      Property = "ﰠ ",
-      Enum = " ",
-      File = " ",
-      EnumMember = " ",
-      Constant = " ",
-      Struct = " ",
-      Event = " ",
-      Operator = " ",
-      TypeParameter = " ",
-      Namespace = " ",
-      Object = " ",
-      Array = " ",
-      Boolean = " ",
-      Number = " ",
-      Null = "ﳠ ",
-      Key = " ",
-      String = " ",
-      Package = " ",
-    },
-    highlight = true,
-    separator = " > ",
-    depth_limit = 0,
-    depth_limit_indicator = "..",
   })
 end
 

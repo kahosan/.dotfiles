@@ -20,13 +20,8 @@ ui["j-hui/fidget.nvim"] = {
 }
 ui["hoob3rt/lualine.nvim"] = {
   opt = true,
-  after = { "nvim-navic" },
-  config = conf.lualine,
-}
-ui["SmiteshP/nvim-navic"] = {
-  opt = true,
   after = "nvim-lspconfig",
-  config = conf.nvim_navic,
+  config = conf.lualine,
 }
 ui["kyazdani42/nvim-tree.lua"] = {
   opt = true,
