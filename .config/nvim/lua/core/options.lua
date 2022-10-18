@@ -89,8 +89,11 @@ local function load_options()
     return s == nil or s == ""
   end
 
-  if not isempty(vim.env.CONDA_PREFIX) then
-    vim.g.python3_host_prog = vim.env.CONDA_PREFIX .. "/bin/python3"
+	-- custom python provider
+	local conda_prefix = os.getenv("CONDA_PREFIX")
+	if not isempty(conda_prefix) then
+		vim.g.python_host_prog = conda_prefix .. "/bin/python3"
+		vim.g.python3_host_prog = conda_prefix .. "/bin/python3"
   elseif global.is_mac then
     vim.g.python_host_prog = "/usr/bin/python3"
     vim.g.python3_host_prog = "/usr/local/bin/python3"
