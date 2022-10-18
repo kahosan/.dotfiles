@@ -7,6 +7,7 @@ completion["neovim/nvim-lspconfig"] = {
   config = conf.nvim_lsp,
 }
 completion["williamboman/mason.nvim"] = {
+  opt = false,
   requires = {
     { "williamboman/mason-lspconfig.nvim" },
     { "WhoIsSethDaniel/mason-tool-installer.nvim", config = conf.mason_install },
@@ -14,7 +15,7 @@ completion["williamboman/mason.nvim"] = {
 }
 completion["glepnir/lspsaga.nvim"] = {
   opt = true,
-  after = "nvim-lspconfig",
+  event = "LspAttach",
   config = conf.lspsaga,
 }
 completion["jose-elias-alvarez/null-ls.nvim"] = {
