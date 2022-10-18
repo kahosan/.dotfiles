@@ -43,6 +43,7 @@ local function load_options()
     shortmess = "aoOTIcF",
     scrolloff = 5,
     sidescrolloff = 5,
+    mousescroll = "ver:3,hor:6",
     cursorline = true,
     pumheight = 15,
     helpheight = 12,
