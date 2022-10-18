@@ -35,7 +35,7 @@ editor["romainl/vim-cool"] = {
   opt = true,
   event = { "CursorMoved", "InsertEnter" },
 }
-editor["norcalli/nvim-colorizer.lua"] = {
+editor["NvChad/nvim-colorizer.lua"] = {
   opt = true,
   event = "BufReadPost",
   config = conf.nvim_colorizer,
