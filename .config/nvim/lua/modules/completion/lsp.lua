@@ -236,7 +236,3 @@ nvim_lsp.html.setup({
   capabilities = capabilities,
   on_attach = custom_attach,
 })
-
--- eslint
-
-nvim_lsp.eslint.setup({})

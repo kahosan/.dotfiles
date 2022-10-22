@@ -51,12 +51,6 @@ function autocmd.load_autocmds()
       -- {"BufCreate", "*", ":silent !fcitx5-remote -c"},
       -- {"BufEnter", "*", ":silent !fcitx5-remote -c "},
       -- {"BufLeave", "*", ":silent !fcitx5-remote -c "}
-      -- auto format for eslint
-      {
-        "BufWritePre",
-        "*.tsx,*.ts,*.jsx,*.js,*.vue,*.mts,*.mjs,*.cjs,*.cts",
-        "EslintFixAll",
-      },
     },
     wins = {
       -- Highlight current line only on focused window

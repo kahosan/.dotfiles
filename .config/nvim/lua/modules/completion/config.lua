@@ -153,6 +153,10 @@ end
 function config.null_ls()
   local null_ls = require("null-ls")
   local sources = {
+    null_ls.builtins.diagnostics.eslint_d.with({
+      diagnostics_format = "[eslint] #{m}\n(#{c})",
+    }),
+    null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.prettier.with({
       env = {
         PRETTIERD_DEFAULT_CONFIG = vim.fn.expand(
@@ -187,7 +191,7 @@ function config.null_ls()
           group = augroup,
           buffer = bufnr,
           callback = function()
-            vim.lsp.buf.format()
+            vim.lsp.buf.format({ bufnr = bufnr })
           end,
         })
       end

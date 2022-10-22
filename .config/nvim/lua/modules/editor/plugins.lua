@@ -41,9 +41,9 @@ editor["NvChad/nvim-colorizer.lua"] = {
   config = conf.nvim_colorizer,
 }
 editor["max397574/better-escape.nvim"] = {
-	opt = true,
-	event = "BufReadPost",
-	config = conf.better_escape,
+  opt = true,
+  event = "BufReadPost",
+  config = conf.better_escape,
 }
 editor["famiu/bufdelete.nvim"] = {
   opt = true,
@@ -59,7 +59,6 @@ editor["abecodes/tabout.nvim"] = {
 editor["akinsho/toggleterm.nvim"] = {
   opt = true,
   event = "BufReadPost",
-  tag = "v1.*",
   config = conf.toggleterm,
 }
 editor["numtostr/FTerm.nvim"] = {
