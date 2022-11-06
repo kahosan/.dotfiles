@@ -60,8 +60,7 @@ editor["numtostr/FTerm.nvim"] = {
   opt = false,
 }
 editor["windwp/nvim-ts-autotag"] = {
-  opt = true,
-  event = "BufReadPost",
+  after = "nvim-treesitter",
 }
 
 return editor
