@@ -53,7 +53,7 @@ function config.nvim_treesitter()
     },
     indent = {
       enable = true,
-      disable = { "python", "go", "rust", "c", "cpp", "tsx", "jsx", "ts", "js" },
+      disable = { "python", "go", "rust", "c", "cpp" },
     },
   })
   require("nvim-treesitter.install").prefer_git = true

@@ -70,6 +70,7 @@ local function load_options()
     -- expandtab = false,
     expandtab = true,
     autoindent = true,
+    smartindent = true,
     tabstop = 2,
     shiftwidth = 2,
     -- softtabstop = -1,
@@ -89,11 +90,11 @@ local function load_options()
     return s == nil or s == ""
   end
 
-	-- custom python provider
-	local conda_prefix = os.getenv("CONDA_PREFIX")
-	if not isempty(conda_prefix) then
-		vim.g.python_host_prog = conda_prefix .. "/bin/python3"
-		vim.g.python3_host_prog = conda_prefix .. "/bin/python3"
+  -- custom python provider
+  local conda_prefix = os.getenv("CONDA_PREFIX")
+  if not isempty(conda_prefix) then
+    vim.g.python_host_prog = conda_prefix .. "/bin/python3"
+    vim.g.python3_host_prog = conda_prefix .. "/bin/python3"
   elseif global.is_mac then
     vim.g.python_host_prog = "/usr/bin/python3"
     vim.g.python3_host_prog = "/usr/local/bin/python3"
