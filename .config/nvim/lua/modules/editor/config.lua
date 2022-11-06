@@ -29,6 +29,9 @@ function config.nvim_treesitter()
   -- vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
 
   require("nvim-treesitter.configs").setup({
+    autotag = {
+      enable = true,
+    },
     ensure_installed = {
       "bash",
       "lua",
@@ -50,7 +53,7 @@ function config.nvim_treesitter()
     },
     indent = {
       enable = true,
-      disable = { "python", "go", "rust", "c", "cpp" },
+      disable = { "python", "go", "rust", "c", "cpp", "tsx", "jsx", "ts", "js" },
     },
   })
   require("nvim-treesitter.install").prefer_git = true
@@ -118,29 +121,6 @@ function config.toggleterm()
     direction = "horizontal",
     close_on_exit = true, -- close the terminal window when the process exits
     shell = vim.o.shell, -- change the default shell
-  })
-end
-
-function config.tabout()
-  require("tabout").setup({
-    tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
-    backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
-    act_as_tab = true, -- shift content if tab out is not possible
-    act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-    default_tab = "<C-t>", -- shift default action (only at the beginning of a line, otherwise <TAB> is used)
-    default_shift_tab = "<C-d>", -- reverse shift default action,
-    enable_backwards = true, -- well ...
-    completion = true, -- if the tabkey is used in a completion pum
-    tabouts = {
-      { open = "'", close = "'" },
-      { open = '"', close = '"' },
-      { open = "`", close = "`" },
-      { open = "(", close = ")" },
-      { open = "[", close = "]" },
-      { open = "{", close = "}" },
-    },
-    ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-    exclude = {}, -- tabout will ignore these filetypes
   })
 end
 

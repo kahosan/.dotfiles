@@ -49,13 +49,6 @@ editor["famiu/bufdelete.nvim"] = {
   opt = true,
   cmd = { "Bdelete", "Bwipeout", "Bdelete!", "Bwipeout!" },
 }
-editor["abecodes/tabout.nvim"] = {
-  opt = true,
-  event = "InsertEnter",
-  wants = "nvim-treesitter",
-  after = "nvim-cmp",
-  config = conf.tabout,
-}
 editor["akinsho/toggleterm.nvim"] = {
   opt = true,
   event = "BufReadPost",
@@ -65,6 +58,10 @@ editor["numtostr/FTerm.nvim"] = {
   -- opt = true,
   -- event = "BufReadPost"
   opt = false,
+}
+editor["windwp/nvim-ts-autotag"] = {
+  opt = true,
+  event = "BufReadPost",
 }
 
 return editor
