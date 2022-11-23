@@ -142,7 +142,7 @@ function config.catppuccin()
       shade = "dark",
       percentage = 0.15,
     },
-    transparent_background = true,
+    transparent_background = false,
     term_colors = true,
     compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
     styles = {
@@ -767,56 +767,6 @@ function config.gitsigns()
     status_formatter = nil, -- Use default
     word_diff = false,
     diff_opts = { internal = true },
-  })
-end
-
-function config.indent_blankline()
-  require("indent_blankline").setup({
-    char = "│",
-    show_first_indent_level = true,
-    filetype_exclude = {
-      "startify",
-      "dashboard",
-      "dotooagenda",
-      "log",
-      "fugitive",
-      "gitcommit",
-      "packer",
-      "vimwiki",
-      "markdown",
-      "json",
-      "txt",
-      "vista",
-      "help",
-      "todoist",
-      "NvimTree",
-      "peekaboo",
-      "git",
-      "TelescopePrompt",
-      "undotree",
-      "flutterToolsOutline",
-      "", -- for all buffers without a file type
-    },
-    buftype_exclude = { "terminal", "nofile" },
-    show_trailing_blankline_indent = false,
-    show_current_context = false,
-    context_patterns = {
-      "class",
-      "function",
-      "method",
-      "block",
-      "list_literal",
-      "selector",
-      "^if",
-      "^table",
-      "if_statement",
-      "while",
-      "for",
-      "type",
-      "var",
-      "import",
-    },
-    space_char_blankline = " ",
   })
 end
 

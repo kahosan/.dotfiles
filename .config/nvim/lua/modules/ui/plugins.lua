@@ -45,10 +45,5 @@ ui["goolord/alpha-nvim"] = {
   event = "BufWinEnter",
   config = conf.alpha,
 }
-ui["lukas-reineke/indent-blankline.nvim"] = {
-  opt = true,
-  event = "BufReadPost",
-  config = conf.indent_blankline,
-}
 
 return ui
