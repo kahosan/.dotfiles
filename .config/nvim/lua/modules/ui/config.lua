@@ -142,7 +142,7 @@ function config.catppuccin()
       shade = "dark",
       percentage = 0.15,
     },
-    transparent_background = false,
+    transparent_background = true,
     term_colors = true,
     compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
     styles = {
