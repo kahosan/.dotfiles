@@ -239,7 +239,7 @@ function config.lspsaga()
   require("lspsaga").init_lsp_saga({
     code_action_icon = "",
     code_action_lightbulb = {
-      enable = true,
+      enable = false,
       virtual_text = false,
     },
     diagnostic_header = { " ", " ", "  ", " " },
@@ -277,7 +277,7 @@ function config.lspsaga()
       Macro = { " ", colors.red },
     },
     symbol_in_winbar = {
-      enable = true,
+      enable = false,
       click_support = function(node, clicks, button, modifiers)
         -- To see all avaiable details: vim.pretty_print(node)
         local st = node.range.start
