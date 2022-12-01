@@ -68,7 +68,7 @@ format = "via [go $version](bold cyan) "
 # disabled = true
 
 [python]
-format = "via [py $version](yellow bold) "
+format = 'via [py (${version})]($style) [(\($virtualenv\) )](cyan bold)'
 # disabled = true
 
 [rust]
