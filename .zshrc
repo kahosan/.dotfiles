@@ -72,6 +72,9 @@ alias nio="ni --prefer-offline"
 
 # git alias
 alias glo="git log --oneline --graph"
+alias gcm="git checkout master"
+alias gcb="git checkout -b"
+alias gco="git checkout"
 
 # plugins setting
 
