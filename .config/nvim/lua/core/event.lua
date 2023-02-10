@@ -1,4 +1,3 @@
-local vim = vim
 local autocmd = {}
 
 function autocmd.nvim_create_augroups(definitions)
@@ -13,9 +12,35 @@ function autocmd.nvim_create_augroups(definitions)
 	end
 end
 
+-- auto close NvimTree
+vim.api.nvim_create_autocmd("BufEnter", {
+	group = vim.api.nvim_create_augroup("NvimTreeClose", { clear = true }),
+	pattern = "NvimTree_*",
+	callback = function()
+		local layout = vim.api.nvim_call_function("winlayout", {})
+		if
+			layout[1] == "leaf"
+			and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
+			and layout[3] == nil
+		then
+			vim.api.nvim_command([[confirm quit]])
+		end
+	end,
+})
+
+-- Fix fold issue of files opened by telescope
+vim.api.nvim_create_autocmd("BufRead", {
+	callback = function()
+		vim.api.nvim_create_autocmd("BufWinEnter", {
+			once = true,
+			command = "normal! zx",
+		})
+	end,
+})
+
 function autocmd.load_autocmds()
 	local definitions = {
-		packer = {},
+		lazy = {},
 		bufs = {
 			-- Reload vim config automatically
 			{
@@ -33,18 +58,11 @@ function autocmd.load_autocmds()
 			{ "BufWritePre", "MERGE_MSG", "setlocal noundofile" },
 			{ "BufWritePre", "*.tmp", "setlocal noundofile" },
 			{ "BufWritePre", "*.bak", "setlocal noundofile" },
-			-- auto change directory
-			{ "BufEnter", "*", "silent! lcd %:p:h" },
 			-- auto place to last edit
 			{
 				"BufReadPost",
 				"*",
 				[[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif]],
-			},
-			{
-				"BufEnter",
-				"*",
-				[[if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]],
 			},
 			-- Auto toggle fcitx5
 			-- {"InsertLeave", "* :silent", "!fcitx5-remote -c"},
@@ -54,16 +72,16 @@ function autocmd.load_autocmds()
 		},
 		wins = {
 			-- Highlight current line only on focused window
-			-- {
-			-- 	"WinEnter,BufEnter,InsertLeave",
-			-- 	"*",
-			-- 	[[if ! &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal cursorline | endif]],
-			-- },
-			-- {
-			-- 	"WinLeave,BufLeave,InsertEnter",
-			-- 	"*",
-			-- 	[[if &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal nocursorline | endif]],
-			-- },
+			{
+				"WinEnter,BufEnter,InsertLeave",
+				"*",
+				[[if ! &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal cursorline | endif]],
+			},
+			{
+				"WinLeave,BufLeave,InsertEnter",
+				"*",
+				[[if &cursorline && &filetype !~# '^\(dashboard\|clap_\)' && ! &pvw | setlocal nocursorline | endif]],
+			},
 			-- Force write shada on leaving nvim
 			{
 				"VimLeave",
@@ -79,14 +97,10 @@ function autocmd.load_autocmds()
 			{ "FileType", "alpha", "set showtabline=0" },
 			{ "FileType", "markdown", "set wrap" },
 			{ "FileType", "make", "set noexpandtab shiftwidth=8 softtabstop=0" },
-			-- Google tab style
-			{ "FileType", "c,cpp", "set expandtab tabstop=4 shiftwidth=4" },
 			{ "FileType", "dap-repl", "lua require('dap.ext.autocompl').attach()" },
-			{ "Filetype", "go", "set tabstop=4 shiftwidth=4" },
 			{
 				"FileType",
 				"*",
-				-- [[setlocal formatoptions-=c formatoptions-=r formatoptions-=o]],
 				[[setlocal formatoptions-=cro]],
 			},
 			{
