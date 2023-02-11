@@ -8,8 +8,6 @@ return function()
 
 			"stylua",
 
-			"black",
-
 			"shellcheck",
 			"shfmt",
 

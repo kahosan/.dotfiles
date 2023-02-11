@@ -3,9 +3,9 @@ return function()
 
 	-- If you want insert `(` after select function or method item
 	local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-	local cmp_instance = require("completion.cmp")
+	local cmp = require("cmp")
 	local handlers = require("nvim-autopairs.completion.handlers")
-	cmp_instance.event:on(
+	cmp.event:on(
 		"confirm_done",
 		cmp_autopairs.on_confirm_done({
 			filetypes = {
@@ -13,8 +13,8 @@ return function()
 				["*"] = {
 					["("] = {
 						kind = {
-							cmp_instance.lsp.CompletionItemKind.Function,
-							cmp_instance.lsp.CompletionItemKind.Method,
+							cmp.lsp.CompletionItemKind.Function,
+							cmp.lsp.CompletionItemKind.Method,
 						},
 						handler = handlers["*"],
 					},
