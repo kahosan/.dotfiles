@@ -103,8 +103,9 @@ local plug_map = {
 		:with_noremap()
 		:with_silent()
 		:with_desc("lsp: Show outgoing calls"),
-	["n|gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
-	["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
+  -- Git
+	-- ["n|gps"] = map_cr("G push"):with_noremap():with_silent():with_desc("git: Push"),
+	-- ["n|gpl"] = map_cr("G pull"):with_noremap():with_silent():with_desc("git: Pull"),
 	-- toggleterm
 	["t|<Esc><Esc>"] = map_cmd([[<C-\><C-n>]]):with_silent(), -- switch to normal mode in terminal.
 	["t|jk"] = map_cmd([[<C-\><C-n>]]):with_silent(), -- switch to normal mode in terminal.

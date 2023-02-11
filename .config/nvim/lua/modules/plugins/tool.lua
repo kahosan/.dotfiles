@@ -21,11 +21,6 @@ tool["akinsho/toggleterm.nvim"] = {
 	event = "UIEnter",
 	config = require("tool.toggleterm"),
 }
-tool["folke/trouble.nvim"] = {
-	lazy = true,
-	cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
-	config = require("tool.trouble"),
-}
 tool["gelguy/wilder.nvim"] = {
 	lazy = true,
 	event = "CmdlineEnter",
