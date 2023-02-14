@@ -33,7 +33,7 @@ return function()
 	mason_lspconfig.setup({
 		ensure_installed = {
 			"bashls",
-			"sumneko_lua",
+			"lua_ls",
 			"tsserver",
 			"html",
 			"rust_analyzer",
@@ -47,11 +47,12 @@ return function()
 	local opts = {
 		on_attach = function()
 			require("lsp_signature").on_attach({
+				hint_enable = true,
+				hint_prefix = "",
 				bind = true,
 				use_lspsaga = false,
 				floating_window = true,
 				fix_pos = true,
-				hint_enable = true,
 				hi_parameter = "Search",
 				handler_opts = {
 					border = "rounded",
@@ -95,10 +96,10 @@ return function()
 			nvim_lsp.jsonls.setup(final_opts)
 		end,
 
-		sumneko_lua = function()
-			local _opts = require("completion.servers.sumneko_lua")
+		lua_ls = function()
+			local _opts = require("completion.servers.lua_ls")
 			local final_opts = vim.tbl_deep_extend("keep", _opts, opts)
-			nvim_lsp.sumneko_lua.setup(final_opts)
+			nvim_lsp.lua_ls.setup(final_opts)
 		end,
 
 		tsserver = function()

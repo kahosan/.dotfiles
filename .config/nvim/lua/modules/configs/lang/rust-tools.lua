@@ -10,11 +10,12 @@ return function()
 			-- The callback receives one parameter indicating the `health` of the server: "ok" | "warning" | "error"
 			on_initialized = function()
 				require("lsp_signature").on_attach({
+					hint_enable = false,
+					hint_prefix = "",
 					bind = true,
 					use_lspsaga = false,
 					floating_window = true,
 					fix_pos = true,
-					hint_enable = true,
 					hi_parameter = "Search",
 					handler_opts = {
 						border = "rounded",

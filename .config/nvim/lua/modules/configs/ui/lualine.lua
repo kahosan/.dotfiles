@@ -107,7 +107,7 @@ return function()
 			theme = "catppuccin",
 			disabled_filetypes = {},
 			component_separators = "|",
-			section_separators = { left = "", right = "" },
+			section_separators = { left = "", right = "" },
 		},
 		sections = {
 			lualine_a = { { "mode" } },

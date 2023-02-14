@@ -2,7 +2,7 @@ return function()
 	local use_ssh = require("core.settings").use_ssh
 
 	vim.api.nvim_set_option_value("foldmethod", "expr", {})
-	vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
+	-- vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
 
 	require("nvim-treesitter.configs").setup({
 		ensure_installed = {
@@ -73,6 +73,9 @@ return function()
 			enable = true,
 			extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
 			max_file_lines = 2000, -- Do not enable for files with more than 2000 lines, int
+		},
+		indent = {
+			enable = true,
 		},
 		context_commentstring = { enable = true, enable_autocmd = false },
 		matchup = { enable = true },

@@ -4,12 +4,15 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
 	lazy = false,
   config = require("completion.null-ls"),
 }
+completion["jay-babu/mason-null-ls.nvim"] = {
+	lazy = false,
+	config = require('completion.mason-null-ls')
+}
 completion["neovim/nvim-lspconfig"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
 	config = require("completion.lsp"),
 	dependencies = {
-		{ "creativenull/efmls-configs-nvim" },
 		{ "williamboman/mason.nvim" },
 		{ "williamboman/mason-lspconfig.nvim" },
 		{

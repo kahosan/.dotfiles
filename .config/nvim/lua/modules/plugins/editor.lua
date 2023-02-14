@@ -23,11 +23,11 @@ editor["sindrets/diffview.nvim"] = {
 	lazy = true,
 	cmd = { "DiffviewOpen", "DiffviewClose" },
 }
-editor["RRethy/vim-illuminate"] = {
-	lazy = true,
-	event = "BufReadPost",
-	config = require("editor.vim-illuminate"),
-}
+-- editor["RRethy/vim-illuminate"] = {
+-- 	lazy = true,
+-- 	event = "BufReadPost",
+-- 	config = require("editor.vim-illuminate"),
+-- }
 editor["romainl/vim-cool"] = {
 	lazy = true,
 	event = { "CursorMoved", "InsertEnter" },

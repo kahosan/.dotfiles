@@ -15,6 +15,10 @@ ui["catppuccin/nvim"] = {
 	name = "catppuccin",
 	config = require("ui.catppuccin"),
 }
+ui["ellisonleao/gruvbox.nvim"] = {
+	lazy = false,
+	name = "gruvbox",
+}
 ui["j-hui/fidget.nvim"] = {
 	lazy = true,
 	event = "BufReadPost",
@@ -25,11 +29,11 @@ ui["lewis6991/gitsigns.nvim"] = {
 	event = { "BufReadPost", "BufNewFile" },
 	config = require("ui.gitsigns"),
 }
-ui["lukas-reineke/indent-blankline.nvim"] = {
-	lazy = true,
-	event = "BufReadPost",
-	config = require("ui.indent-blankline"),
-}
+-- ui["lukas-reineke/indent-blankline.nvim"] = {
+-- 	lazy = true,
+-- 	event = "BufReadPost",
+-- 	config = require("ui.indent-blankline"),
+-- }
 ui["nvim-lualine/lualine.nvim"] = {
 	lazy = true,
 	event = { "BufReadPost", "BufAdd", "BufNewFile" },
@@ -40,10 +44,10 @@ ui["zbirenbaum/neodim"] = {
 	event = "LspAttach",
 	config = require("ui.neodim"),
 }
-ui["edluffy/specs.nvim"] = {
-	lazy = true,
-	event = "CursorMoved",
-	config = require("ui.specs"),
-}
+-- ui["edluffy/specs.nvim"] = {
+-- 	lazy = true,
+-- 	event = "CursorMoved",
+-- 	config = require("ui.specs"),
+-- }
 
 return ui

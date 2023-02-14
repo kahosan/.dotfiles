@@ -32,18 +32,11 @@ return function()
 	local cmp = require("cmp")
 
 	cmp.setup({
-		window = {
-			completion = {
-				max_width = 80,
-				max_height = 20,
-			},
-		},
 		sorting = {
 			priority_weight = 2,
 			comparators = {
 				require("copilot_cmp.comparators").prioritize,
 				require("copilot_cmp.comparators").score,
-				-- require("cmp_tabnine.compare"),
 				compare.offset,
 				compare.exact,
 				compare.lsp_scores,
@@ -112,7 +105,6 @@ return function()
 			{ name = "buffer" },
 			{ name = "latex_symbols" },
 			{ name = "copilot" },
-			-- { name = "cmp_tabnine" },
 		},
 	})
 end

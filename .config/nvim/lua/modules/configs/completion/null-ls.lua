@@ -1,9 +1,10 @@
 return function()
   local null_ls = require("null-ls")
   local sources = {
-    -- null_ls.builtins.diagnostics.eslint_d.with({
-    --   diagnostics_format = "[eslint] #{m}\n(#{c})",
-    -- }),
+    null_ls.builtins.diagnostics.eslint_d.with({
+      -- diagnostics_format = "[eslint] #{m}\n(#{c})",
+      diagnostics_format = "#{m}",
+    }),
     null_ls.builtins.formatting.eslint_d,
   }
 
