@@ -6,6 +6,7 @@ return function()
       diagnostics_format = "#{m}",
     }),
     null_ls.builtins.formatting.eslint_d,
+    null_ls.builtins.formatting.stylua,
   }
 
   local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
