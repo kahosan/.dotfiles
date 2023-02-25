@@ -37,36 +37,34 @@ local palette = nil
 local function init_palette()
 	if not palette then
 		palette = vim.g.colors_name == "catppuccin" and require("catppuccin.palettes").get_palette()
-			or {
-				rosewater = "#DC8A78",
-				flamingo = "#DD7878",
-				mauve = "#CBA6F7",
-				pink = "#F5C2E7",
-				red = "#E95678",
-				maroon = "#B33076",
-				peach = "#FF8700",
-				yellow = "#F7BB3B",
-				green = "#AFD700",
-				sapphire = "#36D0E0",
-				blue = "#61AFEF",
-				sky = "#04A5E5",
-				teal = "#B5E8E0",
-				lavender = "#7287FD",
-
-				text = "#F2F2BF",
-				subtext1 = "#BAC2DE",
-				subtext0 = "#A6ADC8",
-				overlay2 = "#C3BAC6",
-				overlay1 = "#988BA2",
-				overlay0 = "#6E6B6B",
-				surface2 = "#6E6C7E",
-				surface1 = "#575268",
-				surface0 = "#302D41",
-
-				base = "#1D1536",
-				mantle = "#1C1C19",
-				crust = "#161320",
-			}
+				or {
+					rosewater = "#DC8A78",
+					flamingo = "#DD7878",
+					mauve = "#CBA6F7",
+					pink = "#F5C2E7",
+					red = "#E95678",
+					maroon = "#B33076",
+					peach = "#FF8700",
+					yellow = "#F7BB3B",
+					green = "#AFD700",
+					sapphire = "#36D0E0",
+					blue = "#61AFEF",
+					sky = "#04A5E5",
+					teal = "#B5E8E0",
+					lavender = "#7287FD",
+					text = "#F2F2BF",
+					subtext1 = "#BAC2DE",
+					subtext0 = "#A6ADC8",
+					overlay2 = "#C3BAC6",
+					overlay1 = "#988BA2",
+					overlay0 = "#6E6B6B",
+					surface2 = "#6E6C7E",
+					surface1 = "#575268",
+					surface0 = "#302D41",
+					base = "#1D1536",
+					mantle = "#1C1C19",
+					crust = "#161320",
+				}
 
 		palette = vim.tbl_extend("force", { none = "NONE" }, palette, require("core.settings").palette_overwrite)
 	end
@@ -180,6 +178,50 @@ function M.get_palette(overwrite)
 		return init_palette()
 	else
 		return vim.tbl_extend("force", init_palette(), overwrite)
+	end
+end
+
+function M.gen_lspkind_hl()
+	local colors = M.get_palette()
+	local dat = {
+		Class = colors.yellow,
+		Constant = colors.peach,
+		Constructor = colors.sapphire,
+		Enum = colors.yellow,
+		EnumMember = colors.teal,
+		Event = colors.yellow,
+		Field = colors.teal,
+		File = colors.rosewater,
+		Function = colors.blue,
+		Interface = colors.yellow,
+		Key = colors.red,
+		Method = colors.blue,
+		Module = colors.blue,
+		Namespace = colors.blue,
+		Number = colors.peach,
+		Operator = colors.sky,
+		Package = colors.blue,
+		Property = colors.teal,
+		Struct = colors.yellow,
+		TypeParameter = colors.maroon,
+		Variable = colors.peach,
+		Array = colors.peach,
+		Boolean = colors.peach,
+		Null = colors.yellow,
+		Object = colors.yellow,
+		String = colors.green,
+		TypeAlias = colors.green,
+		Parameter = colors.blue,
+		StaticMethod = colors.peach,
+		Text = colors.green,
+		Snippet = colors.mauve,
+		Folder = colors.blue,
+		Unit = colors.green,
+		Value = colors.peach,
+	}
+
+	for kind, color in pairs(dat) do
+		vim.api.nvim_set_hl(0, "LspKind" .. kind, { fg = color, default = true })
 	end
 end
 

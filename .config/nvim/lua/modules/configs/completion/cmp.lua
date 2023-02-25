@@ -4,9 +4,6 @@ return function()
     type = require("modules.utils.icons").get("type"),
     cmp = require("modules.utils.icons").get("cmp"),
   }
-  local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-  end
 
   local cmp_window = require("cmp.utils.window")
 
@@ -35,8 +32,8 @@ return function()
     sorting = {
       priority_weight = 2,
       comparators = {
-        require("copilot_cmp.comparators").prioritize,
-        require("copilot_cmp.comparators").score,
+        -- require("copilot_cmp.comparators").prioritize,
+        -- require("copilot_cmp.comparators").score,
         compare.offset,
         compare.exact,
         compare.lsp_scores,
@@ -72,8 +69,6 @@ return function()
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-          -- elseif require("luasnip").expand_or_jumpable() then
-          -- 	vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
         else
           fallback()
         end
@@ -81,30 +76,26 @@ return function()
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-          -- elseif require("luasnip").jumpable(-1) then
-          -- 	vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
         else
           fallback()
         end
       end, { "i", "s" }),
     }),
-    -- snippet = {
-    -- 	expand = function(args)
-    -- 		require("luasnip").lsp_expand(args.body)
-    -- 	end,
-    -- },
+    snippet = {
+      expand = function(args)
+        require("luasnip").lsp_expand(args.body)
+      end,
+    },
     -- You should specify your *installed* sources.
     sources = {
       { name = "nvim_lsp" },
-      { name = "nvim_lua" },
-      -- { name = "luasnip" },
+      { name = "luasnip" },
       { name = "path" },
       { name = "spell" },
       { name = "tmux" },
       { name = "orgmode" },
       { name = "buffer" },
-      { name = "latex_symbols" },
-      { name = "copilot" },
+      -- { name = "copilot" },
     },
   })
 end

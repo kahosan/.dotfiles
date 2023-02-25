@@ -114,7 +114,7 @@ return function()
 			lualine_b = { { "branch" }, { "diff", source = diff_source } },
 			lualine_c = { lspsaga_symbols },
 			lualine_x = {
-			  { escape_status },
+				{ escape_status },
 				{
 					"diagnostics",
 					sources = { "nvim_diagnostic" },
@@ -164,8 +164,7 @@ return function()
 
 	-- Properly set background color for lspsaga
 	local winbar_bg = require("modules.utils").hl_to_rgb("StatusLine", true, colors.mantle)
-	for _, hlGroup in pairs(require("lspsaga.lspkind").get_kind()) do
-		require("modules.utils").extend_hl("LspSagaWinbar" .. hlGroup[1], { bg = winbar_bg })
+	for _, hlGroup in pairs(require("lspsaga.lspkind").get_kind_group()) do
+		require("modules.utils").extend_hl(hlGroup, { bg = winbar_bg })
 	end
-	require("modules.utils").extend_hl("LspSagaWinbarSep", { bg = winbar_bg })
 end
