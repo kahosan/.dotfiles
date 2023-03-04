@@ -24,6 +24,7 @@ local function load_options()
     termguicolors = true,
     wrap = false,
     pumheight = 6,
+    clipboard = "unnamedplus",
     -- backupdir = global.cache_dir .. "backup/",
     -- directory = global.cache_dir .. "swap/",
     -- pumblend = 10,
