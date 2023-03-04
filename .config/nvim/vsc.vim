@@ -6,6 +6,7 @@ nmap gcc <Plug>VSCodeCommentaryLine
 
 nnoremap gh <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
 nnoremap gr <Cmd>call VSCodeNotify('editor.action.rename')<CR>
+nnoremap gD <Cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>
 
 " options
 set clipboard=unnamedplus,
