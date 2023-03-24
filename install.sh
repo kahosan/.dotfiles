@@ -16,7 +16,7 @@ if ! sudo apt-get update; then
 fi
 
 echo "Installing packages ..."
-if ! sudo apt-get install -y git wget curl neovim python3 python3-pip fzf bat exa fd-find trash-cli ripgrep mtr htop nmap tmux; then
+if ! sudo apt-get install -y git wget curl neovim python3 python3-pip fzf bat exa fd-find trash-cli ripgrep mtr htop nmap tmux unzip; then
 	echo "Failed to install packages"
 	exit 1
 fi
@@ -42,7 +42,7 @@ fi
 
 # Install Startship
 echo "Installing Startship ..."
-if ! curl -fsSL https://starship.rs/install.sh | bash; then
+if ! curl -fsSL https://starship.rs/install.sh | sh; then
 	echo "Failed to install Startship"
 	exit 1
 fi
@@ -95,7 +95,7 @@ if ! ssh-add ~/.ssh/id_ed25519; then
 fi
 
 echo "Copying public key to clipboard, please paste it into your GitHub account settings ..."
-if ! cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard; then
+if ! cat ~/.ssh/id_ed25519.pub; then
 	echo "Failed to copy public key to clipboard"
 	exit 1
 fi
@@ -109,11 +109,4 @@ if ! cp -r ~/.dotfiles/!(.git|.gitignore) ~/; then
 	exit 1
 fi
 
-# Reload shell configuration
-echo "Reloading shell configuration ..."
-if ! source ~/.zshrc; then
-	echo "Failed to reload shell configuration"
-	exit 1
-fi
-
-echo "Setup complete!"
+zsh
