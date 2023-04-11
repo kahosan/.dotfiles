@@ -43,7 +43,7 @@ disabled = false
 disabled = true
 
 [git_branch]
-truncation_length = 4
+# truncation_length = 4
 truncation_symbol = ""
 
 [git_commit]
@@ -77,3 +77,6 @@ format = "via [rust $version](bold red) "
 
 [lua]
 format = "via [lua $version](bold blue) "
+
+[container]
+disabled = true
