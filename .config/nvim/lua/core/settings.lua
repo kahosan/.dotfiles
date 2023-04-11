@@ -48,22 +48,15 @@ settings["lsp"] = {
 -- check the below link for all supported non-LSP sources
 -- in `code_actions`, `completion`, `diagnostics`, `formatting`, `hover` folders:
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
-settings["null_ls"] = {
-	-- formatting
-	-- "black",
+settings["null_ls_deps"] = {
+	"black",
 	"clang_format",
 	"eslint_d",
 	"jq",
-	"markdownlint",
-	-- "prettierd",
 	"rustfmt",
 	"shfmt",
 	"stylua",
-
-	-- diagnostics
 	"shellcheck",
-	"eslint_d",
-	-- "markdownlint",
 }
 
 return settings
