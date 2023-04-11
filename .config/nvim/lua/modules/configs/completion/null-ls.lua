@@ -9,7 +9,7 @@ return function()
 		}),
 		btns.formatting.clang_format.with({
 			filetypes = { "c", "cpp" },
-			extra_args = require("completion.formatters.clang_format"),
+			extra_args = { "-style={BasedOnStyle: LLVM, IndentWidth: 4}" }
 		}),
 		btns.formatting.prettier.with({
 			filetypes = {

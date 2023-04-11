@@ -8,6 +8,7 @@ vim.api.nvim_create_user_command("FormatToggle", function()
   M.toggle_format_on_save()
 end, {})
 
+-- https://github.com/ayamir/nvimdots/blob/main/lua/modules/configs/completion/formatting.lua#L12
 local block_list = {}
 vim.api.nvim_create_user_command("FormatterToggle", function(opts)
   if block_list[opts.args] == nil then
@@ -29,28 +30,7 @@ vim.api.nvim_create_user_command("FormatterToggle", function(opts)
       { title = string.format("LSP Formatter %s", not block_list[opts.args] and "Info" or "Warning") }
     )
   end
-end, {
-  nargs = 1,
-  complete = function()
-    return {
-      "markdown",
-      "vim",
-      "lua",
-      "c",
-      "cpp",
-      "python",
-      "vue",
-      "typescript",
-      "javascript",
-      "yaml",
-      "html",
-      "css",
-      "scss",
-      "sh",
-      "rust",
-    }
-  end,
-})
+end, { nargs = 1, complete = "filetype" })
 
 function M.enable_format_on_save(is_configured)
   local opts = { pattern = "*", timeout = 1000 }
