@@ -64,12 +64,6 @@ fi
 
 read -p "Press any key to continue once you have added the SSH key to your GitHub account ..."
 
-# copy dotfiles to ~
-echo "Copying dotfiles to ~ ..."
-
-cp -r .config ~ && rm -r .config/fish && cp .config/fish/config.fish ~/.config/fish
-cp .tmux.conf ~ && cp .ideavimrc ~
-
 # install fisher
 echo "Installing fisher packages ..."
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
@@ -80,3 +74,15 @@ fish -c "fisher install PatrickF1/fzf.fish"
 fish -c "fisher install fisher install oh-my-fish/plugin-extract"
 
 fish
+
+# link fish config
+rm ~/.config/fish/config.fish && ln -s ~/.dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
+
+# link dotfile to ~
+ln -s ~/.dotfiles/.config/nvim ~/.config/nvim
+ln -s ~/.dotfiles/.config/starship.toml ~/.config/starship.toml
+ln -s ~/.dotfiles/.config/tmux ~/.config/tmux
+ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
+
+cp -r ~/.dotfiles/.config/mpv ~/.config/mpv
+cp -r ~/.dotfiles/.config/ni ~/.config/ni
