@@ -5,10 +5,16 @@
 # remove welcome
 set fish_greeting
 
+# fish color
+set fish_color_command green
+set fish_color_error brred
+
 # PATH
 fish_add_path ~/.local/bin
-fish_add_path $(go env GOPATH)/bin
+fish_add_path ~/.cargo/bin
+fish_add_path (go env GOPATH)/bin
 fish_add_path ~/.pnpm-global/bin
+fish_add_path /opt/homebrew/sbin
 
 # ni
 set -x NI_CONFIG_FILE ~/.config/ni/nirc
