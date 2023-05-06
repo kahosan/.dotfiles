@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Check if root
 if [ $(id -u) -ne 0 ]; then
 	echo "Please run as root user"
@@ -33,10 +35,10 @@ fi
 
 # Configure Git and SSH
 echo "Configuring Git and SSH ..."
-read -p "Please enter your GitHub username: " git_username
+read -p -r "Please enter your GitHub username: " git_username
 git config --global user.name "$git_username"
 
-read -p "Please enter your GitHub email address: " git_email
+read -p -r "Please enter your GitHub email address: " git_email
 git config --global user.email "$git_email"
 
 echo "Generating new SSH key for $git_email ..."
@@ -62,21 +64,7 @@ if ! cat ~/.ssh/id_ed25519.pub; then
 	exit 1
 fi
 
-read -p "Press any key to continue once you have added the SSH key to your GitHub account ..."
-
-# install fisher
-echo "Installing fisher packages ..."
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-
-# install fisher plugins
-fish -c "fisher install jethrokuan/z"
-fish -c "fisher install PatrickF1/fzf.fish"
-fish -c "fisher install fisher install oh-my-fish/plugin-extract"
-
-fish
-
-# link fish config
-rm ~/.config/fish/config.fish && ln -s ~/.dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
+read -p -r "Press any key to continue once you have added the SSH key to your GitHub account ..."
 
 # link dotfile to ~
 ln -s ~/.dotfiles/.config/nvim ~/.config/nvim
@@ -86,3 +74,19 @@ ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 
 cp -r ~/.dotfiles/.config/mpv ~/.config/mpv
 cp -r ~/.dotfiles/.config/ni ~/.config/ni
+
+# fish
+mkdir ~/.config/fish
+
+# link fish config
+ln -s ~/.dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
+ln -s ~/.dotfiles/.config/fish/fish_plugins ~/.config/fish/fish_plugins
+
+# install fisher
+echo "Installing fisher packages ..."
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+
+# install fisher plugins
+fisher update
+
+fish

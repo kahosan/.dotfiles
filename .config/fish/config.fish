@@ -23,7 +23,15 @@ set -x NI_CONFIG_FILE ~/.config/ni/nirc
 fnm env --use-on-cd | source
 
 # starship
-starship init fish | source
+# starship init fish | source
+
+# pure
+set --universal pure_symbol_prompt 
+set --universal pure_show_jobs true
+
+# pure color
+set --universal pure_color_success brred
+
 
 # LANG
 set -x LANG en_US.UTF-8
@@ -51,7 +59,27 @@ alias gcm="git checkout master"
 alias gcb="git checkout -b"
 alias gc="git checkout"
 alias gp="git push"
+alias gpf='git push --force'
 alias gl="git pull"
+alias gpl="git pull --rebase"
+
+alias main='git checkout main'
+
+
+# node action
+# alias s="nr start"
+alias d="nr dev"
+alias b="nr build"
+alias bw="nr build --watch"
+alias t="nr test"
+alias tu="nr test -u"
+alias tw="nr test --watch"
+alias nw="nr watch"
+alias p="nr play"
+alias lint="nr lint"
+alias lintf="nr lint --fix"
+alias release="nr release"
+alias re="nr release"
 
 # custom
 
