@@ -15,6 +15,10 @@ ui["catppuccin/nvim"] = {
   name = "catppuccin",
   config = require("ui.catppuccin"),
 }
+ui["hardhackerlabs/theme-vim"] = {
+  lazy = false,
+  as = "hardhacker",
+}
 ui["ellisonleao/gruvbox.nvim"] = {
   lazy = false,
   name = "gruvbox",
