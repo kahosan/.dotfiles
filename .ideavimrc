@@ -2,6 +2,22 @@ set scrolloff=5
 set incsearch
 set commentary
 set clipboard+=unnamed
+set visualbell
+
+let mapleader=";" 
+
+map <C-c> <Esc>
 
 nnoremap gr :action RenameElement<CR>
+nnoremap gh :action QuickJavaDoc<CR>
+nnoremap ge :action ShowErrorDescription<CR>
 
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+
+nnoremap <TAB> :action PreviousTab<CR>
+nnoremap <s-TAB> :action NextTab<CR>
