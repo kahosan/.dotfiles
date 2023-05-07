@@ -23,15 +23,7 @@ set -x NI_CONFIG_FILE ~/.config/ni/nirc
 fnm env --use-on-cd | source
 
 # starship
-# starship init fish | source
-
-# pure
-set --universal pure_symbol_prompt 
-set --universal pure_show_jobs true
-
-# pure color
-set --universal pure_color_success brred
-
+starship init fish | source
 
 # LANG
 set -x LANG en_US.UTF-8
