@@ -25,13 +25,16 @@ settings["palette_overwrite"] = {}
 
 -- Set the colorscheme to use here.
 -- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`, `edge`, `nord`.
--- settings["colorscheme"] = "catppuccin"
-settings["colorscheme"] = "hardhacker"
+settings["colorscheme"] = "catppuccin"
+-- settings["colorscheme"] = "hardhacker"
 
 -- Set background color to use here.
 -- Useful for when you want to use a colorscheme that has a light and dark variant like `edge`.
 -- Available values are: `dark`, `light`.
 settings["background"] = "dark"
+
+-- Set the transparent the background here.
+settings["transparent_background"] = true
 
 -- Set the command for handling external URLs here. The executable must be available on your $PATH.
 -- This entry is IGNORED on Windows and macOS, which have their default handlers builtin.
