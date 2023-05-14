@@ -29,7 +29,7 @@ $hg_branch\
 $fill\
 $time\
 $line_break\
-$character
+$character\
 """
 
 [fill]
