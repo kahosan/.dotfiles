@@ -50,8 +50,9 @@ settings["lsp_deps"] = {
   "html",
   "jsonls",
   "lua_ls",
-  "pyright",
-  "gopls"
+  -- "pyright",
+  "pylsp",
+  "gopls",
 }
 
 -- Set the desired non-LSP sources here.

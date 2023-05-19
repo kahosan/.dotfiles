@@ -144,7 +144,7 @@ return function()
           FidgetTask = { bg = cp.none, fg = cp.surface2 },
           FidgetTitle = { fg = cp.blue, style = { "bold" } },
           -- For trouble.nvim
-          TroubleNormal = { bg = cp.base },
+          TroubleNormal = { bg = transparent_background and cp.none or cp.base },
           -- For treesitter.
           ["@field"] = { fg = cp.rosewater },
           ["@property"] = { fg = cp.yellow },
