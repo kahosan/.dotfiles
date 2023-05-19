@@ -26,6 +26,7 @@ $git_state\
 $git_metrics\
 $git_status\
 $hg_branch\
+$python\
 $fill\
 $time\
 $line_break\
@@ -90,7 +91,8 @@ format = "via [go $version](bold cyan) "
 # disabled = true
 
 [python]
-format = 'via [py (${version})]($style) [(\($virtualenv\) )](cyan bold)'
+# format = 'via [py (${version})]($style) [(\($virtualenv\) )](cyan bold)'
+format = '[(\($virtualenv\) )](cyan bold)'
 # disabled = true
 
 [rust]
