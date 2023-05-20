@@ -7,6 +7,10 @@ settings["use_ssh"] = true
 -- Set it to false if there are no need to format on save.
 settings["format_on_save"] = true
 
+-- Set it to false if diagnostics virtual text is annoying for you
+---@type boolean
+settings["diagnostics_virtual_text"] = true
+
 -- Set the format disabled directories here, files under these dirs won't be formatted on save.
 settings["format_disabled_dirs"] = {
   home .. "/format_disabled_dir_under_home",
@@ -34,12 +38,21 @@ settings["colorscheme"] = "catppuccin"
 settings["background"] = "dark"
 
 -- Set the transparent the background here.
-settings["transparent_background"] = true
+settings["transparent_background"] = false
 
 -- Set the command for handling external URLs here. The executable must be available on your $PATH.
 -- This entry is IGNORED on Windows and macOS, which have their default handlers builtin.
 ---@type string
 settings["external_browser"] = "chrome-cli open"
+
+-- Servers in this list will skip setting formatting capabilities if rhs is true
+---@type table<string, boolean>
+settings["server_formatting_block_list"] = {
+  lua_ls = true,
+  tsserver = true,
+  clangd = true,
+  pylsp = true,
+}
 
 -- Set the desired LSPs here.
 -- check the below link for all the supported LSPs:
@@ -50,7 +63,6 @@ settings["lsp_deps"] = {
   "html",
   "jsonls",
   "lua_ls",
-  -- "pyright",
   "pylsp",
   "gopls",
 }

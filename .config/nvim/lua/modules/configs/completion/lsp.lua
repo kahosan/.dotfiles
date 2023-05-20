@@ -40,12 +40,25 @@ return function()
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     signs = true,
     underline = true,
-    virtual_text = require("core.settings").inline_diagnostic_virtual_text,
+    virtual_text = require("core.settings").diagnostics_virtual_text,
     -- set update_in_insert to false bacause it was enabled by lspsaga
     update_in_insert = false,
   })
 
   local opts = {
+    on_attach = function()
+      require("lsp_signature").on_attach({
+        bind = true,
+        use_lspsaga = false,
+        floating_window = true,
+        fix_pos = true,
+        hint_enable = true,
+        hi_parameter = "Search",
+        handler_opts = {
+          border = "rounded",
+        },
+      })
+    end,
     capabilities = capabilities,
   }
 

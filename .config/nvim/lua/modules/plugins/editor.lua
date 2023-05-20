@@ -38,11 +38,16 @@ editor["romainl/vim-cool"] = {
 ----------------------------------------------------------------------
 editor["nvim-treesitter/nvim-treesitter"] = {
 	lazy = true,
-	build = ":TSUpdate",
+	build = function()
+		if #vim.api.nvim_list_uis() ~= 0 then
+			vim.api.nvim_command("TSUpdate")
+		end
+	end,
 	event = "BufReadPost",
 	config = require("editor.treesitter"),
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
+		{ "nvim-treesitter/nvim-treesitter-context" },
 		{ "mrjones2014/nvim-ts-rainbow" },
 		{ "JoosepAlviste/nvim-ts-context-commentstring" },
 		{ "mfussenegger/nvim-treehopper" },

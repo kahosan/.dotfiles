@@ -15,17 +15,9 @@ ui["catppuccin/nvim"] = {
   name = "catppuccin",
   config = require("ui.catppuccin"),
 }
-ui["hardhackerlabs/theme-vim"] = {
-  lazy = false,
-  as = "hardhacker",
-}
-ui["ellisonleao/gruvbox.nvim"] = {
-  lazy = false,
-  name = "gruvbox",
-}
 ui["j-hui/fidget.nvim"] = {
   lazy = true,
-  event = "BufReadPost",
+  event = "LspAttach",
   config = require("ui.fidget"),
 }
 ui["lewis6991/gitsigns.nvim"] = {

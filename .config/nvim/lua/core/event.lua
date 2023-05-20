@@ -1,3 +1,4 @@
+-- Now use `<A-k>` or `<A-1>` to back to the `dotstutor`.
 local autocmd = {}
 
 function autocmd.nvim_create_augroups(definitions)
@@ -12,6 +13,14 @@ function autocmd.nvim_create_augroups(definitions)
 	end
 end
 
+-- local mapping = require("keymap.completion")
+-- vim.api.nvim_create_autocmd("LspAttach", {
+-- 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+-- 	callback = function(event)
+-- 		mapping.lsp(event.buf)
+-- 	end,
+-- })
+
 -- auto close NvimTree
 vim.api.nvim_create_autocmd("BufEnter", {
 	group = vim.api.nvim_create_augroup("NvimTreeClose", { clear = true }),
@@ -19,12 +28,35 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
 		local layout = vim.api.nvim_call_function("winlayout", {})
 		if
-			layout[1] == "leaf"
-			and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
-			and layout[3] == nil
+				layout[1] == "leaf"
+				and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
+				and layout[3] == nil
 		then
 			vim.api.nvim_command([[confirm quit]])
 		end
+	end,
+})
+
+-- auto close some filetype with <q>
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
+		"qf",
+		"help",
+		"man",
+		"notify",
+		"nofile",
+		"lspinfo",
+		"terminal",
+		"prompt",
+		"toggleterm",
+		"copilot",
+		"startuptime",
+		"tsplayground",
+		"PlenaryTestPopup",
+	},
+	callback = function(event)
+		vim.bo[event.buf].buflisted = false
+		vim.api.nvim_buf_set_keymap(event.buf, "n", "q", "<CMD>close<CR>", { silent = true })
 	end,
 })
 
@@ -53,11 +85,11 @@ function autocmd.load_autocmds()
 				"*.vim",
 				[[nested if &l:autoread > 0 | source <afile> | echo 'source ' . bufname('%') | endif]],
 			},
-			{ "BufWritePre", "/tmp/*", "setlocal noundofile" },
+			{ "BufWritePre", "/tmp/*",         "setlocal noundofile" },
 			{ "BufWritePre", "COMMIT_EDITMSG", "setlocal noundofile" },
-			{ "BufWritePre", "MERGE_MSG", "setlocal noundofile" },
-			{ "BufWritePre", "*.tmp", "setlocal noundofile" },
-			{ "BufWritePre", "*.bak", "setlocal noundofile" },
+			{ "BufWritePre", "MERGE_MSG",      "setlocal noundofile" },
+			{ "BufWritePre", "*.tmp",          "setlocal noundofile" },
+			{ "BufWritePre", "*.bak",          "setlocal noundofile" },
 			-- auto place to last edit
 			{
 				"BufReadPost",
@@ -91,12 +123,12 @@ function autocmd.load_autocmds()
 			-- Check if file changed when its window is focus, more eager than 'autoread'
 			{ "FocusGained", "* checktime" },
 			-- Equalize window dimensions when resizing vim window
-			{ "VimResized", "*", [[tabdo wincmd =]] },
+			{ "VimResized",  "*",          [[tabdo wincmd =]] },
 		},
 		ft = {
-			{ "FileType", "alpha", "set showtabline=0" },
+			{ "FileType", "alpha",    "set showtabline=0" },
 			{ "FileType", "markdown", "set wrap" },
-			{ "FileType", "make", "set noexpandtab shiftwidth=8 softtabstop=0" },
+			{ "FileType", "make",     "set noexpandtab shiftwidth=8 softtabstop=0" },
 			{ "FileType", "dap-repl", "lua require('dap.ext.autocompl').attach()" },
 			{
 				"FileType",

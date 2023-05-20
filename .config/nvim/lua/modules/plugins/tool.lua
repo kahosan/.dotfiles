@@ -18,7 +18,14 @@ tool["nvim-tree/nvim-tree.lua"] = {
 }
 tool["akinsho/toggleterm.nvim"] = {
   lazy = true,
-  event = "UIEnter",
+  cmd = {
+    "ToggleTerm",
+    "ToggleTermSetName",
+    "ToggleTermToggleAll",
+    "ToggleTermSendVisualLines",
+    "ToggleTermSendCurrentLine",
+    "ToggleTermSendVisualSelection",
+  },
   config = require("tool.toggleterm"),
 }
 tool["folke/trouble.nvim"] = {
@@ -43,7 +50,6 @@ tool["nvim-telescope/telescope.nvim"] = {
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
     { "nvim-lua/plenary.nvim" },
-    { "nvim-lua/popup.nvim" },
     { "debugloop/telescope-undo.nvim" },
     {
       "ahmedkhalf/project.nvim",
@@ -51,9 +57,12 @@ tool["nvim-telescope/telescope.nvim"] = {
       config = require("tool.project"),
     },
     { "nvim-telescope/telescope-fzf-native.nvim",    build = "make" },
-    { "nvim-telescope/telescope-frecency.nvim", dependencies = {
-      { "kkharji/sqlite.lua" },
-    } },
+    {
+      "nvim-telescope/telescope-frecency.nvim",
+      dependencies = {
+        { "kkharji/sqlite.lua" },
+      }
+    },
     { "jvgrootveld/telescope-zoxide" },
     { "nvim-telescope/telescope-live-grep-args.nvim" },
   },
