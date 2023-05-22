@@ -15,7 +15,7 @@ completion["neovim/nvim-lspconfig"] = {
   },
 }
 completion["jose-elias-alvarez/null-ls.nvim"] = {
-  lazy = true,
+  lazy = false,
   config = require("completion.null-ls"),
   dependencies = {
     "nvim-lua/plenary.nvim",

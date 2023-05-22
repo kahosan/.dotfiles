@@ -5,22 +5,25 @@ return function()
 
   local sources = {
     btns.formatting.black.with({
-			extra_args = { "--fast" },
-		}),
-		btns.formatting.clang_format.with({
-			filetypes = { "c", "cpp" },
-			extra_args = { "-style={BasedOnStyle: LLVM, IndentWidth: 4}" }
-		}),
-		btns.formatting.prettier.with({
-			filetypes = {
-				"yaml",
-				"css",
-				"scss",
-				"sh",
-				"markdown",
-			},
-		}),
-	}
+      extra_args = { "--fast" },
+    }),
+    btns.formatting.clang_format.with({
+      filetypes = { "c", "cpp" },
+      extra_args = { "-style={BasedOnStyle: LLVM, IndentWidth: 4}" }
+    }),
+    btns.formatting.prettier.with({
+      filetypes = {
+        "yaml",
+        "css",
+        "scss",
+        "sh",
+        "markdown",
+      },
+    }),
+    btns.formatting.eslint_d,
+    btns.diagnostics.eslint_d,
+    btns.code_actions.eslint_d,
+  }
 
   null_ls.setup({
     debug = false,
