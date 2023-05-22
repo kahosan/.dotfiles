@@ -9,7 +9,7 @@ return function()
     }),
     btns.formatting.clang_format.with({
       filetypes = { "c", "cpp" },
-      extra_args = { "-style={BasedOnStyle: LLVM, IndentWidth: 4}" }
+      extra_args = { "-style={BasedOnStyle: LLVM, IndentWidth: 4}" },
     }),
     btns.formatting.prettier.with({
       filetypes = {
@@ -29,7 +29,7 @@ return function()
     debug = false,
     update_in_insert = false,
     diagnostics_format = "#{m}",
-    sources = sources
+    sources = sources,
   })
 
   mason_null_ls.setup({

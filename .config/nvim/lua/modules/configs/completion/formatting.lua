@@ -43,11 +43,7 @@ function M.enable_format_on_save(is_configured)
     end,
   })
   if not is_configured then
-    vim.notify(
-      "Successfully enabled format-on-save",
-      vim.log.levels.INFO,
-      { title = "Settings modification success!" }
-    )
+    vim.notify("Successfully enabled format-on-save", vim.log.levels.INFO, { title = "Settings modification success!" })
   end
 end
 
@@ -150,11 +146,7 @@ function M.format(opts)
         { title = "LSP Format Success!" }
       )
     elseif err then
-      vim.notify(
-        string.format("[LSP][%s] %s", client.name, err),
-        vim.log.levels.ERROR,
-        { title = "LSP Format Error!" }
-      )
+      vim.notify(string.format("[LSP][%s] %s", client.name, err), vim.log.levels.ERROR, { title = "LSP Format Error!" })
     end
   end
 end
