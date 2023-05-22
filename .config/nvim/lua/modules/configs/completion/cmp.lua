@@ -64,17 +64,17 @@ return function()
   local cmp = require("cmp")
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
-    window = {
-      completion = {
-        border = border("Normal"),
-        max_width = 80,
-        max_height = 20,
-        scrollbar = false,
-      },
-      documentation = {
-        border = border("CmpDocBorder"),
-      },
-    },
+    -- window = {
+    --   completion = {
+    --     border = border("Normal"),
+    --     max_width = 80,
+    --     max_height = 20,
+    --     scrollbar = false,
+    --   },
+    --   documentation = {
+    --     border = border("CmpDocBorder"),
+    --   },
+    -- },
     sorting = {
       priority_weight = 2,
       comparators = {
