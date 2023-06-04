@@ -26,6 +26,9 @@ fnm env --use-on-cd | source
 # starship
 starship init fish | source
 
+# homebrew not auto update
+set -x HOMEBREW_NO_AUTO_UPDATE 1
+
 # LANG
 set -x LANG en_US.UTF-8
 
