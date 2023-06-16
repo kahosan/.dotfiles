@@ -1,9 +1,6 @@
 return vim.schedule_wrap(function()
   local use_ssh = require("core.settings").use_ssh
 
-  vim.api.nvim_set_option_value("foldmethod", "expr", {})
-  vim.api.nvim_set_option_value("foldexpr", "nvim_treesitter#foldexpr()", {})
-
   require("nvim-treesitter.configs").setup({
     ensure_installed = {
       "bash",
