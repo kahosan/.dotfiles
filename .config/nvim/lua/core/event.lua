@@ -70,6 +70,12 @@ vim.api.nvim_create_autocmd("BufRead", {
   end,
 })
 
+-- eslint auto fix
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.tsx", "*.ts", "*.jsx", "*.js", "*.cjs", "*.mjs", "*.cts", "*.mts" },
+  command = "silent! EslintFixAll",
+})
+
 function autocmd.load_autocmds()
   local definitions = {
     lazy = {},

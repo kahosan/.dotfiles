@@ -68,8 +68,8 @@ return function()
       virtual_text = false,
     },
     diagnostic = {
-      text_hl_follow = true,
-      on_insert = true,
+      text_hl_follow = false,
+      on_insert = false,
       on_insert_follow = false,
       show_code_action = true,
       show_source = true,

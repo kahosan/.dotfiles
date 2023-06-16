@@ -8,19 +8,6 @@ return function()
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
 
-  local border = function(hl)
-    return {
-      { "╭", hl },
-      { "─", hl },
-      { "╮", hl },
-      { "│", hl },
-      { "╯", hl },
-      { "─", hl },
-      { "╰", hl },
-      { "│", hl },
-    }
-  end
-
   local compare = require("cmp.config.compare")
   compare.lsp_scores = function(entry1, entry2)
     local diff
@@ -32,49 +19,9 @@ return function()
     return (diff < 0)
   end
 
-  local function cmp_format(opts)
-    opts = opts or {}
-
-    return function(entry, vim_item)
-      if opts.before then
-        vim_item = opts.before(entry, vim_item)
-      end
-
-      local kind_symbol = opts.symbol_map[vim_item.kind] or icons.kind.Undefined
-      local source_symbol = opts.symbol_map[entry.source.name] or icons.cmp.undefined
-
-      vim_item.menu = " " .. source_symbol .. "  |"
-      vim_item.kind = string.format("  〔 %s %s 〕", kind_symbol, vim_item.kind)
-
-      if opts.maxwidth ~= nil then
-        if opts.ellipsis_char == nil then
-          vim_item.abbr = string.sub(vim_item.abbr, 1, opts.maxwidth)
-        else
-          local label = vim_item.abbr
-          local truncated_label = vim.fn.strcharpart(label, 0, opts.maxwidth)
-          if truncated_label ~= label then
-            vim_item.abbr = truncated_label .. opts.ellipsis_char
-          end
-        end
-      end
-      return vim_item
-    end
-  end
-
   local cmp = require("cmp")
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
-    -- window = {
-    --   completion = {
-    --     border = border("Normal"),
-    --     max_width = 80,
-    --     max_height = 20,
-    --     scrollbar = false,
-    --   },
-    --   documentation = {
-    --     border = border("CmpDocBorder"),
-    --   },
-    -- },
     sorting = {
       priority_weight = 2,
       comparators = {
@@ -96,18 +43,28 @@ return function()
       },
     },
     formatting = {
-      fields = { "menu", "abbr", "kind" },
+      fields = { "abbr", "kind", "menu" },
       format = function(entry, vim_item)
-        local kind_map = vim.tbl_deep_extend("force", icons.kind, icons.type, icons.cmp)
-        local kind = cmp_format({
-          maxwidth = 50,
-          symbol_map = kind_map,
-        })(entry, vim_item)
-        return kind
+        local lspkind_icons = vim.tbl_deep_extend("force", icons.kind, icons.type, icons.cmp)
+        -- load lspkind icons
+        vim_item.kind =
+          string.format(" %s  %s", lspkind_icons[vim_item.kind] or icons.cmp.undefined, vim_item.kind or "")
+
+        local label = vim_item.abbr
+        local truncated_label = vim.fn.strcharpart(label, 0, 80)
+        if truncated_label ~= label then
+          vim_item.abbr = truncated_label .. "..."
+        end
+
+        return vim_item
       end,
     },
     matching = {
-      disallow_partial_fuzzy_matching = false,
+      disallow_partial_fuzzy_matching = true,
+    },
+    performance = {
+      async_budget = 1,
+      max_view_entries = 120,
     },
     -- You can set mappings if you want
     mapping = cmp.mapping.preset.insert({
@@ -164,8 +121,6 @@ return function()
       { name = "buffer" },
       { name = "latex_symbols" },
       { name = "copilot" },
-      -- { name = "codeium" },
-      -- { name = "cmp_tabnine" },
     },
     experimental = {
       ghost_text = {

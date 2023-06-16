@@ -7,6 +7,9 @@ settings["use_ssh"] = true
 -- Set it to false if there are no need to format on save.
 settings["format_on_save"] = true
 
+-- Notify on Save
+settings["format_notify"] = true
+
 -- Set it to false if diagnostics virtual text is annoying for you
 ---@type boolean
 settings["diagnostics_virtual_text"] = true
@@ -44,6 +47,12 @@ settings["transparent_background"] = false
 -- This entry is IGNORED on Windows and macOS, which have their default handlers builtin.
 ---@type string
 settings["external_browser"] = "chrome-cli open"
+
+-- Filetypes in this list will skip lsp formatting if rhs is true.
+---@type table<string, boolean>
+settings["formatter_block_list"] = {
+  lua = false, -- example
+}
 
 -- Servers in this list will skip setting formatting capabilities if rhs is true
 ---@type table<string, boolean>

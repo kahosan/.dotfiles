@@ -39,26 +39,14 @@ return function()
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     signs = true,
-    underline = true,
+    underline = false,
     virtual_text = require("core.settings").diagnostics_virtual_text,
     -- set update_in_insert to false bacause it was enabled by lspsaga
-    update_in_insert = false,
+    update_in_insert = true,
   })
 
   local opts = {
-    -- on_attach = function()
-    --   require("lsp_signature").on_attach({
-    --     bind = true,
-    --     use_lspsaga = false,
-    --     floating_window = true,
-    --     fix_pos = true,
-    --     hint_enable = true,
-    --     hi_parameter = "Search",
-    --     handler_opts = {
-    --       border = "rounded",
-    --     },
-    --   })
-    -- end,
+    on_attach = function() end,
     capabilities = capabilities,
   }
 
@@ -91,11 +79,4 @@ return function()
   end
 
   mason_lspconfig.setup_handlers({ mason_handler })
-
-  -- Set lsps that are not supported by `mason.nvim` but supported by `nvim-lspconfig` here.
-  -- if vim.fn.executable("dart") then
-  -- 	local _opts = require("completion.servers.dartls")
-  -- 	local final_opts = vim.tbl_deep_extend("keep", _opts, opts)
-  -- 	nvim_lsp.dartls.setup(final_opts)
-  -- end
 end

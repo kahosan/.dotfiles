@@ -20,9 +20,6 @@ return function()
         "markdown",
       },
     }),
-    btns.formatting.eslint_d,
-    btns.diagnostics.eslint_d,
-    btns.code_actions.eslint_d,
   }
 
   null_ls.setup({

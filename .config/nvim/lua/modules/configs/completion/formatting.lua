@@ -1,28 +1,29 @@
 local M = {}
 
 local settings = require("core.settings")
+local format_notify = settings.format_notify
 local disabled_workspaces = settings.format_disabled_dirs
 local format_on_save = settings.format_on_save
+local server_formatting_block_list = settings.server_formatting_block_list
 
 vim.api.nvim_create_user_command("FormatToggle", function()
   M.toggle_format_on_save()
 end, {})
 
--- https://github.com/ayamir/nvimdots/blob/main/lua/modules/configs/completion/formatting.lua#L12
-local block_list = {}
-vim.api.nvim_create_user_command("FormatterToggle", function(opts)
+local block_list = require("core.settings").formatter_block_list
+vim.api.nvim_create_user_command("FormatterToggleFt", function(opts)
   if block_list[opts.args] == nil then
     vim.notify(
-      string.format("[LSP]Formatter for [%s] has been recorded in list and disabled.", opts.args),
+      string.format("[LSP] Formatter for [%s] has been recorded in list and disabled.", opts.args),
       vim.log.levels.WARN,
-      { title = "LSP Formatter Warning!" }
+      { title = "LSP Formatter Warning" }
     )
     block_list[opts.args] = true
   else
     block_list[opts.args] = not block_list[opts.args]
     vim.notify(
       string.format(
-        "[LSP]Formatter for [%s] has been %s.",
+        "[LSP] Formatter for [%s] has been %s.",
         opts.args,
         not block_list[opts.args] and "enabled" or "disabled"
       ),
@@ -39,18 +40,21 @@ function M.enable_format_on_save(is_configured)
     group = "format_on_save",
     pattern = opts.pattern,
     callback = function()
-      require("completion.formatting").format({ timeout_ms = opts.timeout, filter = M.format_filter })
+      require("completion.formatting").format({
+        timeout_ms = opts.timeout,
+        filter = M.format_filter,
+      })
     end,
   })
   if not is_configured then
-    vim.notify("Successfully enabled format-on-save", vim.log.levels.INFO, { title = "Settings modification success!" })
+    vim.notify("Successfully enabled format-on-save", vim.log.levels.INFO, { title = "Settings modification success" })
   end
 end
 
-function M.disable_format_on_save()
+function M.disable_format_on_save(is_configured)
   pcall(vim.api.nvim_del_augroup_by_name, "format_on_save")
-  if format_on_save then
-    vim.notify("Disabled format-on-save", vim.log.levels.INFO, { title = "Settings modification success!" })
+  if not is_configured then
+    vim.notify("Successfully disabled format-on-save", vim.log.levels.INFO, { title = "Settings modification success" })
   end
 end
 
@@ -58,7 +62,7 @@ function M.configure_format_on_save()
   if format_on_save then
     M.enable_format_on_save(true)
   else
-    M.disable_format_on_save()
+    M.disable_format_on_save(true)
   end
 end
 
@@ -70,7 +74,7 @@ function M.toggle_format_on_save()
   if not status then
     M.enable_format_on_save(false)
   else
-    M.disable_format_on_save()
+    M.disable_format_on_save(false)
   end
 end
 
@@ -81,8 +85,8 @@ function M.format_filter(clients)
     end)
     if status_ok and formatting_supported and client.name == "null-ls" then
       return "null-ls"
-    elseif client.name ~= "lua_ls" and client.name ~= "tsserver" and client.name ~= "clangd" then
-      return status_ok and formatting_supported and client.name
+    elseif not server_formatting_block_list[client.name] and status_ok and formatting_supported then
+      return client.name
     end
   end, clients)
 end
@@ -91,6 +95,11 @@ function M.format(opts)
   local cwd = vim.fn.getcwd()
   for i = 1, #disabled_workspaces do
     if cwd.find(cwd, disabled_workspaces[i]) ~= nil then
+      vim.notify(
+        string.format("[LSP] Formatting support for all files under [%s] is disabled.", disabled_workspaces[i]),
+        vim.log.levels.WARN,
+        { title = "LSP Formatter Warning" }
+      )
       return
     end
   end
@@ -116,9 +125,9 @@ function M.format(opts)
 
   if #clients == 0 then
     vim.notify(
-      "[LSP]Format request failed, no matching language servers.",
+      "[LSP] Format request failed, no matching language servers.",
       vim.log.levels.WARN,
-      { title = "Formatting Failed!" }
+      { title = "Formatting Failed" }
     )
   end
 
@@ -127,12 +136,12 @@ function M.format(opts)
     if block_list[vim.bo.filetype] == true then
       vim.notify(
         string.format(
-          "[LSP][%s] formatter for [%s] has been disabled. This file was not processed.",
+          "[LSP][%s] Formatter for [%s] has been disabled. This file is not being processed.",
           client.name,
           vim.bo.filetype
         ),
         vim.log.levels.WARN,
-        { title = "LSP Formatter Warning!" }
+        { title = "LSP Formatter Warning" }
       )
       return
     end
@@ -140,13 +149,15 @@ function M.format(opts)
     local result, err = client.request_sync("textDocument/formatting", params, timeout_ms, bufnr)
     if result and result.result then
       vim.lsp.util.apply_text_edits(result.result, bufnr, client.offset_encoding)
-      vim.notify(
-        string.format("[LSP]Format successfully with [%s]!", client.name),
-        vim.log.levels.INFO,
-        { title = "LSP Format Success!" }
-      )
+      if format_notify then
+        vim.notify(
+          string.format("[LSP] Format successfully with %s!", client.name),
+          vim.log.levels.INFO,
+          { title = "LSP Format Success" }
+        )
+      end
     elseif err then
-      vim.notify(string.format("[LSP][%s] %s", client.name, err), vim.log.levels.ERROR, { title = "LSP Format Error!" })
+      vim.notify(string.format("[LSP][%s] %s", client.name, err), vim.log.levels.ERROR, { title = "LSP Format Error" })
     end
   end
 end
