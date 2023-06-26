@@ -8,43 +8,32 @@ return function()
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
 
-  local compare = require("cmp.config.compare")
-  compare.lsp_scores = function(entry1, entry2)
-    local diff
-    if entry1.completion_item.score and entry2.completion_item.score then
-      diff = (entry2.completion_item.score * entry2.score) - (entry1.completion_item.score * entry1.score)
-    else
-      diff = entry2.score - entry1.score
-    end
-    return (diff < 0)
-  end
-
   local cmp = require("cmp")
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
-    sorting = {
-      priority_weight = 2,
-      comparators = {
-        require("copilot_cmp.comparators").prioritize,
-        require("copilot_cmp.comparators").score,
-        -- require("cmp_tabnine.compare"),
-        compare.offset, -- Items closer to cursor will have lower priority
-        compare.exact,
-        -- compare.scopes,
-        compare.lsp_scores,
-        compare.sort_text,
-        compare.score,
-        compare.recently_used,
-        -- compare.locality, -- Items closer to cursor will have higher priority, conflicts with `offset`
-        require("cmp-under-comparator").under,
-        compare.kind,
-        compare.length,
-        compare.order,
-      },
-    },
+    -- sorting = {
+    --   priority_weight = 2,
+    --   comparators = {
+    --     require("copilot_cmp.comparators").prioritize,
+    --     require("copilot_cmp.comparators").score,
+    --     -- require("cmp_tabnine.compare"),
+    --     compare.offset, -- Items closer to cursor will have lower priority
+    --     compare.exact,
+    --     -- compare.scopes,
+    --     compare.lsp_scores,
+    --     compare.sort_text,
+    --     compare.score,
+    --     compare.recently_used,
+    --     -- compare.locality, -- Items closer to cursor will have higher priority, conflicts with `offset`
+    --     require("cmp-under-comparator").under,
+    --     compare.kind,
+    --     compare.length,
+    --     compare.order,
+    --   },
+    -- },
     formatting = {
       fields = { "abbr", "kind", "menu" },
-      format = function(entry, vim_item)
+      format = function(_, vim_item)
         local lspkind_icons = vim.tbl_deep_extend("force", icons.kind, icons.type, icons.cmp)
         -- load lspkind icons
         vim_item.kind =
@@ -59,9 +48,9 @@ return function()
         return vim_item
       end,
     },
-    matching = {
-      disallow_partial_fuzzy_matching = true,
-    },
+    -- matching = {
+    --   disallow_partial_fuzzy_matching = true,
+    -- },
     performance = {
       async_budget = 1,
       max_view_entries = 120,

@@ -17,6 +17,7 @@ ui["catppuccin/nvim"] = {
 }
 ui["j-hui/fidget.nvim"] = {
   lazy = true,
+  branch = "legacy",
   event = "LspAttach",
   config = require("ui.fidget"),
 }
@@ -34,6 +35,11 @@ ui["zbirenbaum/neodim"] = {
   lazy = true,
   event = "LspAttach",
   config = require("ui.neodim"),
+}
+ui["lukas-reineke/indent-blankline.nvim"] = {
+  lazy = true,
+  event = "BufReadPost",
+  config = require("ui.indent-blankline"),
 }
 -- ui["edluffy/specs.nvim"] = {
 -- 	lazy = true,
