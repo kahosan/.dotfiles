@@ -3,28 +3,29 @@ local global = require("core.global")
 local function load_options()
   local global_local = {
     -- My Setting
-    number = true,                -- show line number
-    relativenumber = true,        -- show relative line number
-    autoindent = true,            -- auto indent
-    smartindent = true,           -- smart indent
-    tabstop = 2,                  -- tab width
-    softtabstop = 2,              -- tab width
-    shiftwidth = 2,               -- tab width
-    expandtab = true,             -- use space instead of tab
-    encoding = "UTF-8",           -- encoding
-    syntax = "on",                -- syntax highlight
-    showmatch = true,             -- highlight matching parenthesis
-    hlsearch = true,              -- highlight search result
-    ignorecase = true,            -- ignore case when searching
-    sidescrolloff = 5,            -- keep 5 lines when scrolling horizontally
-    scrolloff = 5,                -- keep 5 lines when scrolling vertically
-    mouse = "a",                  -- enable mouse
-    cursorline = true,            -- highlight current line
+    number = true, -- show line number
+    relativenumber = true, -- show relative line number
+    autoindent = true, -- auto indent
+    smartindent = true, -- smart indent
+    tabstop = 2, -- tab width
+    softtabstop = 2, -- tab width
+    shiftwidth = 2, -- tab width
+    expandtab = true, -- use space instead of tab
+    encoding = "UTF-8", -- encoding
+    syntax = "on", -- syntax highlight
+    showmatch = true, -- highlight matching parenthesis
+    hlsearch = true, -- highlight search result
+    ignorecase = true, -- ignore case when searching
+    sidescrolloff = 5, -- keep 5 lines when scrolling horizontally
+    scrolloff = 5, -- keep 5 lines when scrolling vertically
+    mouse = "a", -- enable mouse
+    cursorline = true, -- highlight current line
     cursorlineopt = "screenline", -- highlight current line
-    termguicolors = true,         -- enable true color support
-    wrap = false,                 -- wrap lines
-    pumheight = 6,                -- limit completion items
-    clipboard = "unnamedplus",    -- use system clipboard
+    termguicolors = true, -- enable true color support
+    wrap = false, -- wrap lines
+    pumheight = 6, -- limit completion items
+    clipboard = "unnamedplus", -- use system clipboard
+    splitkeep = "screen", -- keep split window
   }
   local function isempty(s)
     return s == nil or s == ""
