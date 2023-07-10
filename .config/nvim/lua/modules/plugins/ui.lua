@@ -10,10 +10,15 @@ ui["akinsho/bufferline.nvim"] = {
   event = { "BufReadPost", "BufAdd", "BufNewFile" },
   config = require("ui.bufferline"),
 }
-ui["catppuccin/nvim"] = {
-  lazy = false,
-  name = "catppuccin",
-  config = require("ui.catppuccin"),
+-- ui["catppuccin/nvim"] = {
+--   lazy = false,
+--   name = "catppuccin",
+--   config = require("ui.catppuccin"),
+-- }
+ui["rose-pine/neovim"] = {
+  lazy = true,
+  name = "rose-pine",
+  config = require("ui.rose-pine"),
 }
 ui["j-hui/fidget.nvim"] = {
   lazy = true,
@@ -32,7 +37,8 @@ ui["nvim-lualine/lualine.nvim"] = {
   config = require("ui.lualine"),
 }
 ui["zbirenbaum/neodim"] = {
-  lazy = true,
+  lazy = false,
+  branch = "v2",
   event = "LspAttach",
   config = require("ui.neodim"),
 }

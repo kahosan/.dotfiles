@@ -160,8 +160,8 @@ local load_core = function()
 
   local colorscheme = require("core.settings").colorscheme
   local background = require("core.settings").background
-  vim.api.nvim_command("set background=" .. background)
   vim.api.nvim_command("colorscheme " .. colorscheme)
+  vim.api.nvim_command("set background=" .. background)
 end
 
 load_core()
