@@ -36,14 +36,14 @@ return function()
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     signs = true,
-    underline = false,
+    underline = true,
     virtual_text = require("core.settings").diagnostics_virtual_text,
     -- set update_in_insert to false bacause it was enabled by lspsaga
     update_in_insert = true,
   })
 
   local opts = {
-    on_attach = function() end,
+    on_attach = nil,
     capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   }
 

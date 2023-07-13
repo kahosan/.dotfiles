@@ -11,26 +11,17 @@ return function()
   local cmp = require("cmp")
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
-    -- sorting = {
-    --   priority_weight = 2,
-    --   comparators = {
-    --     require("copilot_cmp.comparators").prioritize,
-    --     require("copilot_cmp.comparators").score,
-    --     -- require("cmp_tabnine.compare"),
-    --     compare.offset, -- Items closer to cursor will have lower priority
-    --     compare.exact,
-    --     -- compare.scopes,
-    --     compare.lsp_scores,
-    --     compare.sort_text,
-    --     compare.score,
-    --     compare.recently_used,
-    --     -- compare.locality, -- Items closer to cursor will have higher priority, conflicts with `offset`
-    --     require("cmp-under-comparator").under,
-    --     compare.kind,
-    --     compare.length,
-    --     compare.order,
-    --   },
-    -- },
+    sorting = {
+      comparators = {
+        cmp.config.compare.offset,
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        cmp.config.compare.kind,
+        -- cmp.config.compare.sort_text,
+        cmp.config.compare.length,
+        cmp.config.compare.order,
+      },
+    },
     formatting = {
       fields = { "abbr", "kind", "menu" },
       format = function(_, vim_item)
@@ -48,9 +39,9 @@ return function()
         return vim_item
       end,
     },
-    -- matching = {
-    --   disallow_partial_fuzzy_matching = true,
-    -- },
+    matching = {
+      disallow_partial_fuzzy_matching = true,
+    },
     performance = {
       async_budget = 1,
       max_view_entries = 120,
@@ -104,11 +95,11 @@ return function()
           return not vim.tbl_contains(ignore_list, kind)
         end,
       },
-      { name = "spell" },
+      -- { name = "spell" },
       { name = "tmux" },
-      { name = "orgmode" },
+      -- { name = "orgmode" },
       { name = "buffer" },
-      { name = "latex_symbols" },
+      -- { name = "latex_symbols" },
       { name = "copilot" },
     },
     experimental = {

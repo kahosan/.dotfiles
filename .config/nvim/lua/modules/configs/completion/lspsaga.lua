@@ -26,22 +26,25 @@ return function()
   set_sidebar_icons()
 
   require("lspsaga").setup({
-    preview = {
-      lines_above = 1,
-      lines_below = 17,
-    },
     scroll_preview = {
       scroll_down = "<C-j>",
       scroll_up = "<C-k>",
     },
     request_timeout = 3000,
     finder = {
+      slient = true,
+      default = "def+ref+imp",
+      layout = "float",
+      filter = {},
       keys = {
+        shuttle = "[]",
         toggle_or_open = "<CR>",
-        vsplit = "s",
-        split = "i",
+        jump_to = "e",
+        vsplit = "v",
+        split = "s",
         tabe = "t",
-        quit = { "q", "<Esc>" },
+        tabnew = "n",
+        quit = "q",
         close = "<Esc>",
       },
     },
@@ -51,12 +54,14 @@ return function()
         vsplit = "<C-c>v",
         split = "<C-c>s",
         tabe = "<C-c>t",
+        close = "<C-c>q",
         quit = "q",
-        close = "<Esc>",
       },
     },
     code_action = {
       num_shortcut = true,
+      show_server_name = true,
+      extend_gitsigns = false,
       keys = {
         quit = "q",
         exec = "<CR>",
@@ -65,7 +70,6 @@ return function()
     lightbulb = {
       enable = false,
       sign = true,
-      enable_in_insert = true,
       sign_priority = 20,
       virtual_text = false,
     },
@@ -76,11 +80,15 @@ return function()
       priority = 100,
     },
     diagnostic = {
+      max_width = 0.5,
+      max_height = 0.6,
       text_hl_follow = true,
       show_code_action = true,
       border_follow = true,
+      diagnostic_only_current = false,
       extend_relatedInformation = false,
       jump_num_shortcut = true,
+      show_layout = "float",
       keys = {
         exec_action = "r",
         quit = "q",
@@ -89,7 +97,8 @@ return function()
       },
     },
     rename = {
-      in_select = true,
+      in_select = false,
+      auto_save = false,
       keys = {
         quit = "<Esc>",
         exec = "<CR>",
@@ -97,8 +106,10 @@ return function()
       },
     },
     hover = {
+      -- max_width = 0.3,
+      max_height = 0.7,
       open_link = "gl",
-      -- open_browser = "silent !" .. require("core.settings").external_browser,
+      open_browser = "silent !" .. require("core.settings").external_browser,
     },
     outline = {
       win_position = "right",
@@ -106,17 +117,33 @@ return function()
       auto_preview = false,
       auto_close = true,
       close_after_jump = true,
+      detailed = false,
+      layout = "normal",
       keys = {
         toggle_or_jump = "<CR>",
+        jump = "o",
         quit = "q",
       },
     },
     symbol_in_winbar = {
       enable = true,
       separator = " " .. icons.ui.Separator,
-      hide_keyword = true,
+      hide_keyword = false,
       show_file = false,
       color_mode = true,
+    },
+    callhierarchy = {
+      layout = "float",
+      keys = {
+        edit = "e",
+        vsplit = "v",
+        split = "s",
+        tabe = "t",
+        quit = "q",
+        shuttle = "[]",
+        toggle_or_req = "u",
+        close = "<Esc>",
+      },
     },
     beacon = {
       enable = true,
@@ -124,13 +151,13 @@ return function()
     },
     ui = {
       title = false,
+      devicon = true,
       border = "rounded", -- Can be single, double, rounded, solid, shadow.
       actionfix = icons.ui.Spell,
       expand = icons.ui.ArrowClosed,
       collapse = icons.ui.ArrowOpen,
       code_action = icons.ui.CodeAction,
-      incoming = icons.ui.Incoming,
-      outgoing = icons.ui.Outgoing,
+      imp_sign = icons.kind.Implementation,
       kind = {
         -- Kind
         Class = { icons.kind.Class, "LspKindClass" },
