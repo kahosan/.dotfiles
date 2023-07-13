@@ -1,19 +1,30 @@
+set number relativenumber
 set scrolloff=5
 set incsearch
 set commentary
 set clipboard+=unnamed
 set visualbell
 
-let mapleader=";" 
+set showmode
+
+let mapleader=" " 
 
 map <C-c> <Esc>
 
 nnoremap gr :action RenameElement<CR>
 nnoremap gh :action QuickJavaDoc<CR>
 nnoremap ge :action ShowErrorDescription<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gp :action GotoSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
 
-sethandler <c-j> a:vim
-sethandler <c-k> a:vim
+map <c-\> <Action>(SplitVertically)
+map <c--> <Action>(SplitHorizontally)
+map <c-=> <Action>(UnsplitAll)
+
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
@@ -21,3 +32,6 @@ nnoremap <c-k> <c-w>k
 
 nnoremap <TAB> :action PreviousTab<CR>
 nnoremap <s-TAB> :action NextTab<CR>
+
+# plugin
+Plug 'tpope/vim-commentary'
