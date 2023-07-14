@@ -30,20 +30,20 @@ return function()
       },
     },
   })
+
   mason_lspconfig.setup({
     ensure_installed = require("core.settings").lsp_deps,
   })
 
-  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  vim.diagnostic.config({
     signs = true,
     underline = true,
     virtual_text = require("core.settings").diagnostics_virtual_text,
-    -- set update_in_insert to false bacause it was enabled by lspsaga
-    update_in_insert = true,
+    update_in_insert = false,
   })
 
   local opts = {
-    on_attach = nil,
+    -- on_attach = nil,
     capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
   }
 
@@ -76,4 +76,21 @@ return function()
   end
 
   mason_lspconfig.setup_handlers({ mason_handler })
+
+  -- lsp keymap
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(event)
+      vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+      local lsp_opts = { buffer = event.buf }
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, lsp_opts)
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, lsp_opts)
+      vim.keymap.set("n", "gr", vim.lsp.buf.rename, lsp_opts)
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, lsp_opts)
+      vim.keymap.set("n", "ga", vim.lsp.buf.code_action, lsp_opts)
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, lsp_opts)
+      vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, lsp_opts)
+    end,
+  })
 end

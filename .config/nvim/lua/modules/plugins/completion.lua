@@ -5,13 +5,8 @@ completion["neovim/nvim-lspconfig"] = {
   event = { "BufReadPost", "BufAdd", "BufNewFile" },
   config = require("completion.lsp"),
   dependencies = {
-    -- { "ray-x/lsp_signature.nvim" },
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
-    {
-      "nvimdev/lspsaga.nvim",
-      config = require("completion.lspsaga"),
-    },
   },
 }
 completion["jose-elias-alvarez/null-ls.nvim"] = {
@@ -46,7 +41,6 @@ completion["hrsh7th/nvim-cmp"] = {
       "windwp/nvim-autopairs",
       config = require("completion.autopairs"),
     },
-    -- { "tzachar/cmp-tabnine", build = "./install.sh", config = require("completion.tabnine") },
     -- {
     -- 	"jcdickinson/codeium.nvim",
     -- 	dependencies = {

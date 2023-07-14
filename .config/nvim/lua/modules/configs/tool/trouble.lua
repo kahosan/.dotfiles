@@ -9,7 +9,7 @@ return function()
     height = 5, -- height of the trouble list when position is top or bottom
     width = 50, -- width of the list when position is left or right
     icons = true, -- use devicons for filenames
-    mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+    mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
     fold_open = icons.ui.ArrowOpen, -- icon used for open folds
     fold_closed = icons.ui.ArrowClosed, -- icon used for closed folds
     group = true, -- group results by file
@@ -50,6 +50,6 @@ return function()
       information = icons.diagnostics.Information_alt,
       other = icons.diagnostics.Question_alt,
     },
-    use_diagnostic_signs = false, -- enabling this will use the signs defined in your lsp client
+    use_diagnostic_signs = true, -- enabling this will use the signs defined in your lsp client
   })
 end
