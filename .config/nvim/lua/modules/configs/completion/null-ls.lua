@@ -25,7 +25,7 @@ return function()
   null_ls.setup({
     debug = false,
     update_in_insert = false,
-    diagnostics_format = "#{m}",
+    diagnostics_format = "#{m} (#{s})",
     sources = sources,
   })
 
