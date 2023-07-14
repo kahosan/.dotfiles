@@ -58,7 +58,7 @@ return function()
       fern = false,
       fidget = true,
       gitgutter = false,
-      gitsigns = false,
+      gitsigns = true,
       harpoon = false,
       hop = true,
       illuminate = true,
