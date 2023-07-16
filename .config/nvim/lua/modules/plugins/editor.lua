@@ -1,10 +1,5 @@
 local editor = {}
 
-editor["max397574/better-escape.nvim"] = {
-  lazy = true,
-  event = "BufReadPost",
-  config = require("editor.better-escape"),
-}
 editor["LunarVim/bigfile.nvim"] = {
   lazy = false,
   config = require("editor.bigfile"),
@@ -43,15 +38,17 @@ editor["nvim-treesitter/nvim-treesitter"] = {
       vim.api.nvim_command("TSUpdate")
     end
   end,
-  event = "BufReadPost",
+  event = "BufReadPre",
   config = require("editor.treesitter"),
   dependencies = {
     { "nvim-treesitter/nvim-treesitter-textobjects" },
-    { "nvim-treesitter/nvim-treesitter-context" },
-    { "mrjones2014/nvim-ts-rainbow" },
     { "JoosepAlviste/nvim-ts-context-commentstring" },
     { "mfussenegger/nvim-treehopper" },
     { "andymass/vim-matchup" },
+    {
+      "nvim-treesitter/nvim-treesitter-context",
+      config = require("editor.ts-context"),
+    },
     {
       "windwp/nvim-ts-autotag",
       config = require("editor.autotag"),
@@ -59,10 +56,6 @@ editor["nvim-treesitter/nvim-treesitter"] = {
     {
       "NvChad/nvim-colorizer.lua",
       config = require("editor.colorizer"),
-    },
-    {
-      "abecodes/tabout.nvim",
-      config = require("editor.tabout"),
     },
   },
 }

@@ -242,9 +242,6 @@ local plug_map = {
   ["n|<leader>D"] = map_cr("DiffviewOpen"):with_silent():with_noremap():with_desc("git: Show diff"),
   ["n|<leader><leader>D"] = map_cr("DiffviewClose"):with_silent():with_noremap():with_desc("git: Close diff"),
   ["n|<C-p>"] = map_callback(command_panel):with_silent():with_noremap():with_desc("tool: Toggle command panel"),
-  -- Plugin Tabout
-  ["i|<A-l>"] = map_cmd("<Plug>(TaboutMulti)"):with_silent():with_noremap():with_desc("editi: Goto end of pair"),
-  ["i|<A-h>"] = map_cmd("<Plug>(TaboutBackMulti)"):with_silent():with_noremap():with_desc("editi: Goto begin of pair"),
   -- Plugin Comment.nvim
   ["n|gc"] = map_callback(function()
       return vim.v.count == 0 and t("<Plug>(comment_toggle_linewise_current)")

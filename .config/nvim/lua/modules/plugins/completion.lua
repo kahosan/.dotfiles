@@ -41,14 +41,6 @@ completion["hrsh7th/nvim-cmp"] = {
       "windwp/nvim-autopairs",
       config = require("completion.autopairs"),
     },
-    -- {
-    -- 	"jcdickinson/codeium.nvim",
-    -- 	dependencies = {
-    -- 		"nvim-lua/plenary.nvim",
-    -- 		"MunifTanjim/nui.nvim",
-    -- 	},
-    -- 	config = require("completion.codeium"),
-    -- },
   },
 }
 completion["zbirenbaum/copilot.lua"] = {
@@ -56,12 +48,12 @@ completion["zbirenbaum/copilot.lua"] = {
   cmd = "Copilot",
   event = "InsertEnter",
   config = require("completion.copilot"),
-  dependencies = {
-    {
-      "zbirenbaum/copilot-cmp",
-      config = require("completion.copilot-cmp"),
-    },
-  },
+  -- dependencies = {
+  --   {
+  --     "zbirenbaum/copilot-cmp",
+  --     config = require("completion.copilot-cmp"),
+  --   },
+  -- },
 }
 
 return completion

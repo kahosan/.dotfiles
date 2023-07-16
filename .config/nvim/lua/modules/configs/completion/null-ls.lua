@@ -5,7 +5,7 @@ return function()
 
   local sources = {
     btns.formatting.black.with({
-      extra_args = { "--fast" },
+      extra_args = { "--fast", "--line-length", "100" },
     }),
     btns.formatting.clang_format.with({
       filetypes = { "c", "cpp" },
@@ -20,10 +20,13 @@ return function()
         "markdown",
       },
     }),
+    btns.formatting.rustfmt,
   }
 
   null_ls.setup({
+    border = "single",
     debug = false,
+    log_level = "warn",
     update_in_insert = false,
     diagnostics_format = "#{m} (#{s})",
     sources = sources,
@@ -31,7 +34,7 @@ return function()
 
   mason_null_ls.setup({
     ensure_installed = require("core.settings").null_ls_deps,
-    automatic_installation = true,
+    automatic_installation = false,
     automatic_setup = true,
     handlers = {},
   })

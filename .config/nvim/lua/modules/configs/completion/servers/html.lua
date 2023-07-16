@@ -1,6 +1,6 @@
--- https://github.com/hrsh7th/vscode-langservers-extracted
+-- https://github.com/vscode-langservers/vscode-html-languageserver-bin
 return {
-  cmd = { "vscode-html-language-server", "--stdio" },
+  cmd = { "html-languageserver", "--stdio" },
   filetypes = { "html" },
   init_options = {
     configurationSection = { "html", "css", "javascript" },

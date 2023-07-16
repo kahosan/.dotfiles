@@ -8,7 +8,7 @@ settings["use_ssh"] = true
 settings["format_on_save"] = true
 
 -- Notify on Save
-settings["format_notify"] = true
+settings["format_notify"] = false
 
 -- Set it to false if diagnostics virtual text is annoying for you
 ---@type boolean
@@ -65,7 +65,7 @@ settings["server_formatting_block_list"] = {
   lua_ls = true,
   tsserver = true,
   clangd = true,
-  pylsp = true,
+  pylsp = false,
 }
 
 -- Set the desired LSPs here.
@@ -79,6 +79,7 @@ settings["lsp_deps"] = {
   "lua_ls",
   "pylsp",
   "gopls",
+  "tsserver",
 }
 
 -- Set the desired non-LSP sources here.

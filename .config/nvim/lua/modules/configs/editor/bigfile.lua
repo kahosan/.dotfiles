@@ -11,7 +11,7 @@ return function()
     name = "nvim-cmp",
     opts = { defer = true },
     disable = function()
-      require("completion.cmp").setup.buffer({ enabled = false })
+      require("cmp").setup.buffer({ enabled = false })
     end,
   }
 
@@ -21,7 +21,7 @@ return function()
     features = { -- features to disable
       "indent_blankline",
       "lsp",
-      -- "illuminate",
+      "illuminate",
       "treesitter",
       "syntax",
       "vimopts",

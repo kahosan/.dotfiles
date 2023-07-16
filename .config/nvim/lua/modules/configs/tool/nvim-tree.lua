@@ -30,7 +30,7 @@ return function()
         enable = false,
         open_win_config = {
           relative = "editor",
-          border = "rounded",
+          border = "single",
           width = 30,
           height = 30,
           row = 1,
@@ -81,8 +81,8 @@ return function()
             ignored = icons.git.Ignore, --◌
           },
           folder = {
-            -- arrow_open = "",
-            -- arrow_closed = "",
+            -- arrow_open = icons.ui.ArrowOpen,
+            -- arrow_closed = icons.ui.ArrowClosed,
             arrow_open = "",
             arrow_closed = "",
             default = icons.ui.Folder,

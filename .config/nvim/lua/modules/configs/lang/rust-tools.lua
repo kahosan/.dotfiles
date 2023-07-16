@@ -4,24 +4,7 @@ return function()
 
       -- how to execute terminal commands
       -- options right now: termopen / quickfix
-      executor = require("rust-tools/executors").termopen,
-
-      -- callback to execute once rust-analyzer is done initializing the workspace
-      -- The callback receives one parameter indicating the `health` of the server: "ok" | "warning" | "error"
-      -- on_initialized = function()
-      -- 	require("lsp_signature").on_attach({
-      -- 		hint_enable = false,
-      -- 		hint_prefix = "",
-      -- 		bind = true,
-      -- 		use_lspsaga = false,
-      -- 		floating_window = true,
-      -- 		fix_pos = true,
-      -- 		hi_parameter = "Search",
-      -- 		handler_opts = {
-      -- 			border = "rounded",
-      -- 		},
-      -- 	})
-      -- end,
+      executor = require("rust-tools.executors").termopen,
 
       -- automatically call RustReloadWorkspace when writing to a Cargo.toml file.
       reload_workspace_from_cargo_toml = true,
@@ -161,6 +144,7 @@ return function()
         },
       },
     },
+
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
@@ -169,6 +153,7 @@ return function()
       -- setting it to false may improve startup time
       standalone = true,
     }, -- rust-analyer options
+
     -- debugging stuff
     dap = {
       adapter = {
