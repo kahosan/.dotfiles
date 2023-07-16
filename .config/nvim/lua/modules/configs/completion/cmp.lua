@@ -12,32 +12,20 @@ return function()
   local compare = cmp.config.compare
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
-    -- sorting = {
-    --   comparators = {
-    --     cmp.config.compare.offset,
-    --     cmp.config.compare.exact,
-    --     cmp.config.compare.score,
-    --     cmp.config.compare.kind,
-    --     -- cmp.config.compare.sort_text,
-    --     cmp.config.compare.length,
-    --     cmp.config.compare.order,
-    --   },
-    -- },
     sorting = {
-      priority_weight = 2,
+      priority_weight = 1.0,
       comparators = {
-        compare.offset, -- Items closer to cursor will have lower priority
-        compare.exact,
-        -- compare.scopes,
-        compare.lsp_scores,
-        compare.sort_text,
-        compare.score,
+        --compare.score_offset,
+        compare.locality,
         compare.recently_used,
-        -- compare.locality, -- Items closer to cursor will have higher priority, conflicts with `offset`
-        require("cmp-under-comparator").under,
-        compare.kind,
-        compare.length,
+        compare.score, -- based on:  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+        compare.offset,
         compare.order,
+        --compare.scopes,-- what?
+        --compare.sort_text,
+        --compare.exact,
+        --compare.kind,
+        --compare.length, -- useless
       },
     },
     formatting = {
