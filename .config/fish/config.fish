@@ -61,6 +61,12 @@ alias gpl="git pull --rebase"
 
 alias main='git checkout main'
 
+# my
+alias gs="git status"
+alias gap="git add -p"
+alias gm="git commit"
+alias gds="git diff --staged"
+
 
 # node action
 # alias s="nr start"
