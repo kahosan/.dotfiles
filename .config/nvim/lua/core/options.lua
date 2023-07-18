@@ -12,12 +12,12 @@ local function load_options()
     shiftwidth = 2, -- tab width
     expandtab = true, -- use space instead of tab
     encoding = "UTF-8", -- encoding
-    syntax = "on", -- syntax highlight
+    syntax = "off", -- syntax highlight
     showmatch = true, -- highlight matching parenthesis
     hlsearch = true, -- highlight search result
     ignorecase = true, -- ignore case when searching
-    sidescrolloff = 5, -- keep 5 lines when scrolling horizontally
-    scrolloff = 5, -- keep 5 lines when scrolling vertically
+    sidescrolloff = 8, -- keep 5 lines when scrolling horizontally
+    scrolloff = 8, -- keep 5 lines when scrolling vertically
     mouse = "a", -- enable mouse
     cursorline = true, -- highlight current line
     cursorlineopt = "screenline", -- highlight current line

@@ -56,8 +56,8 @@ local disable_distribution_plugins = function()
   vim.g.loaded_zipPlugin = 1
 
   -- Do not use builtin matchit.vim and matchparen.vim since the use of vim-matchup
-  vim.g.loaded_matchit = 1
-  vim.g.loaded_matchparen = 1
+  -- vim.g.loaded_matchit = 1
+  -- vim.g.loaded_matchparen = 1
 
   -- Disable sql omni completion.
   vim.g.loaded_sql_completion = 1
@@ -162,6 +162,10 @@ local load_core = function()
   local background = require("core.settings").background
   vim.api.nvim_command("colorscheme " .. colorscheme)
   vim.api.nvim_command("set background=" .. background)
+  -- set match parent highlight color
+  vim.cmd([[
+      highlight MatchParen cterm=none gui=none ctermbg=lightgrey guibg=lightgrey ctermfg=black guifg=black
+    ]])
 end
 
 load_core()

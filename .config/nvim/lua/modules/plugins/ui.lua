@@ -15,10 +15,17 @@ ui["catppuccin/nvim"] = {
   name = "catppuccin",
   config = require("ui.catppuccin"),
 }
-ui["rose-pine/neovim"] = {
+ui["Mofiqul/vscode.nvim"] = {
   lazy = true,
-  name = "rose-pine",
-  config = require("ui.rose-pine"),
+  event = "BufReadPost",
+  config = require("ui.vscode"),
+}
+ui["p00f/alabaster.nvim"] = {
+  lazy = true,
+  event = "BufReadPost",
+  init = function()
+    vim.g.alabaster_dim_comments = true
+  end,
 }
 ui["j-hui/fidget.nvim"] = {
   lazy = true,
@@ -42,15 +49,5 @@ ui["zbirenbaum/neodim"] = {
   event = "LspAttach",
   config = require("ui.neodim"),
 }
-ui["lukas-reineke/indent-blankline.nvim"] = {
-  lazy = true,
-  event = "BufReadPost",
-  config = require("ui.indent-blankline"),
-}
--- ui["edluffy/specs.nvim"] = {
--- 	lazy = true,
--- 	event = "CursorMoved",
--- 	config = require("ui.specs"),
--- }
 
 return ui

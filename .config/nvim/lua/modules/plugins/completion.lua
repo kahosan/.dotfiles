@@ -35,7 +35,6 @@ completion["hrsh7th/nvim-cmp"] = {
     { "hrsh7th/cmp-path" },
     { "f3fora/cmp-spell" },
     { "hrsh7th/cmp-buffer" },
-    { "kdheepak/cmp-latex-symbols" },
     { "ray-x/cmp-treesitter" },
     {
       "windwp/nvim-autopairs",
@@ -48,12 +47,6 @@ completion["zbirenbaum/copilot.lua"] = {
   cmd = "Copilot",
   event = "InsertEnter",
   config = require("completion.copilot"),
-  -- dependencies = {
-  --   {
-  --     "zbirenbaum/copilot-cmp",
-  --     config = require("completion.copilot-cmp"),
-  --   },
-  -- },
 }
 
 return completion

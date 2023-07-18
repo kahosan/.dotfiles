@@ -19,9 +19,7 @@ return function()
     filesize = 1, -- size of the file in MiB
     pattern = { "*" }, -- autocmd pattern
     features = { -- features to disable
-      "indent_blankline",
       "lsp",
-      "illuminate",
       "treesitter",
       "syntax",
       "vimopts",

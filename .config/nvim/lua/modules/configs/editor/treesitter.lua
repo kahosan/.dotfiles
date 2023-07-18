@@ -25,7 +25,7 @@ return vim.schedule_wrap(function()
       "yaml",
     },
     highlight = {
-      enable = true,
+      enable = false,
       disable = function(ft, bufnr)
         if vim.tbl_contains({ "vim" }, ft) then
           return true

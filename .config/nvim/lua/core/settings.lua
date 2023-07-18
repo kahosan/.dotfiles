@@ -32,8 +32,9 @@ settings["palette_overwrite"] = {}
 
 -- Set the colorscheme to use here.
 -- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`, `edge`, `nord`.
-settings["colorscheme"] = "catppuccin"
--- settings["colorscheme"] = "rose-pine"
+-- settings["colorscheme"] = "catppuccin"
+-- settings["colorscheme"] = "vscode"
+settings["colorscheme"] = "alabaster"
 
 -- Set background color to use here.
 -- Useful for when you want to use a colorscheme that has a light and dark variant like `edge`.

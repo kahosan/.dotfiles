@@ -16,18 +16,6 @@ tool["nvim-tree/nvim-tree.lua"] = {
   },
   config = require("tool.nvim-tree"),
 }
-tool["akinsho/toggleterm.nvim"] = {
-  lazy = true,
-  cmd = {
-    "ToggleTerm",
-    "ToggleTermSetName",
-    "ToggleTermToggleAll",
-    "ToggleTermSendVisualLines",
-    "ToggleTermSendCurrentLine",
-    "ToggleTermSendVisualSelection",
-  },
-  config = require("tool.toggleterm"),
-}
 tool["folke/trouble.nvim"] = {
   lazy = true,
   cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
@@ -65,31 +53,6 @@ tool["nvim-telescope/telescope.nvim"] = {
     },
     { "jvgrootveld/telescope-zoxide" },
     { "nvim-telescope/telescope-live-grep-args.nvim" },
-  },
-}
-
-----------------------------------------------------------------------
---                           DAP Plugins                            --
-----------------------------------------------------------------------
-tool["mfussenegger/nvim-dap"] = {
-  lazy = true,
-  cmd = {
-    "DapSetLogLevel",
-    "DapShowLog",
-    "DapContinue",
-    "DapToggleBreakpoint",
-    "DapToggleRepl",
-    "DapStepOver",
-    "DapStepInto",
-    "DapStepOut",
-    "DapTerminate",
-  },
-  config = require("tool.dap"),
-  dependencies = {
-    {
-      "rcarriga/nvim-dap-ui",
-      config = require("tool.dap.dapui"),
-    },
   },
 }
 

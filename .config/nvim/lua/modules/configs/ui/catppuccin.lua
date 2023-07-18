@@ -53,7 +53,7 @@ return function()
       beacon = false,
       cmp = true,
       coc_nvim = false,
-      dap = { enabled = true, enable_ui = true },
+      dap = false,
       dashboard = false,
       fern = false,
       fidget = true,
@@ -61,8 +61,8 @@ return function()
       gitsigns = true,
       harpoon = false,
       hop = true,
-      illuminate = true,
-      indent_blankline = { enabled = true, colored_indent_levels = false },
+      illuminate = false,
+      -- _blankline = { enabled = true, colored__levels = false },
       leap = false,
       lightspeed = false,
       lsp_saga = false,
@@ -112,9 +112,9 @@ return function()
           -- For mason.nvim
           MasonNormal = { link = "NormalFloat" },
 
-          -- For indent-blankline
-          IndentBlanklineChar = { fg = cp.surface0 },
-          IndentBlanklineContextChar = { fg = cp.surface2, style = { "bold" } },
+          -- For -blankline
+          BlanklineChar = { fg = cp.surface0 },
+          BlanklineContextChar = { fg = cp.surface2, style = { "bold" } },
 
           -- For nvim-cmp and wilder.nvim
           Pmenu = { fg = cp.overlay2, bg = transparent_background and cp.none or cp.base },
@@ -134,7 +134,7 @@ return function()
 
           -- For nvim-tree
           NvimTreeRootFolder = { fg = cp.pink },
-          NvimTreeIndentMarker = { fg = cp.surface0 },
+          NvimTreeMarker = { fg = cp.surface0 },
 
           -- For trouble.nvim
           TroubleNormal = { bg = transparent_background and cp.none or cp.base },

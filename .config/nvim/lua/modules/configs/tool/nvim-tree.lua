@@ -41,7 +41,7 @@ return function()
     renderer = {
       add_trailing = false,
       group_empty = true,
-      highlight_git = true,
+      highlight_git = false,
       full_name = false,
       highlight_opened_files = "none",
       special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md", "CMakeLists.txt" },

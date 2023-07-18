@@ -18,11 +18,6 @@ editor["sindrets/diffview.nvim"] = {
   lazy = true,
   cmd = { "DiffviewOpen", "DiffviewClose" },
 }
-editor["RRethy/vim-illuminate"] = {
-  lazy = true,
-  event = "BufReadPost",
-  config = require("editor.vim-illuminate"),
-}
 editor["romainl/vim-cool"] = {
   lazy = true,
   event = { "CursorMoved", "InsertEnter" },
@@ -43,8 +38,6 @@ editor["nvim-treesitter/nvim-treesitter"] = {
   dependencies = {
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     { "JoosepAlviste/nvim-ts-context-commentstring" },
-    { "mfussenegger/nvim-treehopper" },
-    { "andymass/vim-matchup" },
     {
       "nvim-treesitter/nvim-treesitter-context",
       config = require("editor.ts-context"),
