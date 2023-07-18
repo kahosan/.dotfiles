@@ -27,9 +27,6 @@ tool["gelguy/wilder.nvim"] = {
   config = require("tool.wilder"),
   dependencies = { "romgrk/fzy-lua-native" },
 }
-tool["ojroques/vim-oscyank"] = {
-  lazy = false,
-}
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --
