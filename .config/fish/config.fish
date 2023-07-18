@@ -33,7 +33,7 @@ set -x HOMEBREW_NO_AUTO_UPDATE 1
 set -x LANG en_US.UTF-8
 
 # ssh
-alias nas="ssh kaho@10.88.88.106"
+alias nas="kitty +kitten ssh kaho@10.88.88.106"
 
 # alias
 alias l="ll"
