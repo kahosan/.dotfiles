@@ -27,6 +27,13 @@ tool["gelguy/wilder.nvim"] = {
   config = require("tool.wilder"),
   dependencies = { "romgrk/fzy-lua-native" },
 }
+tool["ojroques/vim-oscyank"] = {
+  lazy = true,
+  event = "TextYankPost",
+  config = function()
+    require("vim-oscyank").setup()
+  end,
+}
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --

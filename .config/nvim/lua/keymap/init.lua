@@ -25,6 +25,10 @@ end
 local plug_map = {
   -- nvim-bufdel
   ["n|<leader>bd"] = map_cr("BufDel"):with_noremap():with_silent():with_desc("buffer: Close current"),
+  -- oscyank
+  ["n|<leader>c"] = map_cmd("<Plug>OSCYankOperator"):with_noremap():with_silent():with_desc("clipboard: Copy"),
+  ["n|<leader>cc"] = map_cmd("<leader>c_"):with_silent():with_desc("clipboard: Copy"),
+  ["v|<leader>c"] = map_cmd("<Plug>OSCYankVisual"):with_noremap():with_silent():with_desc("clipboard: Copy"),
   -- Bufferline
   ["n|<leader>]"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
   ["n|<leader>["] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("buffer: Switch to prev"),
