@@ -28,11 +28,7 @@ tool["gelguy/wilder.nvim"] = {
   dependencies = { "romgrk/fzy-lua-native" },
 }
 tool["ojroques/vim-oscyank"] = {
-  lazy = true,
-  event = "TextYankPost",
-  config = function()
-    require("vim-oscyank").setup()
-  end,
+  lazy = false,
 }
 
 ----------------------------------------------------------------------
