@@ -9,10 +9,10 @@ set showmode
 
 let mapleader=" " 
 
-map <C-c> <Esc>
+inoremap <C-c> <Esc>
 
 nnoremap gr :action RenameElement<CR>
-nnoremap gh :action QuickJavaDoc<CR>
+nnoremap gh :action FindUsages<CR>
 nnoremap ge :action ShowErrorDescription<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap gd :action GotoDeclaration<CR>
