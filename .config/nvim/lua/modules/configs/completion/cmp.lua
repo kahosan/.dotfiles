@@ -38,16 +38,13 @@ return function()
           string.format("%s", vim_item.kind or "")
 
         vim_item.menu = setmetatable({
-          cmp_tabnine = "[TN]",
           copilot = "[CPLT]",
           buffer = "[BUF]",
           orgmode = "[ORG]",
           nvim_lsp = "[LSP]",
           nvim_lua = "[LUA]",
           path = "[PATH]",
-          tmux = "[TMUX]",
           treesitter = "[TS]",
-          luasnip = "[SNIP]",
           spell = "[SPELL]",
         }, {
           __index = function()
@@ -82,8 +79,6 @@ return function()
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif require("luasnip").expand_or_locally_jumpable() then
-          vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"))
         else
           fallback()
         end
@@ -91,27 +86,18 @@ return function()
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_prev_item()
-        elseif require("luasnip").jumpable(-1) then
-          vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
         else
           fallback()
         end
       end, { "i", "s" }),
     }),
-    snippet = {
-      expand = function(args)
-        require("luasnip").lsp_expand(args.body)
-      end,
-    },
     -- You should specify your *installed* sources.
     sources = {
       { name = "nvim_lsp", max_item_count = 350 },
       { name = "nvim_lua" },
-      { name = "luasnip" },
       { name = "path" },
       { name = "treesitter" },
       { name = "spell" },
-      { name = "tmux" },
       { name = "orgmode" },
       { name = "buffer" },
     },
