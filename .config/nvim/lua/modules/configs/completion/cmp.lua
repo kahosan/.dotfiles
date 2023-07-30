@@ -45,6 +45,7 @@ return function()
           nvim_lua = "[LUA]",
           path = "[PATH]",
           treesitter = "[TS]",
+          luasnip = "[SNIP]",
           spell = "[SPELL]",
         }, {
           __index = function()
@@ -91,6 +92,12 @@ return function()
         end
       end, { "i", "s" }),
     }),
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
     -- You should specify your *installed* sources.
     sources = {
       { name = "nvim_lsp", max_item_count = 350 },
@@ -99,6 +106,7 @@ return function()
       { name = "treesitter" },
       { name = "spell" },
       { name = "orgmode" },
+      { name = 'luasnip' },
       { name = "buffer" },
     },
     experimental = {
