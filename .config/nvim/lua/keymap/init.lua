@@ -65,10 +65,8 @@ local plug_map = {
   -- Plugin trouble
   ["n|gt"] = map_cr("TroubleToggle"):with_noremap():with_silent():with_desc("lsp: Toggle trouble list"),
   ["n|gh"] = map_cr("TroubleToggle lsp_references"):with_noremap():with_silent():with_desc("lsp: lsp_references"),
-  -- Plugin nvim-tree
-  ["n|<C-n>"] = map_cr("NvimTreeToggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
-  ["n|<leader>nf"] = map_cr("NvimTreeFindFile"):with_noremap():with_silent():with_desc("filetree: Find file"),
-  ["n|<leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent():with_desc("filetree: Refresh"),
+  -- Plugin Neotree
+  ["n|<C-n>"] = map_cr("Neotree toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
   -- Plugin Telescope
   ["n|<leader>u"] = map_callback(function()
       require("telescope").extensions.undo.undo()

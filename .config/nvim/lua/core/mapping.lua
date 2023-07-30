@@ -25,6 +25,7 @@ local core_map = {
   ["n|<C-q>"] = map_cmd(":wq<CR>"):with_desc("editn: Save file and quit"),
   ["n|<leader>o"] = map_cr("setlocal spell! spelllang=en_us"):with_desc("editn: Toggle spell check"),
   -- Insert mode
+  ["i|<C-c>"] = map_cmd("<Esc>"):with_noremap():with_desc("remap esc"),
   ["i|<C-u>"] = map_cmd("<C-G>u<C-U>"):with_noremap():with_desc("editi: Delete previous block"),
   ["i|<C-b>"] = map_cmd("<Left>"):with_noremap():with_desc("editi: Move cursor to left"),
   ["i|<C-a>"] = map_cmd("<ESC>^i"):with_noremap():with_desc("editi: Move cursor to line start"),

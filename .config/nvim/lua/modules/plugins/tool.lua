@@ -5,16 +5,15 @@ tool["folke/which-key.nvim"] = {
   event = "VeryLazy",
   config = require("tool.which-key"),
 }
-tool["nvim-tree/nvim-tree.lua"] = {
+tool["nvim-neo-tree/neo-tree.nvim"] = {
   lazy = true,
   cmd = {
-    "NvimTreeToggle",
-    "NvimTreeOpen",
-    "NvimTreeFindFile",
-    "NvimTreeFindFileToggle",
-    "NvimTreeRefresh",
+    "Neotree",
   },
-  config = require("tool.nvim-tree"),
+  config = require("tool.neo-tree"),
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+  },
 }
 tool["folke/trouble.nvim"] = {
   lazy = true,
