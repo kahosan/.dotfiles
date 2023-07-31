@@ -17,6 +17,19 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
     "jay-babu/mason-null-ls.nvim",
   },
 }
+completion["rmagatti/goto-preview"] = {
+  lazy = true,
+  config = function()
+    require("goto-preview").setup({
+      post_open_hook = function(_, win)
+        -- Close the current preview window with <Esc>
+        vim.keymap.set("n", "q", function()
+          vim.api.nvim_win_close(win, true)
+        end, { buffer = true })
+      end,
+    })
+  end,
+}
 completion["hrsh7th/nvim-cmp"] = {
   lazy = true,
   event = "InsertEnter",
