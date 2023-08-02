@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check if root
-if [ $(id -u) -ne 0 ]; then
+if [ "$(id -u)" -ne 0 ]; then
 	echo "Please run as root user"
 	exit 1
 fi
@@ -14,7 +14,7 @@ if ! sudo apt-get update; then
 fi
 
 echo "Installing packages ..."
-if ! sudo apt-get install -y git wget curl neovim python3 python3-pip fzf bat exa fd-find trash-cli ripgrep mtr htop nmap tmux unzip fish; then
+if ! sudo apt-get install -y git wget curl neovim python3 python3-pip fzf bat exa trash-cli ripgrep mtr htop nmap tmux unzip fish; then
 	echo "Failed to install packages"
 	exit 1
 fi
@@ -66,6 +66,8 @@ fi
 
 read -p -r "Press any key to continue once you have added the SSH key to your GitHub account ..."
 
+git clone https://github.com/kahosan/.dotfiles.git ~/.dotfiles
+
 # link dotfile to ~
 ln -s ~/.dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/.dotfiles/.config/starship.toml ~/.config/starship.toml
@@ -81,6 +83,10 @@ mkdir ~/.config/fish
 # link fish config
 ln -s ~/.dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
 ln -s ~/.dotfiles/.config/fish/fish_plugins ~/.config/fish/fish_plugins
+
+# copy my function
+cp ~/.dotfiles/.config/fish/functions/extract.fish ~/.config/fish/functions
+cp ~/.dotfiles/.config/fish/functions/nali-mtr.fish ~/.config/fish/functions
 
 # install fisher
 echo "Installing fisher packages ..."
