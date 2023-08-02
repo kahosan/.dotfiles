@@ -19,20 +19,6 @@ if ! sudo apt-get install -y git wget curl neovim python3 python3-pip fzf bat ex
 	exit 1
 fi
 
-# Install fnm
-echo "Installing fnm ..."
-if ! curl -fsSL https://fnm.vercel.app/install | bash; then
-	echo "Failed to install fnm"
-	exit 1
-fi
-
-# Install Startship
-echo "Installing Startship ..."
-if ! curl -fsSL https://starship.rs/install.sh | sh; then
-	echo "Failed to install Startship"
-	exit 1
-fi
-
 # Configure Git and SSH
 echo "Configuring Git and SSH ..."
 read -p -r "Please enter your GitHub username: " git_username
@@ -66,7 +52,19 @@ fi
 
 read -p -r "Press any key to continue once you have added the SSH key to your GitHub account ..."
 
-git clone https://github.com/kahosan/.dotfiles.git ~/.dotfiles
+# Install fnm
+echo "Installing fnm ..."
+if ! curl -fsSL https://fnm.vercel.app/install | bash; then
+	echo "Failed to install fnm"
+	exit 1
+fi
+
+# Install Startship
+echo "Installing Startship ..."
+if ! curl -fsSL https://starship.rs/install.sh | sh; then
+	echo "Failed to install Startship"
+	exit 1
+fi
 
 # link dotfile to ~
 ln -s ~/.dotfiles/.config/nvim ~/.config/nvim
@@ -85,7 +83,6 @@ ln -s ~/.dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
 ln -s ~/.dotfiles/.config/fish/fish_plugins ~/.config/fish/fish_plugins
 
 # copy my function
-cp ~/.dotfiles/.config/fish/functions/extract.fish ~/.config/fish/functions
 cp ~/.dotfiles/.config/fish/functions/nali-mtr.fish ~/.config/fish/functions
 
 # install fisher
