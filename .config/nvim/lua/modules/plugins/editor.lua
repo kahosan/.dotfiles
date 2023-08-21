@@ -22,6 +22,11 @@ editor["romainl/vim-cool"] = {
   lazy = true,
   event = { "CursorMoved", "InsertEnter" },
 }
+editor["m4xshen/autoclose.nvim"] = {
+  lazy = true,
+  event = "InsertEnter",
+  config = require("editor.autoclose"),
+}
 
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
