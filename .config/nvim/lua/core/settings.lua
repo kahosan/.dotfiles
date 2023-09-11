@@ -88,6 +88,7 @@ settings["lsp_deps"] = {
   "lua_ls",
   "pylsp",
   "gopls",
+  "eslint",
   "tsserver",
 }
 
