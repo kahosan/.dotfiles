@@ -65,10 +65,6 @@ local plug_map = {
   -- Plugin trouble
   ["n|gt"] = map_cr("TroubleToggle"):with_noremap():with_silent():with_desc("lsp: Toggle trouble list"),
   -- ["n|gh"] = map_cr("TroubleToggle lsp_references"):with_noremap():with_silent():with_desc("lsp: lsp_references"),
-  -- PLugin goto-preview
-  ["n|gD"] = map_cr("lua require('goto-preview').goto_preview_definition()"):with_noremap():with_silent(),
-  ["n|gh"] = map_cr("lua require('goto-preview').goto_preview_references()"):with_noremap():with_silent(),
-  ["n|gi"] = map_cr("lua require('goto-preview').goto_preview_implementation()"):with_noremap():with_silent(),
   -- Plugin Neotree
   ["n|<C-n>"] = map_cr("Neotree toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
   -- Plugin Telescope

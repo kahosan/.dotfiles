@@ -24,7 +24,12 @@ function Lazy:load_plugins()
 
   local append_nativertp = function()
     package.path = package.path
-      .. string.format(";%s;%s", modules_dir .. "/configs/?.lua", modules_dir .. "/configs/?/init.lua")
+      .. string.format(
+        ";%s;%s;%s",
+        modules_dir .. "/configs/?.lua",
+        modules_dir .. "/configs/?/init.lua",
+        user_config_dir
+      )
   end
 
   local get_plugins_list = function()
@@ -42,10 +47,8 @@ function Lazy:load_plugins()
 
   append_nativertp()
 
-  local plugins_file = get_plugins_list()
-  for _, m in ipairs(plugins_file) do
-    -- require modules which returned in previous operation like this:
-    -- local modules = require("modules/plugins/completion.lua")
+  for _, m in ipairs(get_plugins_list()) do
+    -- require modules returned from `get_plugins_list()` function.
     local modules = require(m:sub(0, #m - 4))
     if type(modules) == "table" then
       for name, conf in pairs(modules) do

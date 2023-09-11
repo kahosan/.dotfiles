@@ -17,17 +17,17 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
     "jay-babu/mason-null-ls.nvim",
   },
 }
-completion["rmagatti/goto-preview"] = {
+completion["dnlhc/glance.nvim"] = {
   lazy = true,
+  event = { "BufReadPost, BufAdd, BufNewFile" },
   config = function()
-    require("goto-preview").setup({
-      post_open_hook = function(_, win)
-        -- Close the current preview window with <Esc>
-        vim.keymap.set("n", "q", function()
-          vim.api.nvim_win_close(win, true)
-        end, { buffer = true })
-      end,
+    require("glance").setup({
+      -- your configuration
     })
+    vim.keymap.set("n", "gd", "<CMD>Glance definitions<CR>")
+    vim.keymap.set("n", "gh", "<CMD>Glance references<CR>")
+    vim.keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>")
+    vim.keymap.set("n", "gi", "<CMD>Glance implementations<CR>")
   end,
 }
 completion["hrsh7th/nvim-cmp"] = {

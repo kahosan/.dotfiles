@@ -38,7 +38,7 @@ return function()
           string.format("%s", vim_item.kind or "")
 
         vim_item.menu = setmetatable({
-          copilot = "[CPLT]",
+          copilot = "[CT]",
           buffer = "[BUF]",
           orgmode = "[ORG]",
           nvim_lsp = "[LSP]",
@@ -95,7 +95,7 @@ return function()
     snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
       end,
     },
     -- You should specify your *installed* sources.
@@ -106,8 +106,9 @@ return function()
       { name = "treesitter" },
       { name = "spell" },
       { name = "orgmode" },
-      { name = 'luasnip' },
+      { name = "luasnip" },
       { name = "buffer" },
+      { name = "copilot" },
     },
     experimental = {
       ghost_text = {

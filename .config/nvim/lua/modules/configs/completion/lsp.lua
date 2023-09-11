@@ -148,7 +148,7 @@ return function()
 
       local lsp_opts = { buffer = event.buf }
       -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, lsp_opts)
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, lsp_opts)
+      vim.keymap.set("n", "gD", vim.lsp.buf.definition, lsp_opts)
       vim.keymap.set("n", "gr", vim.lsp.buf.rename, lsp_opts)
       vim.keymap.set("n", "K", vim.lsp.buf.hover, lsp_opts)
       vim.keymap.set("n", "ga", vim.lsp.buf.code_action, lsp_opts)

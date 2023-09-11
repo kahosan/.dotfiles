@@ -21,7 +21,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
     local layout = vim.api.nvim_call_function("winlayout", {})
     if
       layout[1] == "leaf"
-      and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
+      -- and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
+      and vim.api.nvim_get_option_value("filetype", { buf = vim.api.nvim_win_get_buf(layout[2]) }) == "NvimTree"
       and layout[3] == nil
     then
       vim.api.nvim_command([[confirm quit]])
@@ -62,10 +63,10 @@ vim.api.nvim_create_autocmd("BufRead", {
 })
 
 -- eslint auto fix
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.tsx", "*.ts", "*.jsx", "*.js", "*.cjs", "*.mjs", "*.cts", "*.mts" },
-  command = "EslintFixAll",
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = { "*.tsx", "*.ts", "*.jsx", "*.js", "*.cjs", "*.mjs", "*.cts", "*.mts" },
+--   command = "EslintFixAll",
+-- })
 
 function autocmd.load_autocmds()
   local definitions = {
@@ -95,7 +96,7 @@ function autocmd.load_autocmds()
       },
     },
     wins = {
-      -- Force write shada on leaving nvim
+      -- Attempt to write shada when leaving nvim
       {
         "VimLeave",
         "*",

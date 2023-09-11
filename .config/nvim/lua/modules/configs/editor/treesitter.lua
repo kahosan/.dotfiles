@@ -1,29 +1,9 @@
 return vim.schedule_wrap(function()
   local use_ssh = require("core.settings").use_ssh
+  local treesitter_deps = require("core.settings").treesitter_deps
 
   require("nvim-treesitter.configs").setup({
-    ensure_installed = {
-      "bash",
-      "c",
-      "cpp",
-      "css",
-      "go",
-      "gomod",
-      "html",
-      "javascript",
-      "json",
-      "lua",
-      "make",
-      "markdown",
-      "markdown_inline",
-      "python",
-      "rust",
-      "typescript",
-      "tsx",
-      "vimdoc",
-      "vue",
-      "yaml",
-    },
+    ensure_installed = treesitter_deps,
     highlight = {
       enable = false,
       disable = function(ft, bufnr)
