@@ -17,7 +17,7 @@ return function()
     },
     options = {
       disabled_filetypes = { "big_file_disabled_ft" },
-      disable_when_touch = false,
+      disable_when_touch = true,
     },
   })
 end
