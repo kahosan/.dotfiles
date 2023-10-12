@@ -19,7 +19,7 @@ completion["jose-elias-alvarez/null-ls.nvim"] = {
 }
 completion["dnlhc/glance.nvim"] = {
   lazy = true,
-  event = { "BufReadPost, BufAdd, BufNewFile" },
+  event = { "BufReadPost", "BufAdd", "BufNewFile" },
   config = function()
     require("glance").setup({
       -- your configuration
