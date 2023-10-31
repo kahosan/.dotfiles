@@ -51,7 +51,7 @@ alias refish="source ~/.config/fish/config.fish"
 
 # git alias
 alias glo="git log --oneline --graph"
-alias gcm="git checkout master"
+alias gcm="git checkout main"
 alias gcb="git checkout -b"
 alias gc="git checkout"
 alias gp="git push"
