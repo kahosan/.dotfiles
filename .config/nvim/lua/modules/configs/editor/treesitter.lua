@@ -53,7 +53,6 @@ return vim.schedule_wrap(function()
       max_file_lines = 2000, -- Do not enable for files with more than 2000 lines, int
     },
     indent = { enable = true },
-    context_commentstring = { enable = true, enable_autocmd = false },
     matchup = { enable = true },
   })
   require("nvim-treesitter.install").prefer_git = true
