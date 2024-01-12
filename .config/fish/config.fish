@@ -16,6 +16,7 @@ fish_add_path (go env GOPATH)/bin
 fish_add_path ~/.pnpm-global/bin
 fish_add_path /opt/homebrew/sbin
 fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/opt/libpq/bin
 
 # ni
 set -x NI_CONFIG_FILE ~/.config/ni/nirc
