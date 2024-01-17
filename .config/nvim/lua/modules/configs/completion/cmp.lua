@@ -4,12 +4,8 @@ return function()
     type = require("modules.utils.icons").get("type"),
     cmp = require("modules.utils.icons").get("cmp"),
   }
-  local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
-  end
 
   local cmp = require("cmp")
-  local compare = cmp.config.compare
   cmp.setup({
     preselect = cmp.PreselectMode.Item,
     sorting = {

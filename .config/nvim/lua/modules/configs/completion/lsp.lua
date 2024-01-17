@@ -92,10 +92,16 @@ return function()
     ensure_installed = require("core.settings").lsp_deps,
   })
 
-  vim.diagnostic.config({
+  local diagnostics_virtual_text = require("core.settings").diagnostics_virtual_text
+  local diagnostics_level = require("core.settings").diagnostics_level
+
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     signs = true,
     underline = true,
-    virtual_text = require("core.settings").diagnostics_virtual_text,
+    virtual_text = diagnostics_virtual_text and {
+      severity_limit = diagnostics_level,
+    } or false,
+    -- set update_in_insert to false bacause it was enabled by lspsaga
     update_in_insert = false,
   })
 
@@ -105,7 +111,7 @@ return function()
 
   ---A handler to setup all servers defined under `completion/servers/*.lua`
   ---@param lsp_name string
-  local function mason_handler(lsp_name)
+  local function mason_lsp_handler(lsp_name)
     local ok, custom_handler = pcall(require, "completion.servers." .. lsp_name)
     if not ok then
       -- Default to use factory config for server(s) that doesn't include a spec
@@ -131,7 +137,7 @@ return function()
     end
   end
 
-  mason_lspconfig.setup_handlers({ mason_handler })
+  mason_lspconfig.setup_handlers({ mason_lsp_handler })
 
   -- Setup lsps that are not supported by `mason.nvim` but supported by `nvim-lspconfig` here.
   if vim.fn.executable("dart") == 1 then
