@@ -49,6 +49,7 @@ alias cl="clear"
 alias bry="hexyl"
 alias nio="ni --prefer-offline"
 alias refish="source ~/.config/fish/config.fish"
+alias kssh="kitty +kitten ssh"
 
 # git alias
 alias glo="git log --oneline --graph"
@@ -83,6 +84,10 @@ alias lint="nr lint"
 alias lintf="nr lint --fix"
 alias release="nr release"
 alias re="nr release"
+
+# rust
+alias r="cargo run"
+alias rr="cargo run --release"
 
 # custom
 
