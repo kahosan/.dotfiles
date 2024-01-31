@@ -14,12 +14,12 @@ return function()
       block = "gbc",
     },
     -- LHS of operator-pending mappings in NORMAL and VISUAL mode
-    opleader = {
-      -- Line-comment keymap
-      line = "gc",
-      -- Block-comment keymap
-      block = "gb",
-    },
+    -- opleader = {
+    --   -- Line-comment keymap
+    --   line = "gc",
+    --   -- Block-comment keymap
+    --   block = "gb",
+    -- },
     -- LHS of extra mappings
     extra = {
       -- Add comment on the line above

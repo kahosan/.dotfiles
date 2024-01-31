@@ -158,6 +158,10 @@ local load_core = function()
   require("core.event")
   require("core.pack")
 
+  -- disable provider
+  vim.g.loaded_perl_provider = 0
+  vim.g.loaded_ruby_provider = 0
+
   local colorscheme = require("core.settings").colorscheme
   local background = require("core.settings").background
   vim.api.nvim_command("colorscheme " .. colorscheme)
