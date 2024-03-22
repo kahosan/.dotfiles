@@ -10,6 +10,7 @@ set fish_color_command green
 set fish_color_error brred
 
 # PATH
+fish_add_path $(brew --prefix python@3.11)/libexec/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 fish_add_path (go env GOPATH)/bin
@@ -17,6 +18,10 @@ fish_add_path ~/.pnpm-global/bin
 fish_add_path /opt/homebrew/sbin
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/opt/libpq/bin
+
+# vscode
+string match -q "$TERM_PROGRAM" "vscode"
+and . (code --locate-shell-integration-path fish)
 
 # ni
 set -x NI_CONFIG_FILE ~/.config/ni/nirc
@@ -90,6 +95,7 @@ alias r="cargo run"
 alias rr="cargo run --release"
 
 # custom
+alias ntr="nexttrace"
 
 # https://github.com/sindresorhus/trash-cli
 # or use default rm -i
