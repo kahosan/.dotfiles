@@ -1,18 +1,16 @@
 return function()
   local icons = { ui = require("modules.utils.icons").get("ui") }
+  local bufferline = require("bufferline")
 
   local opts = {
     options = {
       number = nil,
-      -- modified_icon = icons.ui.Modified,
-      -- buffer_close_icon = icons.ui.Close,
-      -- left_trunc_marker = icons.ui.Left,
-      -- right_trunc_marker = icons.ui.Right,
+      style_preset = bufferline.style_preset.no_italic,
       max_name_length = 20,
       max_prefix_length = 13,
       tab_size = 20,
       color_icons = true,
-      show_buffer_icons = true,
+      show_buffer_icons = false,
       show_buffer_close_icons = true,
       show_close_icon = true,
       show_tab_indicators = true,
@@ -26,10 +24,11 @@ return function()
       end,
       offsets = {
         {
-          filetype = "NvimTree",
+          filetype = "neo-tree",
           text = "File Explorer",
-          text_align = "center",
-          padding = 0,
+          highlight = "Directory",
+          text_align = "left",
+          separator = true,
         },
         {
           filetype = "lspsagaoutline",
@@ -37,11 +36,16 @@ return function()
           text_align = "center",
           padding = 0,
         },
+        -- 分隔样式
+        indicator = { style = "none" },
+        separator_style = { "│", "│" },
       },
     },
     -- Change bufferline's highlights here! See `:h bufferline-highlights` for detailed explanation.
     -- Note: If you use catppuccin then modify the colors below!
-    highlights = {},
+    highlights = {
+      separator = { fg = "#768390" },
+    },
   }
 
   if vim.g.colors_name == "catppuccin" then
@@ -67,5 +71,5 @@ return function()
     opts = vim.tbl_deep_extend("force", opts, catppuccin_hl_overwrite)
   end
 
-  require("bufferline").setup(opts)
+  bufferline.setup(opts)
 end
