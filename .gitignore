@@ -4,3 +4,4 @@
 .config/fish/completions
 .config/fish/conf.d
 .config/fish/themes
+.config/fish/functions
