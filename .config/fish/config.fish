@@ -9,6 +9,27 @@ set fish_greeting
 set fish_color_command green
 set fish_color_error brred
 
+# exa color
+set -x EXA_COLORS "\
+uu=36:\
+gu=37:\
+sn=32:\
+sb=32:\
+da=34:\
+ur=34:\
+uw=35:\
+ux=36:\
+ue=36:\
+gr=34:\
+gw=35:\
+gx=36:\
+tr=34:\
+tw=35:\
+tx=36:"
+
+# ls color
+set -x LS_COLORS "*.aac=35:*.alac=35:*.ape=35:*.flac=35:*.m4a=35:*.mka=35:*.mp3=35:*.ogg=35:*.opus=35:*.wav=35:*.wma=35"
+
 # PATH
 fish_add_path $(brew --prefix python@3.11)/libexec/bin
 fish_add_path ~/.local/bin
@@ -44,8 +65,8 @@ alias nas="kitty +kitten ssh kaho@10.88.88.106"
 # alias
 alias l="ll"
 alias vim="nvim"
-alias ls="exa"
-alias la="exa -a"
+alias ls="exa -l --icons"
+alias la="ls -a"
 alias df="duf"
 alias python="python3"
 alias pip="pip3"
@@ -57,7 +78,7 @@ alias refish="source ~/.config/fish/config.fish"
 alias kssh="kitty +kitten ssh"
 
 # git alias
-alias glo="git log --oneline --graph"
+alias glo="git log --graph --pretty=format:'%C(auto)%h -%Creset %d %s %Cgreen(%cr)%Creset' --abbrev-commit"
 alias gcm="git checkout main"
 alias gcb="git checkout -b"
 alias gc="git checkout"
