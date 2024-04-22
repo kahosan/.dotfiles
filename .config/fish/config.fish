@@ -40,18 +40,19 @@ fish_add_path /opt/homebrew/sbin
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/opt/libpq/bin
 
-# vscode
-string match -q "$TERM_PROGRAM" "vscode"
-and . (code --locate-shell-integration-path fish)
+# vscode shell integrated
+if status is-interactive
+  starship init fish | source
+
+  string match -q "$TERM_PROGRAM" "vscode"
+    and . (code --locate-shell-integration-path fish)
+end
 
 # ni
 set -x NI_CONFIG_FILE ~/.config/ni/nirc
 
 # fnm
 fnm env --use-on-cd | source
-
-# starship
-starship init fish | source
 
 # homebrew not auto update
 set -x HOMEBREW_NO_AUTO_UPDATE 1
