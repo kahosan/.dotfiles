@@ -49,7 +49,7 @@ disabled = false
 [time]
 disabled = false
 style = "bold bright-black"
-format = "[at]($style) [$time]($style)"
+format = "[$time]($style)"
 utc_time_offset = "+8"
 
 [username]
