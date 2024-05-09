@@ -66,7 +66,7 @@ alias nas="kitty +kitten ssh kaho@10.88.88.106"
 # alias
 alias l="ll"
 alias vim="nvim"
-alias ls="exa -l --icons"
+alias ls="exa -l"
 alias la="ls -a"
 alias df="duf"
 alias python="python3"
