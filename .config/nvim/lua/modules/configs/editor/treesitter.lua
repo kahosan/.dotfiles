@@ -5,7 +5,7 @@ return vim.schedule_wrap(function()
   require("nvim-treesitter.configs").setup({
     ensure_installed = treesitter_deps,
     highlight = {
-      enable = false,
+      enable = true,
       disable = function(ft, bufnr)
         if vim.tbl_contains({ "vim" }, ft) then
           return true
