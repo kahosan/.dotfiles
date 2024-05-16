@@ -1,6 +1,8 @@
 return function()
   local is_windows = require("core.global").is_windows
 
+  local settgins = require("core.settings")
+
   local nvim_lsp = require("lspconfig")
   local mason = require("mason")
   local mason_lspconfig = require("mason-lspconfig")
@@ -89,17 +91,17 @@ return function()
   )
 
   mason_lspconfig.setup({
-    ensure_installed = require("core.settings").lsp_deps,
+    ensure_installed = settgins.lsp_deps,
   })
 
-  local diagnostics_virtual_text = require("core.settings").diagnostics_virtual_text
-  local diagnostics_level = require("core.settings").diagnostics_level
+  local diagnostics_virtual_text = settgins.diagnostics_virtual_text
+  local diagnostics_level = settgins.diagnostics_level
 
   vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     signs = true,
     underline = true,
     virtual_text = diagnostics_virtual_text and {
-      severity_limit = diagnostics_level,
+      severity = diagnostics_level,
     } or false,
     -- set update_in_insert to false bacause it was enabled by lspsaga
     update_in_insert = false,
