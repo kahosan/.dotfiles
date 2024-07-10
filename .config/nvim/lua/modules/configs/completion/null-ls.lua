@@ -30,6 +30,7 @@ return function()
     update_in_insert = false,
     diagnostics_format = "#{m} (#{s})",
     sources = sources,
+    default_timeout = require("core.settings").format_timeout,
   })
 
   mason_null_ls.setup({
@@ -41,7 +42,7 @@ return function()
 
   local function _gen_completion()
     local sources_cont = null_ls.get_source({
-      filetype = vim.api.nvim_get_option_value("filetype", { scope = "local" }),
+      filetype = vim.bo.filetype,
     })
     local completion_items = {}
     for _, server in pairs(sources_cont) do

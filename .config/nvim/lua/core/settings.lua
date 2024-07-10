@@ -8,6 +8,10 @@ settings["use_ssh"] = true
 ---@type boolean
 settings["format_on_save"] = true
 
+-- Set format timeout here (in ms).
+---@type number
+settings["format_timeout"] = 1000
+
 -- Set it to false if the notification after formatting is annoying.
 ---@type boolean
 settings["format_notify"] = false
@@ -26,7 +30,8 @@ settings["diagnostics_virtual_text"] = true
 --  > e.g. if you set this option to `Warning`, only lsp warnings and errors will be shown.
 -- NOTE: This entry only works when `diagnostics_virtual_text` is true.
 -- defined in `vim.diagnostic.severity`
-settings["diagnostics_level"] = vim.diagnostic.severity.HINT
+---@type "ERROR"|"WARN"|"INFO"|"HINT"
+settings["diagnostics_level"] = "HINT"
 
 -- Set the format disabled directories here, files under these dirs won't be formatted on save.
 --- NOTE: Directories may contain regular expressions (grammar: vim). |regexp|
@@ -52,8 +57,9 @@ settings["palette_overwrite"] = {}
 -- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`.
 -- settings["colorscheme"] = "catppuccin"
 -- settings["colorscheme"] = "vscode"
--- settings["colorscheme"] = "alabaster"
-settings["colorscheme"] = "material"
+settings["colorscheme"] = "alabaster"
+-- settings["colorscheme"] = "material"
+-- settings["colorscheme"] = "default"
 
 -- Set background color to use here.
 -- Useful if you would like to use a colorscheme that has a light and dark variant like `edge`.

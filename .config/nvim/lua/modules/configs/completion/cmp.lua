@@ -59,17 +59,17 @@ return function()
       ["<C-j>"] = cmp.mapping.select_next_item(),
       ["<C-d>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
-      ["<C-w>"] = cmp.mapping.close(),
+      ["<C-w>"] = cmp.mapping.abort(),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
-          cmp.select_next_item()
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
         else
           fallback()
         end
       end, { "i", "s" }),
       ["<S-Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
-          cmp.select_prev_item()
+          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
         else
           fallback()
         end
@@ -90,7 +90,14 @@ return function()
       { name = "spell" },
       { name = "orgmode" },
       { name = "luasnip" },
-      { name = "buffer" },
+      {
+        name = "buffer",
+        option = {
+          get_bufnrs = function()
+            return vim.api.nvim_buf_line_count(0) < 7500 and vim.api.nvim_list_bufs() or {}
+          end,
+        },
+      },
       { name = "copilot" },
     },
     experimental = {

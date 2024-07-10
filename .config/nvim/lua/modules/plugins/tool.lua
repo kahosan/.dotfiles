@@ -17,7 +17,7 @@ tool["nvim-neo-tree/neo-tree.nvim"] = {
 }
 tool["folke/trouble.nvim"] = {
   lazy = true,
-  cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
+  cmd = { "Trouble" },
   config = require("tool.trouble"),
 }
 tool["gelguy/wilder.nvim"] = {

@@ -63,7 +63,10 @@ local plug_map = {
     :with_desc("lsp diagnostic info"),
   ["n|<leader>G"] = map_cu("Git"):with_noremap():with_silent():with_desc("git: Open git-fugitive"),
   -- Plugin trouble
-  ["n|gt"] = map_cr("TroubleToggle"):with_noremap():with_silent():with_desc("lsp: Toggle trouble list"),
+  ["n|gt"] = map_cr("Trouble diagnostics toggle filter.buf=0")
+    :with_noremap()
+    :with_silent()
+    :with_desc("lsp: Toggle trouble list"),
   -- ["n|gh"] = map_cr("TroubleToggle lsp_references"):with_noremap():with_silent():with_desc("lsp: lsp_references"),
   -- Plugin Neotree
   ["n|<C-n>"] = map_cr("Neotree toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),

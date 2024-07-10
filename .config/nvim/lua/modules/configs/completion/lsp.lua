@@ -101,14 +101,20 @@ return function()
     signs = true,
     underline = true,
     virtual_text = diagnostics_virtual_text and {
-      severity = diagnostics_level,
+      severity = {
+        min = vim.diagnostic.severity[diagnostics_level],
+      },
     } or false,
     -- set update_in_insert to false bacause it was enabled by lspsaga
     update_in_insert = false,
   })
 
   local opts = {
-    capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    capabilities = vim.tbl_deep_extend(
+      "force",
+      vim.lsp.protocol.make_client_capabilities(),
+      require("cmp_nvim_lsp").default_capabilities()
+    ),
   }
 
   ---A handler to setup all servers defined under `completion/servers/*.lua`
@@ -148,10 +154,17 @@ return function()
     nvim_lsp.dartls.setup(final_opts)
   end
 
-  -- lsp keymap
+  -- lsp keymap and inlay hints
   vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    group = vim.api.nvim_create_augroup("LspKeymapLoader", { clear = true }),
     callback = function(event)
+      -- inlay hints
+      local client = vim.lsp.get_client_by_id(event.data.client_id)
+      if client and client.server_capabilities.inlayHintProvider ~= nil then
+        vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+      end
+
+      -- keymaps
       vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
       local lsp_opts = { buffer = event.buf }

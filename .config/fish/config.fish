@@ -66,7 +66,7 @@ alias nas="kitty +kitten ssh kaho@10.88.88.106"
 # alias
 alias l="ll"
 alias vim="nvim"
-alias ls="exa -l"
+alias ls="exa"
 alias la="ls -a"
 alias df="duf"
 alias python="python3"
@@ -125,6 +125,16 @@ if type trash >/dev/null 2>&1
   alias rm='trash'
 else
   alias rm='rm -i'
+end
+
+# function
+function yy
+	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+	yazi $argv --cwd-file="$tmp"
+	if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+		cd -- "$cwd"
+	end
+	rm -f -- "$tmp"
 end
 
 # tabtab source for packages

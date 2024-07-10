@@ -4,6 +4,27 @@ return function()
     blend_color = "#000000",
     hide = { underline = true, virtual_text = true, signs = true },
     priority = 80, -- priority of dim highlights (increasing may interfere with semantic tokens!!)
-    disable = {}, -- table of filetypes to disable neodim
+    disable = {
+      "alpha",
+      "bigfile",
+      "checkhealth",
+      "dap-repl",
+      "diff",
+      "fugitive",
+      "fugitiveblame",
+      "git",
+      "gitcommit",
+      "help",
+      "log",
+      "notify",
+      "NvimTree",
+      "Outline",
+      "qf",
+      "TelescopePrompt",
+      "text",
+      "toggleterm",
+      "undotree",
+      "vimwiki",
+    },
   })
 end

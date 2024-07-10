@@ -5,12 +5,13 @@ local disabled_workspaces = settings.format_disabled_dirs
 local format_on_save = settings.format_on_save
 local format_notify = settings.format_notify
 local server_formatting_block_list = settings.server_formatting_block_list
+local format_timeout = settings.format_timeout
 
 vim.api.nvim_create_user_command("FormatToggle", function()
   M.toggle_format_on_save()
 end, {})
 
-local block_list = require("core.settings").formatter_block_list
+local block_list = settings.formatter_block_list
 vim.api.nvim_create_user_command("FormatterToggleFt", function(opts)
   if block_list[opts.args] == nil then
     vim.notify(
@@ -34,7 +35,7 @@ vim.api.nvim_create_user_command("FormatterToggleFt", function(opts)
 end, { nargs = 1, complete = "filetype" })
 
 function M.enable_format_on_save(is_configured)
-  local opts = { pattern = "*", timeout = 1000 }
+  local opts = { pattern = "*", timeout = format_timeout }
   vim.api.nvim_create_augroup("format_on_save", { clear = true })
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = "format_on_save",
@@ -108,7 +109,7 @@ function M.format(opts)
   end
 
   local bufnr = opts.bufnr or vim.api.nvim_get_current_buf()
-  local clients = vim.lsp.buf_get_clients(bufnr)
+  local clients = vim.lsp.get_clients({ buffer = bufnr })
 
   if opts.filter then
     clients = opts.filter(clients)

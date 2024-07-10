@@ -26,7 +26,7 @@ local function load_options()
     pumheight = 6, -- limit completion items
     clipboard = "unnamedplus", -- use system clipboard
     splitkeep = "screen", -- keep split window
-    undodir = global.cache_dir .. "undo/",
+    undodir = global.cache_dir .. "/undo/",
     undofile = true,
     updatetime = 200,
   }
@@ -60,7 +60,7 @@ local function load_options()
   end
 
   for name, value in pairs(global_local) do
-    vim.o[name] = value
+    vim.api.nvim_set_option_value(name, value, {})
   end
 end
 
