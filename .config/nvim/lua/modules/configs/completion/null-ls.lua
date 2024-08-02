@@ -3,13 +3,25 @@ return function()
   local mason_null_ls = require("mason-null-ls")
   local btns = null_ls.builtins
 
+  ---Return formatter args required by `extra_args`
+  ---@param formatter_name string
+  ---@return table|nil
+  local function formatter_args(formatter_name)
+    local ok, args = pcall(require, "user.configs.formatters." .. formatter_name)
+    if not ok then
+      args = require("completion.formatters." .. formatter_name)
+    end
+    return args
+  end
+
+  -- Please set additional flags for the supported servers here
+  -- Don't specify any config here if you are using the default one.
   local sources = {
-    btns.formatting.black.with({
-      extra_args = { "--fast", "--line-length", "100" },
-    }),
+    require("none-ls.diagnostics.ruff"),
+    require("none-ls.formatting.ruff"),
     btns.formatting.clang_format.with({
-      filetypes = { "c", "cpp" },
-      extra_args = { "-style={BasedOnStyle: LLVM, IndentWidth: 4}" },
+      filetypes = { "c", "cpp", "objc", "objcpp", "cs", "java", "cuda", "proto" },
+      extra_args = formatter_args("clang_format"),
     }),
     btns.formatting.prettier.with({
       filetypes = {
@@ -20,7 +32,6 @@ return function()
         "markdown",
       },
     }),
-    btns.formatting.rustfmt,
   }
 
   null_ls.setup({

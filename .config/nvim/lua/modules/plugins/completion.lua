@@ -9,12 +9,14 @@ completion["neovim/nvim-lspconfig"] = {
     { "williamboman/mason-lspconfig.nvim" },
   },
 }
-completion["jose-elias-alvarez/null-ls.nvim"] = {
-  lazy = false,
+completion["nvimtools/none-ls.nvim"] = {
+  lazy = true,
+  event = { "CursorHold", "CursorHoldI" },
   config = require("completion.null-ls"),
   dependencies = {
     "nvim-lua/plenary.nvim",
     "jay-babu/mason-null-ls.nvim",
+    "nvimtools/none-ls-extras.nvim",
   },
 }
 completion["dnlhc/glance.nvim"] = {

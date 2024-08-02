@@ -112,7 +112,7 @@ settings["lsp_deps"] = {
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
 ---@type string[]
 settings["null_ls_deps"] = {
-  "black",
+  "ruff",
   "clang_format",
   "shfmt",
   "stylua",
