@@ -9,8 +9,8 @@ set fish_greeting
 set fish_color_command green
 set fish_color_error brred
 
-# exa color
-set -x EXA_COLORS "\
+# eza color
+set -x EZA_COLORS "\
 uu=36:\
 gu=37:\
 sn=32:\
@@ -66,7 +66,7 @@ alias nas="kitty +kitten ssh kaho@10.88.88.106"
 # alias
 alias l="ll"
 alias vim="nvim"
-alias ls="exa"
+alias ls="eza"
 alias la="ls -a"
 alias df="duf"
 alias python="python3"
