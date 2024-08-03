@@ -23,7 +23,7 @@ return function()
       group = icons.misc.Add,
     },
 
-    window = {
+    win = {
       border = "none",
       position = "bottom",
       margin = { 1, 0, 1, 0 },

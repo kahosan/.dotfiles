@@ -23,6 +23,7 @@ tool["folke/trouble.nvim"] = {
 tool["gelguy/wilder.nvim"] = {
   lazy = true,
   event = "CmdlineEnter",
+  build = ":UpdateRemotePlugins",
   config = require("tool.wilder"),
   dependencies = { "romgrk/fzy-lua-native" },
 }
