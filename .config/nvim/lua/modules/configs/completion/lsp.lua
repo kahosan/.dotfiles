@@ -55,6 +55,10 @@ return function()
     update_in_insert = false,
   })
 
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    border = "single",
+  })
+
   local opts = {
     capabilities = vim.tbl_deep_extend(
       "force",
@@ -107,7 +111,7 @@ return function()
       -- inlay hints
       local client = vim.lsp.get_client_by_id(event.data.client_id)
       if client and client.server_capabilities.inlayHintProvider ~= nil then
-        vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+        vim.lsp.inlay_hint.enable(false, { bufnr = event.buf })
       end
 
       -- keymaps
@@ -115,11 +119,11 @@ return function()
 
       local lsp_opts = { buffer = event.buf }
       -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, lsp_opts)
-      vim.keymap.set("n", "gD", vim.lsp.buf.definition, lsp_opts)
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, lsp_opts)
       vim.keymap.set("n", "gr", vim.lsp.buf.rename, lsp_opts)
       vim.keymap.set("n", "K", vim.lsp.buf.hover, lsp_opts)
       vim.keymap.set("n", "ga", vim.lsp.buf.code_action, lsp_opts)
-      -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, lsp_opts)
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, lsp_opts)
       vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, lsp_opts)
     end,
   })

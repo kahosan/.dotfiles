@@ -19,19 +19,6 @@ completion["nvimtools/none-ls.nvim"] = {
     "nvimtools/none-ls-extras.nvim",
   },
 }
-completion["dnlhc/glance.nvim"] = {
-  lazy = true,
-  event = { "BufReadPost", "BufAdd", "BufNewFile" },
-  config = function()
-    require("glance").setup({
-      -- your configuration
-    })
-    vim.keymap.set("n", "gd", "<CMD>Glance definitions<CR>")
-    vim.keymap.set("n", "gh", "<CMD>Glance references<CR>")
-    vim.keymap.set("n", "gY", "<CMD>Glance type_definitions<CR>")
-    vim.keymap.set("n", "gi", "<CMD>Glance implementations<CR>")
-  end,
-}
 completion["hrsh7th/nvim-cmp"] = {
   lazy = true,
   event = "InsertEnter",

@@ -57,8 +57,8 @@ settings["palette_overwrite"] = {}
 -- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`.
 -- settings["colorscheme"] = "catppuccin"
 -- settings["colorscheme"] = "vscode"
-settings["colorscheme"] = "alabaster"
--- settings["colorscheme"] = "material"
+-- settings["colorscheme"] = "alabaster"
+settings["colorscheme"] = "material"
 -- settings["colorscheme"] = "default"
 
 -- Set background color to use here.
@@ -87,7 +87,6 @@ settings["server_formatting_block_list"] = {
   lua_ls = true,
   tsserver = true,
   clangd = true,
-  pylsp = false,
 }
 
 -- Set the language servers that will be installed during bootstrap here.
@@ -100,7 +99,7 @@ settings["lsp_deps"] = {
   "html",
   "jsonls",
   "lua_ls",
-  "pylsp",
+  "pyright",
   "gopls",
   "eslint",
   "tsserver",
