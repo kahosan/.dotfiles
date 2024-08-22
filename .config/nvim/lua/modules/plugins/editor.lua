@@ -34,8 +34,8 @@ editor["m4xshen/autoclose.nvim"] = {
 editor["nvim-treesitter/nvim-treesitter"] = {
   lazy = true,
   build = function()
-    if #vim.api.nvim_list_uis() ~= 0 then
-      vim.api.nvim_command("TSUpdate")
+    if vim.fn.has("gui_running") == 1 then
+      vim.api.nvim_command([[TSUpdate]])
     end
   end,
   event = "BufReadPre",
