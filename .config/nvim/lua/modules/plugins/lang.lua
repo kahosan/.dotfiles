@@ -7,9 +7,9 @@ lang["fatih/vim-go"] = {
   config = require("lang.vim-go"),
 }
 lang["mrcjkb/rustaceanvim"] = {
-  lazy = true,
+  lazy = false,
   ft = "rust",
-  version = "^3",
+  version = "^5",
   config = require("lang.rust"),
   dependencies = { "nvim-lua/plenary.nvim" },
 }
