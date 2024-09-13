@@ -36,8 +36,6 @@ fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 fish_add_path (go env GOPATH)/bin
 fish_add_path ~/.pnpm-global/bin
-fish_add_path /opt/homebrew/sbin
-fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/opt/libpq/bin
 
 # vscode shell integrated
