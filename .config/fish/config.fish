@@ -31,12 +31,15 @@ tx=36:"
 set -x LS_COLORS "*.aac=35:*.alac=35:*.ape=35:*.flac=35:*.m4a=35:*.mka=35:*.mp3=35:*.ogg=35:*.opus=35:*.wav=35:*.wma=35"
 
 # PATH
+fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/sbin
+fish_add_path /opt/homebrew/opt/libpq/bin
+fish_add_path /usr/local/sbin
 fish_add_path $(brew --prefix python@3.11)/libexec/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 fish_add_path (go env GOPATH)/bin
 fish_add_path ~/.pnpm-global/bin
-fish_add_path /opt/homebrew/opt/libpq/bin
 
 # vscode shell integrated
 if status is-interactive
@@ -57,6 +60,9 @@ set -x HOMEBREW_NO_AUTO_UPDATE 1
 
 # LANG
 set -x LANG en_US.UTF-8
+
+# corepack
+set -x COREPACK_ENABLE_AUTO_PIN 0
 
 # ssh
 alias nas="kitty +kitten ssh kaho@10.88.88.106"
