@@ -5,11 +5,11 @@ ui["goolord/alpha-nvim"] = {
   event = "BufWinEnter",
   config = require("ui.alpha"),
 }
-ui["akinsho/bufferline.nvim"] = {
-  lazy = true,
-  event = { "BufReadPost", "BufAdd", "BufNewFile" },
-  config = require("ui.bufferline"),
-}
+-- ui["akinsho/bufferline.nvim"] = {
+--   lazy = true,
+--   event = { "BufReadPost", "BufAdd", "BufNewFile" },
+--   config = require("ui.bufferline"),
+-- }
 ui["catppuccin/nvim"] = {
   lazy = false,
   name = "catppuccin",
