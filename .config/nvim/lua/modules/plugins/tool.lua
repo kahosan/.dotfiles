@@ -23,9 +23,15 @@ tool["folke/trouble.nvim"] = {
 tool["gelguy/wilder.nvim"] = {
   lazy = true,
   event = "CmdlineEnter",
-  build = ":UpdateRemotePlugins",
   config = require("tool.wilder"),
   dependencies = { "romgrk/fzy-lua-native" },
+}
+tool["kylechui/nvim-surround"] = {
+  event = "VeryLazy",
+  lazy = true,
+  config = function()
+    require("nvim-surround").setup({})
+  end,
 }
 
 ----------------------------------------------------------------------
