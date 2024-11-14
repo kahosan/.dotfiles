@@ -33,10 +33,10 @@ return {
         mccabe = { enabled = false },
 
         -- Code refactor
-        rope = { enabled = true },
+        rope = { enabled = false },
 
         -- Formatting
-        black = { enabled = true },
+        black = { enabled = false },
         pyls_isort = { enabled = false },
         autopep8 = { enabled = false },
         yapf = { enabled = false },

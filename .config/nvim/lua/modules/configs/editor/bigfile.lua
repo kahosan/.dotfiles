@@ -11,7 +11,7 @@ return function()
     name = "nvim-cmp",
     opts = { defer = true },
     disable = function()
-      require("cmp").setup.buffer({ enabled = false })
+      require("completion.cmp").setup.buffer({ enabled = false })
     end,
   }
 

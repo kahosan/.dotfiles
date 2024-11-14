@@ -48,10 +48,11 @@ ui["nvim-lualine/lualine.nvim"] = {
   event = { "BufReadPost", "BufAdd", "BufNewFile" },
   config = require("ui.lualine"),
 }
-ui["zbirenbaum/neodim"] = {
-  lazy = false,
-  event = "LspAttach",
-  config = require("ui.neodim"),
+ui["lukas-reineke/indent-blankline.nvim"] = {
+  main = "ibl",
+  config = function()
+    require("ibl").setup()
+  end,
 }
 
 return ui

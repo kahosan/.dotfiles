@@ -1,24 +1,26 @@
 return function()
-  local icons = {
-    kind = require("modules.utils.icons").get("kind"),
-    type = require("modules.utils.icons").get("type"),
-    cmp = require("modules.utils.icons").get("cmp"),
-  }
-
   local cmp = require("cmp")
+
   cmp.setup({
-    preselect = cmp.PreselectMode.Item,
     sorting = {
-      priority_weight = 1.0,
+      priority_weight = 2,
+      comparators = {
+        cmp.config.compare.offset,
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        require("cmp-under-comparator").under,
+        cmp.config.compare.recently_used,
+        cmp.config.compare.locality,
+        cmp.config.compare.kind,
+        cmp.config.compare.sort_text,
+        cmp.config.compare.length,
+        cmp.config.compare.order,
+      },
     },
     formatting = {
       fields = { "abbr", "kind", "menu" },
       format = function(entry, vim_item)
-        local lspkind_icons = vim.tbl_deep_extend("force", icons.kind, icons.type, icons.cmp)
-        -- load lspkind icons
-        vim_item.kind =
-          -- string.format(" %s %s", lspkind_icons[vim_item.kind] or icons.cmp.undefined, vim_item.kind or "")
-          string.format("%s", vim_item.kind or "")
+        vim_item.kind = string.format("%s", vim_item.kind or "")
 
         vim_item.menu = setmetatable({
           copilot = "[CT]",
@@ -28,7 +30,6 @@ return function()
           nvim_lua = "[LUA]",
           path = "[PATH]",
           treesitter = "[TS]",
-          luasnip = "[SNIP]",
           spell = "[SPELL]",
         }, {
           __index = function()
@@ -42,19 +43,19 @@ return function()
           vim_item.abbr = truncated_label .. "..."
         end
 
+        -- deduplicate results from nvim_lsp
+        if entry.source.name == "nvim_lsp" then
+          vim_item.dup = 0
+        end
+
         return vim_item
       end,
-    },
-    matching = {
-      disallow_partial_fuzzy_matching = false,
     },
     performance = {
       async_budget = 1,
       max_view_entries = 120,
     },
-    -- You can set mappings if you want
     mapping = cmp.mapping.preset.insert({
-      ["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
       ["<C-k>"] = cmp.mapping.select_prev_item(),
       ["<C-j>"] = cmp.mapping.select_next_item(),
       ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -74,22 +75,21 @@ return function()
           fallback()
         end
       end, { "i", "s" }),
+      ["<CR>"] = cmp.mapping.confirm({ select = true }),
     }),
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-      end,
-    },
-    -- You should specify your *installed* sources.
     sources = {
-      { name = "nvim_lsp", max_item_count = 350 },
+      {
+        name = "nvim_lsp",
+        max_item_count = 120,
+        entry_filter = function(entry, _)
+          return require("cmp").lsp.CompletionItemKind.Snippet ~= entry:get_kind()
+        end,
+      },
       { name = "nvim_lua" },
       { name = "path" },
       { name = "treesitter" },
       { name = "spell" },
-      { name = "orgmode" },
-      { name = "luasnip" },
+      { name = "tmux" },
       {
         name = "buffer",
         option = {
@@ -97,12 +97,6 @@ return function()
             return vim.api.nvim_buf_line_count(0) < 7500 and vim.api.nvim_list_bufs() or {}
           end,
         },
-      },
-      { name = "copilot" },
-    },
-    experimental = {
-      ghost_text = {
-        hl_group = "Whitespace",
       },
     },
   })

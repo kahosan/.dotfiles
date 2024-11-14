@@ -2,6 +2,7 @@ local tool = {}
 
 -- Please don't remove which-key.nvim otherwise you need to set timeoutlen=300 at `lua/core/options.lua`
 tool["folke/which-key.nvim"] = {
+  lazy = true,
   event = "VeryLazy",
   config = require("tool.which-key"),
 }
@@ -17,7 +18,7 @@ tool["nvim-neo-tree/neo-tree.nvim"] = {
 }
 tool["folke/trouble.nvim"] = {
   lazy = true,
-  cmd = { "Trouble" },
+  cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
   config = require("tool.trouble"),
 }
 tool["gelguy/wilder.nvim"] = {

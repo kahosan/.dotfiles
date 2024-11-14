@@ -1,7 +1,6 @@
 return function()
   local alpha = require("alpha")
   local dashboard = require("alpha.themes.dashboard")
-  require("modules.utils").gen_alpha_hl()
 
   dashboard.section.header.val = {
     [[██╗  ██╗ █████╗ ██╗  ██╗ ██████╗ ███████╗ █████╗ ███╗   ██╗]],
@@ -53,7 +52,7 @@ return function()
       silent = true,
       nowait = true,
       callback = function()
-        require("telescope").extensions.frecency.frecency()
+        require("tool.telescope").extensions.frecency.frecency()
       end,
     }),
     button("space f e", "󰋚 File history", leader, nil, {
@@ -69,7 +68,7 @@ return function()
       silent = true,
       nowait = true,
       callback = function()
-        require("telescope").extensions.projects.projects({})
+        require("tool.telescope").extensions.projects.projects({})
       end,
     }),
     button("space f f", "󰈞 File find", leader, nil, {

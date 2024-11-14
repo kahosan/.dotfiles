@@ -1,9 +1,8 @@
 return vim.schedule_wrap(function()
   local use_ssh = require("core.settings").use_ssh
-  local treesitter_deps = require("core.settings").treesitter_deps
 
-  require("nvim-treesitter.configs").setup({
-    ensure_installed = treesitter_deps,
+  require("nvim-treesitter").setup({
+    ensure_installed = require("core.settings").treesitter_deps,
     highlight = {
       enable = true,
       disable = function(ft, bufnr)
@@ -14,7 +13,7 @@ return vim.schedule_wrap(function()
         local ok, is_large_file = pcall(vim.api.nvim_buf_get_var, bufnr, "bigfile_disable_treesitter")
         return ok and is_large_file
       end,
-      additional_vim_regex_highlighting = { "c", "cpp" },
+      additional_vim_regex_highlighting = false,
     },
     textobjects = {
       select = {
@@ -29,7 +28,7 @@ return vim.schedule_wrap(function()
       },
       move = {
         enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
+        set_jumps = true,
         goto_next_start = {
           ["]["] = "@function.outer",
           ["]m"] = "@class.outer",
@@ -48,19 +47,14 @@ return vim.schedule_wrap(function()
         },
       },
     },
-    rainbow = {
-      enable = true,
-      extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
-      max_file_lines = 2000, -- Do not enable for files with more than 2000 lines, int
-    },
     indent = { enable = true },
     matchup = { enable = true },
-  })
+  }, false, require("nvim-treesitter.configs").setup)
   require("nvim-treesitter.install").prefer_git = true
   if use_ssh then
     local parsers = require("nvim-treesitter.parsers").get_parser_configs()
-    for _, p in pairs(parsers) do
-      p.install_info.url = p.install_info.url:gsub("https://github.com/", "git@github.com:")
+    for _, parser in pairs(parsers) do
+      parser.install_info.url = parser.install_info.url:gsub("https://github.com/", "git@github.com:")
     end
   end
 end)

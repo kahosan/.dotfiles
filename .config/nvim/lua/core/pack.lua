@@ -24,23 +24,16 @@ function Lazy:load_plugins()
 
   local append_nativertp = function()
     package.path = package.path
-      .. string.format(
-        ";%s;%s;%s",
-        modules_dir .. "/configs/?.lua",
-        modules_dir .. "/configs/?/init.lua",
-        user_config_dir
-      )
+      .. string.format(";%s;%s", modules_dir .. "/configs/?.lua", modules_dir .. "/configs/?/init.lua")
   end
 
   local get_plugins_list = function()
     local list = {}
     local plugins_list = vim.split(fn.glob(modules_dir .. "/plugins/*.lua"), "\n")
-    if type(plugins_list) == "table" then
-      for _, f in ipairs(plugins_list) do
-        -- fill list with `plugins/*.lua`'s path used for later `require` like this:
-        -- list[#list + 1] = "plugins/completion.lua"
-        list[#list + 1] = f:sub(#modules_dir - 6, -1)
-      end
+    for _, f in ipairs(plugins_list) do
+      -- aggregate the plugins from `/plugins/*.lua` and `/user/plugins/*.lua` to a plugin list of a certain field for later `require` action.
+      -- current fields contains: completion, editor, lang, tool, ui
+      list[#list + 1] = f:find(modules_dir) and f:sub(#modules_dir - 6, -1)
     end
     return list
   end
@@ -55,6 +48,9 @@ function Lazy:load_plugins()
         self.modules[#self.modules + 1] = vim.tbl_extend("force", { name }, conf)
       end
     end
+  end
+  for _, name in ipairs(settings.disabled_plugins) do
+    self.modules[#self.modules + 1] = { name, enabled = false }
   end
 end
 
@@ -120,6 +116,29 @@ function Lazy:load_lazy()
         reset = true, -- reset the runtime path to $VIMRUNTIME and the config directory
         ---@type string[]
         paths = {}, -- add any custom paths here that you want to include in the rtp
+        disabled_plugins = {
+          -- Comment out `"editorconfig"` to enable native EditorConfig support
+          -- WARN: Sleuth.vim already includes all the features provided by this plugin.
+          --       Do NOT enable both at the same time, or you risk breaking the entire detection system.
+          "editorconfig",
+          -- Do not load spell files
+          "spellfile",
+          -- Do not use builtin matchit.vim and matchparen.vim because we're using vim-matchup
+          "matchit",
+          "matchparen",
+          -- Do not load tohtml.vim
+          "tohtml",
+          -- Do not load zipPlugin.vim, gzip.vim and tarPlugin.vim (all of these plugins are
+          -- related to reading files inside compressed containers)
+          "gzip",
+          "tarPlugin",
+          "zipPlugin",
+          -- Disable remote plugins
+          -- NOTE:
+          --  > Disabling rplugin.vim will make `wilder.nvim` complain about missing rplugins during :checkhealth,
+          --  > but since it's config doesn't require python rtp (strictly), it's fine to ignore that for now.
+          -- "rplugin",
+        },
       },
     },
   }

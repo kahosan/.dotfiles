@@ -2,12 +2,10 @@
 return {
   settings = {
     Lua = {
-      runtime = {
-        version = "LuaJIT",
-      },
+      runtime = { version = "LuaJIT" },
       diagnostics = {
         globals = { "vim" },
-        disable = { "different-requires" },
+        disable = { "different-requires", "undefined-field" },
       },
       workspace = {
         library = {

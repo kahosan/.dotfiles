@@ -1,16 +1,17 @@
 local lang = {}
 
-lang["fatih/vim-go"] = {
+lang["ray-x/go.nvim"] = {
   lazy = true,
-  ft = "go",
+  ft = { "go", "gomod", "gosum" },
   build = ":GoInstallBinaries",
-  config = require("lang.vim-go"),
+  config = require("lang.go"),
+  dependencies = { "ray-x/guihua.lua" },
 }
 lang["mrcjkb/rustaceanvim"] = {
-  lazy = false,
+  lazy = true,
   ft = "rust",
-  version = "^5",
-  config = require("lang.rust"),
+  version = "*",
+  init = require("lang.rust"),
   dependencies = { "nvim-lua/plenary.nvim" },
 }
 

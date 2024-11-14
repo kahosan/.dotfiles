@@ -22,10 +22,6 @@ return {
           url = "https://json.schemastore.org/prettierrc.json",
         },
         {
-          fileMatch = { ".eslintrc", ".eslintrc.json" },
-          url = "https://json.schemastore.org/eslintrc.json",
-        },
-        {
           fileMatch = {
             ".babelrc",
             ".babelrc.json",

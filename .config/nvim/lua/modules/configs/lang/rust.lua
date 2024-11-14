@@ -7,4 +7,6 @@ return function()
       autoload_configurations = false,
     },
   }
+
+  require("rustaceanvim")
 end

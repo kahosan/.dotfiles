@@ -1,26 +1,20 @@
 return function()
   local null_ls = require("null-ls")
-  local mason_null_ls = require("mason-null-ls")
   local btns = null_ls.builtins
 
   ---Return formatter args required by `extra_args`
   ---@param formatter_name string
   ---@return table|nil
   local function formatter_args(formatter_name)
-    local ok, args = pcall(require, "user.configs.formatters." .. formatter_name)
-    if not ok then
-      args = require("completion.formatters." .. formatter_name)
-    end
+    local args = require("completion.formatters." .. formatter_name)
     return args
   end
 
   -- Please set additional flags for the supported servers here
   -- Don't specify any config here if you are using the default one.
   local sources = {
-    require("none-ls.diagnostics.ruff"),
-    require("none-ls.formatting.ruff"),
     btns.formatting.clang_format.with({
-      filetypes = { "c", "cpp", "objc", "objcpp", "cs", "java", "cuda", "proto" },
+      filetypes = { "c", "cpp", "objc", "objcpp", "cs", "cuda", "proto" },
       extra_args = formatter_args("clang_format"),
     }),
     btns.formatting.prettier.with({
@@ -29,28 +23,21 @@ return function()
         "css",
         "scss",
         "sh",
-        "markdown",
       },
     }),
   }
-
-  null_ls.setup({
+  require("null-ls").setup({
     border = "single",
     debug = false,
     log_level = "warn",
     update_in_insert = false,
-    diagnostics_format = "#{m} (#{s})",
     sources = sources,
     default_timeout = require("core.settings").format_timeout,
   })
 
-  mason_null_ls.setup({
-    ensure_installed = require("core.settings").null_ls_deps,
-    automatic_installation = false,
-    automatic_setup = true,
-    handlers = {},
-  })
+  require("completion.mason-null-ls").setup()
 
+  -- Setup usercmd to register/deregister available source(s)
   local function _gen_completion()
     local sources_cont = null_ls.get_source({
       filetype = vim.bo.filetype,
@@ -75,6 +62,4 @@ return function()
     nargs = 1,
     complete = _gen_completion,
   })
-
-  require("completion.formatting").configure_format_on_save()
 end
