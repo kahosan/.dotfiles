@@ -58,8 +58,12 @@ local plug_map = {
   ["n|<leader>li"] = map_cr("LspInfo"):with_noremap():with_silent():with_nowait():with_desc("lsp: Info"),
   ["n|<leader>lr"] = map_cr("LspRestart"):with_noremap():with_silent():with_nowait():with_desc("lsp: Restart"),
   ["n|<leader>k"] = map_callback(function()
-    vim.diagnostic.open_float()
-  end):with_noremap():with_silent():with_nowait():with_desc("lsp diagnostic info"),
+      vim.diagnostic.open_float()
+    end)
+    :with_noremap()
+    :with_silent()
+    :with_nowait()
+    :with_desc("lsp diagnostic info"),
   ["n|<leader>G"] = map_cu("Git"):with_noremap():with_silent():with_desc("git: Open git-fugitive"),
   -- Plugin trouble
   ["n|gt"] = map_cr("Trouble diagnostics toggle filter.buf=0")
@@ -71,17 +75,29 @@ local plug_map = {
   ["n|<C-n>"] = map_cr("Neotree toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
   -- Plugin Telescope
   ["n|<leader>u"] = map_callback(function()
-    require("tool.telescope").extensions.undo.undo()
-  end):with_noremap():with_silent():with_desc("editn: Show undo history"),
+      require("telescope").extensions.undo.undo()
+    end)
+    :with_noremap()
+    :with_silent()
+    :with_desc("editn: Show undo history"),
   ["n|<leader>fp"] = map_callback(function()
-    require("tool.telescope").extensions.projects.projects({})
-  end):with_noremap():with_silent():with_desc("find: Project"),
+      require("telescope").extensions.projects.projects({})
+    end)
+    :with_noremap()
+    :with_silent()
+    :with_desc("find: Project"),
   ["n|<leader>fr"] = map_callback(function()
-    require("tool.telescope").extensions.frecency.frecency()
-  end):with_noremap():with_silent():with_desc("find: File by frecency"),
+      require("telescope").extensions.frecency.frecency()
+    end)
+    :with_noremap()
+    :with_silent()
+    :with_desc("find: File by frecency"),
   ["n|<leader>fw"] = map_callback(function()
-    require("tool.telescope").extensions.live_grep_args.live_grep_args()
-  end):with_noremap():with_silent():with_desc("find: Word in project"),
+      require("telescope").extensions.live_grep_args.live_grep_args()
+    end)
+    :with_noremap()
+    :with_silent()
+    :with_desc("find: Word in project"),
   ["n|<leader>fe"] = map_cu("Telescope oldfiles"):with_noremap():with_silent():with_desc("find: File by history"),
   ["n|<leader>ff"] = map_cu("Telescope find_files"):with_noremap():with_silent():with_desc("find: File in project"),
   ["n|<leader>fc"] = map_cu("Telescope colorscheme")
@@ -98,11 +114,15 @@ local plug_map = {
   ["n|<leader>fs"] = map_cu("Telescope grep_string"):with_noremap():with_silent():with_desc("find: Current word"),
   -- Plugin EasyAlign
   ["n|gea"] = map_callback(function()
-    return t("<Plug>(EasyAlign)")
-  end):with_expr():with_desc("editn: Align with delimiter"),
+      return t("<Plug>(EasyAlign)")
+    end)
+    :with_expr()
+    :with_desc("editn: Align with delimiter"),
   ["x|gea"] = map_callback(function()
-    return t("<Plug>(EasyAlign)")
-  end):with_expr():with_desc("editx: Align with delimiter"),
+      return t("<Plug>(EasyAlign)")
+    end)
+    :with_expr()
+    :with_desc("editx: Align with delimiter"),
   -- Plugin MarkdownPreview
   ["n|<F12>"] = map_cr("MarkdownPreviewToggle"):with_noremap():with_silent():with_desc("tool: Preview markdown"),
   -- Plugin auto_session
@@ -110,24 +130,29 @@ local plug_map = {
   ["n|<leader>sr"] = map_cu("RestoreSession"):with_noremap():with_silent():with_desc("session: Restore"),
   ["n|<leader>sd"] = map_cu("DeleteSession"):with_noremap():with_silent():with_desc("session: Delete"),
   -- Plugin SnipRun
-  ["v|<leader>r"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by range"),
-  ["n|<leader>r"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
-  ["o|m"] = map_callback(function()
-    require("tsht").nodes()
-  end):with_silent(),
+  -- ["v|<leader>r"] = map_cr("SnipRun"):with_noremap():with_silent():with_desc("tool: Run code by range"),
+  -- ["n|<leader>r"] = map_cu([[%SnipRun]]):with_noremap():with_silent():with_desc("tool: Run code by file"),
   -- Plugin Diffview
   ["n|<leader>D"] = map_cr("DiffviewOpen"):with_silent():with_noremap():with_desc("git: Show diff"),
   ["n|<leader><leader>D"] = map_cr("DiffviewClose"):with_silent():with_noremap():with_desc("git: Close diff"),
   ["n|<C-p>"] = map_callback(command_panel):with_silent():with_noremap():with_desc("tool: Toggle command panel"),
   -- Plugin Comment.nvim
   ["n|gc"] = map_callback(function()
-    return vim.v.count == 0 and t("<Plug>(comment_toggle_linewise_current)")
-      or t("<Plug>(comment_toggle_linewise_count)")
-  end):with_silent():with_noremap():with_expr():with_desc("editn: Toggle comment for line"),
+      return vim.v.count == 0 and t("<Plug>(comment_toggle_linewise_current)")
+        or t("<Plug>(comment_toggle_linewise_count)")
+    end)
+    :with_silent()
+    :with_noremap()
+    :with_expr()
+    :with_desc("editn: Toggle comment for line"),
   ["n|gbc"] = map_callback(function()
-    return vim.v.count == 0 and t("<Plug>(comment_toggle_blockwise_current)")
-      or t("<Plug>(comment_toggle_blockwise_count)")
-  end):with_silent():with_noremap():with_expr():with_desc("editn: Toggle comment for block"),
+      return vim.v.count == 0 and t("<Plug>(comment_toggle_blockwise_current)")
+        or t("<Plug>(comment_toggle_blockwise_count)")
+    end)
+    :with_silent()
+    :with_noremap()
+    :with_expr()
+    :with_desc("editn: Toggle comment for block"),
   ["n|gcc"] = map_cmd("<Plug>(comment_toggle_linewise)")
     :with_silent()
     :with_noremap()

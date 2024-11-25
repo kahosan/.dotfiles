@@ -96,10 +96,14 @@ local load_core = function()
   vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function()
       local extension = vim.fn.expand("%:e")
-      if extension == "ts" or extension == "js" then
+      if
+        (extension == "ts" or extension == "js")
+        and vim.fn.filereadable("eslint.config.js")
+        and vim.fn.exists(":EslintFixAll") == 2
+      then
         vim.cmd("EslintFixAll")
       else
-        vim.lsp.buf.format({ async = true })
+        vim.lsp.buf.format({ async = false })
       end
     end,
   })
