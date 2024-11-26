@@ -1,7 +1,5 @@
 .config/mpv/_cache
 
 # fish
-.config/fish/completions
-.config/fish/conf.d
-.config/fish/themes
-.config/fish/functions
+.config/fish/fish_variables
+fisher
