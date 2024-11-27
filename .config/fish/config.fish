@@ -31,19 +31,29 @@ tx=36:"
 set -x LS_COLORS "*.aac=35:*.alac=35:*.ape=35:*.flac=35:*.m4a=35:*.mka=35:*.mp3=35:*.ogg=35:*.opus=35:*.wav=35:*.wma=35"
 
 # PATH
-fish_add_path /opt/homebrew/bin
-fish_add_path /opt/homebrew/sbin
-fish_add_path /opt/homebrew/opt/libpq/bin
 fish_add_path /usr/local/sbin
-fish_add_path $(brew --prefix python@3.11)/libexec/bin
+
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
-fish_add_path (go env GOPATH)/bin
 fish_add_path ~/.pnpm-global/bin
+
+if test (uname) = "Darwin"
+  fish_add_path $(brew --prefix python@3.11)/libexec/bin
+  fish_add_path /opt/homebrew/bin
+  fish_add_path /opt/homebrew/sbin
+  fish_add_path /opt/homebrew/opt/libpq/bin
+end
+
+if type -q go
+  fish_add_path (go env GOPATH)/bin
+end
+
 
 # vscode shell integrated
 if status is-interactive
-  starship init fish | source
+  if type -q starship
+	starship init fish | source
+  end
 
   string match -q "$TERM_PROGRAM" "vscode"
     and . (code --locate-shell-integration-path fish)
@@ -53,7 +63,9 @@ end
 set -x NI_CONFIG_FILE ~/.config/ni/nirc
 
 # fnm
-fnm env --use-on-cd | source
+if type -q fnm
+  fnm env --use-on-cd | source
+end
 
 # homebrew not auto update
 set -x HOMEBREW_NO_AUTO_UPDATE 1
