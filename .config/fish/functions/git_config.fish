@@ -1,24 +1,24 @@
 function git_config --description "Configure Git"
-echo -n "
+    echo -n "
   ===================================
         * Git Configuration *
   -----------------------------------
   Please input Git Username: "
 
-read username
+    read username
 
-echo -n "
+    echo -n "
   -----------------------------------
   Please input Git Email: "
 
-read email
+    read email
 
-echo -n "
+    echo -n "
   -----------------------------------
   Done!
   ===================================
   "
 
-git config --global user.name "$username"
-git config --global user.email "$email"
+    git config --global user.name "$username"
+    git config --global user.email "$email"
 end

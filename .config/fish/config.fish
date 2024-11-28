@@ -37,25 +37,25 @@ fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.pnpm-global/bin
 
-if test (uname) = "Darwin"
-  fish_add_path (brew --prefix python@3.11)/libexec/bin
-  fish_add_path /opt/homebrew/bin
-  fish_add_path /opt/homebrew/sbin
-  fish_add_path /opt/homebrew/opt/libpq/bin
+if test (uname) = Darwin
+    fish_add_path (brew --prefix python@3.11)/libexec/bin
+    fish_add_path /opt/homebrew/bin
+    fish_add_path /opt/homebrew/sbin
+    fish_add_path /opt/homebrew/opt/libpq/bin
 end
 
 if type -q go
-  fish_add_path (go env GOPATH)/bin
+    fish_add_path (go env GOPATH)/bin
 end
 
 
 # vscode shell integrated
 if status is-interactive
-  if type -q starship
-	starship init fish | source
-  end
+    if type -q starship
+        starship init fish | source
+    end
 
-  string match -q "$TERM_PROGRAM" "vscode"
+    string match -q "$TERM_PROGRAM" vscode
     and . (code --locate-shell-integration-path fish)
 end
 
@@ -64,7 +64,7 @@ set -x NI_CONFIG_FILE ~/.config/ni/nirc
 
 # fnm
 if type -q fnm
-  fnm env --use-on-cd | source
+    fnm env --use-on-cd | source
 end
 
 # homebrew not auto update
@@ -138,19 +138,19 @@ alias ntr="nexttrace"
 # https://github.com/sindresorhus/trash-cli
 # or use default rm -i
 if type trash >/dev/null 2>&1
-  alias rm='trash'
+    alias rm='trash'
 else
-  alias rm='rm -i'
+    alias rm='rm -i'
 end
 
 # function
 function yy
-	set tmp (mktemp -t "yazi-cwd.XXXXXX")
-	yazi $argv --cwd-file="$tmp"
-	if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-		cd -- "$cwd"
-	end
-	rm -f -- "$tmp"
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    yazi $argv --cwd-file="$tmp"
+    if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
 end
 
 # tabtab source for packages
