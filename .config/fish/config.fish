@@ -30,25 +30,6 @@ tx=36:"
 # ls color
 set -x LS_COLORS "*.aac=35:*.alac=35:*.ape=35:*.flac=35:*.m4a=35:*.mka=35:*.mp3=35:*.ogg=35:*.opus=35:*.wav=35:*.wma=35"
 
-# PATH
-fish_add_path /usr/local/sbin
-
-fish_add_path ~/.local/bin
-fish_add_path ~/.cargo/bin
-fish_add_path ~/.pnpm-global/bin
-
-if test (uname) = Darwin
-    fish_add_path (brew --prefix python@3.11)/libexec/bin
-    fish_add_path /opt/homebrew/bin
-    fish_add_path /opt/homebrew/sbin
-    fish_add_path /opt/homebrew/opt/libpq/bin
-end
-
-if type -q go
-    fish_add_path (go env GOPATH)/bin
-end
-
-
 # vscode shell integrated
 if status is-interactive
     if type -q starship
@@ -64,7 +45,7 @@ set -x NI_CONFIG_FILE ~/.config/ni/nirc
 
 # fnm
 if type -q fnm
-    fnm env --use-on-cd | source
+    fnm env --use-on-cd --shell fish | source
 end
 
 # homebrew not auto update
@@ -93,6 +74,7 @@ alias bry="hexyl"
 alias nio="ni --prefer-offline"
 alias refish="source ~/.config/fish/config.fish"
 alias kssh="kitty +kitten ssh"
+alias hr='history --merge'
 
 # git alias
 alias glo="git log --graph --pretty=format:'%C(auto)%h -%Creset %d %s %Cgreen(%cr)%Creset' --abbrev-commit"
@@ -152,7 +134,3 @@ function yy
     end
     rm -f -- "$tmp"
 end
-
-# tabtab source for packages
-# uninstall by removing these lines
-[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
