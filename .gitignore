@@ -1,5 +1,7 @@
 .config/mpv/_cache
 
+.config/nvim/lazy-lock.json
+
 # fish
 .config/fish/completions
 .config/fish/fish_variables

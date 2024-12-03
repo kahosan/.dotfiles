@@ -92,21 +92,7 @@ local load_core = function()
   require("core.mapping")
   require("keymap")
   require("core.pack")
-
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-      local extension = vim.fn.expand("%:e")
-      if
-        (extension == "ts" or extension == "js")
-        and vim.fn.filereadable("eslint.config.js")
-        and vim.fn.exists(":EslintFixAll") == 2
-      then
-        vim.cmd("EslintFixAll")
-      else
-        vim.lsp.buf.format({ async = false })
-      end
-    end,
-  })
+  require("core.event")
 
   set_opts("background", settings.background, {})
   vim.cmd.colorscheme(settings.colorscheme)

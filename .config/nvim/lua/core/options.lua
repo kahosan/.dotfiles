@@ -105,7 +105,7 @@ local function load_options()
     -- 缩进时对齐 shiftwidth
     shiftround = true,
     -- 设置自动缩进的宽度
-    shiftwidth = 2,
+    shiftwidth = 4,
     -- 缩短消息选项，减少干扰
     shortmess = "aoOTIcF",
     -- 换行符显示设置
