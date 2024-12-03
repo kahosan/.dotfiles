@@ -1,13 +1,7 @@
 function setup_docker --description 'setup docker'
-    if not test -f /etc/os-release
-        echo "/etc/os-release not found, unsupported OS"
-        return
-    end
+    set -l os_name $argv[1]
 
-    set -l os_name (grep '^ID=' /etc/os-release | sed 's/^ID=//' | tr -d '"')
-
-    # ubuntu or debian
-    if test os_name = ubuntu -o os_name = debian
+    if test "$os_name" = ubuntu; or test "$os_name" = debian
         sudo apt-get update
         sudo apt-get install ca-certificates curl
         sudo install -m 0755 -d /etc/apt/keyrings
@@ -19,7 +13,8 @@ function setup_docker --description 'setup docker'
         echo "deb [arch=$arch signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $version_codename stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
 
         sudo apt-get update
-    else
-        echo "unsupported OS"
     end
+
+    echo "unsupported OS"
+    return 1
 end
