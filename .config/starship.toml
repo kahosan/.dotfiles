@@ -45,7 +45,7 @@ error_symbol = "[](bold red)"
 
 [hostname]
 ssh_only = false
-format =  "\\(M1\\) [megumin](bold red) in "
+format =  "\\[[megumin](bold red) in "
 trim_at = "."
 disabled = false
 
