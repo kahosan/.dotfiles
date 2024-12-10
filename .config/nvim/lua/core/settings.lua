@@ -39,7 +39,6 @@ settings["palette_overwrite"] = {}
 
 -- Set the colorscheme to use here.
 -- Available values are: `catppuccin`, `catppuccin-latte`, `catppucin-mocha`, `catppuccin-frappe`, `catppuccin-macchiato`.
--- settings["colorscheme"] = "catppuccin"
 -- settings["colorscheme"] = "vscode"
 -- settings["colorscheme"] = "alabaster"
 settings["colorscheme"] = "catppuccin"

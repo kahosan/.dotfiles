@@ -1,6 +1,19 @@
 return function()
   local cmp = require("cmp")
 
+  local border = function(hl)
+    return {
+      { "┌", hl },
+      { "─", hl },
+      { "┐", hl },
+      { "│", hl },
+      { "┘", hl },
+      { "─", hl },
+      { "└", hl },
+      { "│", hl },
+    }
+  end
+
   cmp.setup({
     sorting = {
       priority_weight = 2,
@@ -15,6 +28,17 @@ return function()
         cmp.config.compare.sort_text,
         cmp.config.compare.length,
         cmp.config.compare.order,
+      },
+    },
+    window = {
+      completion = {
+        border = border("PmenuBorder"),
+        winhighlight = "Normal:Pmenu,CursorLine:PmenuSel,Search:PmenuSel",
+        scrollbar = false,
+      },
+      documentation = {
+        border = border("CmpDocBorder"),
+        winhighlight = "Normal:CmpDoc",
       },
     },
     formatting = {

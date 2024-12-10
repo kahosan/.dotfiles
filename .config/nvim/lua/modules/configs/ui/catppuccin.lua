@@ -75,7 +75,7 @@ return function()
       navic = { enabled = false },
       neogit = false,
       neotest = false,
-      neotree = { enabled = false, show_root = true, transparent_panel = false },
+      neotree = { enabled = true, show_root = true, transparent_panel = false },
       noice = false,
       notify = false,
       nvimtree = true,
@@ -101,8 +101,10 @@ return function()
           -- For base configs
           NormalFloat = { fg = cp.text, bg = transparent_background and cp.none or cp.mantle },
           FloatBorder = {
-            fg = transparent_background and cp.blue or cp.mantle,
-            bg = transparent_background and cp.none or cp.mantle,
+            -- fg = transparent_background and cp.blue or cp.mantle,
+            -- bg = transparent_background and cp.none or cp.mantle,
+            -- fg = cp.surface1,
+            bg = cp.base,
           },
           CursorLineNr = { fg = cp.green },
 
@@ -127,10 +129,7 @@ return function()
           CmpItemAbbr = { fg = cp.overlay2 },
           CmpItemAbbrMatch = { fg = cp.blue, style = { "bold" } },
           CmpDoc = { link = "NormalFloat" },
-          CmpDocBorder = {
-            fg = transparent_background and cp.surface1 or cp.mantle,
-            bg = transparent_background and cp.none or cp.mantle,
-          },
+          CmpDocBorder = { fg = cp.surface1, bg = transparent_background and cp.none or cp.base },
 
           -- For fidget
           FidgetTask = { bg = cp.none, fg = cp.surface2 },

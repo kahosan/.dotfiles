@@ -71,7 +71,7 @@ local function load_options()
     -- 跳转选项，使用堆栈
     jumpoptions = "stack",
     -- 总是显示状态栏
-    -- laststatus = 3,
+    laststatus = 3,
     -- 启用智能换行
     linebreak = true,
     -- 显示不可见字符
@@ -106,6 +106,8 @@ local function load_options()
     shiftround = true,
     -- 设置自动缩进的宽度
     shiftwidth = 4,
+    -- 使用空格代替制表符
+    expandtab = true,
     -- 缩短消息选项，减少干扰
     shortmess = "aoOTIcF",
     -- 换行符显示设置
