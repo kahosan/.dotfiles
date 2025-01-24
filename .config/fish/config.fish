@@ -36,6 +36,10 @@ if status is-interactive
     and . (code --locate-shell-integration-path fish)
 end
 
+# bat
+set -x BAT_THEME "Nord"
+set -x BAT_STYLE changes
+
 set -x EDITOR nvim
 
 # ni
@@ -93,6 +97,18 @@ alias gap "git add -p"
 alias gm "git commit"
 alias gds "git diff --staged"
 
+# dns tools
+function nsl
+    nslookup $argv | nali
+end
+
+function digl
+    dig $argv | nali
+end
+
+# highlight help
+abbr -a --position anywhere -- '-h' '-h 2>&1 | bat -plhelp'
+abbr -a --position anywhere -- '--help' '--help 2>&1 | bat -plhelp'
 
 # node action
 # alias s "nr start"

@@ -3,6 +3,7 @@
 .config/nvim/lazy-lock.json
 
 # fish
-.config/fish/completions
+.config/fish/completions/docker.fish
+.config/fish/completions/kubectl.fish
 .config/fish/fish_variables
 fisher
