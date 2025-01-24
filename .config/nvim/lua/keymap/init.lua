@@ -70,10 +70,10 @@ local plug_map = {
     :with_noremap()
     :with_silent()
     :with_desc("lsp: Toggle trouble list"),
-  -- ["n|gh"] = map_cr("TroubleToggle lsp_references"):with_noremap():with_silent():with_desc("lsp: lsp_references"),
   -- Plugin Neotree
   ["n|<C-n>"] = map_cr("Neotree toggle"):with_noremap():with_silent():with_desc("filetree: Toggle"),
   -- Plugin Telescope
+  ["n|<leader>fgr"] = map_cr("Telescope lsp_references"):with_noremap():with_silent():with_desc("lsp: lsp_references"),
   ["n|<leader>u"] = map_callback(function()
       require("telescope").extensions.undo.undo()
     end)

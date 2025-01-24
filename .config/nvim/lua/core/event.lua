@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-  callback = function()
+  callback = function(args)
     local extension = vim.fn.expand("%:e")
     if
       (extension == "ts" or extension == "js")
@@ -19,9 +19,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     then
       vim.cmd("EslintFixAll")
     else
-      vim.lsp.buf.format({ async = false })
+      vim.lsp.buf.format({ async = true, bufnr = args.buf })
     end
   end,
+})
+
+-- fix docker compose lsp
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "docker-compose.yml" or "docker-compose.yaml",
+  command = "set filetype=" .. "yaml.docker-compose",
 })
 
 vim.api.nvim_create_augroup("setIndent", { clear = true })

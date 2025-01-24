@@ -10,7 +10,7 @@ settings["format_on_save"] = true
 
 -- Set format timeout here (in ms).
 ---@type number
-settings["format_timeout"] = 1000
+settings["format_timeout"] = 500
 
 -- Set it to false if diagnostics virtual text is annoying.
 -- If disabled, you may browse lsp diagnostics using trouble.nvim (press `gt` to toggle it).
@@ -64,12 +64,10 @@ settings["transparent_background"] = false
 ---@type string[]
 settings["lsp_deps"] = {
   "bashls",
-  "clangd",
   "html",
   "jsonls",
   "lua_ls",
   "pyright",
-  "gopls",
   "eslint",
   "ts_ls",
 }
