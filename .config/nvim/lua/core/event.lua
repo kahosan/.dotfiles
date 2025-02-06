@@ -26,8 +26,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- fix docker compose lsp
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = "docker-compose.yml" or "docker-compose.yaml",
-  command = "set filetype=" .. "yaml.docker-compose",
+  pattern = {
+    "docker-compose.yaml",
+    "docker-compose.yml",
+  },
+  command = "set filetype=yaml.docker-compose",
 })
 
 vim.api.nvim_create_augroup("setIndent", { clear = true })

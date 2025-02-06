@@ -34,29 +34,6 @@ tool["kylechui/nvim-surround"] = {
     require("nvim-surround").setup({})
   end,
 }
--- tool["stevearc/dressing.nvim"] = {
---   event = "InsertEnter",
---   lazy = true,
---   config = function()
---     require("dressing").setup({
---       input = {
---         border = "single",
---       },
---       mappings = {
---         n = {
---           ["<C-c>"] = "Close",
---           ["<CR>"] = "Confirm",
---         },
---         i = {
---           ["<C-c>"] = "Close",
---           ["<CR>"] = "Confirm",
---           ["<Up>"] = "HistoryPrev",
---           ["<Down>"] = "HistoryNext",
---         },
---       },
---     })
---   end,
--- }
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --
