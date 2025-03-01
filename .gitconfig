@@ -1,0 +1,22 @@
+[user]
+	name = kahosan
+	email = 15116355657l@gmail.com
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
+[diff]
+  tool = difftastic
+[difftastic]
+  prompt = false
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+  difftool = true
+[alias]
+  dft = difftool
+  dlog = "!f() { : git log ; GIT_EXTERNAL_DIFF=difft git log -p --ext-diff $@; }; f"
+  undo = reset --soft HEAD^
+  cancel = reset --hard HEAD^
+  onemore = commit -a --amend --no-edit
+

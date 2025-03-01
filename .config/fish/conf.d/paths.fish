@@ -18,7 +18,7 @@ if test (uname) = Darwin
 end
 
 if test (uname) = Linux
-    fish_add_path_safe /usr/local/go/bin
+    fish_add_path_safe ~/.local/go/bin
     fish_add_path_safe ~/.local/share/pnpm
     fish_add_path_safe ~/.local/share/fnm
 end
