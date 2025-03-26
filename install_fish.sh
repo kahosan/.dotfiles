@@ -6,17 +6,16 @@ if [ "$(id -u)" -ne 0 ]; then
 	exit 1
 fi
 
-# Update package list and install packages
-echo "Updating package list ..."
-if ! sudo apt-get update; then
-	echo "Failed to update package list"
+packages="git wget curl fzf bat exa trash-cli ripgrep mtr htop tmux unzip rar fish fd-find iperf3 jq"
+echo "need packages: $packages"
+read -p "Have you installed the package yet? [y/N] " confirm
+if [[ "$confirm" != "y" ]]; then
+	echo "Please install the packages first"
 	exit 1
 fi
 
-echo "Installing packages ..."
-if ! sudo apt-get install -y git wget curl neovim python3 python3-pip fzf bat exa trash-cli ripgrep mtr htop nmap tmux unzip fish; then
-	echo "Failed to install packages"
-	exit 1
+if [[ ! -d "$HOME/.local/bin" ]]; then
+	mkdir -p "$HOME/.local/bin"
 fi
 
 # Configure Git and SSH
@@ -52,13 +51,6 @@ fi
 
 read -p -r "Press any key to continue once you have added the SSH key to your GitHub account ..."
 
-# Install fnm
-echo "Installing fnm ..."
-if ! curl -fsSL https://fnm.vercel.app/install | bash; then
-	echo "Failed to install fnm"
-	exit 1
-fi
-
 # Install Startship
 echo "Installing Startship ..."
 if ! curl -fsSL https://starship.rs/install.sh | sh; then
@@ -67,6 +59,8 @@ if ! curl -fsSL https://starship.rs/install.sh | sh; then
 fi
 
 # link dotfile to ~
+ln -s ~/.dotfiles/.config/kitty ~/.config/kitty
+ln -s ~/.dotfiles/.config/ghostty ~/.config/ghostty
 ln -s ~/.dotfiles/.config/nvim ~/.config/nvim
 ln -s ~/.dotfiles/.config/starship.toml ~/.config/starship.toml
 ln -s ~/.dotfiles/.config/tmux ~/.config/tmux
@@ -75,21 +69,7 @@ ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 cp -r ~/.dotfiles/.config/mpv ~/.config/mpv
 cp -r ~/.dotfiles/.config/ni ~/.config/ni
 
-# fish
-mkdir ~/.config/fish
-
 # link fish config
-ln -s ~/.dotfiles/.config/fish/config.fish ~/.config/fish/config.fish
-ln -s ~/.dotfiles/.config/fish/fish_plugins ~/.config/fish/fish_plugins
-
-# copy my function
-cp ~/.dotfiles/.config/fish/functions/nali-mtr.fish ~/.config/fish/functions
-
-# install fisher
-echo "Installing fisher packages ..."
-curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-
-# install fisher plugins
-fisher update
+ln -s ~/.dotfiles/.config/fish ~/.config/fish
 
 fish
