@@ -69,7 +69,7 @@ settings["lsp_deps"] = {
   "lua_ls",
   "pyright",
   "eslint",
-  "ts_ls",
+  -- "ts_ls",
 }
 
 -- Set the general-purpose servers that will be installed during bootstrap here.

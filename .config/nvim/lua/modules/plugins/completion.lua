@@ -7,6 +7,13 @@ completion["neovim/nvim-lspconfig"] = {
   dependencies = {
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
+    {
+      "pmizio/typescript-tools.nvim",
+      config = require("completion.typescript-tools"),
+      dependencies = {
+        { "nvim-lua/plenary.nvim" },
+      },
+    },
   },
 }
 completion["nvimtools/none-ls.nvim"] = {
