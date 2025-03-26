@@ -6,7 +6,7 @@ if [ "$(id -u)" -ne 0 ]; then
 	exit 1
 fi
 
-packages="git wget curl fzf bat exa trash-cli ripgrep mtr htop tmux unzip rar fish fd-find iperf3 jq"
+packages="git wget curl fzf bat exa trash-cli ripgrep mtr htop tmux unzip rar fish fd-find iperf3 jq sd"
 echo "need packages: $packages"
 read -p "Have you installed the package yet? [y/N] " confirm
 if [[ "$confirm" != "y" ]]; then
