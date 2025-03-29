@@ -1,8 +1,7 @@
 local editor = {}
 
-editor["LunarVim/bigfile.nvim"] = {
+editor["pteroctopus/faster.nvim"] = {
   lazy = false,
-  config = require("editor.bigfile"),
   cond = require("core.settings").load_big_files_faster,
 }
 editor["ojroques/nvim-bufdel"] = {
@@ -22,10 +21,19 @@ editor["romainl/vim-cool"] = {
   lazy = true,
   event = { "CursorMoved", "InsertEnter" },
 }
-editor["m4xshen/autoclose.nvim"] = {
+editor["windwp/nvim-autopairs"] = {
   lazy = true,
   event = "InsertEnter",
-  config = require("editor.autoclose"),
+  opts = {
+    enable_check_bracket_line = false,
+  },
+  init = function()
+    local npairs = require("nvim-autopairs")
+    local rule = require("nvim-autopairs.rule")
+    local cond = require("nvim-autopairs.conds")
+
+    npairs.add_rules({ rule("|", "|", { "rust", "go", "lua" }):with_move(cond.after_regex("|")) })
+  end,
 }
 
 ----------------------------------------------------------------------
@@ -41,15 +49,12 @@ editor["nvim-treesitter/nvim-treesitter"] = {
   event = "BufReadPre",
   config = require("editor.treesitter"),
   dependencies = {
+    { "windwp/nvim-ts-autotag" },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     { "JoosepAlviste/nvim-ts-context-commentstring" },
     {
       "nvim-treesitter/nvim-treesitter-context",
       config = require("editor.ts-context"),
-    },
-    {
-      "windwp/nvim-ts-autotag",
-      config = require("editor.autotag"),
     },
     {
       "NvChad/nvim-colorizer.lua",

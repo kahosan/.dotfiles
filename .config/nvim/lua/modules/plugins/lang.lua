@@ -14,5 +14,17 @@ lang["mrcjkb/rustaceanvim"] = {
   init = require("lang.rust"),
   dependencies = { "nvim-lua/plenary.nvim" },
 }
+lang["saecki/crates.nvim"] = {
+  lazy = true,
+  event = "BufRead Cargo.toml",
+  opts = {
+    completion = {
+      cmp = {
+        enabled = true,
+      },
+    },
+  },
+  dependencies = { "nvim-lua/plenary.nvim" },
+}
 
 return lang

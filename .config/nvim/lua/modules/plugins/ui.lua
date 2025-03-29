@@ -5,11 +5,6 @@ ui["goolord/alpha-nvim"] = {
   event = "BufWinEnter",
   config = require("ui.alpha"),
 }
--- ui["akinsho/bufferline.nvim"] = {
---   lazy = true,
---   event = { "BufReadPost", "BufAdd", "BufNewFile" },
---   config = require("ui.bufferline"),
--- }
 ui["catppuccin/nvim"] = {
   lazy = false,
   name = "catppuccin",
@@ -49,10 +44,19 @@ ui["nvim-lualine/lualine.nvim"] = {
   config = require("ui.lualine"),
 }
 ui["lukas-reineke/indent-blankline.nvim"] = {
+  lazy = false,
   main = "ibl",
-  config = function()
-    require("ibl").setup()
-  end,
+  opts = {
+    indent = {
+      highlight = {
+        "WhiteSpace",
+      },
+      char = "┊",
+    },
+    scope = {
+      char = "│",
+    },
+  },
 }
 
 return ui

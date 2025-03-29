@@ -21,18 +21,20 @@ tool["folke/trouble.nvim"] = {
   cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
   config = require("tool.trouble"),
 }
-tool["gelguy/wilder.nvim"] = {
-  lazy = true,
-  event = "CmdlineEnter",
-  config = require("tool.wilder"),
-  dependencies = { "romgrk/fzy-lua-native" },
-}
 tool["kylechui/nvim-surround"] = {
   event = "VeryLazy",
   lazy = true,
-  config = function()
-    require("nvim-surround").setup({})
-  end,
+  opts = {},
+}
+tool["tpope/vim-fugitive"] = {
+  lazy = true,
+  event = "CmdlineEnter",
+}
+tool["nvim-pack/nvim-spectre"] = {
+  lazy = false,
+  opts = {
+    default = { replace = { cmd = "sd" } },
+  },
 }
 
 ----------------------------------------------------------------------
@@ -43,23 +45,18 @@ tool["nvim-telescope/telescope.nvim"] = {
   cmd = "Telescope",
   config = require("tool.telescope"),
   dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
     { "nvim-lua/plenary.nvim" },
+    { "nvim-tree/nvim-web-devicons" },
+    { "jvgrootveld/telescope-zoxide" },
     { "debugloop/telescope-undo.nvim" },
-    {
-      "ahmedkhalf/project.nvim",
-      event = "BufReadPost",
-      config = require("tool.project"),
-    },
+    { "nvim-telescope/telescope-frecency.nvim" },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     {
-      "nvim-telescope/telescope-frecency.nvim",
-      dependencies = {
-        { "kkharji/sqlite.lua" },
-      },
+      "ahmedkhalf/project.nvim",
+      event = { "CursorHold", "CursorHoldI" },
+      config = require("tool.project"),
     },
-    { "jvgrootveld/telescope-zoxide" },
-    { "nvim-telescope/telescope-live-grep-args.nvim" },
   },
 }
 

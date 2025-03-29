@@ -89,13 +89,15 @@ local load_core = function()
   shell_config()
 
   require("core.options")
-  require("core.mapping")
   require("keymap")
   require("core.pack")
   require("core.event")
 
   set_opts("background", settings.background, {})
   vim.cmd.colorscheme(settings.colorscheme)
+
+  -- 设置标题：当前目录名、图标、当前文件名
+  vim.o.titlestring = '%{fnamemodify(getcwd(), ":t")} %{expand("%:t")}'
 
   -- set match parent highlight color
   vim.cmd([[

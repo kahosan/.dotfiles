@@ -75,9 +75,12 @@ local function load_options()
     -- 启用智能换行
     linebreak = true,
     -- 显示不可见字符
-    -- list = true,
+    list = true,
     -- 定义不可见字符的显示方式
     -- listchars = "tab:»·,nbsp:+,trail:·,extends:→,precedes:←",
+    listchars = "space:·",
+    -- 启用终端标题，根据当前文件和路径显示标题
+    title = true,
     -- 启用正则表达式的魔法模式
     magic = true,
     -- 鼠标滚动设置
@@ -178,25 +181,6 @@ local function load_options()
     writebackup = false,
   }
 
-  -- 定义辅助函数
-  -- local function isempty(s)
-  --     return s == nil or s == ""
-  -- end
-  -- local function use_if_defined(val, fallback)
-  --     return val ~= nil and val or fallback
-  -- end
-
-  -- 自定义 Python 提供者
-  -- local conda_prefix = os.getenv("CONDA_PREFIX")
-  -- if not isempty(conda_prefix) then
-  --     -- 如果设置了 CONDA_PREFIX，使用对应的 Python 解释器
-  --     vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, conda_prefix .. "/bin/python")
-  --     vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, conda_prefix .. "/bin/python")
-  -- else
-  --     -- 否则使用系统默认的 Python 解释器
-  --     vim.g.python_host_prog = use_if_defined(vim.g.python_host_prog, "python")
-  --     vim.g.python3_host_prog = use_if_defined(vim.g.python3_host_prog, "python3")
-  -- end
   for name, value in pairs(global_local) do
     vim.api.nvim_set_option_value(name, value, {})
   end
