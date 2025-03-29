@@ -72,19 +72,6 @@ settings["lsp_deps"] = {
   -- "ts_ls",
 }
 
--- Set the general-purpose servers that will be installed during bootstrap here.
--- Check the below link for all supported sources.
--- in `code_actions`, `completion`, `diagnostics`, `formatting`, `hover` folders:
--- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins
----@type string[]
-settings["null_ls_deps"] = {
-  "ruff",
-  "clang_format",
-  "shfmt",
-  "stylua",
-  "shellcheck",
-}
-
 -- Set the plugins to disable here.
 -- Example: "Some-User/A-Repo"
 ---@type string[]

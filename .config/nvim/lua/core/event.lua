@@ -9,21 +9,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  callback = function(args)
-    local extension = vim.fn.expand("%:e")
-    if
-      (extension == "ts" or extension == "js")
-      and vim.fn.filereadable("eslint.config.js")
-      and vim.fn.exists(":EslintFixAll") == 2
-    then
-      vim.cmd("EslintFixAll")
-    else
-      vim.lsp.buf.format({ async = true, bufnr = args.buf })
-    end
-  end,
-})
-
 -- fix docker compose lsp
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = {

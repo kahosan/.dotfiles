@@ -2,16 +2,12 @@ return function()
   local icons = {
     ui = require("modules.utils.icons").get("ui"),
     misc = require("modules.utils.icons").get("misc"),
-    git = require("modules.utils.icons").get("git", true),
     cmp = require("modules.utils.icons").get("cmp", true),
   }
 
   require("which-key").setup({
     preset = "classic",
-    delay = 1000,
-    triggers = {
-      { "<auto>", mode = "nixso" },
-    },
+    delay = 700,
     plugins = {
       marks = true,
       registers = true,
@@ -58,18 +54,6 @@ return function()
         ScrollWheelUp = "<ScrollWheelUp> ",
         ScrollWheelDown = "<ScrollWheelDown> ",
       },
-    },
-    spec = {
-      { "<leader>g", group = icons.git.Git .. "Git" },
-      { "<leader>d", group = icons.ui.Bug .. " Debug" },
-      { "<leader>s", group = icons.cmp.tmux .. "Session" },
-      { "<leader>b", group = icons.ui.Buffer .. " Buffer" },
-      { "<leader>S", group = icons.ui.Search .. " Search" },
-      { "<leader>W", group = icons.ui.Window .. " Window" },
-      { "<leader>p", group = icons.ui.Package .. " Package" },
-      { "<leader>l", group = icons.misc.LspAvailable .. " Lsp" },
-      { "<leader>f", group = icons.ui.Telescope .. " Fuzzy Find" },
-      { "<leader>n", group = icons.ui.FolderOpen .. " Nvim Tree" },
     },
   })
 end

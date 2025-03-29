@@ -45,7 +45,7 @@ return function()
       "neo-tree",
       -- "neorg",
       -- "noice",
-      "nvim-cmp",
+      -- "nvim-cmp",
       -- "nvim-navic",
       -- "nvim-tree",
       "nvim-web-devicons",

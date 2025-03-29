@@ -11,6 +11,7 @@ return function()
         "--line-number",
         "--column",
         "--smart-case",
+        "--hidden",
       },
       initial_mode = "insert",
       prompt_prefix = " " .. icons.ui.Telescope .. " ",
