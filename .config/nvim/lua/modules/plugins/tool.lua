@@ -32,11 +32,6 @@ tool["kawre/neotab.nvim"] = {
   event = "InsertEnter",
   opts = {},
 }
-tool["folke/noice.nvim"] = {
-  event = "VeryLazy",
-  dependencies = { "MunifTanjim/nui.nvim" },
-  opts = require("tool.noice"),
-}
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --

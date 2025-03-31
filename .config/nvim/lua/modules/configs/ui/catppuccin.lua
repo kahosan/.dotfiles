@@ -62,7 +62,7 @@ return function()
       mason = true,
       mini = { enabled = true },
       neotree = { enabled = true, show_root = true, transparent_panel = false },
-      noice = true,
+      noice = false,
       render_markdown = true,
       semantic_tokens = true,
       symbols_outline = true,

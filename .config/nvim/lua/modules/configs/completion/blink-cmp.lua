@@ -12,8 +12,8 @@ return {
     ["<S-Tab>"] = { "select_prev", "fallback" },
     ["<C-j>"] = { "select_next", "fallback" },
     ["<C-k>"] = { "select_prev", "fallback" },
-    ["<C-n>"] = { "select_next", "fallback" },
-    ["<C-p>"] = { "select_prev", "fallback" },
+    ["<C-n>"] = { "show", "fallback" },
+    ["<C-p>"] = { "cancel", "fallback" },
   },
   cmdline = {
     completion = {
@@ -36,6 +36,7 @@ return {
       auto_show_delay_ms = 250,
     },
   },
+  signature = { enabled = true },
   appearance = {
     nerd_font_variant = "mono",
     kind_icons = {
