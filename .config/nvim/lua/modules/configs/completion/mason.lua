@@ -10,7 +10,7 @@ M.setup = function()
 
   require("mason").setup({
     ui = {
-      border = "single",
+      border = CUSTOM_BORDER,
       icons = {
         package_pending = icons.ui.Modified_alt,
         package_installed = icons.ui.Check,

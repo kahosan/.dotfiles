@@ -5,16 +5,6 @@ ui["goolord/alpha-nvim"] = {
   event = "BufWinEnter",
   config = require("ui.alpha"),
 }
-ui["catppuccin/nvim"] = {
-  lazy = false,
-  name = "catppuccin",
-  config = require("ui.catppuccin"),
-}
-ui["Mofiqul/vscode.nvim"] = {
-  lazy = true,
-  event = "BufReadPost",
-  config = require("ui.vscode"),
-}
 ui["p00f/alabaster.nvim"] = {
   lazy = true,
   event = "BufReadPost",

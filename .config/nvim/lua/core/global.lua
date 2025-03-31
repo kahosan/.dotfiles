@@ -13,6 +13,8 @@ function global:load_variables()
   self.home = self.is_windows and os.getenv("USERPROFILE") or os.getenv("HOME")
 end
 
+CUSTOM_BORDER = { " ", " ", " ", " ", " ", " ", " ", " " }
+
 global:load_variables()
 
 return global

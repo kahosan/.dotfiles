@@ -26,7 +26,7 @@ return function()
       },
     },
     win = {
-      border = "none",
+      border = CUSTOM_BORDER,
       padding = { 1, 2 },
       wo = { winblend = 0 },
     },
