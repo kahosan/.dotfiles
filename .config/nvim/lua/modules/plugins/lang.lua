@@ -7,11 +7,31 @@ lang["ray-x/go.nvim"] = {
   config = require("lang.go"),
   dependencies = { "ray-x/guihua.lua" },
 }
+lang["pmizio/typescript-tools.nvim"] = {
+  ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+  config = require("lang.typescript"),
+  dependencies = {
+    { "nvim-lua/plenary.nvim" },
+  },
+}
 lang["mrcjkb/rustaceanvim"] = {
-  lazy = true,
+  lazy = false,
   ft = "rust",
   version = "*",
   init = require("lang.rust"),
+  dependencies = { "nvim-lua/plenary.nvim" },
+}
+lang["saecki/crates.nvim"] = {
+  lazy = true,
+  event = "BufRead Cargo.toml",
+  ft = "toml",
+  opts = {
+    completion = {
+      cmp = {
+        enabled = true,
+      },
+    },
+  },
   dependencies = { "nvim-lua/plenary.nvim" },
 }
 
