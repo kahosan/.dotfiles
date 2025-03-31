@@ -22,6 +22,6 @@ return {
     },
   },
   notify = {
-    view = "mini",
+    enabled = false,
   },
 }
