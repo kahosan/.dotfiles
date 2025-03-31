@@ -97,6 +97,9 @@ local load_core = function()
   set_opts("background", settings.background, {})
   vim.cmd.colorscheme(settings.colorscheme)
 
+  -- 设置标题：当前目录名、图标、当前文件名
+  vim.o.titlestring = '%{fnamemodify(getcwd(), ":t")} %{expand("%:t")}'
+
   -- set match parent highlight color
   vim.cmd([[
       highlight MatchParen cterm=none gui=none ctermbg=lightgrey guibg=lightgrey ctermfg=black guifg=black
