@@ -7,6 +7,7 @@ completion["neovim/nvim-lspconfig"] = {
   dependencies = {
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
+    { "dnlhc/glance.nvim", cmd = "Glance" },
   },
 }
 completion["stevearc/conform.nvim"] = {
@@ -16,7 +17,6 @@ completion["stevearc/conform.nvim"] = {
   config = require("completion.conform"),
 }
 completion["saghen/blink.cmp"] = {
-  lazy = false,
   version = "1.*",
   dependencies = {
     "fang2hou/blink-copilot",

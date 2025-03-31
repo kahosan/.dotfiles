@@ -89,12 +89,14 @@ return {
       css_vars = {
         name = "CSSV",
         module = "css-vars.blink",
+        async = true,
         opts = { search_extensions = { ".js", ".ts", ".jsx", ".tsx" } },
       },
       ripgrep = {
         name = "RIP",
         module = "blink-ripgrep",
         max_items = 10,
+        async = true,
         opts = {
           project_root_marker = ".git",
           project_root_fallback = false,

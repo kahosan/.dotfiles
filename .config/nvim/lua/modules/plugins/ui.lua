@@ -12,6 +12,12 @@ ui["p00f/alabaster.nvim"] = {
     vim.g.alabaster_dim_comments = true
   end,
 }
+ui["Jint-lzxy/nvim"] = {
+  lazy = false,
+  branch = "refactor/syntax-highlighting",
+  name = "catppuccin",
+  config = require("ui.catppuccin"),
+}
 ui["marko-cerovac/material.nvim"] = {
   lazy = true,
   event = "BufReadPost",
