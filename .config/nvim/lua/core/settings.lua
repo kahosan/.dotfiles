@@ -56,7 +56,7 @@ settings["background"] = "dark"
 settings["external_browser"] = "chrome-cli open"
 
 -- Set the transparent the background here.
-settings["transparent_background"] = false
+settings["transparent_background"] = true
 
 -- Set the language servers that will be installed during bootstrap here.
 -- check the below link for all the supported LSPs:
@@ -69,6 +69,7 @@ settings["lsp_deps"] = {
   "lua_ls",
   "pyright",
   "eslint",
+  -- "rust_analyzer"
   -- "ts_ls",
 }
 

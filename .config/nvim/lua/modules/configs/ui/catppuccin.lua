@@ -86,7 +86,7 @@ return function()
       semantic_tokens = true,
       symbols_outline = false,
       telekasten = false,
-      telescope = { enabled = true, style = "nvchad" },
+      telescope = { enabled = true },
       treesitter_context = true,
       ts_rainbow = false,
       vim_sneak = false,

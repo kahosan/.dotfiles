@@ -5,11 +5,6 @@ ui["goolord/alpha-nvim"] = {
   event = "BufWinEnter",
   config = require("ui.alpha"),
 }
--- ui["akinsho/bufferline.nvim"] = {
---   lazy = true,
---   event = { "BufReadPost", "BufAdd", "BufNewFile" },
---   config = require("ui.bufferline"),
--- }
 ui["catppuccin/nvim"] = {
   lazy = false,
   name = "catppuccin",
@@ -34,13 +29,12 @@ ui["marko-cerovac/material.nvim"] = {
 }
 ui["j-hui/fidget.nvim"] = {
   lazy = true,
-  branch = "legacy",
   event = "LspAttach",
   config = require("ui.fidget"),
 }
 ui["lewis6991/gitsigns.nvim"] = {
   lazy = true,
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "CursorHold", "CursorHoldI" },
   config = require("ui.gitsigns"),
 }
 ui["nvim-lualine/lualine.nvim"] = {
@@ -48,11 +42,25 @@ ui["nvim-lualine/lualine.nvim"] = {
   event = { "BufReadPost", "BufAdd", "BufNewFile" },
   config = require("ui.lualine"),
 }
+ui["echasnovski/mini.indentscope"] = {
+  version = "*",
+  opts = {
+    -- symbol = "│",
+    symbol = "|",
+  },
+}
 ui["lukas-reineke/indent-blankline.nvim"] = {
   main = "ibl",
-  config = function()
-    require("ibl").setup()
-  end,
+  opts = {
+    indent = {
+      highlight = {
+        "WhiteSpace",
+      },
+      char = "┊",
+    },
+    scope = {
+      enabled = false,
+    },
+  },
 }
-
 return ui
