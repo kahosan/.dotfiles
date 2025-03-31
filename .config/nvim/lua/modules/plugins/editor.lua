@@ -1,28 +1,22 @@
 local editor = {}
 
 editor["pteroctopus/faster.nvim"] = {
-  lazy = false,
   cond = require("core.settings").load_big_files_faster,
 }
 editor["ojroques/nvim-bufdel"] = {
-  lazy = true,
   cmd = { "BufDel", "BufDelAll", "BufDelOthers" },
 }
 editor["numToStr/Comment.nvim"] = {
-  lazy = true,
   event = { "CursorHold", "CursorHoldI" },
   config = require("editor.comment"),
 }
 editor["sindrets/diffview.nvim"] = {
-  lazy = true,
   cmd = { "DiffviewOpen", "DiffviewClose" },
 }
 editor["romainl/vim-cool"] = {
-  lazy = true,
   event = { "CursorMoved", "InsertEnter" },
 }
 editor["windwp/nvim-autopairs"] = {
-  lazy = true,
   event = "InsertEnter",
   opts = {
     enable_check_bracket_line = false,
@@ -36,7 +30,6 @@ editor["windwp/nvim-autopairs"] = {
   end,
 }
 editor["tpope/vim-sleuth"] = {
-  lazy = true,
   event = { "BufNewFile", "BufReadPost", "BufFilePost" },
 }
 
@@ -44,7 +37,6 @@ editor["tpope/vim-sleuth"] = {
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------
 editor["nvim-treesitter/nvim-treesitter"] = {
-  lazy = true,
   build = function()
     if vim.fn.has("gui_running") == 1 then
       vim.api.nvim_command([[TSUpdate]])

@@ -1,32 +1,25 @@
 local tool = {}
 
 tool["folke/which-key.nvim"] = {
-  lazy = true,
   event = { "CursorHold", "CursorHoldI" },
   config = require("tool.which-key"),
 }
 tool["nvim-neo-tree/neo-tree.nvim"] = {
-  lazy = true,
-  cmd = {
-    "Neotree",
-  },
+  cmd = { "Neotree" },
   config = require("tool.neo-tree"),
   dependencies = {
     "MunifTanjim/nui.nvim",
   },
 }
 tool["folke/trouble.nvim"] = {
-  lazy = true,
   cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
   config = require("tool.trouble"),
 }
 tool["kylechui/nvim-surround"] = {
-  lazy = true,
   event = "VeryLazy",
   opts = {},
 }
 tool["tpope/vim-fugitive"] = {
-  lazy = true,
   cmd = { "Git", "G" },
 }
 tool["nvim-pack/nvim-spectre"] = {
@@ -36,12 +29,10 @@ tool["nvim-pack/nvim-spectre"] = {
   },
 }
 tool["kawre/neotab.nvim"] = {
-  lazy = true,
   event = "InsertEnter",
   opts = {},
 }
 tool["folke/noice.nvim"] = {
-  lazy = true,
   event = "VeryLazy",
   dependencies = { "MunifTanjim/nui.nvim" },
   opts = require("tool.noice"),
@@ -51,7 +42,6 @@ tool["folke/noice.nvim"] = {
 --                        Telescope Plugins                         --
 ----------------------------------------------------------------------
 tool["nvim-telescope/telescope.nvim"] = {
-  lazy = true,
   cmd = "Telescope",
   config = require("tool.telescope"),
   dependencies = {

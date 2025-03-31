@@ -1,7 +1,6 @@
 local completion = {}
 
 completion["neovim/nvim-lspconfig"] = {
-  lazy = true,
   event = { "CursorHold", "CursorHoldI" },
   config = require("completion.lsp"),
   dependencies = {
@@ -11,7 +10,6 @@ completion["neovim/nvim-lspconfig"] = {
   },
 }
 completion["stevearc/conform.nvim"] = {
-  lazy = true,
   event = "LspAttach",
   cmd = { "ConformInfo" },
   config = require("completion.conform"),
@@ -28,7 +26,6 @@ completion["saghen/blink.cmp"] = {
   opts_extend = { "sources.default" },
 }
 completion["zbirenbaum/copilot.lua"] = {
-  lazy = true,
   cmd = "Copilot",
   -- event = "InsertEnter",
   config = require("completion.copilot"),

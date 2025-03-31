@@ -1,7 +1,6 @@
 local lang = {}
 
 lang["ray-x/go.nvim"] = {
-  lazy = true,
   ft = { "go", "gomod", "gosum" },
   build = ":GoInstallBinaries",
   config = require("lang.go"),
@@ -15,14 +14,12 @@ lang["pmizio/typescript-tools.nvim"] = {
   },
 }
 lang["mrcjkb/rustaceanvim"] = {
-  lazy = false,
   ft = "rust",
   version = "*",
   init = require("lang.rust"),
   dependencies = { "nvim-lua/plenary.nvim" },
 }
 lang["saecki/crates.nvim"] = {
-  lazy = true,
   event = "BufRead Cargo.toml",
   ft = "toml",
   opts = {
