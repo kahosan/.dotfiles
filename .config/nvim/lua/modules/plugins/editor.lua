@@ -1,17 +1,16 @@
 local editor = {}
 
-editor["LunarVim/bigfile.nvim"] = {
+editor["pteroctopus/faster.nvim"] = {
   lazy = false,
-  config = require("editor.bigfile"),
   cond = require("core.settings").load_big_files_faster,
 }
 editor["ojroques/nvim-bufdel"] = {
   lazy = true,
-  event = "BufReadPost",
+  cmd = { "BufDel", "BufDelAll", "BufDelOthers" },
 }
 editor["numToStr/Comment.nvim"] = {
   lazy = true,
-  event = { "BufNewFile", "BufReadPre" },
+  event = { "CursorHold", "CursorHoldI" },
   config = require("editor.comment"),
 }
 editor["sindrets/diffview.nvim"] = {
@@ -22,10 +21,23 @@ editor["romainl/vim-cool"] = {
   lazy = true,
   event = { "CursorMoved", "InsertEnter" },
 }
-editor["m4xshen/autoclose.nvim"] = {
+editor["windwp/nvim-autopairs"] = {
   lazy = true,
   event = "InsertEnter",
-  config = require("editor.autoclose"),
+  opts = {
+    enable_check_bracket_line = false,
+  },
+  init = function()
+    local npairs = require("nvim-autopairs")
+    local rule = require("nvim-autopairs.rule")
+    local cond = require("nvim-autopairs.conds")
+
+    npairs.add_rules({ rule("|", "|", { "rust", "go", "lua" }):with_move(cond.after_regex("|")) })
+  end,
+}
+editor["tpope/vim-sleuth"] = {
+  lazy = true,
+  event = { "BufNewFile", "BufReadPost", "BufFilePost" },
 }
 
 ----------------------------------------------------------------------
@@ -41,6 +53,7 @@ editor["nvim-treesitter/nvim-treesitter"] = {
   event = "BufReadPre",
   config = require("editor.treesitter"),
   dependencies = {
+    { "windwp/nvim-ts-autotag" },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     { "JoosepAlviste/nvim-ts-context-commentstring" },
     {
@@ -48,12 +61,18 @@ editor["nvim-treesitter/nvim-treesitter"] = {
       config = require("editor.ts-context"),
     },
     {
-      "windwp/nvim-ts-autotag",
-      config = require("editor.autotag"),
-    },
-    {
       "NvChad/nvim-colorizer.lua",
       config = require("editor.colorizer"),
+    },
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      config = function()
+        vim.g.skip_ts_context_commentstring_module = true
+        require("ts_context_commentstring").setup({
+          -- Whether to update the `commentstring` on the `CursorHold` autocmd
+          enable_autocmd = false,
+        })
+      end,
     },
   },
 }
