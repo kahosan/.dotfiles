@@ -20,12 +20,6 @@ tool["folke/trouble.nvim"] = {
   cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
   config = require("tool.trouble"),
 }
-tool["gelguy/wilder.nvim"] = {
-  lazy = true,
-  event = "CmdlineEnter",
-  config = require("tool.wilder"),
-  dependencies = { "romgrk/fzy-lua-native" },
-}
 tool["kylechui/nvim-surround"] = {
   lazy = true,
   event = "VeryLazy",

@@ -2,7 +2,7 @@ return function()
   vim.defer_fn(function()
     require("copilot").setup({
       panel = {
-        enabled = true,
+        enabled = false,
         auto_refresh = true,
         keymap = {
           jump_prev = "[[",
@@ -17,7 +17,7 @@ return function()
         },
       },
       suggestion = {
-        enabled = true,
+        enabled = false,
         auto_trigger = true,
         debounce = 75,
         keymap = {
