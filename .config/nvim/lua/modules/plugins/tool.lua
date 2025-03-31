@@ -1,9 +1,8 @@
 local tool = {}
 
--- Please don't remove which-key.nvim otherwise you need to set timeoutlen=300 at `lua/core/options.lua`
 tool["folke/which-key.nvim"] = {
   lazy = true,
-  event = "VeryLazy",
+  event = { "CursorHold", "CursorHoldI" },
   config = require("tool.which-key"),
 }
 tool["nvim-neo-tree/neo-tree.nvim"] = {
@@ -28,11 +27,30 @@ tool["gelguy/wilder.nvim"] = {
   dependencies = { "romgrk/fzy-lua-native" },
 }
 tool["kylechui/nvim-surround"] = {
-  event = "VeryLazy",
   lazy = true,
-  config = function()
-    require("nvim-surround").setup({})
-  end,
+  event = "VeryLazy",
+  opts = {},
+}
+tool["tpope/vim-fugitive"] = {
+  lazy = true,
+  cmd = { "Git", "G" },
+}
+tool["nvim-pack/nvim-spectre"] = {
+  lazy = true,
+  opts = {
+    default = { replace = { cmd = "sd" } },
+  },
+}
+tool["kawre/neotab.nvim"] = {
+  lazy = true,
+  event = "InsertEnter",
+  opts = {},
+}
+tool["folke/noice.nvim"] = {
+  lazy = true,
+  event = "VeryLazy",
+  dependencies = { "MunifTanjim/nui.nvim" },
+  opts = require("tool.noice"),
 }
 
 ----------------------------------------------------------------------
@@ -43,23 +61,18 @@ tool["nvim-telescope/telescope.nvim"] = {
   cmd = "Telescope",
   config = require("tool.telescope"),
   dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
     { "nvim-lua/plenary.nvim" },
+    { "nvim-tree/nvim-web-devicons" },
+    { "jvgrootveld/telescope-zoxide" },
     { "debugloop/telescope-undo.nvim" },
-    {
-      "ahmedkhalf/project.nvim",
-      event = "BufReadPost",
-      config = require("tool.project"),
-    },
+    { "nvim-telescope/telescope-frecency.nvim" },
+    { "nvim-telescope/telescope-live-grep-args.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     {
-      "nvim-telescope/telescope-frecency.nvim",
-      dependencies = {
-        { "kkharji/sqlite.lua" },
-      },
+      "ahmedkhalf/project.nvim",
+      event = { "CursorHold", "CursorHoldI" },
+      config = require("tool.project"),
     },
-    { "jvgrootveld/telescope-zoxide" },
-    { "nvim-telescope/telescope-live-grep-args.nvim" },
   },
 }
 
