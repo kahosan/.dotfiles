@@ -89,10 +89,10 @@ local load_core = function()
   shell_config()
 
   require("core.options")
-  require("core.mapping")
-  require("keymap")
   require("core.pack")
   require("core.event")
+
+  require("keymap")
 
   set_opts("background", settings.background, {})
   vim.cmd.colorscheme(settings.colorscheme)
