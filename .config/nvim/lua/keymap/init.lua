@@ -28,12 +28,8 @@ local mappings = {
       :with_nowait()
       :with_desc("lsp diagnostic info"),
     ["n|gD"] = map_cr("Glance definitions"):with_silent():with_noremap():with_nowait():with_desc("go definitions"),
-    ["n|gl|"] = map_cr("Glance references"):with_silent():with_noremap():with_nowait():with_desc("show references"),
-    ["n|gi|"] = map_cr("Glance references")
-      :with_silent()
-      :with_noremap()
-      :with_nowait()
-      :with_desc("show implementations"),
+    ["n|gl"] = map_cr("Glance references"):with_silent():with_noremap():with_nowait():with_desc("show references"),
+    ["n|gi"] = map_cr("Glance references"):with_silent():with_noremap():with_nowait():with_desc("show implementations"),
   },
   git = {
     ["n|<leader>G"] = map_cu("Git"):with_noremap():with_silent():with_desc("git: Open git-fugitive"),
