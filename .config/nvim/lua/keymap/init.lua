@@ -31,7 +31,7 @@ local mappings = {
     ['n|gl'] = map_cr('Glance references'):with_silent():with_noremap():with_nowait():with_desc 'lsp: references',
     ['n|gi'] = map_cr('Glance references'):with_silent():with_noremap():with_nowait():with_desc 'lsp: implementations',
     ['n|K'] = map_callback(function()
-        vim.lsp.buf.hover { border = 'single', max_height = 25 }
+        vim.lsp.buf.hover { border = 'single', max_height = 25, max_width = 70 }
       end)
       :with_silent()
       :with_noremap()
@@ -43,7 +43,11 @@ local mappings = {
       :with_nowait()
       :with_desc 'lsp: definitions',
     ['n|gr'] = map_cr('lua vim.lsp.buf.rename()'):with_silent():with_noremap():with_nowait():with_desc 'lsp: rename',
-    ['n|ga'] = map_cr('lua vim.lsp.buf.action()'):with_silent():with_noremap():with_nowait():with_desc 'lsp: action',
+    ['n|ga'] = map_cr('lua vim.lsp.buf.code_action()')
+      :with_silent()
+      :with_noremap()
+      :with_nowait()
+      :with_desc 'lsp: code action',
     ['n|gs'] = map_cr('lua vim.lsp.buf.signature_help()')
       :with_silent()
       :with_noremap()

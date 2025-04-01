@@ -13,6 +13,7 @@ return function()
     transparent_background = transparent_background,
     show_end_of_buffer = false, -- show the '~' characters after the end of buffers
     term_colors = true,
+    no_bold = true, -- Force no bold
     compile_path = vim.fn.stdpath 'cache' .. '/catppuccin',
     styles = {
       comments = { 'italic' },
@@ -39,10 +40,10 @@ return function()
           information = { 'italic' },
         },
         underlines = {
-          errors = { 'underline' },
-          hints = { 'underline' },
-          warnings = { 'underline' },
-          information = { 'underline' },
+          errors = { 'undercurl' },
+          hints = { 'undercurl' },
+          warnings = { 'undercurl' },
+          information = { 'undercurl' },
         },
       },
       aerial = false,
@@ -59,8 +60,8 @@ return function()
       lsp_trouble = true,
       markdown = false,
       mason = true,
-      mini = { enabled = true },
-      neotree = { enabled = true },
+      mini = { enabled = true, indentscope_color = '' },
+      neotree = true,
       noice = false,
       render_markdown = true,
       semantic_tokens = true,
@@ -71,7 +72,6 @@ return function()
     },
     color_overrides = {},
     highlight_overrides = {
-      ---@param cp palette
       all = function(cp)
         return {
           TabLineSel = { bg = '#45475b', fg = '#a6e3a2' },

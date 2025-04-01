@@ -82,7 +82,7 @@ return {
         fallbacks = {},
       },
       path = { name = 'PATH' },
-      buffer = { name = 'BUF', max_items = 5 },
+      buffer = { name = 'BUF', max_items = 5, score_offset = -1 },
       cmdline = { name = 'CL' },
       copilot = {
         name = 'CT',
