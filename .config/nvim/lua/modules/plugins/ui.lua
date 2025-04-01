@@ -28,7 +28,6 @@ ui['nvim-lualine/lualine.nvim'] = {
   config = require 'ui.lualine',
 }
 ui['echasnovski/mini.indentscope'] = {
-  version = '*',
   opts = {
     -- symbol = "│",
     symbol = '|',

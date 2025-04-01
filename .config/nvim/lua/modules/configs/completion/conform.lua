@@ -2,6 +2,7 @@ return function()
   require('conform').setup {
     format_on_save = {
       timeout_ms = 1000,
+      async = true,
       lsp_format = 'fallback',
     },
     formatters = {
@@ -25,7 +26,7 @@ return function()
       yaml = { 'prettierd', 'prettier', stop_after_first = true },
       scss = { 'prettierd', 'prettier', stop_after_first = true },
       sh = { 'shellcheck' },
-      python = { 'ruff' },
+      python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
     },
   }
 end

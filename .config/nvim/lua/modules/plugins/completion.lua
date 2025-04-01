@@ -18,7 +18,6 @@ completion['stevearc/conform.nvim'] = {
   config = require 'completion.conform',
 }
 completion['saghen/blink.cmp'] = {
-  version = '1.*',
   dependencies = {
     'fang2hou/blink-copilot',
     'jdrupal-dev/css-vars.nvim',

@@ -44,7 +44,7 @@ settings['lsp_deps'] = {
   'html',
   'jsonls',
   'lua_ls',
-  'pyright',
+  -- 'pyright',
   'eslint',
   -- "rust_analyzer"
   -- "ts_ls",

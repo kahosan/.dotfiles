@@ -21,7 +21,7 @@ local function load_options()
     -- 使用系统剪贴板
     clipboard = 'unnamedplus',
     -- 命令行高度
-    cmdheight = 0, -- 可选值：0, 1, 2
+    cmdheight = 1, -- 可选值：0, 1, 2
     -- 命令窗口高度
     cmdwinheight = 5,
     -- 自动补全设置

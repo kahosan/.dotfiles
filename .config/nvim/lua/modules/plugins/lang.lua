@@ -15,21 +15,23 @@ lang['pmizio/typescript-tools.nvim'] = {
 }
 lang['mrcjkb/rustaceanvim'] = {
   ft = 'rust',
-  version = '*',
   init = require 'lang.rust',
   dependencies = { 'nvim-lua/plenary.nvim' },
 }
 lang['saecki/crates.nvim'] = {
   event = 'BufRead Cargo.toml',
   ft = 'toml',
+  opts = { completion = { cmp = { enabled = true } } },
+  dependencies = { 'nvim-lua/plenary.nvim' },
+}
+lang['folke/lazydev.nvim'] = {
+  ft = 'lua',
   opts = {
-    completion = {
-      cmp = {
-        enabled = true,
-      },
+    library = {
+      'lazy.nvim',
+      '${3rd}/luv/library',
     },
   },
-  dependencies = { 'nvim-lua/plenary.nvim' },
 }
 
 return lang

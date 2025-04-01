@@ -4,6 +4,8 @@ local icons = {
   cmp = require('modules.utils.icons').get 'cmp',
 }
 
+---@module 'blink.cmp'
+---@type blink.cmp.Config
 return {
   keymap = {
     preset = 'none',
@@ -73,7 +75,7 @@ return {
     },
   },
   sources = {
-    default = { 'lsp', 'path', 'buffer', 'copilot', 'css_vars', 'ripgrep' },
+    default = { 'lsp', 'path', 'buffer', 'copilot', 'css_vars', 'ripgrep', 'lazydev' },
     providers = {
       lsp = {
         name = 'LSP',
@@ -102,6 +104,11 @@ return {
           project_root_marker = '.git',
           project_root_fallback = false,
         },
+        score_offset = 90,
+      },
+      lazydev = {
+        name = 'LD',
+        module = 'lazydev.integrations.blink',
       },
     },
   },
@@ -113,5 +120,8 @@ return {
       'sort_text',
     },
     implementation = 'prefer_rust_with_warning',
+    prebuilt_binaries = {
+      force_version = 'v1.0.0',
+    },
   },
 }

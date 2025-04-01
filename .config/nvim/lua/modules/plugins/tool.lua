@@ -32,6 +32,14 @@ tool['kawre/neotab.nvim'] = {
   event = 'InsertEnter',
   opts = {},
 }
+tool['folke/snacks.nvim'] = {
+  ---@type snacks.Config
+  opts = {
+    quickfile = {
+      exclude = { 'latex' },
+    },
+  },
+}
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --

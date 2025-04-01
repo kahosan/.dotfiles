@@ -3,6 +3,12 @@ return function()
   require('completion.mason').setup()
   require('completion.mason-lspconfig').setup()
 
+  nvim_lsp.typos_lsp.setup {
+    init_options = {
+      diagnosticSeverity = 'Warning',
+    },
+  }
+
   local opts = {
     capabilities = require('blink.cmp').get_lsp_capabilities(),
   }

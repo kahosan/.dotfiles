@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'alpha', 'mason', 'lazy' },
+  pattern = { 'alpha', 'mason', 'lazy', 'markdown', 'checkhealth' },
   callback = function(data)
     vim.b[data.buf].miniindentscope_disable = true
   end,
