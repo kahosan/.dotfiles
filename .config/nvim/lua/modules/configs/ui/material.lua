@@ -1,6 +1,6 @@
 return function()
-  vim.g.material_style = "darker"
-  require("material").setup({
+  vim.g.material_style = 'darker'
+  require('material').setup {
     contrast = {
       terminal = false, -- Enable contrast for the built-in terminal
       sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
@@ -29,11 +29,11 @@ return function()
       -- Available plugins:
       -- "coc"
       -- "dap",
-      "dashboard",
+      'dashboard',
       -- "eyeliner",
-      "fidget",
+      'fidget',
       -- "flash",
-      "gitsigns",
+      'gitsigns',
       -- "harpoon",
       -- "hop",
       -- "illuminate",
@@ -42,18 +42,18 @@ return function()
       -- "mini",
       -- "neogit",
       -- "neotest",
-      "neo-tree",
+      'neo-tree',
       -- "neorg",
       -- "noice",
-      "nvim-cmp",
+      'nvim-cmp',
       -- "nvim-navic",
       -- "nvim-tree",
-      "nvim-web-devicons",
+      'nvim-web-devicons',
       -- "rainbow-delimiters",
       -- "sneak",
-      "telescope",
-      "trouble",
-      "which-key",
+      'telescope',
+      'trouble',
+      'which-key',
       -- "nvim-notify",
     },
 
@@ -70,12 +70,12 @@ return function()
       darker = false, -- Enable higher contrast text for darker style
     },
 
-    lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
+    lualine_style = 'default', -- Lualine style ( can be 'stealth' or 'default' )
 
     async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
 
     custom_colors = nil, -- If you want to override the default colors, set this to a function
 
     custom_highlights = {}, -- Overwrite highlights with your own
-  })
+  }
 end

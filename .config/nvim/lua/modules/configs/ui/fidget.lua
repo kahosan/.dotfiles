@@ -1,9 +1,9 @@
 return function()
   local icons = {
-    ui = require("modules.utils.icons").get("ui"),
+    ui = require('modules.utils.icons').get 'ui',
   }
 
-  require("fidget").setup({
+  require('fidget').setup {
     progress = {
       -- suppress_on_insert = false, -- Suppress new messages while in insert mode
       -- ignore_done_already = false, -- Ignore new tasks that are already complete
@@ -17,8 +17,12 @@ return function()
       override_vim_notify = true,
       configs = {
         default = {
-          icon = "",
-          name = "",
+          icon = '',
+          name = '',
+          debug_annote = '',
+          info_annote = '',
+          warn_annote = '',
+          error_annote = '',
         },
       },
       window = {
@@ -26,5 +30,5 @@ return function()
         zindex = 75,
       },
     },
-  })
+  }
 end

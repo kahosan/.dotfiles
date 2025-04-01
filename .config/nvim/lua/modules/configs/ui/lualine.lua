@@ -1,6 +1,6 @@
 return function()
   local icons = {
-    misc = require("modules.utils.icons").get("misc", true),
+    misc = require('modules.utils.icons').get('misc', true),
   }
 
   local function diff_source()
@@ -17,7 +17,7 @@ return function()
   local components = {
     ctime = {
       function()
-        return os.date("%H:%M:%S", os.time())
+        return os.date('%H:%M:%S', os.time())
       end,
       padding = 1,
     },
@@ -30,32 +30,32 @@ return function()
     },
 
     diagnostics = {
-      "diagnostics",
-      source = { "nvim_diagnostic" },
-      sections = { "error", "warn", "info", "hint" },
+      'diagnostics',
+      source = { 'nvim_diagnostic' },
+      sections = { 'error', 'warn', 'info', 'hint' },
       symbols = {
-        error = "E=",
-        warn = "W=",
-        info = "I=",
-        hint = "H=",
+        error = 'E=',
+        warn = 'W=',
+        info = 'I=',
+        hint = 'H=',
       },
     },
 
     fileformat = {
-      "fileformat",
+      'fileformat',
       symbols = {
-        unix = "LF",
-        dos = "CRLF",
-        mac = "CR", -- Legacy macOS
+        unix = 'LF',
+        dos = 'CRLF',
+        mac = 'CR', -- Legacy macOS
       },
     },
 
     python_venv = {
       function()
         local function env_cleanup(venv)
-          if string.find(venv, "/") then
+          if string.find(venv, '/') then
             local final_venv = venv
-            for w in venv:gmatch("([^/]+)") do
+            for w in venv:gmatch '([^/]+)' do
               final_venv = w
             end
             venv = final_venv
@@ -63,45 +63,45 @@ return function()
           return venv
         end
 
-        if vim.bo.filetype == "python" then
-          local venv = os.getenv("CONDA_DEFAULT_ENV")
+        if vim.bo.filetype == 'python' then
+          local venv = os.getenv 'CONDA_DEFAULT_ENV'
           if venv then
             return icons.misc.PyEnv .. env_cleanup(venv)
           end
-          venv = os.getenv("VIRTUAL_ENV")
+          venv = os.getenv 'VIRTUAL_ENV'
           if venv then
             return icons.misc.PyEnv .. env_cleanup(venv)
           end
         end
-        return ""
+        return ''
       end,
     },
   }
 
-  require("lualine").setup({
+  require('lualine').setup {
     options = {
       icons_enabled = true,
-      theme = "auto",
-      disabled_filetypes = { statusline = { "alpha" } },
-      component_separators = { left = "|", right = "|" },
-      section_separators = { left = " ", right = " " },
+      theme = 'auto',
+      disabled_filetypes = { statusline = { 'alpha' } },
+      component_separators = { left = '|', right = '|' },
+      section_separators = { left = ' ', right = ' ' },
       -- section_separators = { left = "", right = "" },
     },
     sections = {
-      lualine_a = { "mode" },
-      lualine_b = { "branch", { "diff", source = diff_source }, components.diagnostics },
-      lualine_c = { "filename" },
-      lualine_x = { "encoding", components.fileformat, "location" },
-      lualine_y = { "progress", components.python_venv },
+      lualine_a = { 'mode' },
+      lualine_b = { 'branch', { 'diff', source = diff_source }, components.diagnostics },
+      lualine_c = { 'filename' },
+      lualine_x = { 'encoding', components.fileformat, 'location' },
+      lualine_y = { 'progress', components.python_venv },
       lualine_z = { components.ctime },
     },
     inactive_sections = {
       lualine_a = {},
       lualine_b = {},
-      lualine_c = { "filename" },
-      lualine_x = { "location" },
+      lualine_c = { 'filename' },
+      lualine_x = { 'location' },
       lualine_y = {},
       lualine_z = {},
     },
-  })
+  }
 end

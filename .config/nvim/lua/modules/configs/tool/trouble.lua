@@ -1,9 +1,9 @@
 return function()
   local icons = {
-    ui = require("modules.utils.icons").get("ui", true),
+    ui = require('modules.utils.icons').get('ui', true),
   }
 
-  require("trouble").setup({
+  require('trouble').setup {
     auto_open = false,
     auto_close = false,
     auto_jump = false,
@@ -22,7 +22,7 @@ return function()
     },
     modes = {
       project_diagnostics = {
-        mode = "diagnostics",
+        mode = 'diagnostics',
         filter = {
           any = {
             {
@@ -34,5 +34,5 @@ return function()
         },
       },
     },
-  })
+  }
 end

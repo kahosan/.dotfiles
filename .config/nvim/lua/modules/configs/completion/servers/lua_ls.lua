@@ -2,15 +2,15 @@
 return {
   settings = {
     Lua = {
-      runtime = { version = "LuaJIT" },
+      runtime = { version = 'LuaJIT' },
       diagnostics = {
-        globals = { "vim" },
-        disable = { "different-requires", "undefined-field" },
+        globals = { 'vim' },
+        disable = { 'different-requires', 'undefined-field' },
       },
       workspace = {
         library = {
-          vim.fn.expand("$VIMRUNTIME/lua"),
-          vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+          vim.fn.expand '$VIMRUNTIME/lua',
+          vim.fn.expand '$VIMRUNTIME/lua/vim/lsp',
         },
         maxPreload = 100000,
         preloadFileSize = 10000,

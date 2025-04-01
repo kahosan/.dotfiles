@@ -1,7 +1,7 @@
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/pylsp.lua
 return {
-  cmd = { "pylsp" },
-  filetypes = { "python" },
+  cmd = { 'pylsp' },
+  filetypes = { 'python' },
   settings = {
     pylsp = {
       plugins = {
@@ -10,9 +10,9 @@ return {
           enabled = true,
           select = {
             -- enable pycodestyle
-            "E",
+            'E',
             -- enable pyflakes
-            "F",
+            'F',
           },
           ignore = {
             -- ignore E501 (line too long)
@@ -20,11 +20,11 @@ return {
             -- ignore F401 (imported but unused)
             -- "F401",
           },
-          extendSelect = { "I" },
+          extendSelect = { 'I' },
           severities = {
             -- Hint, Information, Warning, Error
-            F401 = "I",
-            E501 = "I",
+            F401 = 'I',
+            E501 = 'I',
           },
         },
         flake8 = { enabled = false },

@@ -1,5 +1,5 @@
 return function()
-  require("go").setup({
+  require('go').setup {
     -- By default, we've turned off these options to prevent clashes with our gopls config
     icons = false,
     diagnostic = false,
@@ -17,5 +17,5 @@ return function()
     trouble = false,
     luasnip = false,
     run_in_floaterm = false,
-  })
+  }
 end

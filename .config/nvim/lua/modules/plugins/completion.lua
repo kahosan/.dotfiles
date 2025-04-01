@@ -1,34 +1,37 @@
 local completion = {}
 
-completion["neovim/nvim-lspconfig"] = {
-  event = { "CursorHold", "CursorHoldI" },
-  config = require("completion.lsp"),
+completion['neovim/nvim-lspconfig'] = {
+  event = { 'CursorHold', 'CursorHoldI' },
+  config = require 'completion.lsp',
   dependencies = {
-    { "williamboman/mason.nvim" },
-    { "williamboman/mason-lspconfig.nvim" },
-    { "dnlhc/glance.nvim", cmd = "Glance" },
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
   },
 }
-completion["stevearc/conform.nvim"] = {
-  event = "LspAttach",
-  cmd = { "ConformInfo" },
-  config = require("completion.conform"),
+completion['dnlhc/glance.nvim'] = {
+  cmd = 'Glance',
+  config = require 'completion.glance',
 }
-completion["saghen/blink.cmp"] = {
-  version = "1.*",
+completion['stevearc/conform.nvim'] = {
+  event = 'LspAttach',
+  cmd = { 'ConformInfo' },
+  config = require 'completion.conform',
+}
+completion['saghen/blink.cmp'] = {
+  version = '1.*',
   dependencies = {
-    "fang2hou/blink-copilot",
-    "jdrupal-dev/css-vars.nvim",
-    "mikavilpas/blink-ripgrep.nvim",
-    "xzbdmw/colorful-menu.nvim",
+    'fang2hou/blink-copilot',
+    'jdrupal-dev/css-vars.nvim',
+    'mikavilpas/blink-ripgrep.nvim',
+    'xzbdmw/colorful-menu.nvim',
   },
-  opts = require("completion.blink-cmp"),
-  opts_extend = { "sources.default" },
+  opts = require 'completion.blink-cmp',
+  opts_extend = { 'sources.default' },
 }
-completion["zbirenbaum/copilot.lua"] = {
-  cmd = "Copilot",
+completion['zbirenbaum/copilot.lua'] = {
+  cmd = 'Copilot',
   -- event = "InsertEnter",
-  config = require("completion.copilot"),
+  config = require 'completion.copilot',
 }
 
 return completion

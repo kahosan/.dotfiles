@@ -12,14 +12,14 @@ local rhs_options = {}
 
 function rhs_options:new()
   local instance = {
-    cmd = "",
+    cmd = '',
     options = {
       noremap = false,
       silent = false,
       expr = false,
       nowait = false,
       callback = nil,
-      desc = "",
+      desc = '',
     },
     buffer = false,
   }
@@ -38,14 +38,14 @@ end
 ---@param cmd_string string
 ---@return map_rhs
 function rhs_options:map_cr(cmd_string)
-  self.cmd = (":%s<CR>"):format(cmd_string)
+  self.cmd = (':%s<CR>'):format(cmd_string)
   return self
 end
 
 ---@param cmd_string string
 ---@return map_rhs
 function rhs_options:map_args(cmd_string)
-  self.cmd = (":%s<Space>"):format(cmd_string)
+  self.cmd = (':%s<Space>'):format(cmd_string)
   return self
 end
 
@@ -53,7 +53,7 @@ end
 ---@return map_rhs
 function rhs_options:map_cu(cmd_string)
   -- <C-u> to eliminate the automatically inserted range in visual mode
-  self.cmd = (":<C-u>%s<CR>"):format(cmd_string)
+  self.cmd = (':<C-u>%s<CR>'):format(cmd_string)
   return self
 end
 
@@ -61,7 +61,7 @@ end
 --- Takes a callback that will be called when the key is pressed
 ---@return map_rhs
 function rhs_options:map_callback(callback)
-  self.cmd = ""
+  self.cmd = ''
   self.options.callback = callback
   return self
 end
@@ -150,13 +150,13 @@ end
 ---@param mapping table<string, map_rhs>
 function bind.nvim_load_mapping(mapping)
   for key, value in pairs(mapping) do
-    local modes, keymap = key:match("([^|]*)|?(.*)")
-    if type(value) == "table" then
-      for _, mode in ipairs(vim.split(modes, "")) do
+    local modes, keymap = key:match '([^|]*)|?(.*)'
+    if type(value) == 'table' then
+      for _, mode in ipairs(vim.split(modes, '')) do
         local rhs = value.cmd
         local options = value.options
         local buf = value.buffer
-        if buf and type(buf) == "number" then
+        if buf and type(buf) == 'number' then
           vim.api.nvim_buf_set_keymap(buf, mode, keymap, rhs, options)
         else
           vim.api.nvim_set_keymap(mode, keymap, rhs, options)

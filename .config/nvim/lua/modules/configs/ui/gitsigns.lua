@@ -1,14 +1,14 @@
 return function()
-  local mapping = require("keymap.call")
+  local mapping = require 'keymap.call'
 
-  require("gitsigns").setup({
+  require('gitsigns').setup {
     signs = {
-      add = { text = "┃" },
-      change = { text = "┃" },
-      delete = { text = "_" },
-      topdelete = { text = "‾" },
-      changedelete = { text = "~" },
-      untracked = { text = "┆" },
+      add = { text = '┃' },
+      change = { text = '┃' },
+      delete = { text = '_' },
+      topdelete = { text = '‾' },
+      changedelete = { text = '~' },
+      untracked = { text = '┆' },
     },
     auto_attach = true,
     on_attach = mapping.gitsigns,
@@ -19,6 +19,6 @@ return function()
     current_line_blame = true,
     diff_opts = { internal = true },
     watch_gitdir = { follow_files = true },
-    current_line_blame_opts = { delay = 1000, virt_text = true, virtual_text_pos = "eol" },
-  })
+    current_line_blame_opts = { delay = 1000, virt_text = true, virtual_text_pos = 'eol' },
+  }
 end

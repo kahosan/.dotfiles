@@ -1,5 +1,5 @@
-vim.api.nvim_create_autocmd("BufReadPost", {
-  pattern = "*",
+vim.api.nvim_create_autocmd('BufReadPost', {
+  pattern = '*',
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
     local lcount = vim.api.nvim_buf_line_count(0)
@@ -9,39 +9,39 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "alpha", "mason", "lazy" },
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'alpha', 'mason', 'lazy' },
   callback = function(data)
     vim.b[data.buf].miniindentscope_disable = true
   end,
 })
 
 -- fix docker compose lsp
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = {
-    "docker-compose.yaml",
-    "docker-compose.yml",
+    'docker-compose.yaml',
+    'docker-compose.yml',
   },
-  command = "set filetype=yaml.docker-compose",
+  command = 'set filetype=yaml.docker-compose',
 })
 
-vim.api.nvim_create_augroup("setIndent", { clear = true })
-vim.api.nvim_create_autocmd("Filetype", {
-  group = "setIndent",
+vim.api.nvim_create_augroup('setIndent', { clear = true })
+vim.api.nvim_create_autocmd('Filetype', {
+  group = 'setIndent',
   pattern = {
-    "xml",
-    "html",
-    "xhtml",
-    "css",
-    "scss",
-    "javascript",
-    "typescript",
-    "yaml",
-    "lua",
-    "jsx",
-    "tsx",
-    "typescriptreact",
-    "javascriptreact",
+    'xml',
+    'html',
+    'xhtml',
+    'css',
+    'scss',
+    'javascript',
+    'typescript',
+    'yaml',
+    'lua',
+    'jsx',
+    'tsx',
+    'typescriptreact',
+    'javascriptreact',
   },
-  command = "setlocal shiftwidth=2 tabstop=2 expandtab",
+  command = 'setlocal shiftwidth=2 tabstop=2 expandtab',
 })

@@ -1,56 +1,56 @@
 local tool = {}
 
-tool["folke/which-key.nvim"] = {
-  event = { "CursorHold", "CursorHoldI" },
-  config = require("tool.which-key"),
+tool['folke/which-key.nvim'] = {
+  event = { 'CursorHold', 'CursorHoldI' },
+  config = require 'tool.which-key',
 }
-tool["nvim-neo-tree/neo-tree.nvim"] = {
-  cmd = { "Neotree" },
-  config = require("tool.neo-tree"),
+tool['nvim-neo-tree/neo-tree.nvim'] = {
+  cmd = { 'Neotree' },
+  config = require 'tool.neo-tree',
   dependencies = {
-    "MunifTanjim/nui.nvim",
+    'MunifTanjim/nui.nvim',
   },
 }
-tool["folke/trouble.nvim"] = {
-  cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
-  config = require("tool.trouble"),
+tool['folke/trouble.nvim'] = {
+  cmd = { 'Trouble', 'TroubleToggle', 'TroubleRefresh' },
+  config = require 'tool.trouble',
 }
-tool["kylechui/nvim-surround"] = {
-  event = "VeryLazy",
+tool['kylechui/nvim-surround'] = {
+  event = 'VeryLazy',
   opts = {},
 }
-tool["tpope/vim-fugitive"] = {
-  cmd = { "Git", "G" },
+tool['tpope/vim-fugitive'] = {
+  cmd = { 'Git', 'G' },
 }
-tool["nvim-pack/nvim-spectre"] = {
+tool['nvim-pack/nvim-spectre'] = {
   lazy = true,
   opts = {
-    default = { replace = { cmd = "sd" } },
+    default = { replace = { cmd = 'sd' } },
   },
 }
-tool["kawre/neotab.nvim"] = {
-  event = "InsertEnter",
+tool['kawre/neotab.nvim'] = {
+  event = 'InsertEnter',
   opts = {},
 }
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --
 ----------------------------------------------------------------------
-tool["nvim-telescope/telescope.nvim"] = {
-  cmd = "Telescope",
-  config = require("tool.telescope"),
+tool['nvim-telescope/telescope.nvim'] = {
+  cmd = 'Telescope',
+  config = require 'tool.telescope',
   dependencies = {
-    { "nvim-lua/plenary.nvim" },
-    { "nvim-tree/nvim-web-devicons" },
-    { "jvgrootveld/telescope-zoxide" },
-    { "debugloop/telescope-undo.nvim" },
-    { "nvim-telescope/telescope-frecency.nvim" },
-    { "nvim-telescope/telescope-live-grep-args.nvim" },
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { 'nvim-lua/plenary.nvim' },
+    { 'nvim-tree/nvim-web-devicons' },
+    { 'jvgrootveld/telescope-zoxide' },
+    { 'debugloop/telescope-undo.nvim' },
+    { 'nvim-telescope/telescope-frecency.nvim' },
+    { 'nvim-telescope/telescope-live-grep-args.nvim' },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     {
-      "ahmedkhalf/project.nvim",
-      event = { "CursorHold", "CursorHoldI" },
-      config = require("tool.project"),
+      'ahmedkhalf/project.nvim',
+      event = { 'CursorHold', 'CursorHoldI' },
+      config = require 'tool.project',
     },
   },
 }

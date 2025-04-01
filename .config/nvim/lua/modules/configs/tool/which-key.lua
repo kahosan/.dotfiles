@@ -1,12 +1,12 @@
 return function()
   local icons = {
-    ui = require("modules.utils.icons").get("ui"),
-    misc = require("modules.utils.icons").get("misc"),
-    cmp = require("modules.utils.icons").get("cmp", true),
+    ui = require('modules.utils.icons').get 'ui',
+    misc = require('modules.utils.icons').get 'misc',
+    cmp = require('modules.utils.icons').get('cmp', true),
   }
 
-  require("which-key").setup({
-    preset = "classic",
+  require('which-key').setup {
+    preset = 'classic',
     delay = 700,
     plugins = {
       marks = true,
@@ -32,28 +32,28 @@ return function()
     },
     expand = 1,
     icons = {
-      group = "",
+      group = '',
       rules = false,
       colors = false,
       breadcrumb = icons.ui.Separator,
       separator = icons.misc.Vbar,
       keys = {
-        C = "C-",
-        M = "A-",
-        S = "S-",
-        BS = "<BS> ",
-        CR = "<CR> ",
-        NL = "<NL> ",
-        Esc = "<Esc> ",
-        Tab = "<Tab> ",
-        Up = "<Up> ",
-        Down = "<Down> ",
-        Left = "<Left> ",
-        Right = "<Right> ",
-        Space = "<Space> ",
-        ScrollWheelUp = "<ScrollWheelUp> ",
-        ScrollWheelDown = "<ScrollWheelDown> ",
+        C = 'C-',
+        M = 'A-',
+        S = 'S-',
+        BS = '<BS> ',
+        CR = '<CR> ',
+        NL = '<NL> ',
+        Esc = '<Esc> ',
+        Tab = '<Tab> ',
+        Up = '<Up> ',
+        Down = '<Down> ',
+        Left = '<Left> ',
+        Right = '<Right> ',
+        Space = '<Space> ',
+        ScrollWheelUp = '<ScrollWheelUp> ',
+        ScrollWheelDown = '<ScrollWheelDown> ',
       },
     },
-  })
+  }
 end

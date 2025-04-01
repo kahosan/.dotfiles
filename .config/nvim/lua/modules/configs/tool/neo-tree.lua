@@ -1,20 +1,20 @@
 return function()
-  vim.cmd("highlight NeoTreeGitConflict gui=bold")
-  vim.cmd("highlight NeoTreeGitUntracked gui=none")
-  vim.cmd("highlight NeoTreeRootName gui=bold")
+  vim.cmd 'highlight NeoTreeGitConflict gui=bold'
+  vim.cmd 'highlight NeoTreeGitUntracked gui=none'
+  vim.cmd 'highlight NeoTreeRootName gui=bold'
 
-  vim.cmd("highlight NeoTreeTabInactive ctermbg=0 guibg=0 guifg=#767F72")
-  vim.cmd("highlight NeoTreeTabSeparatorInactive ctermbg=0 guibg=0 guifg=#767F72")
-  vim.cmd("highlight NeoTreeTabSeparatorActive ctermbg=0 guibg=0 guifg=0")
+  vim.cmd 'highlight NeoTreeTabInactive ctermbg=0 guibg=0 guifg=#767F72'
+  vim.cmd 'highlight NeoTreeTabSeparatorInactive ctermbg=0 guibg=0 guifg=#767F72'
+  vim.cmd 'highlight NeoTreeTabSeparatorActive ctermbg=0 guibg=0 guifg=0'
 
-  local git_incos = require("modules.utils.icons").get("git")
+  local git_incos = require('modules.utils.icons').get 'git'
 
-  require("neo-tree").setup({
+  require('neo-tree').setup {
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = CUSTOM_BORDER,
     enable_git_status = true,
     enable_diagnostics = true,
-    open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
+    open_files_do_not_replace_types = { 'terminal', 'trouble', 'qf' }, -- when opening files, do not use windows containing these filetypes or buftypes
     sort_case_insensitive = false, -- used when sorting files and directories in the tree
     sort_function = nil, -- use a custom function for sorting files and directories in the tree
     default_component_configs = {
@@ -26,46 +26,46 @@ return function()
         padding = 1, -- extra padding on left hand side
         -- indent guides
         with_markers = true,
-        indent_marker = "│",
-        last_indent_marker = "└",
-        highlight = "NeoTreeIndentMarker",
+        indent_marker = '│',
+        last_indent_marker = '└',
+        highlight = 'NeoTreeIndentMarker',
         -- expander config, needed for nesting files
         with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
-        expander_collapsed = "",
-        expander_expanded = "",
-        expander_highlight = "NeoTreeExpander",
+        expander_collapsed = '',
+        expander_expanded = '',
+        expander_highlight = 'NeoTreeExpander',
       },
       icon = {
-        folder_closed = "󰉋",
-        folder_open = "󰉖",
-        folder_empty = "󱧴",
-        folder_empty_open = "󰉖",
+        folder_closed = '󰉋',
+        folder_open = '󰉖',
+        folder_empty = '󱧴',
+        folder_empty_open = '󰉖',
         -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
         -- then these will never be used.
-        default = "󰉢",
+        default = '󰉢',
       },
       modified = {
-        symbol = "[+]",
-        highlight = "NeoTreeModified",
+        symbol = '[+]',
+        highlight = 'NeoTreeModified',
       },
       name = {
         trailing_slash = false,
         use_git_status_colors = true,
-        highlight = "NeoTreeFileName",
+        highlight = 'NeoTreeFileName',
       },
       git_status = {
         symbols = {
           -- Change type
-          added = "A", -- or "✚", but this is redundant info if you use git_status_colors on the name
-          modified = "M", -- or "", but this is redundant info if you use git_status_colors on the name
-          deleted = "D", -- this can only be used in the git_status source
-          renamed = "R", -- this can only be used in the git_status source
+          added = 'A', -- or "✚", but this is redundant info if you use git_status_colors on the name
+          modified = 'M', -- or "", but this is redundant info if you use git_status_colors on the name
+          deleted = 'D', -- this can only be used in the git_status source
+          renamed = 'R', -- this can only be used in the git_status source
           -- Status type
-          untracked = "?",
-          ignored = "",
-          unstaged = "󰄱",
-          staged = "",
-          conflict = "",
+          untracked = '?',
+          ignored = '',
+          unstaged = '󰄱',
+          staged = '',
+          conflict = '',
         },
       },
     },
@@ -74,14 +74,14 @@ return function()
     -- see `:h neo-tree-custom-commands-global`
     commands = {},
     window = {
-      position = "left",
+      position = 'left',
       width = 28,
       mapping_options = {
         noremap = true,
         nowait = true,
       },
       mappings = {
-        ["l"] = "open",
+        ['l'] = 'open',
       },
     },
     nesting_rules = {},
@@ -92,8 +92,8 @@ return function()
         hide_gitignored = true,
         hide_hidden = true, -- only works on Windows for hidden files/directories
         hide_by_name = {
-          ".git",
-          "node_modules",
+          '.git',
+          'node_modules',
         },
         hide_by_pattern = { -- uses glob style patterns
           --"*.meta",
@@ -116,7 +116,7 @@ return function()
         leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
       },
       group_empty_dirs = false, -- when true, empty folders will be grouped together
-      hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
+      hijack_netrw_behavior = 'open_default', -- netrw disabled, opening a directory opens neo-tree
       -- in whatever position is specified in window.position
       -- "open_current",  -- netrw disabled, opening a directory opens within the
       -- window like netrw would, regardless of window.position
@@ -125,23 +125,23 @@ return function()
       -- instead of relying on nvim autocmd events.
       window = {
         mappings = {
-          ["<bs>"] = "navigate_up",
-          ["."] = "set_root",
-          ["H"] = "toggle_hidden",
-          ["/"] = "fuzzy_finder",
-          ["D"] = "fuzzy_finder_directory",
-          ["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
+          ['<bs>'] = 'navigate_up',
+          ['.'] = 'set_root',
+          ['H'] = 'toggle_hidden',
+          ['/'] = 'fuzzy_finder',
+          ['D'] = 'fuzzy_finder_directory',
+          ['#'] = 'fuzzy_sorter', -- fuzzy sorting using the fzy algorithm
           -- ["D"] = "fuzzy_sorter_directory",
-          ["f"] = "filter_on_submit",
-          ["<c-x>"] = "clear_filter",
-          ["[g"] = "prev_git_modified",
-          ["]g"] = "next_git_modified",
+          ['f'] = 'filter_on_submit',
+          ['<c-x>'] = 'clear_filter',
+          ['[g'] = 'prev_git_modified',
+          [']g'] = 'next_git_modified',
         },
         fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
-          ["<down>"] = "move_cursor_down",
-          ["<C-n>"] = "move_cursor_down",
-          ["<up>"] = "move_cursor_up",
-          ["<C-p>"] = "move_cursor_up",
+          ['<down>'] = 'move_cursor_down',
+          ['<C-n>'] = 'move_cursor_down',
+          ['<up>'] = 'move_cursor_up',
+          ['<C-p>'] = 'move_cursor_up',
         },
       },
 
@@ -158,25 +158,25 @@ return function()
     },
     git_status = {
       window = {
-        position = "float",
+        position = 'float',
         mappings = {
-          ["A"] = "git_add_all",
-          ["gu"] = "git_unstage_file",
-          ["ga"] = "git_add_file",
-          ["gr"] = "git_revert_file",
-          ["gc"] = "git_commit",
-          ["gp"] = "git_push",
-          ["gg"] = "git_commit_and_push",
-          ["oc"] = { "order_by_created", nowait = false },
-          ["od"] = { "order_by_diagnostics", nowait = false },
-          ["om"] = { "order_by_modified", nowait = false },
-          ["on"] = { "order_by_name", nowait = false },
-          ["os"] = { "order_by_size", nowait = false },
-          ["ot"] = { "order_by_type", nowait = false },
+          ['A'] = 'git_add_all',
+          ['gu'] = 'git_unstage_file',
+          ['ga'] = 'git_add_file',
+          ['gr'] = 'git_revert_file',
+          ['gc'] = 'git_commit',
+          ['gp'] = 'git_push',
+          ['gg'] = 'git_commit_and_push',
+          ['oc'] = { 'order_by_created', nowait = false },
+          ['od'] = { 'order_by_diagnostics', nowait = false },
+          ['om'] = { 'order_by_modified', nowait = false },
+          ['on'] = { 'order_by_name', nowait = false },
+          ['os'] = { 'order_by_size', nowait = false },
+          ['ot'] = { 'order_by_type', nowait = false },
         },
       },
     },
-  })
+  }
 
-  vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+  vim.cmd [[nnoremap \ :Neotree reveal<cr>]]
 end

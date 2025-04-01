@@ -1,19 +1,19 @@
 local icons = {
-  kind = require("modules.utils.icons").get("kind"),
-  type = require("modules.utils.icons").get("type"),
-  cmp = require("modules.utils.icons").get("cmp"),
+  kind = require('modules.utils.icons').get 'kind',
+  type = require('modules.utils.icons').get 'type',
+  cmp = require('modules.utils.icons').get 'cmp',
 }
 
 return {
   keymap = {
-    preset = "none",
-    ["<CR>"] = { "accept", "fallback" },
-    ["<Tab>"] = { "select_next", "fallback" },
-    ["<S-Tab>"] = { "select_prev", "fallback" },
-    ["<C-j>"] = { "select_next", "fallback" },
-    ["<C-k>"] = { "select_prev", "fallback" },
-    ["<C-n>"] = { "show", "fallback" },
-    ["<C-p>"] = { "cancel", "fallback" },
+    preset = 'none',
+    ['<CR>'] = { 'accept', 'fallback' },
+    ['<Tab>'] = { 'select_next', 'fallback' },
+    ['<S-Tab>'] = { 'select_prev', 'fallback' },
+    ['<C-j>'] = { 'select_next', 'fallback' },
+    ['<C-k>'] = { 'select_prev', 'fallback' },
+    ['<C-n>'] = { 'show', 'fallback' },
+    ['<C-p>'] = { 'cancel', 'fallback' },
   },
   cmdline = {
     completion = {
@@ -26,9 +26,9 @@ return {
     list = { selection = { auto_insert = false } },
     menu = {
       draw = {
-        treesitter = { "lsp" },
+        treesitter = { 'lsp' },
         gap = 2,
-        columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
+        columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
       },
     },
     documentation = {
@@ -38,7 +38,7 @@ return {
   },
   signature = { enabled = true },
   appearance = {
-    nerd_font_variant = "mono",
+    nerd_font_variant = 'mono',
     kind_icons = {
       Text = icons.kind.Text,
       Method = icons.kind.Method,
@@ -73,33 +73,33 @@ return {
     },
   },
   sources = {
-    default = { "lsp", "path", "buffer", "copilot", "css_vars", "ripgrep" },
+    default = { 'lsp', 'path', 'buffer', 'copilot', 'css_vars', 'ripgrep' },
     providers = {
       lsp = {
-        name = "LSP",
+        name = 'LSP',
         fallbacks = {},
       },
-      path = { name = "PATH" },
-      buffer = { name = "BUF", max_items = 5 },
-      cmdline = { name = "CL" },
+      path = { name = 'PATH' },
+      buffer = { name = 'BUF', max_items = 5 },
+      cmdline = { name = 'CL' },
       copilot = {
-        name = "CT",
-        module = "blink-copilot",
+        name = 'CT',
+        module = 'blink-copilot',
         async = true,
       },
       css_vars = {
-        name = "CSSV",
-        module = "css-vars.blink",
+        name = 'CSSV',
+        module = 'css-vars.blink',
         async = true,
-        opts = { search_extensions = { ".js", ".ts", ".jsx", ".tsx" } },
+        opts = { search_extensions = { '.js', '.ts', '.jsx', '.tsx' } },
       },
       ripgrep = {
-        name = "RIP",
-        module = "blink-ripgrep",
+        name = 'RIP',
+        module = 'blink-ripgrep',
         max_items = 10,
         async = true,
         opts = {
-          project_root_marker = ".git",
+          project_root_marker = '.git',
           project_root_fallback = false,
         },
       },
@@ -107,11 +107,11 @@ return {
   },
   fuzzy = {
     sorts = {
-      "exact",
+      'exact',
 
-      "score",
-      "sort_text",
+      'score',
+      'sort_text',
     },
-    implementation = "prefer_rust_with_warning",
+    implementation = 'prefer_rust_with_warning',
   },
 }

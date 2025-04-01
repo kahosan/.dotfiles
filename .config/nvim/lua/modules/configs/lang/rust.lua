@@ -8,5 +8,5 @@ return function()
     },
   }
 
-  require("rustaceanvim")
+  require 'rustaceanvim'
 end
