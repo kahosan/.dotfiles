@@ -1,5 +1,5 @@
 return function()
-  local glance = require 'lua.modules.configs.completion.glance'
+  local glance = require 'glance'
   local actions = glance.actions
 
   glance.setup {
