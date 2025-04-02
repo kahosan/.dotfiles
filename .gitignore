@@ -7,3 +7,5 @@
 .config/fish/completions/kubectl.fish
 .config/fish/fish_variables
 fisher
+
+.config/fish/conf.d/kazia.fish
