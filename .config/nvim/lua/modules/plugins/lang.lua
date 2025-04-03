@@ -2,7 +2,8 @@ local lang = {}
 
 lang['ray-x/go.nvim'] = {
   ft = { 'go', 'gomod', 'gosum' },
-  build = ':GoInstallBinaries',
+  -- manually install
+  -- build = ':GoInstallBinaries',
   config = require 'lang.go',
   dependencies = { 'ray-x/guihua.lua' },
 }
