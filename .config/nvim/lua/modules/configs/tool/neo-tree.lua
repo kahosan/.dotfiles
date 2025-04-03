@@ -1,14 +1,4 @@
 return function()
-  vim.cmd 'highlight NeoTreeGitConflict gui=bold'
-  vim.cmd 'highlight NeoTreeGitUntracked gui=none'
-  vim.cmd 'highlight NeoTreeRootName gui=bold'
-
-  vim.cmd 'highlight NeoTreeTabInactive ctermbg=0 guibg=0 guifg=#767F72'
-  vim.cmd 'highlight NeoTreeTabSeparatorInactive ctermbg=0 guibg=0 guifg=#767F72'
-  vim.cmd 'highlight NeoTreeTabSeparatorActive ctermbg=0 guibg=0 guifg=0'
-
-  local git_incos = require('modules.utils.icons').get 'git'
-
   require('neo-tree').setup {
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     popup_border_style = CUSTOM_BORDER,
@@ -61,11 +51,11 @@ return function()
           deleted = 'D', -- this can only be used in the git_status source
           renamed = 'R', -- this can only be used in the git_status source
           -- Status type
-          untracked = '?',
-          ignored = '',
-          unstaged = '󰄱',
-          staged = '',
-          conflict = '',
+          untracked = 'U',
+          ignored = 'IG',
+          unstaged = 'u',
+          staged = 'S',
+          conflict = 'C',
         },
       },
     },

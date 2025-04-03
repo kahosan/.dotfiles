@@ -8,7 +8,7 @@ local icons = {
 ---@type blink.cmp.Config
 return {
   keymap = {
-    preset = 'none',
+    preset = 'default',
     ['<CR>'] = { 'accept', 'fallback' },
     ['<Tab>'] = { 'select_next', 'fallback' },
     ['<S-Tab>'] = { 'select_prev', 'fallback' },
@@ -30,7 +30,7 @@ return {
       draw = {
         treesitter = { 'lsp' },
         gap = 2,
-        columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
+        columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'source_name' } },
       },
     },
     documentation = {
@@ -80,9 +80,10 @@ return {
       lsp = {
         name = 'LSP',
         fallbacks = {},
+        score_offset = 100,
       },
       path = { name = 'PATH' },
-      buffer = { name = 'BUF', max_items = 5, score_offset = -1 },
+      buffer = { name = 'BUF', max_items = 5, score_offset = -3 },
       cmdline = { name = 'CL' },
       copilot = {
         name = 'CT',
