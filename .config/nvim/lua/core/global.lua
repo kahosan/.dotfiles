@@ -7,7 +7,6 @@ return {
   is_linux = os_name == 'Linux',
   is_windows = os_name == 'Windows_NT',
   is_wsl = vim.fn.has 'wsl' == 1,
-  is_ssh = vim.env.SSH_CONNECTION ~= nil,
   vim_path = vim.fn.stdpath 'config',
   cache_dir = vim.fn.stdpath 'cache',
   data_dir = string.format('%s/site/', vim.fn.stdpath 'data'),

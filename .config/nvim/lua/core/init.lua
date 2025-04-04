@@ -41,18 +41,7 @@ elseif global.is_wsl then
     cache_enabled = 0,
   }
 elseif global.is_ssh then
-  vim.notify 'Use OSC 52 clipboard'
-  vim.g.clipboard = {
-    name = 'OSC 52',
-    copy = {
-      ['+'] = require('vim.ui.clipboard.osc52').copy '+',
-      ['*'] = require('vim.ui.clipboard.osc52').copy '*',
-    },
-    paste = {
-      ['+'] = require('vim.ui.clipboard.osc52').paste '+',
-      ['*'] = require('vim.ui.clipboard.osc52').paste '*',
-    },
-  }
+  vim.g.clipboard = 'osc52'
 end
 
 if global.is_windows then
