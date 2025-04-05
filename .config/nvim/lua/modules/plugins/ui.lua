@@ -28,10 +28,13 @@ ui['nvim-lualine/lualine.nvim'] = {
   config = require 'ui.lualine',
 }
 ui['echasnovski/mini.indentscope'] = {
-  opts = {
-    -- symbol = "│",
-    symbol = '|',
-  },
+  config = function()
+    local mini_is = require 'mini.indentscope'
+    mini_is.setup {
+      symbol = '│',
+      draw = { delay = 0, animation = mini_is.gen_animation.none() },
+    }
+  end,
 }
 ui['lukas-reineke/indent-blankline.nvim'] = {
   main = 'ibl',
