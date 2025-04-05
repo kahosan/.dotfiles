@@ -43,6 +43,7 @@ settings['lsp_deps'] = {
   'bashls',
   'html',
   'jsonls',
+  'yamlls',
   'lua_ls',
   -- 'pyright',
   'eslint',
