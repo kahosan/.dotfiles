@@ -20,10 +20,10 @@ opts = get_options()
 ICON: str = "  "
 ICON_LENGTH: int = len(ICON)
 ICON_FG: int = as_rgb(color_as_int(opts.color1))
-# ICON_BG: int = as_rgb(color_as_int(opts.color8))
+ICON_BG: int = as_rgb(color_as_int(opts.color8))
 ICON_BG: int = 0
 
-CLOCK_FG = 0
+CLOCK_FG = as_rgb(0xFFE2E2)
 CLOCK_BG = as_rgb(color_as_int(opts.color9))
 DATE_FG = 0
 DATE_BG = as_rgb(color_as_int(opts.color8))
@@ -126,8 +126,7 @@ def _draw_right_status(screen: Screen, is_last: bool) -> int:
     screen.cursor.fg = 0
     screen.cursor.bg = 0
 
-    screen.cursor.x = max(
-        screen.cursor.x, screen.columns - right_status_length)
+    screen.cursor.x = max(screen.cursor.x, screen.columns - right_status_length)
     return screen.cursor.x
 
 
@@ -141,7 +140,7 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
-    _draw_icon(screen, index)
+    # _draw_icon(screen, index)
     # Set cursor to where `left_status` ends, instead `right_status`,
     # to enable `open new tab` feature
     end = _draw_left_status(
