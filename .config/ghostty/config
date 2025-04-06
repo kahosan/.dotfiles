@@ -1,3 +1,2 @@
 config-file = default.conf
 config-file = keymap.conf
-config-file = current-theme.conf
