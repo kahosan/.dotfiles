@@ -69,7 +69,6 @@ ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 
 # Git ssh
 read -rp "Need to configure git? [y/N] " confirm
-
 if [[ "$confirm" == "y" ]]; then
 	git_email="$(git config user.email)"
 	echo "Generating new SSH key for $git_email ..."
@@ -97,5 +96,3 @@ if [[ "$confirm" == "y" ]]; then
 
 	read -rp "Press any key to continue once you have added the SSH key to your GitHub account ..."
 fi
-
-fish
