@@ -75,9 +75,13 @@ alias cl clear
 alias bry hexyl
 alias nio "ni --prefer-offline"
 alias refish "source ~/.config/fish/config.fish"
-alias kssh "kitty +kitten ssh"
 alias hr 'history --merge'
 alias logv lnav
+
+# kitty
+alias kssh "kitty +kitten ssh"
+alias icat="kitten icat"
+alias kd="kitten diff"
 
 # git alias
 alias glo "git log --graph --pretty=format:'%C(auto)%h -%Creset %d %s %Cgreen(%cr)%Creset' --abbrev-commit"
@@ -105,10 +109,6 @@ end
 function digl
     dig $argv | nali
 end
-
-# highlight help
-abbr -a --position anywhere -- '-h' '-h 2>&1 | bat -plhelp'
-abbr -a --position anywhere -- '--help' '--help 2>&1 | bat -plhelp'
 
 # node action
 # alias s "nr start"
