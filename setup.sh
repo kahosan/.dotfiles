@@ -38,7 +38,7 @@ fi
 
 packages="cmake git wget curl tmux unzip rar fish"
 echo "need packages: $packages"
-read -p -r "Have you installed the package yet? [y/N] " confirm
+read -rp "Have you installed the package yet? [y/N] " confirm
 if [[ "$confirm" != "y" ]]; then
 	echo "Please install the packages first"
 	exit 1
@@ -68,7 +68,7 @@ ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 
 # Git ssh
-read -p -r "Need to configure git? [y/N] " confirm
+read -rp "Need to configure git? [y/N] " confirm
 
 if [[ "$confirm" == "y" ]]; then
 	git_email="$(git config user.email)"
@@ -95,7 +95,7 @@ if [[ "$confirm" == "y" ]]; then
 		exit 1
 	fi
 
-	read -p -r "Press any key to continue once you have added the SSH key to your GitHub account ..."
+	read -rp "Press any key to continue once you have added the SSH key to your GitHub account ..."
 fi
 
 fish
