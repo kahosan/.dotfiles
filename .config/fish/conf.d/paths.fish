@@ -3,12 +3,26 @@ fish_add_path ~/.cargo/bin
 fish_add_path ~/.pnpm-global/bin
 
 if test (uname) = Darwin
-    fish_add_path /opt/homebrew/bin
-    fish_add_path /opt/homebrew/sbin
-    fish_add_path /opt/homebrew/opt/libpq/bin
+    if test -f "/opt/homebrew/bin/brew"
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        fish_add_path /opt/homebrew/opt/libpq/bin
+    end
+
 end
 
 if test (uname) = Linux
+    if test -f "/home/linuxbrew/.linuxbrew/bin/brew"
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+        if test -d (brew --prefix)"/share/fish/completions"
+            set -p fish_complete_path (brew --prefix)/share/fish/completions
+        end
+
+        if test -d (brew --prefix)"/share/fish/vendor_completions.d"
+            set -p fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
+        end
+    end
+
 end
 
 if type -q go
