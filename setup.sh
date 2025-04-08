@@ -3,29 +3,28 @@ set -e
 
 require() {
 	command -v "${1}" &>/dev/null && return 0
-	printf 'Missing required application: %s\n' "${1}" >&2
+	printf 'missing required application: %s\n' "${1}" >&2
 	return 1
 }
 
 if ! require brew; then
-	echo "Installing Hombrew"
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 if ! require starship; then
-	# Install Startship
-	echo "Installing Startship ..."
 	if ! curl -fsSL https://starship.rs/install.sh | sh; then
-		echo "Failed to install Startship"
+		echo -e "\nfailed to install Startship"
 		exit 1
 	fi
 fi
 
 if [[ ! -d "$HOME/.local/bin" ]]; then
+	echo -e "mkdir .local/bin folder\n"
 	mkdir -p "$HOME/.local/bin"
 fi
 
 if [[ ! -d "$HOME/.ssh" ]]; then
+	echo -e "mkdir .ssh folder\n"
 	mkdir "$HOME/.ssh"
 	touch "$HOME/.ssh/authorized_keys"
 	chmod 600 "$HOME/.ssh"
@@ -33,14 +32,15 @@ if [[ ! -d "$HOME/.ssh" ]]; then
 fi
 
 if [[ -d "$HOME/.config/fish" ]]; then
+	echo -e "mv old fish folder to fish.bak\n"
 	mv "$HOME/.config/fish" "$HOME/.config/fish.bak"
 fi
 
 packages="cmake git wget curl tmux unzip rar fish"
 echo "need packages: $packages"
-read -rp "Have you installed the package yet? [y/N] " confirm
+read -rp "have you installed the package yet? [y/N] " confirm
 if [[ "$confirm" != "y" ]]; then
-	echo "Please install the packages first"
+	echo -e "\nplease install the packages first"
 	exit 1
 fi
 
@@ -49,18 +49,16 @@ fi
 SOURCE_DIR="$HOME/.dotfiles/.config"
 TARGET_DIR="$HOME/.config"
 
-echo "Creating symlinks from $SOURCE_DIR to $TARGET_DIR..."
-
 for item in "$SOURCE_DIR"/*; do
 	item_name=$(basename "$item")
 
 	target_path="$TARGET_DIR/$item_name"
 
 	if [ -e "$target_path" ]; then
-		echo "WARNING: $target_path already exists, skipping..."
+		echo -e "WARNING: $target_path already exists, skipping...\n"
 	else
 		ln -s "$item" "$target_path"
-		echo "Created symlink: $target_path -> $item"
+		echo -e "Created symlink: $target_path -> $item\n"
 	fi
 done
 
@@ -68,31 +66,29 @@ ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 
 # Git ssh
-read -rp "Need to configure git? [y/N] " confirm
+read -rp "need to configure git? [y/N] " confirm
 if [[ "$confirm" == "y" ]]; then
 	git_email="$(git config user.email)"
-	echo "Generating new SSH key for $git_email ..."
+	echo -e "generating new SSH key for $git_email ...\n"
 	if ! ssh-keygen -t ed25519 -C "$git_email"; then
-		echo "Failed to generate SSH key"
+		echo "failed to generate SSH key"
 		exit 1
 	fi
 
-	echo "Starting ssh-agent in the background ..."
+	echo -e "starting ssh-agent in the background ...\n"
 	if ! eval "$(ssh-agent -s)"; then
-		echo "Failed to start ssh-agent"
+		echo "failed to start ssh-agent"
 		exit 1
 	fi
 
 	if ! ssh-add ~/.ssh/id_ed25519; then
-		echo "Failed to add SSH key to ssh-agent"
+		echo "failed to add SSH key to ssh-agent"
 		exit 1
 	fi
 
-	echo "Copying public key to clipboard, please paste it into your GitHub account settings ..."
+	echo -e "copying public key to clipboard, please paste it into your GitHub account settings ...\n"
 	if ! cat ~/.ssh/id_ed25519.pub; then
-		echo "Failed to copy public key to clipboard"
+		echo "failed to copy public key to clipboard"
 		exit 1
 	fi
-
-	read -rp "Press any key to continue once you have added the SSH key to your GitHub account ..."
 fi
