@@ -39,6 +39,7 @@ fi
 packages="cmake git wget curl tmux unzip rar fish"
 echo "need packages: $packages"
 read -rp "have you installed the package yet? [y/N] " confirm
+echo -e "\n"
 if [[ "$confirm" != "y" ]]; then
 	echo -e "\nplease install the packages first"
 	exit 1
@@ -55,12 +56,13 @@ for item in "$SOURCE_DIR"/*; do
 	target_path="$TARGET_DIR/$item_name"
 
 	if [ -e "$target_path" ]; then
-		echo -e "WARNING: $target_path already exists, skipping...\n"
+		echo -e "WARNING: $target_path already exists, skipping..."
 	else
 		ln -s "$item" "$target_path"
-		echo -e "Created symlink: $target_path -> $item\n"
+		echo -e "Created symlink: $target_path -> $item"
 	fi
 done
+echo -e "\n"
 
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig

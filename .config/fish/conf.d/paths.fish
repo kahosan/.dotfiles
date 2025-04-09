@@ -1,6 +1,4 @@
-fish_add_path ~/.local/bin
-fish_add_path ~/.cargo/bin
-fish_add_path ~/.pnpm-global/bin
+fish_add_path ~/.local/bin ~/.cargo/bin ~/.pnpm-global/bin
 
 if test (uname) = Darwin
     if test -f "/opt/homebrew/bin/brew"
