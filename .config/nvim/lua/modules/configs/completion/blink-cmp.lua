@@ -122,7 +122,7 @@ return {
     },
     implementation = 'prefer_rust_with_warning',
     prebuilt_binaries = {
-      force_version = 'v1.0.0',
+      force_version = 'v1.1.1',
     },
   },
 }
