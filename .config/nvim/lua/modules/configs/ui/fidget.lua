@@ -14,7 +14,7 @@ return function()
       },
     },
     notification = {
-      override_vim_notify = true,
+      override_vim_notify = false,
       configs = {
         default = {
           icon = '',

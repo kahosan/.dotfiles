@@ -91,8 +91,8 @@ return function()
       lualine_a = { 'mode' },
       lualine_b = { 'branch', { 'diff', source = diff_source }, components.diagnostics },
       lualine_c = { 'filename' },
-      lualine_x = { 'encoding', components.fileformat, 'location' },
-      lualine_y = { 'progress', components.python_venv },
+      lualine_x = { 'encoding', components.fileformat, 'bo:filetype' },
+      lualine_y = { 'location', 'progress', components.python_venv },
       lualine_z = { components.ctime },
     },
     inactive_sections = {
