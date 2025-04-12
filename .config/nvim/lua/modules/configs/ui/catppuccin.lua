@@ -63,7 +63,7 @@ return function()
       mini = { enabled = true, indentscope_color = '' },
       neotree = true,
       noice = false,
-      render_markdown = true,
+      render_markdown = false,
       semantic_tokens = true,
       symbols_outline = true,
       telescope = { enabled = true, style = 'nvchad' },

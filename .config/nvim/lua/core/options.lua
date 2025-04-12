@@ -59,7 +59,7 @@ o.splitbelow = true
 o.splitright = true
 o.termguicolors = true
 o.wrap = false
-o.conceallevel = 3
+o.conceallevel = 0
 o.winminwidth = 5
 
 if vim.fn.has 'nvim-0.9.0' == 1 then
