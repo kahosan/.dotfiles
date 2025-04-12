@@ -64,6 +64,7 @@ for item in "$SOURCE_DIR"/*; do
 done
 echo -e "\n"
 
+ln -s ~/.dotfiles/scripts ~/.config/scripts
 ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 
