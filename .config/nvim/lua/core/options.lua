@@ -12,7 +12,8 @@ o.ignorecase = true
 o.history = 2000
 o.scrolloff = 12
 -- o.jumpoptions = 'stack'
-o.sessionoptions = 'buffers,curdir,tabpages,winpos,winsize'
+-- o.sessionoptions = 'buffers,curdir,tabpages,winpos,winsize'
+o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 o.smartcase = true
 o.swapfile = false
 o.switchbuf = 'usetab,uselast'
@@ -24,7 +25,6 @@ o.whichwrap = 'h,l,<,>,[,],~'
 -- o.wildignore =
 --   '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**'
 -- o.wildignorecase = true
-o.confirm = true
 
 -- Indent
 o.shiftround = true

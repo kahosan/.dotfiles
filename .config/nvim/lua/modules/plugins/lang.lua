@@ -22,7 +22,7 @@ lang['mrcjkb/rustaceanvim'] = {
 lang['saecki/crates.nvim'] = {
   event = 'BufRead Cargo.toml',
   ft = 'toml',
-  opts = { completion = { cmp = { enabled = true } } },
+  opts = {},
   dependencies = { 'nvim-lua/plenary.nvim' },
 }
 lang['folke/lazydev.nvim'] = {

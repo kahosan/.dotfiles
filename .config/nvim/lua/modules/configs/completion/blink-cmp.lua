@@ -18,6 +18,10 @@ return {
     ['<C-p>'] = { 'cancel', 'fallback' },
   },
   cmdline = {
+    keymap = {
+      ['<C-j>'] = { 'select_next', 'fallback' },
+      ['<C-k>'] = { 'select_prev', 'fallback' },
+    },
     completion = {
       list = { selection = { preselect = false } },
       menu = { auto_show = true },

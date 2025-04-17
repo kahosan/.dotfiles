@@ -41,6 +41,17 @@ tool['folke/snacks.nvim'] = {
     },
   },
 }
+tool['rmagatti/auto-session'] = {
+  lazy = false,
+  cmd = { 'SessionRestore', 'SessionSearch', 'SessionSave' },
+  ---@module "auto-session"
+  ---@type AutoSession.Config
+  opts = {
+    log_level = 'error',
+    suppressed_dirs = { '~/', '~/Downloads', '/' },
+    bypass_save_filetypes = { 'help', 'alpha', 'telescope', 'trouble' },
+  },
+}
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --
@@ -56,11 +67,6 @@ tool['nvim-telescope/telescope.nvim'] = {
     { 'nvim-telescope/telescope-frecency.nvim' },
     { 'nvim-telescope/telescope-live-grep-args.nvim' },
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    {
-      'ahmedkhalf/project.nvim',
-      event = { 'CursorHold', 'CursorHoldI' },
-      config = require 'tool.project',
-    },
   },
 }
 

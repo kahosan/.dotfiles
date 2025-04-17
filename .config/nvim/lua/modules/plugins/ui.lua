@@ -15,10 +15,6 @@ ui['Jint-lzxy/nvim'] = {
   name = 'catppuccin',
   config = require 'ui.catppuccin',
 }
-ui['j-hui/fidget.nvim'] = {
-  event = 'LspAttach',
-  config = require 'ui.fidget',
-}
 ui['lewis6991/gitsigns.nvim'] = {
   event = { 'CursorHold', 'CursorHoldI' },
   config = require 'ui.gitsigns',

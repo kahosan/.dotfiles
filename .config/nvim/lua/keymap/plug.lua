@@ -40,6 +40,7 @@ local mappings = {
   neotree = {
     -- Plugin Neotree
     ['n|<C-n>'] = map_cr('Neotree toggle'):with_noremap():with_silent():with_desc 'filetree: Toggle',
+    ['n|<leader>e'] = map_cr('Neotree reveal'):with_noremap():with_silent():with_desc 'filetree: Reveal',
   },
   telescope = {
     -- Plugin Telescope
@@ -50,12 +51,6 @@ local mappings = {
       :with_noremap()
       :with_silent()
       :with_desc 'editn: Show undo history',
-    ['n|<leader>fp'] = map_callback(function()
-        require('telescope').extensions.projects.projects {}
-      end)
-      :with_noremap()
-      :with_silent()
-      :with_desc 'find: Project',
     ['n|<leader>fr'] = map_callback(function()
         require('telescope').extensions.frecency.frecency()
       end)
