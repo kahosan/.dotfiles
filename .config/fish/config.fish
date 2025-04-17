@@ -77,6 +77,7 @@ alias nio "ni --prefer-offline"
 alias refish "source ~/.config/fish/config.fish"
 alias hr 'history --merge'
 alias logv lnav
+alias dc 'docker compose'
 
 # kitty
 alias kssh "kitty +kitten ssh"

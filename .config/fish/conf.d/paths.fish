@@ -6,6 +6,9 @@ if test (uname) = Darwin
         fish_add_path /opt/homebrew/opt/libpq/bin
     end
 
+    if test -d "$HOME/.orbstack/bin"
+        fish_add_path "$HOME/.orbstack/bin"
+    end
 end
 
 if test (uname) = Linux
