@@ -14,11 +14,11 @@ lang['ray-x/go.nvim'] = {
 --     { 'nvim-lua/plenary.nvim' },
 --   },
 -- }
-lang['mrcjkb/rustaceanvim'] = {
-  ft = 'rust',
-  init = require 'lang.rust',
-  dependencies = { 'nvim-lua/plenary.nvim' },
-}
+-- lang['mrcjkb/rustaceanvim'] = {
+--   ft = 'rust',
+--   init = require 'lang.rust',
+--   dependencies = { 'nvim-lua/plenary.nvim' },
+-- }
 lang['saecki/crates.nvim'] = {
   event = 'BufRead Cargo.toml',
   ft = 'toml',

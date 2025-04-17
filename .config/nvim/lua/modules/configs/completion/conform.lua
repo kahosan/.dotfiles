@@ -2,7 +2,7 @@ return function()
   require('conform').setup {
     format_on_save = {
       timeout_ms = 500,
-      lsp_format = 'first',
+      lsp_format = 'fallback',
       filter = function(client)
         return client.name == 'eslint'
       end,
@@ -19,6 +19,7 @@ return function()
       lua = { 'stylua' },
       c = { 'clang-format' },
       cpp = { 'clang-format' },
+      rust = { 'rustfmt' },
       javascript = {},
       typescript = {},
       javascriptreact = {},
