@@ -1,8 +1,11 @@
 return function()
   require('conform').setup {
     format_on_save = {
-      timeout_ms = 1000,
-      lsp_format = 'fallback',
+      timeout_ms = 500,
+      lsp_format = 'first',
+      filter = function(client)
+        return client.name == 'eslint'
+      end,
     },
     formatters = {
       clang_format = {

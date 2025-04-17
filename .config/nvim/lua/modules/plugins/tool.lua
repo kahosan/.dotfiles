@@ -49,7 +49,7 @@ tool['rmagatti/auto-session'] = {
   opts = {
     log_level = 'error',
     suppressed_dirs = { '~/', '~/Downloads', '/' },
-    bypass_save_filetypes = { 'help', 'alpha', 'telescope', 'trouble' },
+    bypass_save_filetypes = { 'help', 'alpha', 'telescope', 'trouble', 'neo-tree' },
   },
 }
 
