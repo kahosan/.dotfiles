@@ -57,6 +57,7 @@ style = "bold white"
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
 
 [git_status]
+disabled = true
 format = '([$all_status]($style) )'
 conflicted = "*"
 # ahead = ">"
