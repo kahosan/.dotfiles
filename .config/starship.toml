@@ -2,30 +2,15 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 add_newline = false
 
-# format = """
-# $all\
-# $fill\
-# $time\
-# $line_break\
-# $character
-# """
-
 format = """
+${env_var.ST_PREFIX}\
 $username\
-$hostname\
-$localip\
-$shlvl\
-$singularity\
-$kubernetes\
 $directory\
-$vcsh\
-$fossil_branch\
 $git_branch\
 $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
-$hg_branch\
 $nodejs\
 $rust\
 $golang\
@@ -43,68 +28,70 @@ symbol = " "
 success_symbol = "[](bold red)"
 error_symbol = "[](bold red)"
 
-[hostname]
-ssh_only = false
-format =  "\\[[megumin](bold red) in "
-trim_at = "."
-disabled = false
+[username]
+style_user = 'bold red'
+style_root = 'bold white'
+format =  "\\[[megumin]($style) in "
+show_always = true
+aliases = { "corpuser034g" = "matchai" }
 
 [time]
-disabled = false
 style = "bold bright-black"
 format = "[$time]($style)"
 utc_time_offset = "+8"
-
-[username]
-disabled = true
+disabled = false
 
 [directory]
 truncation_length = 5
 format = "\\[[$path]($style)[$lock_symbol]($lock_style)\\] "
 
-[line_break]
-disabled = false
-
-[package]
-disabled = true
-
 [git_branch]
 truncation_symbol = ""
-style = "bold bright-black"
+symbol = ""
+style = "purple"
 
 [git_commit]
 commit_hash_length = 7
 style = "bold white"
-# disabled = false
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
-# disabled = true
 
 [git_status]
-disabled = true
+format = '([$all_status]($style) )'
+conflicted = "*"
+# ahead = ">"
+# behind = "<"
+# diverged = "_"
+untracked = "+"
+stashed = "#"
+modified = "_"
+staged = "/"
+renamed = "="
+deleted = "-"
+style = "white"
 
 [nodejs]
-format = "[via](bright-white) \\[[$version](bold green)\\] "
+format = "via \\[[$version]($style)\\] "
+style = "bold green"
 detect_files = ["package.json"]
-# disabled = true
 
 [golang]
-format = "[via](bright-white) \\[[$version](bold blue)\\] "
-# disabled = rue
+format = "via \\[[$version]($style)\\] "
+style = "bold blue"
 
 [python]
-# format = 'via [py (${version})]($style) [(\($virtualenv\) )](cyan bold)'
-format = '[(\($virtualenv\))](cyan bold) '
-# disabled = true
+format = "via \\[[$version( $virtualenv)]($style)\\] "
+style = "bold cyan"
 
 [rust]
-format = "[via](bright-white) \\[[$version](bold red)\\] "
-# disabled = true
+format = "via \\[[$version]($style)\\] "
+style = "bold red"
 
 [lua]
-format = "[via](bright-white) \\[[$version](bold blue)\\] "
-# disabled = true
+format = "via \\[[$version]($style)\\] "
+style = "bold blue"
 
-[container]
-disabled = true
+[env_var.ST_PREFIX]
+format = "$env_value"
+
