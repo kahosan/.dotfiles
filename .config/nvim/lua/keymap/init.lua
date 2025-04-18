@@ -29,7 +29,11 @@ local mappings = {
       :with_desc 'lsp diagnostic info',
     ['n|gD'] = map_cr('Glance definitions'):with_silent():with_noremap():with_nowait():with_desc 'lsp: definitions',
     ['n|gl'] = map_cr('Glance references'):with_silent():with_noremap():with_nowait():with_desc 'lsp: references',
-    ['n|gi'] = map_cr('Glance references'):with_silent():with_noremap():with_nowait():with_desc 'lsp: implementations',
+    ['n|gi'] = map_cr('Glance implementations')
+      :with_silent()
+      :with_noremap()
+      :with_nowait()
+      :with_desc 'lsp: implementations',
     ['n|K'] = map_callback(function()
         vim.lsp.buf.hover { border = 'single', max_height = 25, max_width = 70 }
       end)
