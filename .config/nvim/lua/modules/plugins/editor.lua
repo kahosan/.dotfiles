@@ -7,7 +7,7 @@ editor['ojroques/nvim-bufdel'] = {
   cmd = { 'BufDel', 'BufDelAll', 'BufDelOthers' },
 }
 editor['sindrets/diffview.nvim'] = {
-  cmd = { 'DiffviewOpen', 'DiffviewClose' },
+  cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewFileHistory' },
 }
 editor['romainl/vim-cool'] = {
   event = { 'CursorMoved', 'InsertEnter' },

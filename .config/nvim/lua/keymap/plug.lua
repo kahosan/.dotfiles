@@ -44,7 +44,7 @@ local mappings = {
   },
   telescope = {
     -- Plugin Telescope
-    ['n|<leader>fgr'] = map_cr('Telescope lsp_references'):with_noremap():with_silent():with_desc 'lsp: lsp_references',
+    ['n|<leader>fl'] = map_cr('Telescope lsp_references'):with_noremap():with_silent():with_desc 'lsp: lsp_references',
     ['n|<leader>u'] = map_callback(function()
         require('telescope').extensions.undo.undo()
       end)
@@ -63,20 +63,30 @@ local mappings = {
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in project',
+    ['x|<leader>fw'] = map_callback(function()
+        require('telescope-live-grep-args.shortcuts').grep_visual_selection()
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'find: Word in project by select_word',
+    ['x|<leader>fs'] = map_callback(function()
+        require('telescope-live-grep-args.shortcuts').grep_word_visual_selection_current_buffer()
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'find: Word in buffer by select_word',
     ['n|<leader>fe'] = map_cu('Telescope oldfiles'):with_noremap():with_silent():with_desc 'find: File by history',
     ['n|<leader>ff'] = map_cu('Telescope find_files'):with_noremap():with_silent():with_desc 'find: File in project',
     ['n|<leader>fc'] = map_cu('Telescope colorscheme')
       :with_noremap()
       :with_silent()
       :with_desc 'ui: Change colorscheme for current session',
-    ['n|<leader>fn'] = map_cu(':enew'):with_noremap():with_silent():with_desc 'buffer: New',
     ['n|<leader>fg'] = map_cu('Telescope git_files'):with_noremap():with_silent():with_desc 'find: file in git project',
     ['n|<leader>fz'] = map_cu('Telescope zoxide list')
       :with_noremap()
       :with_silent()
-      :with_desc 'editn: Change current direrctory by zoxide',
+      :with_desc 'editn: Change current directory by zoxide',
     ['n|<leader>fb'] = map_cu('Telescope buffers'):with_noremap():with_silent():with_desc 'find: Buffer opened',
-    ['n|<leader>fs'] = map_cu('Telescope grep_string'):with_noremap():with_silent():with_desc 'find: Current word',
     ['n|<C-p>'] = map_callback(command_panel):with_silent():with_noremap():with_desc 'tool: Toggle command panel',
   },
   spectre = {

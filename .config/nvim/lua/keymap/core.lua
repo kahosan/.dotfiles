@@ -26,6 +26,7 @@ local builtins = {
   ['n|<A-;>'] = map_cr('resize -2'):with_silent():with_desc 'window: Resize -2 horizontally',
   ["n|<A-'>"] = map_cr('resize +2'):with_silent():with_desc 'window: Resize +2 horizontally',
   ['n|<leader>o'] = map_cr('setlocal spell! spelllang=en_us'):with_desc 'editn: Toggle spell check',
+  ['n|<leader>fn'] = map_cu(':enew'):with_noremap():with_silent():with_desc 'buffer: New',
 
   -- Insert mode
   ['i|<C-c>'] = map_cmd('<Esc>'):with_noremap():with_desc 'remap esc',
@@ -53,6 +54,9 @@ local builtins = {
   ['v|K'] = map_cmd(":m '<-2<CR>gv=gv"):with_desc 'editv: Move this line up',
   ['v|<'] = map_cmd('<gv'):with_desc 'editv: Decrease indent',
   ['v|>'] = map_cmd('>gv'):with_desc 'editv: Increase indent',
+
+  -- X mode
+  ['x|/'] = map_cmd('<Esc>/\\%V'):with_desc 'search within visual selection',
 }
 
 bind.nvim_load_mapping(builtins)

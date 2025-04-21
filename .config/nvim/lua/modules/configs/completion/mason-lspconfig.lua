@@ -12,8 +12,8 @@ M.setup = function()
     signs = true,
     underline = true,
     virtual_text = { current_line = true, severity = { min = 'INFO', max = 'WARN' } },
-    virtual_lines = { current_line = true, severity = { min = 'ERROR' } },
-    severity_sort = true,
+    -- virtual_lines = { current_line = true, severity = { min = 'ERROR' } },
+    -- severity_sort = true,
     float = {
       focusable = false,
       style = 'minimal',
@@ -37,12 +37,10 @@ M.setup = function()
       nvim_lsp[lsp_name].setup(opts)
       return
     elseif type(handler) == 'function' then
-      --- Case where language server requires its own setup
-      --- Make sure to call require("lspconfig")[lsp_name].setup() in the function
-      --- See `clangd.lua` for example.
       handler(opts)
     elseif type(handler) == 'table' then
-      nvim_lsp[lsp_name].setup(vim.tbl_deep_extend('force', opts, handler))
+      handler.capabilities = require('blink.cmp').get_lsp_capabilities(handler.capabilities)
+      nvim_lsp[lsp_name].setup(handler)
     else
       vim.notify(
         string.format(

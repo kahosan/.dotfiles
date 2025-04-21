@@ -10,8 +10,7 @@ ui['p00f/alabaster.nvim'] = {
     vim.g.alabaster_dim_comments = true
   end,
 }
-ui['Jint-lzxy/nvim'] = {
-  branch = 'refactor/syntax-highlighting',
+ui['catppuccin/nvim'] = {
   name = 'catppuccin',
   config = require 'ui.catppuccin',
 }
@@ -23,23 +22,17 @@ ui['nvim-lualine/lualine.nvim'] = {
   event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
   config = require 'ui.lualine',
 }
-ui['echasnovski/mini.indentscope'] = {
-  config = function()
-    local mini_is = require 'mini.indentscope'
-    mini_is.setup {
-      symbol = '│',
-      draw = { delay = 0, animation = mini_is.gen_animation.none() },
-    }
-  end,
-}
 ui['lukas-reineke/indent-blankline.nvim'] = {
   main = 'ibl',
+  opts = require 'ui.indent-blankline',
+}
+ui['jake-stewart/auto-cmdheight.nvim'] = {
   opts = {
-    indent = {
-      highlight = { 'WhiteSpace' },
-      char = '┊',
-    },
-    scope = { enabled = false },
+    max_lines = 5,
+    duration = 2,
+    remove_on_key = true,
+    clear_always = false,
   },
 }
+
 return ui

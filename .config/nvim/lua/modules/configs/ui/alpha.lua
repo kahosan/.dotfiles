@@ -12,9 +12,7 @@ return function()
   }
   dashboard.section.header.opts.hl = 'AlphaHeader'
 
-  local function button(sc, txt, leader_txt, keybind, keybind_opts)
-    local sc_after = sc:gsub('%s', ''):gsub(leader_txt, '<leader>')
-
+  local function button(sc, txt, keybind, keybind_opts)
     local opts = {
       position = 'center',
       shortcut = sc,
@@ -26,14 +24,14 @@ return function()
     }
 
     if nil == keybind then
-      keybind = sc_after
+      keybind = sc
     end
     keybind_opts = vim.F.if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
-    opts.keymap = { 'n', sc_after, keybind, keybind_opts }
+    opts.keymap = { 'n', sc, keybind, keybind_opts }
 
     local function on_press()
       -- local key = vim.api.nvim_replace_termcodes(keybind .. '<Ignore>', true, false, true)
-      local key = vim.api.nvim_replace_termcodes(sc_after .. '<Ignore>', true, false, true)
+      local key = vim.api.nvim_replace_termcodes(sc .. '<Ignore>', true, false, true)
       vim.api.nvim_feedkeys(key, 't', false)
     end
 
@@ -45,17 +43,16 @@ return function()
     }
   end
 
-  local leader = ' '
   dashboard.section.buttons.val = {
-    button('space f r', ' File frecency', leader, nil, {
+    button('r', ' File frecency', nil, {
       noremap = true,
       silent = true,
       nowait = true,
       callback = function()
-        require('tool.telescope').extensions.frecency.frecency()
+        require('telescope').extensions.frecency.frecency()
       end,
     }),
-    button('space f e', '󰋚 File history', leader, nil, {
+    button('h', '󰋚 File history', nil, {
       noremap = true,
       silent = true,
       nowait = true,
@@ -63,15 +60,7 @@ return function()
         require('telescope.builtin').oldfiles()
       end,
     }),
-    -- button('space f p', ' Project find', leader, nil, {
-    --   noremap = true,
-    --   silent = true,
-    --   nowait = true,
-    --   callback = function()
-    --     require('tool.telescope').extensions.projects.projects {}
-    --   end,
-    -- }),
-    button('space f f', '󰈞 File find', leader, nil, {
+    button('f', '󰈞 File find', nil, {
       noremap = true,
       silent = true,
       nowait = true,
@@ -79,7 +68,7 @@ return function()
         require('telescope.builtin').find_files()
       end,
     }),
-    button('space f n', ' File new', leader, nil, {
+    button('n', ' File new', nil, {
       noremap = true,
       silent = true,
       nowait = true,
@@ -87,7 +76,7 @@ return function()
         vim.api.nvim_command 'enew'
       end,
     }),
-    button('space f w', ' Word find', leader, nil, {
+    button('w', ' Word find', nil, {
       noremap = true,
       silent = true,
       nowait = true,

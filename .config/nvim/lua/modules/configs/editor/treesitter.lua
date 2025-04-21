@@ -1,4 +1,6 @@
 return vim.schedule_wrap(function()
+  require('nvim-ts-autotag').setup {}
+
   local use_ssh = require('core.settings').use_ssh
 
   require('nvim-treesitter.configs').setup {

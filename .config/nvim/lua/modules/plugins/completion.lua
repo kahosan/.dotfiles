@@ -1,7 +1,7 @@
 local completion = {}
 
 completion['neovim/nvim-lspconfig'] = {
-  event = { 'CursorHold', 'CursorHoldI' },
+  event = { 'BufReadPost', 'BufNewFile', 'BufWritePre' },
   config = require 'completion.lsp',
   dependencies = {
     { 'williamboman/mason.nvim' },

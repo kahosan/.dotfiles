@@ -41,17 +41,6 @@ tool['folke/snacks.nvim'] = {
     },
   },
 }
-tool['rmagatti/auto-session'] = {
-  lazy = false,
-  cmd = { 'SessionRestore', 'SessionSearch', 'SessionSave' },
-  ---@module "auto-session"
-  ---@type AutoSession.Config
-  opts = {
-    log_level = 'error',
-    suppressed_dirs = { '~/', '~/Downloads', '/' },
-    bypass_save_filetypes = { 'help', 'alpha', 'telescope', 'trouble', 'neo-tree' },
-  },
-}
 
 ----------------------------------------------------------------------
 --                        Telescope Plugins                         --
