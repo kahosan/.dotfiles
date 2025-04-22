@@ -1,7 +1,7 @@
 return function()
   ---@module "neo-tree"
-  ---@type neotree.Config?
-  require('neo-tree').setup {
+  ---@type neotree.Config
+  local opts = {
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     -- popup_border_style = CUSTOM_BORDER,
     default_component_configs = {
@@ -100,4 +100,16 @@ return function()
       },
     },
   }
+
+  local function on_move(data)
+    Snacks.rename.on_rename_file(data.source, data.destination)
+  end
+
+  local events = require 'neo-tree.events'
+  opts.event_handlers = opts.event_handlers or {}
+  vim.list_extend(opts.event_handlers, {
+    { event = events.FILE_MOVED, handler = on_move },
+    { event = events.FILE_RENAMED, handler = on_move },
+  })
+  require('neo-tree').setup(opts)
 end
