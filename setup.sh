@@ -35,10 +35,17 @@ fi
 if [[ ! -d "$HOME/.ssh" ]]; then
 	echo "mkdir .ssh folder"
 	mkdir "$HOME/.ssh"
-	touch "$HOME/.ssh/authorized_keys"
 	chmod 600 "$HOME/.ssh"
+
+fi
+
+if [[ ! -f "$HOME/.ssh/authorized_keys" ]]; then
+	touch "$HOME/.ssh/authorized_keys"
 	chmod 644 "$HOME/.ssh/authorized_keys"
 fi
+
+read -rp "plz input ur ssh public key: " pk
+${pk} >>"$HOME/.ssh/authorized_keys"
 
 if [[ -d "$HOME/.config/fish" ]]; then
 	echo "mv old fish folder to fish.bak"
