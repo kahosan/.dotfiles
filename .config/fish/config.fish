@@ -42,6 +42,9 @@ set -x LANG en_US.UTF-8
 # corepack
 set -x COREPACK_ENABLE_AUTO_PIN 0
 
+# golang
+set -x GOPATH $HOME/.local/share/go
+
 # ssh
 alias nas "kitty +kitten ssh kaho@10.88.88.106"
 
