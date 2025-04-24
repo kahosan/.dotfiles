@@ -23,7 +23,8 @@ ICON_FG: int = as_rgb(color_as_int(opts.color1))
 ICON_BG: int = as_rgb(color_as_int(opts.color8))
 ICON_BG: int = 0
 
-CLOCK_FG = as_rgb(0xFFE2E2)
+# CLOCK_FG = as_rgb(0xFFE2E2)
+CLOCK_FG = as_rgb(0xFFEFFFF)
 CLOCK_BG = as_rgb(0xF38BA8)
 DATE_FG = as_rgb(0xFFFFFF)
 DATE_BG = as_rgb(0x585B70)
