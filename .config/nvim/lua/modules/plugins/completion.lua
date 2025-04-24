@@ -12,7 +12,7 @@ completion['neovim/nvim-lspconfig'] = {
 completion['Chaitanyabsprip/fastaction.nvim'] = {
   event = 'LspAttach',
   opts = {
-    popup = { border = 'none', title = false },
+    popup = { border = 'rounded', title = false },
   },
 }
 completion['dnlhc/glance.nvim'] = {

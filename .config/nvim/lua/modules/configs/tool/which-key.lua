@@ -7,7 +7,7 @@ return function()
 
   require('which-key').setup {
     preset = 'classic',
-    delay = 700,
+    delay = 0,
     plugins = {
       marks = true,
       registers = true,
@@ -26,7 +26,7 @@ return function()
       },
     },
     win = {
-      border = CUSTOM_BORDER,
+      -- border = CUSTOM_BORDER,
       padding = { 1, 2 },
       wo = { winblend = 0 },
     },

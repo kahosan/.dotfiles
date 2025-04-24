@@ -35,7 +35,7 @@ local mappings = {
       :with_nowait()
       :with_desc 'lsp: implementations',
     ['n|K'] = map_callback(function()
-        vim.lsp.buf.hover { border = 'single', max_height = 25, max_width = 70 }
+        vim.lsp.buf.hover { border = 'rounded', max_height = 25, max_width = 70 }
       end)
       :with_silent()
       :with_noremap()

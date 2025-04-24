@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = function()
-  require('lspconfig.ui.windows').default_options.border = 'single'
+  require('lspconfig.ui.windows').default_options.border = 'rounded'
 
   local icons = {
     ui = require('modules.utils.icons').get('ui', true),
@@ -10,7 +10,7 @@ M.setup = function()
 
   require('mason').setup {
     ui = {
-      border = CUSTOM_BORDER,
+      border = 'rounded',
       icons = {
         package_pending = icons.ui.Modified_alt,
         package_installed = icons.ui.Check,

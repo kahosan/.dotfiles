@@ -27,7 +27,7 @@ local mappings = {
     -- nvim-bufdel
     ['n|<leader>bd'] = map_cr('BufDel'):with_noremap():with_silent():with_desc 'buffer: Close current',
     -- Buffer Change
-    ['n|<C-i>'] = map_cr('bnext'):with_noremap():with_silent():with_desc 'buffer: Switch to next',
+    ['n|<Tab>'] = map_cr('bnext'):with_noremap():with_silent():with_desc 'buffer: Switch to next',
     ['n|<S-Tab>'] = map_cr('bprev'):with_noremap():with_silent():with_desc 'buffer: Switch to prev',
   },
   trouble = {
@@ -44,13 +44,12 @@ local mappings = {
   },
   telescope = {
     -- Plugin Telescope
-    ['n|<leader>fl'] = map_cr('Telescope lsp_references'):with_noremap():with_silent():with_desc 'lsp: lsp_references',
     ['n|<leader>u'] = map_callback(function()
         require('telescope').extensions.undo.undo()
       end)
       :with_noremap()
       :with_silent()
-      :with_desc 'editn: Show undo history',
+      :with_desc 'find: Find undo history',
     ['n|<leader>fr'] = map_callback(function()
         require('telescope').extensions.frecency.frecency()
       end)
@@ -68,13 +67,13 @@ local mappings = {
       end)
       :with_noremap()
       :with_silent()
-      :with_desc 'find: Word in project by select_word',
+      :with_desc 'find: Word in project by select word',
     ['x|<leader>fs'] = map_callback(function()
         require('telescope-live-grep-args.shortcuts').grep_word_visual_selection_current_buffer()
       end)
       :with_noremap()
       :with_silent()
-      :with_desc 'find: Word in buffer by select_word',
+      :with_desc 'find: Word in buffer by select word',
     ['n|<leader>fe'] = map_cu('Telescope oldfiles'):with_noremap():with_silent():with_desc 'find: File by history',
     ['n|<leader>ff'] = map_cu('Telescope find_files'):with_noremap():with_silent():with_desc 'find: File in project',
     ['n|<leader>fc'] = map_cu('Telescope colorscheme')
@@ -90,15 +89,18 @@ local mappings = {
     ['n|<C-p>'] = map_callback(command_panel):with_silent():with_noremap():with_desc 'tool: Toggle command panel',
   },
   spectre = {
-    ['n|<leader>S'] = map_cr("lua require('spectre').toggle()"):with_silent():with_noremap():with_desc 'Toggle Spectre',
+    ['n|<leader>S'] = map_cr("lua require('spectre').toggle()")
+      :with_silent()
+      :with_noremap()
+      :with_desc 'tool: Toggle Spectre',
     ['n|<leader>sp'] = map_cr("lua require('spectre').open_file_search({select_word=true})")
       :with_silent()
       :with_noremap()
-      :with_desc 'Search on current file',
+      :with_desc 'tool: Search and replace on current file',
     ['v|<leader>sw'] = map_cr("lua require('spectre').open_visual()")
       :with_silent()
       :with_noremap()
-      :with_desc 'Search current word',
+      :with_desc 'tool: Search and replace current word',
   },
 }
 

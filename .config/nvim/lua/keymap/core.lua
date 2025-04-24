@@ -5,7 +5,6 @@ local map_cmd = bind.map_cmd
 
 local builtins = {
   -- Suckless
-  ['n|<S-Tab>'] = map_cr('normal za'):with_noremap():with_silent():with_desc 'editn: Toggle code fold',
   ['n|n'] = map_cmd('nzzzv'):with_noremap():with_desc 'editn: Next search result',
   ['n|N'] = map_cmd('Nzzzv'):with_noremap():with_desc 'editn: Prev search result',
   ['n|J'] = map_cmd('mzJ`z'):with_noremap():with_desc 'editn: Join next line',
@@ -25,8 +24,6 @@ local builtins = {
   ['n|<A-]>'] = map_cr('vertical resize +5'):with_silent():with_desc 'window: Resize +5 vertically',
   ['n|<A-;>'] = map_cr('resize -2'):with_silent():with_desc 'window: Resize -2 horizontally',
   ["n|<A-'>"] = map_cr('resize +2'):with_silent():with_desc 'window: Resize +2 horizontally',
-  ['n|<leader>o'] = map_cr('setlocal spell! spelllang=en_us'):with_desc 'editn: Toggle spell check',
-  ['n|<leader>fn'] = map_cu(':enew'):with_noremap():with_silent():with_desc 'buffer: New',
 
   -- Insert mode
   ['i|<C-c>'] = map_cmd('<Esc>'):with_noremap():with_desc 'remap esc',
