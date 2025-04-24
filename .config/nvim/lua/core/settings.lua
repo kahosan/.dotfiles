@@ -40,17 +40,18 @@ settings['transparent_background'] = false
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/server_configurations
 ---@type string[]
 settings['lsp_deps'] = {
+  -- 'basedpyright',
+  -- 'rust_analyzer'
   'bashls',
-  -- 'html',
+  'lua_ls',
   'jsonls',
   'yamlls',
-  'lua_ls',
+  -- 'html',
   'emmet_language_server',
-  -- 'basedpyright',
-  'eslint',
-  -- 'rust_analyzer'
+  -- 'eslint',
   -- 'ts_ls',
   -- 'vtsls'
+  'typos_lsp',
 }
 
 -- Set the plugins to disable here.
