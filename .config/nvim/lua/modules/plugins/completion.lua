@@ -9,6 +9,12 @@ completion['neovim/nvim-lspconfig'] = {
     { 'b0o/schemastore.nvim' },
   },
 }
+completion['Chaitanyabsprip/fastaction.nvim'] = {
+  event = 'LspAttach',
+  opts = {
+    popup = { border = 'none', title = false },
+  },
+}
 completion['dnlhc/glance.nvim'] = {
   cmd = 'Glance',
   config = require 'completion.glance',

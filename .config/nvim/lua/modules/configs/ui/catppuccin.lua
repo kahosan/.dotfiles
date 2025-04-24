@@ -30,6 +30,10 @@ return function()
       properties = {},
     },
     integrations = {
+      snacks = {
+        enabled = true,
+        indent_scope_color = 'overlay1',
+      },
       treesitter = true,
       native_lsp = {
         enabled = true,
@@ -60,7 +64,7 @@ return function()
       lsp_trouble = true,
       markdown = false,
       mason = true,
-      mini = { enabled = true, indentscope_color = '' },
+      mini = { enabled = false, indentscope_color = '' },
       neotree = true,
       noice = false,
       render_markdown = false,
@@ -70,7 +74,13 @@ return function()
       treesitter_context = true,
       which_key = true,
     },
-    color_overrides = {},
+    color_overrides = {
+      mocha = {
+        base = '#181818',
+        mantle = '#181818',
+        crust = '#181818',
+      },
+    },
     highlight_overrides = {
       all = function(cp)
         return {

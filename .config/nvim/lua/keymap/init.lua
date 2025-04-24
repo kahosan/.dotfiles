@@ -47,7 +47,7 @@ local mappings = {
       :with_nowait()
       :with_desc 'lsp: definitions',
     ['n|gr'] = map_cr('lua vim.lsp.buf.rename()'):with_silent():with_noremap():with_nowait():with_desc 'lsp: rename',
-    ['n|ga'] = map_cr('lua vim.lsp.buf.code_action()')
+    ['n|ga'] = map_cr('lua require("fastaction").code_action()')
       :with_silent()
       :with_noremap()
       :with_nowait()

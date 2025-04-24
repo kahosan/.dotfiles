@@ -41,14 +41,16 @@ settings['transparent_background'] = false
 ---@type string[]
 settings['lsp_deps'] = {
   'bashls',
-  'html',
+  -- 'html',
   'jsonls',
   'yamlls',
   'lua_ls',
-  -- 'pyright',
+  'emmet_language_server',
+  -- 'basedpyright',
   'eslint',
-  -- "rust_analyzer"
-  -- "ts_ls",
+  -- 'rust_analyzer'
+  -- 'ts_ls',
+  -- 'vtsls'
 }
 
 -- Set the plugins to disable here.
@@ -62,26 +64,18 @@ settings['disabled_plugins'] = {}
 ---@type string[]
 settings['treesitter_deps'] = {
   'bash',
-  'c',
-  'cpp',
-  'css',
+  'lua',
+  'rust',
   'go',
   'gomod',
-  'html',
-  'javascript',
   'json',
-  'lua',
-  'make',
-  'markdown',
-  'markdown_inline',
-  'python',
-  'rust',
-  'typescript',
-  'tsx',
-  'vimdoc',
-  'vue',
   'yaml',
   'toml',
+  'python',
+  'javascript',
+  'typescript',
+  'tsx',
+  'css',
 }
 
 return settings

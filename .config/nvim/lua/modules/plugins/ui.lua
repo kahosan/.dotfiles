@@ -22,10 +22,6 @@ ui['nvim-lualine/lualine.nvim'] = {
   event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
   config = require 'ui.lualine',
 }
-ui['lukas-reineke/indent-blankline.nvim'] = {
-  main = 'ibl',
-  opts = require 'ui.indent-blankline',
-}
 ui['jake-stewart/auto-cmdheight.nvim'] = {
   opts = {
     max_lines = 5,

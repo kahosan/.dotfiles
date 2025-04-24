@@ -33,13 +33,7 @@ tool['kawre/neotab.nvim'] = {
   opts = {},
 }
 tool['folke/snacks.nvim'] = {
-  ---@module 'snacks'
-  ---@type snacks.Config
-  opts = {
-    quickfile = {
-      exclude = { 'latex' },
-    },
-  },
+  opts = require 'tool.snacks',
 }
 
 ----------------------------------------------------------------------
