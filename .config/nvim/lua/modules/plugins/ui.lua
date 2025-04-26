@@ -30,5 +30,17 @@ ui['jake-stewart/auto-cmdheight.nvim'] = {
     clear_always = false,
   },
 }
+ui['j-hui/fidget.nvim'] = {
+  opts = {
+    notification = {
+      window = { winblend = 0 },
+    },
+  },
+}
+ui['rachartier/tiny-inline-diagnostic.nvim'] = {
+  event = 'VeryLazy',
+  priority = 1000,
+  opts = require 'ui.tiny-inline-diagnostic',
+}
 
 return ui

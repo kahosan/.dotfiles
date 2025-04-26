@@ -8,6 +8,15 @@ editor['ojroques/nvim-bufdel'] = {
 }
 editor['sindrets/diffview.nvim'] = {
   cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewFileHistory' },
+  opts = {
+    hooks = {
+      diff_buf_win_enter = function(_, winid, _)
+        -- Turn off cursor line for diffview windows because of bg conflict
+        -- https://github.com/neovim/neovim/issues/9800
+        vim.wo[winid].culopt = 'number'
+      end,
+    },
+  },
 }
 editor['romainl/vim-cool'] = {
   event = { 'CursorMoved', 'InsertEnter' },

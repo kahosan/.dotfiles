@@ -3,9 +3,6 @@ return function()
     format_on_save = {
       timeout_ms = 500,
       lsp_format = 'fallback',
-      filter = function(client)
-        return client.name == 'eslint'
-      end,
     },
     formatters = {
       clang_format = {
@@ -20,10 +17,6 @@ return function()
       c = { 'clang-format' },
       cpp = { 'clang-format' },
       rust = { 'rustfmt' },
-      javascript = {},
-      typescript = {},
-      javascriptreact = {},
-      typescriptreact = {},
       css = { 'prettierd', 'prettier', stop_after_first = true },
       json = { 'prettierd', 'prettier', stop_after_first = true },
       yaml = { 'prettierd', 'prettier', stop_after_first = true },

@@ -60,8 +60,12 @@ local mappings = {
   },
   git = {
     ['n|<leader>G'] = map_cu('Git'):with_noremap():with_silent():with_desc 'git: Open git-fugitive',
-    ['n|<leader>D'] = map_cr('DiffviewFileHistory %'):with_silent():with_noremap():with_desc 'git: Show diff',
-    ['n|<leader><leader>D'] = map_cr('DiffviewClose'):with_silent():with_noremap():with_desc 'git: Close diff',
+    ['n|<leader>dh'] = map_cr('DiffviewFileHistory %')
+      :with_silent()
+      :with_noremap()
+      :with_desc 'git: show file history diff',
+    ['n|<leader>do'] = map_cr('DiffviewOpen -- %'):with_silent():with_noremap():with_desc 'git: show file diff',
+    ['n|<leader>D'] = map_cr('DiffviewClose'):with_silent():with_noremap():with_desc 'git: close diff',
   },
 }
 

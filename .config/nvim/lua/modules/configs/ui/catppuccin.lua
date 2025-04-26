@@ -32,7 +32,7 @@ return function()
     integrations = {
       snacks = {
         enabled = true,
-        indent_scope_color = 'overlay1',
+        indent_scope_color = 'blue',
       },
       treesitter = true,
       native_lsp = {
@@ -44,10 +44,10 @@ return function()
           information = { 'italic' },
         },
         -- underlines = {
-        -- errors = { 'undercurl' },
-        -- hints = { 'undercurl' },
-        -- warnings = { 'undercurl' },
-        -- information = { 'undercurl' },
+        --   errors = { 'undercurl' },
+        --   hints = { 'undercurl' },
+        --   warnings = { 'undercurl' },
+        --   information = { 'undercurl' },
         -- },
       },
       aerial = false,
@@ -56,7 +56,7 @@ return function()
       blink_cmp = true,
       nvim_surround = true,
       diffview = true,
-      fidget = false,
+      fidget = true,
       gitgutter = false,
       gitsigns = true,
       illuminate = true,
@@ -77,18 +77,17 @@ return function()
     color_overrides = {
       mocha = {
         base = '#181818',
-        mantle = '#181818',
-        crust = '#181818',
+        mantle = '#212121',
+        crust = '#45475a',
       },
     },
     highlight_overrides = {
       all = function(cp)
         return {
           TabLineSel = { bg = '#45475b', fg = '#a6e3a2' },
-          DiagnosticVirtualTextError = { bg = cp.none },
-          DiagnosticVirtualTextHint = { bg = cp.none },
-          DiagnosticVirtualTextInfo = { bg = cp.none },
-          DiagnosticVirtualTextWarn = { bg = cp.none },
+          DiagnosticHint = { fg = '#d0a9e5' },
+          DiagnosticUnderlineHint = { sp = '#d0a9e5' },
+          LspDiagnosticsUnderlineHint = { sp = '#d0a9e5' },
         }
       end,
     },

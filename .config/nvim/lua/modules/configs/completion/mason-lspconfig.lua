@@ -9,11 +9,9 @@ M.setup = function()
   }
 
   vim.diagnostic.config {
-    signs = true,
-    underline = true,
-    virtual_text = { current_line = true, severity = { min = 'INFO', max = 'WARN' } },
-    -- virtual_lines = { current_line = true, severity = { min = 'ERROR' } },
-    -- severity_sort = true,
+    -- virtual_text = { prefix = '', current_line = true },
+    virtual_text = false,
+    signs = false,
     update_in_insert = false,
   }
 

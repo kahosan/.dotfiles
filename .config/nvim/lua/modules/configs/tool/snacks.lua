@@ -5,6 +5,9 @@ return {
     exclude = { 'latex' },
   },
   indent = {
+    indent = {
+      enabled = false,
+    },
     animate = {
       enabled = false,
     },
