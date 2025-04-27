@@ -11,10 +11,6 @@ tool['nvim-neo-tree/neo-tree.nvim'] = {
     'MunifTanjim/nui.nvim',
   },
 }
-tool['folke/trouble.nvim'] = {
-  cmd = { 'Trouble', 'TroubleToggle', 'TroubleRefresh' },
-  config = require 'tool.trouble',
-}
 tool['kylechui/nvim-surround'] = {
   event = 'VeryLazy',
   opts = {},
@@ -34,23 +30,6 @@ tool['kawre/neotab.nvim'] = {
 }
 tool['folke/snacks.nvim'] = {
   opts = require 'tool.snacks',
-}
-
-----------------------------------------------------------------------
---                        Telescope Plugins                         --
-----------------------------------------------------------------------
-tool['nvim-telescope/telescope.nvim'] = {
-  cmd = 'Telescope',
-  config = require 'tool.telescope',
-  dependencies = {
-    { 'nvim-lua/plenary.nvim' },
-    { 'nvim-tree/nvim-web-devicons' },
-    { 'jvgrootveld/telescope-zoxide' },
-    { 'debugloop/telescope-undo.nvim' },
-    { 'nvim-telescope/telescope-frecency.nvim' },
-    { 'nvim-telescope/telescope-live-grep-args.nvim' },
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-  },
 }
 
 return tool

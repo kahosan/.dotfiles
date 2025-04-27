@@ -124,8 +124,8 @@ function Lazy:load_lazy()
           -- Do not load spell files
           'spellfile',
           -- Do not use builtin matchit.vim and matchparen.vim because we're using vim-matchup
-          'matchit',
-          'matchparen',
+          -- 'matchit',
+          -- 'matchparen',
           -- Do not load tohtml.vim
           'tohtml',
           -- Do not load zipPlugin.vim, gzip.vim and tarPlugin.vim (all of these plugins are

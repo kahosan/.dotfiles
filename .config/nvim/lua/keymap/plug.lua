@@ -1,26 +1,8 @@
 local bind = require 'keymap.bind'
 local map_cr = bind.map_cr
-local map_cu = bind.map_cu
-local map_cmd = bind.map_cmd
 local map_callback = bind.map_callback
 
-local function t(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local function command_panel()
-  local opts = {
-    lhs_filter = function(lhs)
-      return not string.find(lhs, 'Þ')
-    end,
-    layout_config = {
-      width = 0.6,
-      height = 0.6,
-      prompt_position = 'top',
-    },
-  }
-  require('telescope.builtin').keymaps(opts)
-end
+local spicker = Snacks.picker.pick
 
 local mappings = {
   buffer = {
@@ -30,63 +12,96 @@ local mappings = {
     ['n|<Tab>'] = map_cr('bnext'):with_noremap():with_silent():with_desc 'buffer: Switch to next',
     ['n|<S-Tab>'] = map_cr('bprev'):with_noremap():with_silent():with_desc 'buffer: Switch to prev',
   },
-  trouble = {
-    -- Plugin trouble
-    ['n|gt'] = map_cr('Trouble diagnostics toggle filter.buf=0')
-      :with_noremap()
-      :with_silent()
-      :with_desc 'lsp: Toggle trouble list',
-  },
   neotree = {
     -- Plugin Neotree
     ['n|<C-n>'] = map_cr('Neotree toggle'):with_noremap():with_silent():with_desc 'filetree: Toggle',
     ['n|<leader>e'] = map_cr('Neotree reveal'):with_noremap():with_silent():with_desc 'filetree: Reveal',
   },
-  telescope = {
-    -- Plugin Telescope
-    ['n|<leader>u'] = map_callback(function()
-        require('telescope').extensions.undo.undo()
+  snacks_picker = {
+    ['n|gt'] = map_callback(function()
+        spicker 'diagnostics_buffer'
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'lsp: Toggle global diagnostics list',
+    ['n|gT'] = map_callback(function()
+        spicker 'diagnostics_buffer'
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'lsp: Toggle diagnostics list',
+    ['n|<leader>fu'] = map_callback(function()
+        spicker 'undo'
       end)
       :with_noremap()
       :with_silent()
       :with_desc 'find: Find undo history',
     ['n|<leader>fr'] = map_callback(function()
-        require('telescope').extensions.frecency.frecency()
+        spicker 'recent'
       end)
       :with_noremap()
       :with_silent()
       :with_desc 'find: File by frecency',
+    ['n|<leader>fp'] = map_callback(function()
+        spicker 'project'
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'find: Find project',
     ['n|<leader>fw'] = map_callback(function()
-        require('telescope').extensions.live_grep_args.live_grep_args()
+        spicker 'grep'
       end)
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in project',
     ['x|<leader>fw'] = map_callback(function()
-        require('telescope-live-grep-args.shortcuts').grep_visual_selection()
+        spicker 'grep_word'
       end)
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in project by select word',
     ['x|<leader>fs'] = map_callback(function()
-        require('telescope-live-grep-args.shortcuts').grep_word_visual_selection_current_buffer()
+        spicker 'lines'
       end)
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in buffer by select word',
-    ['n|<leader>fe'] = map_cu('Telescope oldfiles'):with_noremap():with_silent():with_desc 'find: File by history',
-    ['n|<leader>ff'] = map_cu('Telescope find_files'):with_noremap():with_silent():with_desc 'find: File in project',
-    ['n|<leader>fc'] = map_cu('Telescope colorscheme')
+    ['n|<leader>ff'] = map_callback(function()
+        spicker 'files'
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'find: File in project',
+    ['n|<leader>fc'] = map_callback(function()
+        spicker 'colorschemes'
+      end)
       :with_noremap()
       :with_silent()
       :with_desc 'ui: Change colorscheme for current session',
-    ['n|<leader>fg'] = map_cu('Telescope git_files'):with_noremap():with_silent():with_desc 'find: file in git project',
-    ['n|<leader>fz'] = map_cu('Telescope zoxide list')
+    ['n|<leader>fg'] = map_callback(function()
+        spicker 'git_files()'
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'find: file in git project',
+    ['n|<leader>fz'] = map_callback(function()
+        spicker 'zoxide'
+      end)
       :with_noremap()
       :with_silent()
       :with_desc 'editn: Change current directory by zoxide',
-    ['n|<leader>fb'] = map_cu('Telescope buffers'):with_noremap():with_silent():with_desc 'find: Buffer opened',
-    ['n|<C-p>'] = map_callback(command_panel):with_silent():with_noremap():with_desc 'tool: Toggle command panel',
+    ['n|<leader>fb'] = map_callback(function()
+        spicker 'buffers'
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'find: Buffer opened',
+    ['n|<C-p>'] = map_callback(function()
+        spicker 'keymap'
+      end)
+      :with_silent()
+      :with_noremap()
+      :with_desc 'tool: Toggle command panel',
   },
   spectre = {
     ['n|<leader>S'] = map_cr("lua require('spectre').toggle()")

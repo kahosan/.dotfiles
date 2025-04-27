@@ -43,21 +43,14 @@ return function()
     }
   end
 
+  local spicker = Snacks.picker.pick
   dashboard.section.buttons.val = {
     button('r', ' File frecency', nil, {
       noremap = true,
       silent = true,
       nowait = true,
       callback = function()
-        require('telescope').extensions.frecency.frecency()
-      end,
-    }),
-    button('h', '󰋚 File history', nil, {
-      noremap = true,
-      silent = true,
-      nowait = true,
-      callback = function()
-        require('telescope.builtin').oldfiles()
+        spicker 'recent'
       end,
     }),
     button('f', '󰈞 File find', nil, {
@@ -65,7 +58,7 @@ return function()
       silent = true,
       nowait = true,
       callback = function()
-        require('telescope.builtin').find_files()
+        spicker 'files'
       end,
     }),
     button('n', ' File new', nil, {
@@ -81,7 +74,7 @@ return function()
       silent = true,
       nowait = true,
       callback = function()
-        require('telescope.builtin').live_grep()
+        spicker 'grep'
       end,
     }),
   }

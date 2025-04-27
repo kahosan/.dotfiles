@@ -128,8 +128,5 @@ return {
       'sort_text',
     },
     implementation = 'prefer_rust_with_warning',
-    prebuilt_binaries = {
-      force_version = 'v1.1.1',
-    },
   },
 }
