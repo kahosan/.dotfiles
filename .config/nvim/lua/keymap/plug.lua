@@ -79,7 +79,7 @@ local mappings = {
       :with_silent()
       :with_desc 'ui: Change colorscheme for current session',
     ['n|<leader>fg'] = map_callback(function()
-        spicker 'git_files()'
+        spicker 'git_files'
       end)
       :with_noremap()
       :with_silent()
@@ -96,8 +96,14 @@ local mappings = {
       :with_noremap()
       :with_silent()
       :with_desc 'find: Buffer opened',
+    ['n|<leader>fa'] = map_callback(function()
+        spicker()
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'find: Select picker source',
     ['n|<C-p>'] = map_callback(function()
-        spicker 'keymap'
+        spicker 'keymaps'
       end)
       :with_silent()
       :with_noremap()
