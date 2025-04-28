@@ -15,6 +15,14 @@ return {
   picker = {
     prompt = '? ',
     ui_select = false,
+    win = {
+      input = {
+        keys = {
+          ['<c-n>'] = { 'preview_scroll_down', mode = { 'i', 'n' } },
+          ['<c-p>'] = { 'preview_scroll_up', mode = { 'i', 'n' } },
+        },
+      },
+    },
     layout = 'vscode',
     layouts = {
       vscode = {

@@ -2,6 +2,7 @@ local bind = require 'keymap.bind'
 local map_cr = bind.map_cr
 local map_cu = bind.map_cu
 local map_cmd = bind.map_cmd
+local map_callback = bind.map_callback
 
 local builtins = {
   -- Suckless
@@ -34,6 +35,15 @@ local builtins = {
   ['i|<C-q>'] = map_cmd('<Esc>:wq<CR>'):with_desc 'editi: Save file and quit',
   ['i|<C-n>'] = map_cmd('<Nop>'):with_noremap():with_silent(),
   ['i|<C-p>'] = map_cmd('<Nop>'):with_noremap():with_silent(),
+  ['i|<C-l>'] = map_callback(function()
+      local node = vim.treesitter.get_node()
+      if node ~= nil then
+        local row, col = node:end_()
+        pcall(vim.api.nvim_win_set_cursor, 0, { row + 1, col })
+      end
+    end)
+    :with_silent()
+    :with_desc 'editi: insjump',
 
   -- Command mode
   ['c|<C-b>'] = map_cmd('<Left>'):with_noremap():with_desc 'editc: Left',

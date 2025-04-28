@@ -28,18 +28,9 @@ editor['catgoose/nvim-colorizer.lua'] = {
   event = 'BufReadPre',
   opts = {},
 }
-editor['windwp/nvim-autopairs'] = {
+editor['m4xshen/autoclose.nvim'] = {
   event = 'InsertEnter',
-  opts = {
-    enable_check_bracket_line = false,
-  },
-  init = function()
-    local npairs = require 'nvim-autopairs'
-    local rule = require 'nvim-autopairs.rule'
-    local cond = require 'nvim-autopairs.conds'
-
-    npairs.add_rules { rule('|', '|', { 'rust', 'go', 'lua' }):with_move(cond.after_regex '|') }
-  end,
+  config = require 'editor.autoclose',
 }
 
 ----------------------------------------------------------------------
