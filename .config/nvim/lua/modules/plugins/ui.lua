@@ -9,7 +9,6 @@ ui['catppuccin/nvim'] = {
   config = require 'ui.catppuccin',
 }
 ui['lewis6991/gitsigns.nvim'] = {
-  event = { 'CursorHold', 'CursorHoldI' },
   config = require 'ui.gitsigns',
 }
 ui['nvim-lualine/lualine.nvim'] = {

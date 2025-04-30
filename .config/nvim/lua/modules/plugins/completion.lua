@@ -25,6 +25,7 @@ completion['stevearc/conform.nvim'] = {
   config = require 'completion.conform',
 }
 completion['saghen/blink.cmp'] = {
+  event = { 'InsertEnter', 'CmdlineEnter' },
   version = '1.*',
   dependencies = {
     'fang2hou/blink-copilot',

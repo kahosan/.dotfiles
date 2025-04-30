@@ -17,7 +17,6 @@ settings['load_big_files_faster'] = true
 settings['palette_overwrite'] = {}
 
 -- Set the colorscheme to use here.
--- settings['colorscheme'] = 'alabaster'
 settings['colorscheme'] = 'catppuccin'
 -- settings["colorscheme"] = "default"
 
@@ -77,6 +76,8 @@ settings['treesitter_deps'] = {
   'typescript',
   'tsx',
   'css',
+  'markdown',
+  'markdown_inline',
 }
 
 return settings
