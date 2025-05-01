@@ -1,7 +1,3 @@
-# if status is-interactive
-# Commands to run in interactive sessions can go here
-#end
-
 # remove welcome
 set fish_greeting
 
@@ -42,17 +38,16 @@ set -x LANG en_US.UTF-8
 # corepack
 set -x COREPACK_ENABLE_AUTO_PIN 0
 
-# golang
-set -x GOPATH $HOME/.local/share/go
-
 # ssh
 alias nas "kitty +kitten ssh kaho@10.88.88.106"
 
 # alias
-alias l ll
 alias vim nvim
 alias ls "eza --git --icons"
+alias ll "ls --long --time-style=long-iso"
+alias l ll
 alias la "ls -a"
+alias lla "ll -a"
 alias df duf
 alias python python3
 alias pip pip3

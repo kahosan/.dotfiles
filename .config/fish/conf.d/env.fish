@@ -28,4 +28,5 @@ end
 
 if type -q go
     fish_add_path (go env GOPATH)/bin
+    set -x GOPATH $HOME/.local/share/go
 end
