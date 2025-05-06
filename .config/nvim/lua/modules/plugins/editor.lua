@@ -18,12 +18,6 @@ editor['sindrets/diffview.nvim'] = {
     },
   },
 }
-editor['romainl/vim-cool'] = {
-  event = { 'CursorMoved', 'InsertEnter' },
-}
-editor['tpope/vim-sleuth'] = {
-  event = { 'BufNewFile', 'BufReadPost', 'BufFilePost' },
-}
 editor['catgoose/nvim-colorizer.lua'] = {
   event = 'BufReadPre',
   opts = {},

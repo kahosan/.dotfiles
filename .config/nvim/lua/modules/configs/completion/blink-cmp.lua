@@ -14,8 +14,9 @@ return {
     ['<S-Tab>'] = { 'select_prev', 'fallback' },
     ['<C-j>'] = { 'select_next', 'fallback' },
     ['<C-k>'] = { 'select_prev', 'fallback' },
-    ['<C-n>'] = { 'show', 'fallback' },
-    ['<C-p>'] = { 'cancel', 'fallback' },
+    ['<C-n>'] = { 'scroll_documentation_down', 'fallback' },
+    ['<C-p>'] = { 'scroll_documentation_up', 'fallback' },
+    ['<C-h>'] = { 'show', 'hide' },
   },
   cmdline = {
     keymap = {
@@ -41,8 +42,8 @@ return {
       },
     },
     documentation = {
-      auto_show = false,
-      auto_show_delay_ms = 250,
+      auto_show = true,
+      auto_show_delay_ms = 500,
     },
   },
   signature = { enabled = true },

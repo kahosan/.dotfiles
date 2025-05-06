@@ -89,6 +89,7 @@ return function()
           DiagnosticUnderlineHint = { sp = '#d0a9e5' },
           LspDiagnosticsUnderlineHint = { sp = '#d0a9e5' },
           SnacksPickerInputBorder = { bg = cp.mantle },
+          CodeiumSuggestion = { fg = '#808080' },
         }
       end,
     },

@@ -2,8 +2,10 @@ return {
   settings = {
     basedpyright = {
       disableOrganizeImports = true,
-      -- https://github.com/DetachHead/basedpyright/issues/203
-      typeCheckingMode = 'off',
+      analysis = {
+        -- https://github.com/DetachHead/basedpyright/issues/203
+        typeCheckingMode = 'basic',
+      },
     },
   },
 }

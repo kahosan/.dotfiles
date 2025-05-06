@@ -41,5 +41,11 @@ completion['zbirenbaum/copilot.lua'] = {
   -- event = "InsertEnter",
   config = require 'completion.copilot',
 }
+completion['Exafunction/windsurf.nvim'] = {
+  config = require 'completion.windsurf',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+  },
+}
 
 return completion
