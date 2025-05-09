@@ -6,8 +6,9 @@
 [init]
     defaultBranch = main
 [diff]
+    external = difft
     tool = difftastic
-[difftastic]
+[difftool]
     prompt = false
 [difftool "difftastic"]
     cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
