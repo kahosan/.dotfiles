@@ -20,13 +20,6 @@ local mappings = {
   lsp = {
     ['n|<leader>li'] = map_cr('LspInfo'):with_noremap():with_silent():with_nowait():with_desc 'lsp: Info',
     ['n|<leader>lr'] = map_cr('LspRestart'):with_noremap():with_silent():with_nowait():with_desc 'lsp: Restart',
-    ['n|<leader>k'] = map_callback(function()
-        vim.diagnostic.open_float()
-      end)
-      :with_noremap()
-      :with_silent()
-      :with_nowait()
-      :with_desc 'lsp diagnostic info',
     ['n|gD'] = map_cr('Glance definitions'):with_silent():with_noremap():with_nowait():with_desc 'lsp: definitions',
     ['n|gl'] = map_cr('Glance references'):with_silent():with_noremap():with_nowait():with_desc 'lsp: references',
     ['n|gi'] = map_cr('Glance implementations')

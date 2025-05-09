@@ -5,6 +5,7 @@ return {
   init_options = {
     settings = {
       organizeImports = false, -- in favor of Conform (:Format ruff_organize_imports)
+      lineLength = 120,
       lint = {
         preview = true,
         -- select = { 'E4', 'E7', 'E9', 'F', 'PTH' },

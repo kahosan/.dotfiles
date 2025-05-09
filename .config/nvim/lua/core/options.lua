@@ -4,7 +4,7 @@ local o = vim.opt
 -- General
 o.autowrite = true
 o.clipboard = 'unnamedplus'
-o.completeopt = 'menuone,noselect,popup'
+o.completeopt = 'menuone,noselect'
 o.formatoptions = '1jcroql'
 o.grepformat = '%f:%l:%c:%m'
 o.grepprg = 'rg --hidden --vimgrep --smart-case --'

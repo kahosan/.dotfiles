@@ -27,6 +27,18 @@ return {
       list = { selection = { preselect = false } },
       menu = { auto_show = true },
     },
+    sources = function()
+      local type = vim.fn.getcmdtype()
+      -- Search forward and backward
+      if type == '/' or type == '?' then
+        return { 'buffer' }
+      end
+      -- Commands
+      if type == ':' or type == '@' then
+        return { 'cmdline', 'buffer' }
+      end
+      return {}
+    end,
   },
   completion = {
     accept = { auto_brackets = { enabled = false } },

@@ -4,8 +4,8 @@ completion['neovim/nvim-lspconfig'] = {
   event = { 'BufReadPost', 'BufNewFile', 'BufWritePre' },
   config = require 'completion.lsp',
   dependencies = {
-    { 'williamboman/mason.nvim' },
-    { 'williamboman/mason-lspconfig.nvim' },
+    { 'mason-org/mason.nvim' },
+    { 'mason-org/mason-lspconfig.nvim' },
     { 'b0o/schemastore.nvim' },
   },
 }

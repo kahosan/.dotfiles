@@ -23,12 +23,6 @@ local mappings = {
       end)
       :with_noremap()
       :with_silent()
-      :with_desc 'lsp: Toggle global diagnostics list',
-    ['n|gT'] = map_callback(function()
-        spicker 'diagnostics_buffer'
-      end)
-      :with_noremap()
-      :with_silent()
       :with_desc 'lsp: Toggle diagnostics list',
     ['n|<leader>fu'] = map_callback(function()
         spicker 'undo'
