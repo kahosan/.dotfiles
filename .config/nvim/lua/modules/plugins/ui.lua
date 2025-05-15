@@ -8,6 +8,9 @@ ui['catppuccin/nvim'] = {
   name = 'catppuccin',
   config = require 'ui.catppuccin',
 }
+ui['wtfox/jellybeans.nvim'] = {
+  opts = require 'ui.jellybeans',
+}
 ui['lewis6991/gitsigns.nvim'] = {
   config = require 'ui.gitsigns',
 }

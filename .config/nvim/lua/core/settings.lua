@@ -9,15 +9,9 @@ settings['use_ssh'] = false
 ---@type boolean
 settings['load_big_files_faster'] = true
 
--- Change the colors of the global palette here.
--- Settings will complete their replacement at initialization.
--- Parameters will be automatically completed as you type.
--- Example: { sky = "#04A5E5" }
----@type table<string, string>
-settings['palette_overwrite'] = {}
-
 -- Set the colorscheme to use here.
 settings['colorscheme'] = 'catppuccin'
+-- settings['colorscheme'] = 'jellybeans'
 -- settings["colorscheme"] = "default"
 
 -- Set background color to use here.
