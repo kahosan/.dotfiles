@@ -60,6 +60,12 @@ local mappings = {
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in buffer by select word',
+    ['n|<leader>fs'] = map_callback(function()
+        spicker 'lines'
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'find: Word in buffer by select word',
     ['n|<leader>ff'] = map_callback(function()
         spicker 'files'
       end)
