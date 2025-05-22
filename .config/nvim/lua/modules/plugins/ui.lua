@@ -27,11 +27,11 @@ ui['j-hui/fidget.nvim'] = {
     notification = { window = { winblend = 0 } },
   },
 }
-ui['rachartier/tiny-inline-diagnostic.nvim'] = {
-  event = 'VeryLazy',
-  priority = 1000,
-  opts = require 'ui.tiny-inline-diagnostic',
-}
+-- ui['rachartier/tiny-inline-diagnostic.nvim'] = {
+--   event = 'VeryLazy',
+--   priority = 1000,
+--   opts = require 'ui.tiny-inline-diagnostic',
+-- }
 ui['nvim-tree/nvim-web-devicons'] = {
   event = 'VeryLazy',
   opts = {},

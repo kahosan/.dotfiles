@@ -34,6 +34,13 @@ local mappings = {
       :with_noremap()
       :with_nowait()
       :with_desc 'lsp: hover',
+    ['n|dg'] = map_callback(function()
+        vim.diagnostic.open_float(nil, { focusable = false, source = 'if_many' })
+      end)
+      :with_silent()
+      :with_noremap()
+      :with_nowait()
+      :with_desc 'lsp: diagnostics',
     ['n|gd'] = map_cr('lua vim.lsp.buf.definition()')
       :with_silent()
       :with_noremap()
