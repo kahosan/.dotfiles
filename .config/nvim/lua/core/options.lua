@@ -37,6 +37,7 @@ o.autoindent = true
 -- UI
 o.number = false
 o.relativenumber = false
+o.guicursor = 'n-v-i-c:block-Cursor'
 o.cursorline = true
 o.cmdheight = 1
 o.showmode = false
