@@ -11,7 +11,7 @@ return function()
       percentage = 0.15,
     },
     transparent_background = transparent_background,
-    show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+    show_end_of_buffer = true, -- show the '~' characters after the end of buffers
     term_colors = true,
     no_bold = true, -- Force no bold
     compile_path = vim.fn.stdpath 'cache' .. '/catppuccin',

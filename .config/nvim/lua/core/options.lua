@@ -35,8 +35,8 @@ o.smartindent = true
 o.autoindent = true
 
 -- UI
-o.number = true
-o.relativenumber = true
+o.number = false
+o.relativenumber = false
 o.cursorline = true
 o.cmdheight = 1
 o.showmode = false

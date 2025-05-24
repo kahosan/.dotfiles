@@ -6,10 +6,14 @@ return {
   },
   indent = {
     indent = {
-      enabled = false,
+      char = '┊',
+      enabled = true,
     },
     animate = {
       enabled = false,
+    },
+    scope = {
+      -- char = '┊',
     },
   },
   picker = {
