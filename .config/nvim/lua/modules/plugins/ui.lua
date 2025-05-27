@@ -14,9 +14,17 @@ ui['wtfox/jellybeans.nvim'] = {
 ui['lewis6991/gitsigns.nvim'] = {
   config = require 'ui.gitsigns',
 }
-ui['nvim-lualine/lualine.nvim'] = {
-  event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
-  config = require 'ui.lualine',
+-- ui['nvim-lualine/lualine.nvim'] = {
+--   event = { 'BufReadPost', 'BufAdd', 'BufNewFile' },
+--   config = require 'ui.lualine',
+-- }
+ui['rebelot/heirline.nvim'] = {
+  event = { 'BufReadPre', 'BufNewFile' },
+  config = function()
+    require('heirline').setup {
+      statusline = require('ui.heirline').statusline,
+    }
+  end,
 }
 ui['jake-stewart/auto-cmdheight.nvim'] = {
   event = 'VeryLazy',
@@ -27,11 +35,11 @@ ui['j-hui/fidget.nvim'] = {
     notification = { window = { winblend = 0 } },
   },
 }
--- ui['rachartier/tiny-inline-diagnostic.nvim'] = {
---   event = 'VeryLazy',
---   priority = 1000,
---   opts = require 'ui.tiny-inline-diagnostic',
--- }
+ui['rachartier/tiny-inline-diagnostic.nvim'] = {
+  event = 'VeryLazy',
+  priority = 1000,
+  opts = require 'ui.tiny-inline-diagnostic',
+}
 ui['nvim-tree/nvim-web-devicons'] = {
   event = 'VeryLazy',
   opts = {},

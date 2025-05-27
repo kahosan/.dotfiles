@@ -54,12 +54,6 @@ local mappings = {
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in project by select word',
-    ['x|<leader>fs'] = map_callback(function()
-        spicker 'lines'
-      end)
-      :with_noremap()
-      :with_silent()
-      :with_desc 'find: Word in buffer by select word',
     ['n|<leader>fs'] = map_callback(function()
         spicker 'lines'
       end)

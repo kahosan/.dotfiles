@@ -6,6 +6,9 @@ editor['pteroctopus/faster.nvim'] = {
 editor['ojroques/nvim-bufdel'] = {
   cmd = { 'BufDel', 'BufDelAll', 'BufDelOthers' },
 }
+editor['tpope/vim-sleuth'] = {
+  event = { 'BufNewFile', 'BufReadPost', 'BufFilePost' },
+}
 editor['sindrets/diffview.nvim'] = {
   cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewFileHistory' },
   opts = {

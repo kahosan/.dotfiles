@@ -2,6 +2,7 @@ local completion = {}
 
 completion['neovim/nvim-lspconfig'] = {
   event = { 'BufReadPost', 'BufNewFile', 'BufWritePre' },
+  cmd = { 'LspStart' },
   config = require 'completion.lsp',
   dependencies = {
     { 'mason-org/mason.nvim' },

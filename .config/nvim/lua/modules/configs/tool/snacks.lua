@@ -30,7 +30,7 @@ return {
     layout = 'vscode',
     layouts = {
       vscode = {
-        preview = false,
+        preview = nil,
         layout = {
           backdrop = false,
           row = 1,

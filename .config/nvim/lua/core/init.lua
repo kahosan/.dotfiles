@@ -90,5 +90,8 @@ require 'core.pack'
 require 'core.event'
 require 'keymap'
 
+-- custom plug
+vim.o.quickfixtextfunc = "v:lua.require'modules.configs.ui.quickfix'.quickfix_text"
+
 set_opts('background', settings.background, {})
 vim.cmd.colorscheme(settings.colorscheme)
