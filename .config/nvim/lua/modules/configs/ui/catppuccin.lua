@@ -84,6 +84,11 @@ return function()
     highlight_overrides = {
       all = function(cp)
         return {
+          ReactiveCursor = { bg = '#FEFF00' },
+          LineNrAbove = { fg = cp.surface1 },
+          LineNr = { fg = cp.yellow },
+          LineNrBelow = { fg = cp.surface1 },
+
           TabLineSel = { bg = '#45475b', fg = '#a6e3a2' },
           DiagnosticHint = { fg = '#d0a9e5' },
           DiagnosticUnderlineHint = { sp = '#d0a9e5' },

@@ -35,10 +35,11 @@ o.smartindent = true
 o.autoindent = true
 
 -- UI
-o.number = false
-o.relativenumber = false
-o.guicursor = 'n-v-i-c:block-Cursor'
-o.cursorline = true
+o.number = true
+o.relativenumber = true
+o.guicursor =
+  'n-v-i-c:block,a:blinkwait700-blinkoff400-blinkon250-ReactiveCursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175'
+o.cursorline = false
 o.cmdheight = 1
 o.showmode = false
 o.cmdwinheight = 5
