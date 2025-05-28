@@ -11,6 +11,19 @@ tool['nvim-neo-tree/neo-tree.nvim'] = {
     'MunifTanjim/nui.nvim',
   },
 }
+tool['stevearc/oil.nvim'] = {
+  opts = {
+    default_file_explorer = true,
+    columns = { 'permissions', 'size', 'mtime' },
+    constrain_cursor = 'name',
+    view_options = { show_hidden = true },
+    keymaps = {
+      ['<C-l>'] = 'actions.select',
+      ['<C-n>'] = 'actions.close',
+      ['<C-r>'] = 'actions.refresh',
+    },
+  },
+}
 tool['kylechui/nvim-surround'] = {
   event = 'VeryLazy',
   opts = {},

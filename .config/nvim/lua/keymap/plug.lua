@@ -14,10 +14,13 @@ local mappings = {
     ['n|<Tab>'] = map_cr('bnext'):with_noremap():with_silent():with_desc 'buffer: Switch to next',
     ['n|<S-Tab>'] = map_cr('bprev'):with_noremap():with_silent():with_desc 'buffer: Switch to prev',
   },
-  neotree = {
-    -- Plugin Neotree
-    ['n|<C-n>'] = map_cr('Neotree toggle'):with_noremap():with_silent():with_desc 'filetree: Toggle',
-    ['n|<leader>e'] = map_cr('Neotree reveal'):with_noremap():with_silent():with_desc 'filetree: Reveal',
+  -- neotree = {
+  --   -- Plugin Neotree
+  --   ['n|<C-n>'] = map_cr('Neotree toggle'):with_noremap():with_silent():with_desc 'filetree: Toggle',
+  --   ['n|<leader>e'] = map_cr('Neotree reveal'):with_noremap():with_silent():with_desc 'filetree: Reveal',
+  -- },
+  oil = {
+    ['n|<C-n>'] = map_cr('Oil'):with_noremap():with_silent():with_desc 'filetree: Toggle',
   },
   snacks_picker = {
     ['n|gt'] = map_callback(function()
@@ -32,6 +35,12 @@ local mappings = {
       :with_noremap()
       :with_silent()
       :with_desc 'find: Find undo history',
+    ['n|<leader>fh'] = map_callback(function()
+        spicker 'help'
+      end)
+      :with_noremap()
+      :with_silent()
+      :with_desc 'find: Find help',
     ['n|<leader>fr'] = map_callback(function()
         spicker 'recent'
       end)
