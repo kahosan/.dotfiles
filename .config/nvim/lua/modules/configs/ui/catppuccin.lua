@@ -95,6 +95,18 @@ return function()
           LspDiagnosticsUnderlineHint = { sp = '#d0a9e5' },
           SnacksPickerInputBorder = { bg = cp.mantle },
           CodeiumSuggestion = { fg = '#808080' },
+
+          CompileModeMessageRow = { fg = cp.text },
+          CompileModeMessageCol = { fg = cp.text },
+          CompileModeError = { fg = cp.red },
+          CompileModeWarning = { fg = cp.yellow },
+          CompileModeInfo = { fg = cp.green },
+          CompileModeMessage = { link = 'CompileModeInfo' },
+          CompileModeCommandOutput = { fg = '#6699ff' },
+          CompileModeDirectoryMessage = { fg = '#6699ff' },
+          CompileModeOutputFile = { fg = '#9966cc' },
+          CompileModeCheckResult = { fg = '#ff9966' },
+          CompileModeCheckTarget = { fg = '#ff9966' },
         }
       end,
     },

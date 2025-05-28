@@ -1,6 +1,7 @@
 local bind = require 'keymap.bind'
 local map_cr = bind.map_cr
 local map_callback = bind.map_callback
+local map_cmd = bind.map_cmd
 
 local spicker = Snacks.picker.pick
 
@@ -8,6 +9,7 @@ local mappings = {
   buffer = {
     -- nvim-bufdel
     ['n|<leader>bd'] = map_cr('BufDel'):with_noremap():with_silent():with_desc 'buffer: Close current',
+    ['n|<leader>bD'] = map_cr('BufDelOthers'):with_noremap():with_silent():with_desc 'buffer: Close others',
     -- Buffer Change
     ['n|<Tab>'] = map_cr('bnext'):with_noremap():with_silent():with_desc 'buffer: Switch to next',
     ['n|<S-Tab>'] = map_cr('bprev'):with_noremap():with_silent():with_desc 'buffer: Switch to prev',
@@ -116,6 +118,9 @@ local mappings = {
       :with_silent()
       :with_noremap()
       :with_desc 'tool: Search and replace current word',
+  },
+  compile_mode = {
+    ['n|cm'] = map_cmd('<Cmd>Compile<CR>'):with_noremap():with_silent():with_desc 'tool: Compile command',
   },
 }
 
