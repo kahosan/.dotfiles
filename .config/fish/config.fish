@@ -19,8 +19,6 @@ end
 set -x BAT_THEME "Nord"
 set -x BAT_STYLE changes
 
-set -x EDITOR nvim
-
 # ni
 set -x NI_CONFIG_FILE ~/.config/ni/nirc
 
