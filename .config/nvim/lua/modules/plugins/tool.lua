@@ -18,6 +18,7 @@ tool['stevearc/oil.nvim'] = {
     constrain_cursor = 'name',
     view_options = { show_hidden = true },
     keymaps = {
+      ['<C-h>'] = 'actions.parent',
       ['<C-l>'] = 'actions.select',
       ['<C-n>'] = 'actions.close',
       ['<C-r>'] = 'actions.refresh',

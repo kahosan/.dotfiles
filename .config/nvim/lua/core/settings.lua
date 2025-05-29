@@ -34,6 +34,7 @@ settings['transparent_background'] = false
 ---@type string[]
 settings['lsp_deps'] = {
   -- 'basedpyright',
+  -- 'ruff'
   -- 'rust_analyzer'
   'bashls',
   'lua_ls',
@@ -44,6 +45,7 @@ settings['lsp_deps'] = {
   -- 'eslint',
   -- 'ts_ls',
   -- 'vtsls'
+  -- 'tailwindcss',
   'typos_lsp',
 }
 

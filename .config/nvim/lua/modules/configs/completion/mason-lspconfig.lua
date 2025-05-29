@@ -14,6 +14,9 @@ M.setup = function()
     update_in_insert = false,
   }
 
+  -- some server use manual enable
+  vim.lsp.enable { 'gopls' }
+
   vim.lsp.config('*', {
     capabilities = require('blink.cmp').get_lsp_capabilities(),
   })
