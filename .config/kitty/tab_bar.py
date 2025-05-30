@@ -3,6 +3,8 @@
 # pylint: disable=E0401,C0116,C0103,W0603,R0913
 
 import datetime
+import re
+import subprocess
 
 from kitty.fast_data_types import Screen, get_options
 from kitty.tab_bar import (
@@ -28,6 +30,10 @@ CLOCK_FG = as_rgb(0xFFEFFFF)
 CLOCK_BG = as_rgb(0xF38BA8)
 DATE_FG = as_rgb(0xFFFFFF)
 DATE_BG = as_rgb(0x585B70)
+
+# SSH Status
+SSH_FG = as_rgb(0xFFEFFFF)
+SSH_BG = as_rgb(0x212121)
 
 
 def _draw_icon(screen: Screen, index: int) -> int:
@@ -57,6 +63,35 @@ def _draw_icon(screen: Screen, index: int) -> int:
         italic,
     )
     return screen.cursor.x
+
+
+def _draw_ssh_status():
+    try:
+        result = subprocess.run(
+            ["ps", "-o", "tty,command"], capture_output=True, text=True, check=True
+        )
+
+        lines = result.stdout.strip().split("\n")
+        ssh_sessions = []
+
+        for line in lines:
+            if "kitten ssh" in line and "KITTY_WINDOW_ID" not in line:
+                parts = line.strip().split(None, 2)
+                if len(parts) >= 3:
+                    tty = parts[0]
+                    # 提取 ssh 目标 (kitten ssh 后面的部分)
+                    ssh_target = parts[2].replace("ssh ", "")
+
+                    # 提取 tty 编号 (ttys000 -> 0, ttys001 -> 1, etc.)
+                    tty_match = re.search(r"ttys(\d+)", tty)
+                    if tty_match:
+                        tty_num = int(tty_match.group(1)) + 1  # 从1开始编号
+                        ssh_sessions.append(f"{tty_num}:{ssh_target}")
+
+        return "|".join(ssh_sessions)
+
+    except Exception as e:
+        return e
 
 
 def _draw_left_status(
@@ -111,6 +146,13 @@ def _draw_right_status(screen: Screen, is_last: bool) -> int:
         (CLOCK_FG, CLOCK_BG, datetime.datetime.now().strftime(" %H:%M ")),
         (DATE_FG, DATE_BG, datetime.datetime.now().strftime(" %Y/%m/%d ")),
     ]
+
+    ssh_status = _draw_ssh_status()
+    if ssh_status:
+        cells.insert(
+            0,
+            (SSH_FG, SSH_BG, f" SSH({ssh_status}) "),
+        )
 
     right_status_length = 0
     for _, _, cell in cells:
