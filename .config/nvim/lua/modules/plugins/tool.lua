@@ -13,14 +13,14 @@ tool['nvim-neo-tree/neo-tree.nvim'] = {
 }
 tool['stevearc/oil.nvim'] = {
   opts = {
-    default_file_explorer = true,
+    default_file_explorer = false,
     columns = { 'permissions', 'size', 'mtime' },
     constrain_cursor = 'name',
     view_options = { show_hidden = true },
     keymaps = {
       ['<C-h>'] = 'actions.parent',
       ['<C-l>'] = 'actions.select',
-      ['<C-n>'] = 'actions.close',
+      ['-'] = 'actions.close',
       ['<C-r>'] = 'actions.refresh',
     },
   },
