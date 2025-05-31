@@ -34,17 +34,17 @@ settings['transparent_background'] = false
 ---@type string[]
 settings['lsp_deps'] = {
   -- 'basedpyright',
-  -- 'ruff'
-  -- 'rust_analyzer'
+  -- 'ruff',
+  -- 'rust_analyzer',
   'bashls',
   'lua_ls',
   'jsonls',
   'yamlls',
   -- 'html',
-  'emmet_language_server',
+  -- 'emmet_language_server',
   -- 'eslint',
   -- 'ts_ls',
-  -- 'vtsls'
+  'vtsls',
   -- 'tailwindcss',
   'typos_lsp',
 }
@@ -74,6 +74,9 @@ settings['treesitter_deps'] = {
   'css',
   'markdown',
   'markdown_inline',
+  'ssh_config',
+  'git_config',
+  'dockerfile',
 }
 
 return settings
