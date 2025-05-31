@@ -29,6 +29,10 @@ editor['m4xshen/autoclose.nvim'] = {
   event = 'InsertEnter',
   config = require 'editor.autoclose',
 }
+editor['nmac427/guess-indent.nvim'] = {
+  event = 'InsertEnter',
+  opts = require 'editor.guess-indent',
+}
 
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
@@ -38,8 +42,7 @@ editor['nvim-treesitter/nvim-treesitter'] = {
   event = 'BufReadPre',
   config = require 'editor.treesitter',
   dependencies = {
-    { 'windwp/nvim-ts-autotag' },
-    { 'nvim-treesitter/nvim-treesitter-textobjects' },
+    { 'windwp/nvim-ts-autotag', config = true },
     {
       'nvim-treesitter/nvim-treesitter-context',
       config = require 'editor.ts-context',

@@ -1,8 +1,4 @@
 return vim.schedule_wrap(function()
-  require('nvim-ts-autotag').setup {}
-
-  local use_ssh = require('core.settings').use_ssh
-
   require('nvim-treesitter.configs').setup {
     ensure_installed = require('core.settings').treesitter_deps,
     highlight = {
@@ -17,42 +13,10 @@ return vim.schedule_wrap(function()
       end,
       additional_vim_regex_highlighting = false,
     },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true,
-        keymaps = {
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
-      },
-      move = {
-        enable = true,
-        set_jumps = true,
-        goto_next_start = {
-          [']['] = '@function.outer',
-          [']m'] = '@class.outer',
-        },
-        goto_next_end = {
-          [']]'] = '@function.outer',
-          [']M'] = '@class.outer',
-        },
-        goto_previous_start = {
-          ['[['] = '@function.outer',
-          ['[m'] = '@class.outer',
-        },
-        goto_previous_end = {
-          ['[]'] = '@function.outer',
-          ['[M'] = '@class.outer',
-        },
-      },
-    },
-    indent = { enable = true },
-    matchup = { enable = true },
   }
+
   require('nvim-treesitter.install').prefer_git = true
+  local use_ssh = require('core.settings').use_ssh
   if use_ssh then
     local parsers = require('nvim-treesitter.parsers').get_parser_configs()
     for _, parser in pairs(parsers) do
