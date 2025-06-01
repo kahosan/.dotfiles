@@ -1,9 +1,6 @@
 local bind = require 'keymap.bind'
 local map_cr = bind.map_cr
-local map_callback = bind.map_callback
 local map_cmd = bind.map_cmd
-
-local spicker = Snacks.picker.pick
 
 local mappings = {
   buffer = {
@@ -23,93 +20,60 @@ local mappings = {
     ['n|-'] = map_cr('Oil'):with_noremap():with_silent():with_desc 'filetree: Toggle',
   },
   snacks_picker = {
-    ['n|gt'] = map_callback(function()
-        spicker 'diagnostics_buffer'
-      end)
+    ['n|gt'] = map_cr("lua Snacks.picker.pick('diagnostics_buffer')")
       :with_noremap()
       :with_silent()
       :with_desc 'lsp: Toggle diagnostics list',
-    ['n|<leader>fu'] = map_callback(function()
-        spicker 'undo'
-      end)
+    ['n|<leader>fu'] = map_cr("lua Snacks.picker.pick('undo')")
       :with_noremap()
       :with_silent()
       :with_desc 'find: Find undo history',
-    ['n|<leader>fh'] = map_callback(function()
-        spicker 'help'
-      end)
-      :with_noremap()
-      :with_silent()
-      :with_desc 'find: Find help',
-    ['n|<leader>fr'] = map_callback(function()
-        spicker 'recent'
-      end)
+    ['n|<leader>fh'] = map_cr("lua Snacks.picker.pick('help')"):with_noremap():with_silent():with_desc 'find: Find help',
+    ['n|<leader>fr'] = map_cr("lua Snacks.picker.pick('recent')")
       :with_noremap()
       :with_silent()
       :with_desc 'find: File by frecency',
-    ['n|<leader>fp'] = map_callback(function()
-        spicker 'project'
-      end)
+    ['n|<leader>fp'] = map_cr("lua Snacks.picker.pick('project')")
       :with_noremap()
       :with_silent()
       :with_desc 'find: Find project',
-    ['n|<leader>fw'] = map_callback(function()
-        spicker 'grep'
-      end)
+    ['n|<leader>fw'] = map_cr("lua Snacks.picker.pick('grep')")
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in project',
-    ['x|<leader>fw'] = map_callback(function()
-        spicker 'grep_word'
-      end)
+    ['x|<leader>fw'] = map_cr("lua Snacks.picker.pick('grep_word')")
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in project by select word',
-    ['n|<leader>fs'] = map_callback(function()
-        spicker 'lines'
-      end)
+    ['n|<leader>fs'] = map_cr("lua Snacks.picker.pick('lines')")
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in buffer by select word',
-    ['n|<leader>ff'] = map_callback(function()
-        spicker 'files'
-      end)
+    ['n|<leader>ff'] = map_cr("lua Snacks.picker.pick('files')")
       :with_noremap()
       :with_silent()
       :with_desc 'find: File in project',
-    ['n|<leader>fc'] = map_callback(function()
-        spicker 'colorschemes'
-      end)
+    ['n|<leader>fc'] = map_cr("lua Snacks.picker.pick('colorschemes')")
       :with_noremap()
       :with_silent()
       :with_desc 'ui: Change colorscheme for current session',
-    ['n|<leader>fg'] = map_callback(function()
-        spicker 'git_files'
-      end)
+    ['n|<leader>fg'] = map_cr("lua Snacks.picker.pick('git_files')")
       :with_noremap()
       :with_silent()
       :with_desc 'find: file in git project',
-    ['n|<leader>fz'] = map_callback(function()
-        spicker 'zoxide'
-      end)
+    ['n|<leader>fz'] = map_cr("lua Snacks.picker.pick('zoxide')")
       :with_noremap()
       :with_silent()
       :with_desc 'editn: Change current directory by zoxide',
-    ['n|<leader>fb'] = map_callback(function()
-        spicker 'buffers'
-      end)
+    ['n|<leader>fb'] = map_cr("lua Snacks.picker.pick('buffers')")
       :with_noremap()
       :with_silent()
       :with_desc 'find: Buffer opened',
-    ['n|<leader>fa'] = map_callback(function()
-        spicker()
-      end)
+    ['n|<leader>fa'] = map_cr('lua Snacks.picker.pick()')
       :with_noremap()
       :with_silent()
       :with_desc 'find: Select picker source',
-    ['n|<C-p>'] = map_callback(function()
-        spicker 'keymaps'
-      end)
+    ['n|<C-p>'] = map_cr("lua Snacks.picker.pick('keymaps')")
       :with_silent()
       :with_noremap()
       :with_desc 'tool: Toggle command panel',
@@ -130,6 +94,12 @@ local mappings = {
   },
   compile_mode = {
     ['n|cm'] = map_cmd('<Cmd>Compile<CR>'):with_noremap():with_silent():with_desc 'tool: Compile command',
+  },
+  attempt = {
+    ['n|<leader>ti'] = map_cr("lua require('attempt').new_input_ext()"):with_silent():with_desc 'tool: Create scratch',
+    ['n|<leader>td'] = map_cr("lua require('attempt').delete_buf()"):with_silent():with_desc 'tool: Delete scratch',
+    ['n|<leader>tr'] = map_cr("lua require('attempt').rename_buf()"):with_silent():with_desc 'tool: Rename scratch',
+    ['n|<leader>tl'] = map_cr("lua require('attempt.snacks').picker()"):with_silent():with_desc 'tool: Select scratch',
   },
 }
 

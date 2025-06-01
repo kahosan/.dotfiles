@@ -13,7 +13,7 @@ tool['nvim-neo-tree/neo-tree.nvim'] = {
 }
 tool['stevearc/oil.nvim'] = {
   opts = {
-    default_file_explorer = false,
+    default_file_explorer = true,
     columns = { 'permissions', 'size', 'mtime' },
     constrain_cursor = 'name',
     view_options = { show_hidden = true },
@@ -44,6 +44,9 @@ tool['kawre/neotab.nvim'] = {
 }
 tool['folke/snacks.nvim'] = {
   opts = require 'tool.snacks',
+}
+tool['m-demare/attempt.nvim'] = {
+  opts = {},
 }
 tool['ej-shafran/compile-mode.nvim'] = {
   event = 'VeryLazy',

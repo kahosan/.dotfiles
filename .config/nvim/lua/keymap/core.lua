@@ -25,12 +25,13 @@ local builtins = {
   ['n|<A-]>'] = map_cr('vertical resize +5'):with_silent():with_desc 'window: Resize +5 vertically',
   ['n|<A-;>'] = map_cr('resize -2'):with_silent():with_desc 'window: Resize -2 horizontally',
   ["n|<A-'>"] = map_cr('resize +2'):with_silent():with_desc 'window: Resize +2 horizontally',
+  ['n|g.'] = map_cmd('/\\V\\C<C-r>"<CR>cgn<C-a><Esc>'):with_silent():with_noremap():with_desc 'editn: Repeat last ciw',
 
   -- Insert mode
   ['i|<C-c>'] = map_cmd('<Esc>'):with_noremap():with_desc 'remap esc',
   ['i|<C-u>'] = map_cmd('<C-G>u<C-U>'):with_noremap():with_desc 'editi: Delete previous block',
   ['i|<C-b>'] = map_cmd('<Left>'):with_noremap():with_desc 'editi: Move cursor to left',
-  ['i|<C-a>'] = map_cmd('<ESC>^i'):with_noremap():with_desc 'editi: Move cursor to line start',
+  ['i|<C-a>'] = map_cmd('<Esc>^i'):with_noremap():with_desc 'editi: Move cursor to line start',
   ['i|<C-s>'] = map_cmd('<Esc>:w<CR>'):with_desc 'editi: Save file',
   ['i|<C-q>'] = map_cmd('<Esc>:wq<CR>'):with_desc 'editi: Save file and quit',
   ['i|<C-n>'] = map_cmd('<Nop>'):with_noremap():with_silent(),
