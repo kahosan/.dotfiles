@@ -36,6 +36,7 @@ M.RightPadding = function(child, num_space)
   end
   return result
 end
+
 M.Mode = {
   init = function(self)
     self.mode = vim.fn.mode(1)
@@ -165,34 +166,6 @@ M.FileType = {
   hl = { fg = utils.get_highlight('Type').fg, bold = true },
 }
 
-M.CodeiumStatus = {
-  init = function(self)
-    self.codeium_exist = vim.fn.exists '*codeium#GetStatusString' == 1
-    self.codeium_status = self.codeium_exist and vim.fn['codeium#GetStatusString']() or nil
-  end,
-  provider = function(self)
-    if not self.codeium_exist then
-      return ''
-    end
-    if self.codeium_status == ' ON' then
-      return '󰚩 '
-    elseif self.codeium_status == ' OFF' then
-      return '󱚡 '
-    else
-      return '󱚝 '
-    end
-  end,
-  hl = function(self)
-    if self.codeium_status == ' ON' then
-      return { fg = palette.green }
-    elseif self.codeium_status == ' OFF' then
-      return { fg = palette.gray }
-    else
-      return { fg = palette.maroon }
-    end
-  end,
-}
-
 -- Git
 M.Git = {
   condition = conditions.is_git_repo,
@@ -315,71 +288,7 @@ M.Diagnostics = {
   {
     provider = ' |',
   },
-  --   name = 'heirline_diagnostic',
-  --   callback = function()
-  --     Snacks.picker.diagnostics_buffer()
-  --   end,
-  -- },
-} -- Diagnostics
--- Diaanostics
--- M.Diagnostics = {
---   condition = conditions.has_diagnostics,
---   static = {
---     error_icon = 'E=',
---     warn_icon = 'W=',
---     info_icon = 'H=',
---     hint_icon = 'H=',
---   },
---
---   init = function(self)
---     self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
---     self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
---     self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
---     self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
---   end,
---
---   update = { 'DiagnosticChanged', 'BufEnter' },
---
---   {
---     provider = '[ ',
---   },
---
---   {
---     provider = function(self)
---       -- 0 is just another output, we can decide to print it or not!
---       return self.errors > 0 and (self.error_icon .. self.errors .. ' ')
---     end,
---     hl = { fg = colors.diag_error },
---   },
---   {
---     provider = function(self)
---       return self.warnings > 0 and (self.warn_icon .. self.warnings .. ' ')
---     end,
---     hl = { fg = colors.diag_warn },
---   },
---   {
---     provider = function(self)
---       return self.info > 0 and (self.info_icon .. self.info .. ' ')
---     end,
---     hl = { fg = colors.diag_info },
---   },
---   {
---     provider = function(self)
---       return self.hints > 0 and (self.hint_icon .. self.hints)
---     end,
---     hl = { fg = colors.diag_hint },
---   },
---
---   {
---     provider = ']',
---   },
---   -- on_click = {
---   --   name = 'heirline_diagnostic',
---   --   callback = function()
---   --     Snacks.picker.diagnostics_buffer()
---   --   end,
---   -- },
--- } -- Diagnostics
+}
 
 M.FileIcon = {
   condition = function(self)
@@ -546,25 +455,6 @@ M.CTime = {
     return os.date 'T(%H:%M)'
   end,
   hl = { fg = palette.text },
-}
-
-M.statusline = {
-  -- M.RightPadding(M.Mode, 2),
-  M.RightPadding(M.FileNameBlock, 2),
-  M.RightPadding(M.Diagnostics),
-  M.RightPadding(M.CTime),
-  M.RightPadding(M.SearchOccurrence),
-  M.Fill,
-  M.MacroRecording,
-  M.Fill,
-  M.RightPadding(M.ShowCmd),
-  M.RightPadding(M.Git),
-  -- M.RightPadding(M.LSPActive),
-  M.RightPadding(M.FileStatus),
-  M.RightPadding(M.SimpleIndicator),
-  M.FileType,
-  M.RightPadding(M.PythonVenv),
-  M.RightPadding(M.Ruler),
 }
 
 return M

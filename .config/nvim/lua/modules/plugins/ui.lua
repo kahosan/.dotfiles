@@ -22,7 +22,7 @@ ui['rebelot/heirline.nvim'] = {
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     require('heirline').setup {
-      statusline = require('ui.heirline').statusline,
+      statusline = require 'ui.heirline.statusline',
     }
   end,
 }
