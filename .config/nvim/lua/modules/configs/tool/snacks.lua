@@ -1,6 +1,10 @@
 ---@module 'snacks'
 ---@type snacks.Config
 return {
+  bigfile = {
+    enabled = require('core.settings').load_big_files_faster,
+    notify = false,
+  },
   quickfile = {
     exclude = { 'latex' },
   },

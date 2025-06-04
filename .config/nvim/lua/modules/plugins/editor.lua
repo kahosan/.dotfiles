@@ -1,8 +1,5 @@
 local editor = {}
 
-editor['pteroctopus/faster.nvim'] = {
-  cond = require('core.settings').load_big_files_faster,
-}
 editor['ojroques/nvim-bufdel'] = {
   cmd = { 'BufDel', 'BufDelAll', 'BufDelOthers' },
 }
