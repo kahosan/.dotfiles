@@ -19,10 +19,14 @@ completion['dnlhc/glance.nvim'] = {
   config = require 'completion.glance',
 }
 completion['stevearc/conform.nvim'] = {
-  event = 'LspAttach',
+  event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
   config = require 'completion.conform',
 }
+-- completion['mfussenegger/nvim-lint'] = {
+--   event = 'VeryLazy',
+--   config = require 'completion.nvim-lint',
+-- }
 completion['saghen/blink.cmp'] = {
   event = { 'InsertEnter', 'CmdlineEnter' },
   version = '1.*',

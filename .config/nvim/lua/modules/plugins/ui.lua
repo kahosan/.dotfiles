@@ -36,8 +36,7 @@ ui['j-hui/fidget.nvim'] = {
   },
 }
 ui['rachartier/tiny-inline-diagnostic.nvim'] = {
-  event = 'VeryLazy',
-  priority = 1000,
+  event = 'LspAttach',
   opts = require 'ui.tiny-inline-diagnostic',
 }
 ui['nvim-tree/nvim-web-devicons'] = {

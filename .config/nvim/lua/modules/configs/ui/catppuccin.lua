@@ -107,6 +107,8 @@ return function()
           CompileModeOutputFile = { fg = '#9966cc' },
           CompileModeCheckResult = { fg = '#ff9966' },
           CompileModeCheckTarget = { fg = '#ff9966' },
+
+          FloatBorder = { bg = '#212122' },
         }
       end,
     },

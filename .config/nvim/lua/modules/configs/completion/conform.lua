@@ -1,4 +1,24 @@
 return function()
+  local formatters_by_ft = {
+    _ = { 'trim_whitespace' },
+    lua = { 'stylua' },
+    go = { 'goimports', 'gofmt' },
+    rust = { 'rustfmt' },
+    sh = { 'shfmt' },
+    python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
+  }
+
+  local prettier_ft = { 'css', 'json', 'yaml', 'scss' }
+  local clang_ft = { 'c', 'cpp' }
+
+  for _, ft in ipairs(prettier_ft) do
+    formatters_by_ft[ft] = { 'prettierd', 'prettier', stop_after_first = true }
+  end
+
+  for _, ft in ipairs(clang_ft) do
+    formatters_by_ft[ft] = { 'clang-format' }
+  end
+
   require('conform').setup {
     format_on_save = {
       timeout_ms = 500,
@@ -12,17 +32,6 @@ return function()
         },
       },
     },
-    formatters_by_ft = {
-      lua = { 'stylua' },
-      c = { 'clang-format' },
-      cpp = { 'clang-format' },
-      rust = { 'rustfmt' },
-      css = { 'prettierd', 'prettier', stop_after_first = true },
-      json = { 'prettierd', 'prettier', stop_after_first = true },
-      yaml = { 'prettierd', 'prettier', stop_after_first = true },
-      scss = { 'prettierd', 'prettier', stop_after_first = true },
-      sh = { 'shfmt' },
-      python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
-    },
+    formatters_by_ft = formatters_by_ft,
   }
 end

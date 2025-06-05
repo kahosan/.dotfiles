@@ -70,12 +70,14 @@ You're recommended to install PowerShell for better experience.]],
   set_opts('shellxquote', '', {})
 end
 
+vim.treesitter.language.register('bash', 'kitty')
 vim.filetype.add {
   extension = { rasi = 'rasi', rofi = 'rasi', wofi = 'rasi' },
   filename = {
     ['vifmrc'] = 'vim',
   },
   pattern = {
+    ['.*/sing%-box/.+%.json'] = 'jsonc',
     ['.*/waybar/config'] = 'jsonc',
     ['.*/mako/config'] = 'dosini',
     ['.*/kitty/.+%.conf'] = 'kitty',
@@ -83,7 +85,6 @@ vim.filetype.add {
     ['%.env%.[%w_.-]+'] = 'sh',
   },
 }
-vim.treesitter.language.register('bash', 'kitty')
 
 require 'core.options'
 require 'core.pack'
