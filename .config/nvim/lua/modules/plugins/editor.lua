@@ -27,6 +27,7 @@ editor['nmac427/guess-indent.nvim'] = {
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------
 editor['nvim-treesitter/nvim-treesitter'] = {
+  branch = 'main',
   build = ':TSUpdate',
   event = 'BufReadPre',
   config = require 'editor.treesitter',
