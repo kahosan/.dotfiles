@@ -12,7 +12,7 @@ local builtins = {
 
   -- Normal mode
   ['n|<C-s>'] = map_cu('write'):with_noremap():with_silent():with_desc 'editn: Save file',
-  ['n|<C-q>'] = map_cmd(':wq<CR>'):with_desc 'editn: Save file and quit',
+  ['n|<C-q>'] = map_cmd(':q<CR>'):with_desc 'editn: Save file and quit',
   ['n|<C-h>'] = map_cmd('<C-w>h'):with_noremap():with_desc 'window: Focus left',
   ['n|<C-l>'] = map_cmd('<C-w>l'):with_noremap():with_desc 'window: Focus right',
   ['n|<C-j>'] = map_cmd('<C-w>j'):with_noremap():with_desc 'window: Focus down',
