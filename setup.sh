@@ -21,10 +21,6 @@ if ! require brew; then
 	bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-if ! require starship; then
-	curl -fsSL https://starship.rs/install.sh | sh
-fi
-
 echo ""
 
 if [[ ! -d "$HOME/.local/bin" ]]; then
