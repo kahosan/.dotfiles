@@ -31,7 +31,6 @@ completion['saghen/blink.cmp'] = {
   event = { 'InsertEnter', 'CmdlineEnter' },
   version = '1.*',
   dependencies = {
-    'fang2hou/blink-copilot',
     'jdrupal-dev/css-vars.nvim',
     'mikavilpas/blink-ripgrep.nvim',
     'xzbdmw/colorful-menu.nvim',
@@ -41,14 +40,8 @@ completion['saghen/blink.cmp'] = {
 }
 completion['zbirenbaum/copilot.lua'] = {
   cmd = 'Copilot',
-  -- event = "InsertEnter",
-  config = require 'completion.copilot',
-}
-completion['Exafunction/windsurf.nvim'] = {
-  config = require 'completion.windsurf',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-  },
+  event = 'InsertEnter',
+  opts = require 'completion.copilot',
 }
 
 return completion

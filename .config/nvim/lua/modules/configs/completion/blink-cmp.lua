@@ -95,7 +95,7 @@ return {
     },
   },
   sources = {
-    default = { 'lsp', 'path', 'buffer', 'copilot', 'css_vars', 'ripgrep', 'lazydev' },
+    default = { 'lsp', 'path', 'buffer', 'css_vars', 'ripgrep', 'lazydev' },
     providers = {
       lsp = {
         name = 'LSP',
@@ -105,11 +105,6 @@ return {
       path = { name = 'PATH' },
       buffer = { name = 'BUF', max_items = 5, score_offset = -3 },
       cmdline = { name = 'CL' },
-      copilot = {
-        name = 'CT',
-        module = 'blink-copilot',
-        async = true,
-      },
       css_vars = {
         name = 'CSSV',
         module = 'css-vars.blink',
