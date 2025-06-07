@@ -399,16 +399,18 @@ M.ShowCmd = {
 
 M.SearchOccurrence = {
   condition = function()
-    return vim.v.hlsearch == 1
+    return vim.v.hlsearch ~= 0
   end,
   hl = { fg = palette.sky },
-  provider = function()
-    local sinfo = vim.fn.searchcount { maxcount = 0 }
-    local search_stat = sinfo.incomplete > 0 and '[?/?]'
-      -- or sinfo.total > 0 and (' [%s/%s]'):format(sinfo.current, sinfo.total)
-      or sinfo.total > 0 and ('[%s/%s]'):format(sinfo.current, sinfo.total)
-      or ''
-    return search_stat
+  init = function(self)
+    local ok, search = pcall(vim.fn.searchcount)
+    if ok and search.total then
+      self.search = search
+    end
+  end,
+  provider = function(self)
+    local search = self.search
+    return string.format('[%d/%d]', search.current, math.min(search.total, search.maxcount))
   end,
 }
 

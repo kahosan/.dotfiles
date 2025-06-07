@@ -1,9 +1,5 @@
 local ui = {}
 
-ui['goolord/alpha-nvim'] = {
-  event = 'BufWinEnter',
-  config = require 'ui.alpha',
-}
 ui['catppuccin/nvim'] = {
   name = 'catppuccin',
   config = require 'ui.catppuccin',
