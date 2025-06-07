@@ -78,19 +78,23 @@ local mappings = {
       :with_noremap()
       :with_desc 'tool: Toggle command panel',
   },
-  spectre = {
-    ['n|<leader>S'] = map_cr("lua require('spectre').toggle()")
-      :with_silent()
+  grug_far = {
+    ['n|<leader>S'] = map_cr("lua require('grug-far').open({transient=true})")
       :with_noremap()
-      :with_desc 'tool: Toggle Spectre',
-    ['n|<leader>sp'] = map_cr("lua require('spectre').open_file_search({select_word=true})")
       :with_silent()
+      :with_desc 'replace: Open grug-far',
+    ['n|<leader>sw'] = map_cr("lua require('grug-far').open({prefills={search=vim.fn.expand('<cword>')}})")
       :with_noremap()
-      :with_desc 'tool: Search and replace on current file',
-    ['v|<leader>sw'] = map_cr("lua require('spectre').open_visual()")
       :with_silent()
+      :with_desc 'replace: Search word in project',
+    ['x|<leader>sw'] = map_cr("lua require('grug-far').with_visual_selection({prefills={paths=vim.fn.expand('%')}})")
       :with_noremap()
-      :with_desc 'tool: Search and replace current word',
+      :with_silent()
+      :with_desc 'replace: Search word in current file by select word',
+    ['n|<leader>sf'] = map_cr("lua require('grug-far').open({prefills={paths=vim.fn.expand('%')}})")
+      :with_noremap()
+      :with_silent()
+      :with_desc 'replace: Search word in current file',
   },
   compile_mode = {
     ['n|cm'] = map_cmd('<Cmd>Compile<CR>'):with_noremap():with_silent():with_desc 'tool: Compile command',

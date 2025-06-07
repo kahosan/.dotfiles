@@ -32,11 +32,8 @@ tool['kylechui/nvim-surround'] = {
 tool['tpope/vim-fugitive'] = {
   cmd = { 'Git', 'G' },
 }
-tool['nvim-pack/nvim-spectre'] = {
-  lazy = true,
-  opts = {
-    default = { replace = { cmd = 'sd' } },
-  },
+tool['MagicDuck/grug-far.nvim'] = {
+  config = require 'tool.grug-far',
 }
 tool['kawre/neotab.nvim'] = {
   event = 'InsertEnter',
