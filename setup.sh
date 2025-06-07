@@ -35,7 +35,7 @@ fi
 if [[ ! -d "$HOME/.ssh" ]]; then
 	echo "mkdir .ssh folder"
 	mkdir "$HOME/.ssh"
-	chmod 600 "$HOME/.ssh"
+	chmod 700 "$HOME/.ssh"
 
 fi
 
