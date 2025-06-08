@@ -409,7 +409,11 @@ M.SearchOccurrence = {
     end
   end,
   provider = function(self)
-    local search = self.search
+    local search = self.search or {
+      current = 0,
+      total = 0,
+      maxcount = 0,
+    }
     return string.format('[%d/%d]', search.current, math.min(search.total, search.maxcount))
   end,
 }
