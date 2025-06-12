@@ -46,7 +46,6 @@ alias ll "ls --long --time-style=long-iso"
 alias l ll
 alias la "ls -a"
 alias lla "ll -a"
-alias df duf
 alias python python3
 alias pip pip3
 alias c clear
