@@ -9,3 +9,6 @@
 fisher
 
 .config/fish/conf.d/kazia.fish
+
+# lazygit
+.config/lazygit/state.yml
