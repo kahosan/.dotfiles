@@ -9,6 +9,9 @@ if test (uname) = Darwin
     if test -d "$HOME/.orbstack/bin"
         fish_add_path "$HOME/.orbstack/bin"
     end
+
+    set -x XDG_CONFIG_HOME "$HOME/.config"
+    set -x XDG_DATA_HOME "$HOME/.local/share"
 end
 
 if test (uname) = Linux

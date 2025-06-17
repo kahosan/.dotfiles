@@ -58,8 +58,8 @@ alias dc 'docker compose'
 
 # kitty
 alias kssh "kitty +kitten ssh"
-alias icat="kitten icat"
-alias kd="kitten diff"
+alias icat "kitten icat"
+alias kd "kitten diff"
 
 # git alias
 alias glo "git log --graph --pretty=format:'%C(auto)%h -%Creset %d %s %Cgreen(%cr)%Creset' --abbrev-commit"
