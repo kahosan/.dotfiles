@@ -1,5 +1,6 @@
 return function()
   local formatters_by_ft = {
+    -- 配置此项后，有 LSP 的格式化功能但不在表里的，都不会生效了
     _ = { 'trim_whitespace' },
     lua = { 'stylua' },
     go = { 'goimports', 'gofmt' },

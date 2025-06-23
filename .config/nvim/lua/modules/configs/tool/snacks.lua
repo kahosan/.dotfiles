@@ -74,15 +74,12 @@ return {
       },
     },
     sources = {
-      lines = {
-        layout = 'vscode',
-      },
-      git_diff = {
-        layout = 'ivy',
-      },
-      undo = {
-        layout = 'ivy',
-      },
+      lines = { layout = 'vscode' },
+      git_diff = { layout = 'ivy' },
+      undo = { layout = 'ivy' },
+      grep = { layout = 'ivy' },
+      grep_buffers = { layout = 'ivy' },
+      grep_word = { layout = 'ivy' },
     },
   },
 }
