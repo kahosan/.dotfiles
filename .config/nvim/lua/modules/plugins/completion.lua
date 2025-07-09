@@ -40,7 +40,7 @@ completion['saghen/blink.cmp'] = {
 }
 completion['zbirenbaum/copilot.lua'] = {
   cmd = 'Copilot',
-  event = 'InsertEnter',
+  -- event = 'InsertEnter',
   opts = require 'completion.copilot',
 }
 
