@@ -17,5 +17,5 @@ return {
   RightPadding(comp.SimpleIndicator),
   comp.FileType,
   RightPadding(comp.PythonVenv),
-  RightPadding(comp.Ruler),
+  comp.Ruler,
 }
