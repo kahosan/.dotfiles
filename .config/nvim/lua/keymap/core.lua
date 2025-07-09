@@ -65,6 +65,7 @@ local builtins = {
 
   -- X mode
   ['x|/'] = map_cmd('<Esc>/\\%V'):with_desc 'search within visual selection',
+  ['x|<leader>r'] = map_cmd('y:%s/<C-R>"//g<Left><Left>'):with_noremap():with_desc 'search and replace selection',
 }
 
 bind.nvim_load_mapping(builtins)
