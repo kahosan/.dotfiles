@@ -3,7 +3,7 @@ local RightPadding = comp.RightPadding
 
 return {
   -- M.RightPadding(M.Mode, 2),
-  RightPadding(comp.FileNameBlock, 2),
+  RightPadding(comp.FileNameBlock),
   RightPadding(comp.Diagnostics),
   RightPadding(comp.CTime),
   RightPadding(comp.SearchOccurrence),

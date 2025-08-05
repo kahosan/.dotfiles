@@ -257,9 +257,9 @@ M.Diagnostics = {
 
   update = { 'DiagnosticChanged', 'BufEnter' },
 
-  -- {
-  --   provider = '{ ',
-  -- },
+  {
+    provider = '[ ',
+  },
   {
     provider = function(self)
       -- 0 is just another output, we can decide to print it or not!
@@ -286,7 +286,7 @@ M.Diagnostics = {
     hl = { fg = colors.diag_hint },
   },
   {
-    provider = ' |',
+    provider = ' ]',
   },
 }
 
@@ -457,7 +457,7 @@ M.FileStatus = {
 
 M.CTime = {
   provider = function()
-    return os.date 'T(%H:%M)'
+    return os.date 'T(%H:%M:%S)'
   end,
   hl = { fg = palette.text },
 }

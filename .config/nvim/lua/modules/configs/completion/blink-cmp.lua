@@ -118,7 +118,11 @@ return {
         async = true,
         opts = {
           project_root_marker = '.git',
-          project_root_fallback = false,
+          backend = {
+            ripgrep = {
+              project_root_fallback = false,
+            },
+          },
         },
         score_offset = 90,
       },
