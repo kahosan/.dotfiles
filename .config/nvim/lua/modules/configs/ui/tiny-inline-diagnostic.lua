@@ -1,6 +1,6 @@
 return {
   transparent_bg = true,
-  transparent_cursorline = false,
+  transparent_cursorline = true,
   signs = {
     left = '',
     right = '',
