@@ -10,10 +10,15 @@ return function()
   }
 
   local prettier_ft = { 'css', 'json', 'yaml', 'scss' }
+  local eslint_ft = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' }
   local clang_ft = { 'c', 'cpp' }
 
   for _, ft in ipairs(prettier_ft) do
     formatters_by_ft[ft] = { 'prettierd', 'prettier', stop_after_first = true }
+  end
+
+  for _, ft in ipairs(eslint_ft) do
+    formatters_by_ft[ft] = { lsp_format = 'first' }
   end
 
   for _, ft in ipairs(clang_ft) do
