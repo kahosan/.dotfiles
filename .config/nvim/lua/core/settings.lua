@@ -33,7 +33,8 @@ settings['transparent_background'] = false
 -- https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/server_configurations
 ---@type string[]
 settings['lsp_deps'] = {
-  -- 'basedpyright',
+  -- 'basedpyright', deprecated
+  -- 'pyrefly'
   -- 'ruff',
   -- 'rust_analyzer',
   'bashls',
