@@ -5,17 +5,7 @@
     editor = nvim
 [init]
     defaultBranch = main
-[diff]
-    external = difft
-    tool = difftastic
-[difftool]
-    prompt = false
-[difftool "difftastic"]
-    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
-[pager]
-    difftool = true
 [alias]
-    dlog = -c diff.external=difft log --ext-diff
     undo = reset --soft HEAD^
     cancel = reset --hard HEAD^
     onemore = commit -a --amend --no-edit
