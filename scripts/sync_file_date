@@ -1,0 +1,73 @@
+#!/usr/bin/env fish
+# 文件名: sync-file-date.fish
+# 用途: 根据文件名中的日期修改文件的时间戳（只修改年月日，保留原有时分秒）
+
+# 检查参数
+set preview_mode true
+if test "$argv[1]" = "y"
+    set preview_mode false
+end
+
+echo "=========================================="
+if test $preview_mode = true
+    echo "预览模式 - 不会实际修改文件"
+    echo "运行 'sync-file-date.fish y' 来实际修改"
+else
+    echo "修改模式 - 将实际修改文件时间戳"
+end
+echo "=========================================="
+echo ""
+
+set modified_count 0
+set skipped_count 0
+
+for file in *.jpeg *.jpg *.png *.psd
+    if test -f "$file"
+        # 提取文件名中的日期部分 (YYYY-MM-DD)
+        set date_str (string match -r '^\d{4}-\d{2}-\d{2}' (basename "$file"))
+
+        if test -n "$date_str"
+            # 获取原文件的时分秒
+            set original_time (stat -f "%Sm" -t "%H:%M:%S" "$file")
+            set original_datetime (stat -f "%Sm" -t "%Y-%m-%d %H:%M:%S" "$file")
+
+            if test $preview_mode = true
+                # 预览模式：显示将要进行的修改
+                echo "文件: $file"
+                echo "  当前时间: $original_datetime"
+                echo "  将改为: $date_str $original_time"
+                echo ""
+            else
+                # 修改模式：实际修改文件
+                # 提取时分秒并转换为 touch 格式
+                set hour (string sub -l 2 "$original_time")
+                set minute (string sub -s 4 -l 2 "$original_time")
+                set second (string sub -s 7 -l 2 "$original_time")
+
+                # 组合为 touch 命令格式: YYYYMMDDhhmm.ss
+                set touch_format (string replace -a '-' '' "$date_str")"$hour$minute.$second"
+
+                touch -t "$touch_format" "$file"
+                echo "✓ 已修改: $file -> $date_str $original_time"
+            end
+            set modified_count (math $modified_count + 1)
+        else
+            echo "⊘ 跳过 (无日期): $file"
+            set skipped_count (math $skipped_count + 1)
+        end
+    end
+end
+
+echo ""
+echo "=========================================="
+if test $preview_mode = true
+    echo "预览完成!"
+    echo "将修改: $modified_count 个文件"
+else
+    echo "修改完成!"
+    echo "已修改: $modified_count 个文件"
+end
+if test $skipped_count -gt 0
+    echo "跳过: $skipped_count 个文件"
+end
+echo "=========================================="
