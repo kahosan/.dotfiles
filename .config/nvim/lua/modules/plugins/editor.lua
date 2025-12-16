@@ -11,7 +11,7 @@ editor['sindrets/diffview.nvim'] = {
   opts = require 'editor.diffview',
 }
 editor['catgoose/nvim-colorizer.lua'] = {
-  event = 'BufReadPre',
+  event = { 'BufReadPre', 'BufNewFile' },
   opts = {},
 }
 editor['m4xshen/autoclose.nvim'] = {
@@ -29,7 +29,7 @@ editor['nmac427/guess-indent.nvim'] = {
 editor['nvim-treesitter/nvim-treesitter'] = {
   branch = 'main',
   build = ':TSUpdate',
-  event = 'BufReadPre',
+  event = { 'BufReadPre', 'BufNewFile' },
   config = require 'editor.treesitter',
   dependencies = {
     { 'windwp/nvim-ts-autotag', config = true },

@@ -22,6 +22,7 @@ tool['stevearc/oil.nvim'] = {
       ['<C-l>'] = 'actions.select',
       ['-'] = 'actions.close',
       ['<C-r>'] = 'actions.refresh',
+      ['<C-c>'] = '<Esc>',
     },
   },
 }
