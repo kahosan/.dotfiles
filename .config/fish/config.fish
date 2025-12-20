@@ -27,6 +27,10 @@ if type -q fnm
     fnm env --use-on-cd --shell fish | source
 end
 
+function fnm_clean_up --on-event fish_exit
+    /bin/rm -r $FNM_MULTISHELL_PATH
+end
+
 # homebrew not auto update
 set -x HOMEBREW_NO_AUTO_UPDATE 1
 
