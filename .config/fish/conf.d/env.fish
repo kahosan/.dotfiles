@@ -1,4 +1,14 @@
+set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -gx XDG_CACHE_HOME "$HOME/.cache"
+
+set -gx GOPATH $HOME/.local/share/go
+
 fish_add_path ~/.local/bin ~/.cargo/bin ~/.config/scripts
+
+if type -q go
+    fish_add_path (go env GOPATH)/bin
+end
 
 if test (uname) = Darwin
     if test -f "/opt/homebrew/bin/brew"
@@ -9,9 +19,6 @@ if test (uname) = Darwin
     if test -d "$HOME/.orbstack/bin"
         fish_add_path "$HOME/.orbstack/bin"
     end
-
-    set -x XDG_CONFIG_HOME "$HOME/.config"
-    set -x XDG_DATA_HOME "$HOME/.local/share"
 end
 
 if test (uname) = Linux
@@ -29,7 +36,3 @@ if test (uname) = Linux
 
 end
 
-if type -q go
-    fish_add_path (go env GOPATH)/bin
-    set -x GOPATH $HOME/.local/share/go
-end
