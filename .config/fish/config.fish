@@ -12,7 +12,7 @@ if status is-interactive
     end
 
     string match -q "$TERM_PROGRAM" vscode
-    and . (code --locate-shell-integration-path fish)
+    and source (code --locate-shell-integration-path fish)
 end
 
 # bat
@@ -35,9 +35,6 @@ set -x LANG en_US.UTF-8
 
 # corepack
 set -x COREPACK_ENABLE_AUTO_PIN 0
-
-# ssh
-alias nas "kitty +kitten ssh kaho@10.88.88.106"
 
 # alias
 alias vim nvim
