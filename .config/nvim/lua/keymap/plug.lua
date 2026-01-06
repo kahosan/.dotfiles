@@ -78,6 +78,9 @@ local mappings = {
       :with_noremap()
       :with_desc 'tool: Toggle command panel',
   },
+  snacks_terminal = {
+    ['n|<C-t>'] = map_cr('lua Snacks.terminal()'):with_noremap():with_silent():with_desc 'terminal: Toggle terminal',
+  },
   grug_far = {
     ['n|<leader>S'] = map_cr("lua require('grug-far').open({transient=true})")
       :with_noremap()

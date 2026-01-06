@@ -8,6 +8,7 @@ return {
   quickfile = {
     exclude = { 'latex' },
   },
+  terminal = {},
   indent = {
     indent = {
       char = '┊',
