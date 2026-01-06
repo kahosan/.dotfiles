@@ -22,6 +22,7 @@ o.undodir = global.cache_dir .. '/undo/'
 o.undofile = true
 o.updatetime = 200
 o.whichwrap = 'h,l,<,>,[,],~'
+o.fileencodings = 'ucs-bom,utf-8,default,euc-cn,cuc-jp,latin1'
 -- o.wildignore =
 --   '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**'
 -- o.wildignorecase = true
