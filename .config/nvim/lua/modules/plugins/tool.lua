@@ -41,6 +41,7 @@ tool['kawre/neotab.nvim'] = {
   opts = {},
 }
 tool['folke/snacks.nvim'] = {
+  priority = 1000,
   opts = require 'tool.snacks',
 }
 tool['m-demare/attempt.nvim'] = {
