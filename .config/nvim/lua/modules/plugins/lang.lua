@@ -7,13 +7,6 @@ lang['ray-x/go.nvim'] = {
   config = require 'lang.go',
   dependencies = { 'ray-x/guihua.lua' },
 }
--- lang['pmizio/typescript-tools.nvim'] = {
---   ft = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
---   config = require 'lang.typescript',
---   dependencies = {
---     { 'nvim-lua/plenary.nvim' },
---   },
--- }
 lang['razak17/tailwind-fold.nvim'] = {
   opts = {},
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
@@ -29,15 +22,6 @@ lang['saecki/crates.nvim'] = {
   ft = 'toml',
   opts = {},
   dependencies = { 'nvim-lua/plenary.nvim' },
-}
-lang['folke/lazydev.nvim'] = {
-  ft = 'lua',
-  opts = {
-    library = {
-      'lazy.nvim',
-      '${3rd}/luv/library',
-    },
-  },
 }
 
 return lang

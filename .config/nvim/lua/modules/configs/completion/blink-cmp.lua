@@ -95,7 +95,7 @@ return {
     },
   },
   sources = {
-    default = { 'lsp', 'path', 'buffer', 'css_vars', 'ripgrep', 'lazydev' },
+    default = { 'lsp', 'path', 'buffer', 'css_vars', 'ripgrep' },
     providers = {
       lsp = {
         name = 'LSP',
@@ -125,10 +125,6 @@ return {
           },
         },
         score_offset = 90,
-      },
-      lazydev = {
-        name = 'LD',
-        module = 'lazydev.integrations.blink',
       },
     },
   },
