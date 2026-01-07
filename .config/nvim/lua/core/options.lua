@@ -1,6 +1,9 @@
 local global = require 'core.global'
 local o = vim.opt
 
+-- localleader
+vim.g.maplocalleader = ','
+
 -- General
 o.autowrite = true
 o.clipboard = 'unnamedplus'
