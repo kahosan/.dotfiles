@@ -3,95 +3,86 @@
 # pylint: disable=E0401,C0116,C0103,W0603,R0913
 
 import datetime
-import re
-import subprocess
+from typing import List, Tuple
 
-from kitty.fast_data_types import Screen, get_options
+from kitty.boss import get_boss
+from kitty.fast_data_types import Screen, add_timer, get_options
 from kitty.tab_bar import (
     DrawData,
     ExtraData,
     TabBarData,
     as_rgb,
-    draw_tab_with_powerline,
     draw_title,
 )
 from kitty.utils import color_as_int
 
+# 获取 Kitty 配置
 opts = get_options()
 
-ICON: str = "  "
-ICON_LENGTH: int = len(ICON)
-ICON_FG: int = as_rgb(color_as_int(opts.color1))
-ICON_BG: int = as_rgb(color_as_int(opts.color8))
-ICON_BG: int = 0
+# 全局定时器 ID
+REFRESH_TIMER_ID = None
 
-# CLOCK_FG = as_rgb(0xFFE2E2)
-CLOCK_FG = as_rgb(0xFFEFFFF)
-CLOCK_BG = as_rgb(0xF38BA8)
-DATE_FG = as_rgb(0xFFFFFF)
-DATE_BG = as_rgb(0x585B70)
 
-# SSH Status
-SSH_FG = as_rgb(0xFFEFFFF)
-SSH_BG = as_rgb(0x212121)
+class ColorPalette:
+    """颜色配置"""
+
+    try:
+        COLOR1 = as_rgb(color_as_int(opts.color1))
+        COLOR8 = as_rgb(color_as_int(opts.color8))
+    except (AttributeError, ValueError):
+        COLOR1 = as_rgb(0xFFFFFF)
+        COLOR8 = as_rgb(0x000000)
+
+    # 自定义颜色
+    CLOCK_FG = as_rgb(0xFFEFFFF)
+    CLOCK_BG = as_rgb(0xF38BA8)
+    DATE_FG = as_rgb(0xFFFFFF)
+    DATE_BG = as_rgb(0x585B70)
+
+    RESET = 0
+
+
+class Config:
+    """通用配置"""
+
+    ICON: str = "  "
+    ICON_FG: int = ColorPalette.COLOR1
+    ICON_BG: int = ColorPalette.RESET
+
+    # 时钟显示取整间隔 (秒)
+    CLOCK_ROUND_INTERVAL: int = 5
+    # 自动刷新频率 (秒) - 设为 1 秒以保证视觉上的及时响应
+    REFRESH_TIME: float = 1.0
+
+
+def _redraw_tab_bar(timer_id):
+    """定时器回调：强制刷新 Tab 栏"""
+    tm = get_boss().active_tab_manager
+    if tm is not None:
+        tm.mark_tab_bar_dirty()
+
+
+def _get_now_rounded() -> datetime.datetime:
+    """获取当前时间并向下取整到最近的 5 秒"""
+    now = datetime.datetime.now()
+    ts = now.timestamp()
+    rounded_ts = (ts // Config.CLOCK_ROUND_INTERVAL) * Config.CLOCK_ROUND_INTERVAL
+    return datetime.datetime.fromtimestamp(rounded_ts)
 
 
 def _draw_icon(screen: Screen, index: int) -> int:
+    """绘制 Tab 图标"""
     if index != 1:
-        return screen.cursor.x
+        return 0
 
-    fg, bg, bold, italic = (
-        screen.cursor.fg,
-        screen.cursor.bg,
-        screen.cursor.bold,
-        screen.cursor.italic,
-    )
-    screen.cursor.bold, screen.cursor.italic, screen.cursor.fg, screen.cursor.bg = (
-        True,
-        False,
-        ICON_FG,
-        ICON_BG,
-    )
-    screen.draw(ICON)
-    # set cursor position
-    screen.cursor.x = ICON_LENGTH
-    # restore color style
-    screen.cursor.fg, screen.cursor.bg, screen.cursor.bold, screen.cursor.italic = (
-        fg,
-        bg,
-        bold,
-        italic,
-    )
+    fg, bg = screen.cursor.fg, screen.cursor.bg
+    screen.cursor.fg = Config.ICON_FG
+    screen.cursor.bg = Config.ICON_BG
+    screen.draw(Config.ICON)
+
+    screen.cursor.fg, screen.cursor.bg = fg, bg
+    screen.cursor.x = len(Config.ICON)
     return screen.cursor.x
-
-
-def _draw_ssh_status():
-    try:
-        result = subprocess.run(
-            ["ps", "-o", "tty,command"], capture_output=True, text=True, check=True
-        )
-
-        lines = result.stdout.strip().split("\n")
-        ssh_sessions = []
-
-        for line in lines:
-            if "kitten ssh" in line and "KITTY_WINDOW_ID" not in line:
-                parts = line.strip().split(None, 2)
-                if len(parts) >= 3:
-                    tty = parts[0]
-                    # 提取 ssh 目标 (kitten ssh 后面的部分)
-                    ssh_target = parts[2].replace("ssh ", "")
-
-                    # 提取 tty 编号 (ttys000 -> 0, ttys001 -> 1, etc.)
-                    tty_match = re.search(r"ttys(\d+)", tty)
-                    if tty_match:
-                        tty_num = int(tty_match.group(1)) + 1  # 从1开始编号
-                        ssh_sessions.append(f"{tty_num}:{ssh_target}")
-
-        return "|".join(ssh_sessions)
-
-    except Exception as e:
-        return e
 
 
 def _draw_left_status(
@@ -102,70 +93,68 @@ def _draw_left_status(
     max_title_length: int,
     index: int,
     is_last: bool,
-    extra_data: ExtraData,
-    use_kitty_render_function: bool = False,
+    right_status_length: int,  # 新增参数：右侧长度
 ) -> int:
-    if use_kitty_render_function:
-        # Use `kitty` function render tab
-        end = draw_tab_with_powerline(
-            draw_data, screen, tab, before, max_title_length, index, is_last, extra_data
-        )
-        return end
+    """绘制左侧 Tab 标题"""
 
     if draw_data.leading_spaces:
         screen.draw(" " * draw_data.leading_spaces)
 
-    # draw tab title
     draw_title(draw_data, screen, tab, index)
 
     trailing_spaces = min(max_title_length - 1, draw_data.trailing_spaces)
     max_title_length -= trailing_spaces
+
+    # 计算剩余空间时，考虑右侧状态栏的长度
+    # 确保左侧标题不会覆盖到右侧的时钟
+    available_space = screen.columns - right_status_length - before
+
+    # 如果当前光标位置超过了可用空间，需要回退并画省略号
+    if screen.cursor.x > before + available_space:
+        screen.cursor.x = before + available_space - 1  # 留一个位置给省略号
+        screen.draw("…")
+
+    # 原有的额外截断逻辑（处理 trailing spaces 等）
     extra = screen.cursor.x - before - max_title_length
     if extra > 0:
         screen.cursor.x -= extra + 1
-        # Don't change `ICON`
-        screen.cursor.x = max(screen.cursor.x, ICON_LENGTH)
+        screen.cursor.x = max(screen.cursor.x, len(Config.ICON) if index == 1 else 0)
         screen.draw("…")
+
     if trailing_spaces:
         screen.draw(" " * trailing_spaces)
 
     screen.cursor.bold = screen.cursor.italic = False
-    screen.cursor.fg = 0
+    screen.cursor.fg = ColorPalette.RESET
+
     if not is_last:
         screen.cursor.bg = as_rgb(color_as_int(draw_data.inactive_bg))
         screen.draw(draw_data.sep)
-    screen.cursor.bg = 0
+
+    screen.cursor.bg = ColorPalette.RESET
     return screen.cursor.x
 
 
-def _draw_right_status(screen: Screen, is_last: bool) -> int:
+def _draw_right_status(screen: Screen, is_last: bool, cells: List[Tuple[int, int, str]]) -> int:
+    """绘制右侧状态栏"""
     if not is_last:
         return screen.cursor.x
 
-    cells = [
-        (CLOCK_FG, CLOCK_BG, datetime.datetime.now().strftime(" %H:%M ")),
-        (DATE_FG, DATE_BG, datetime.datetime.now().strftime(" %Y/%m/%d ")),
-    ]
+    # 计算总长度
+    right_status_length = sum(len(content) for _, _, content in cells)
 
-    ssh_status = _draw_ssh_status()
-    if ssh_status:
-        cells.insert(
-            0,
-            (SSH_FG, SSH_BG, f" SSH({ssh_status}) "),
-        )
-
-    right_status_length = 0
-    for _, _, cell in cells:
-        right_status_length += len(cell)
-
+    # 填充中间空白
     draw_spaces = screen.columns - screen.cursor.x - right_status_length
     if draw_spaces > 0:
+        screen.cursor.bg = ColorPalette.RESET
         screen.draw(" " * draw_spaces)
 
-    for fg, bg, cell in cells:
+    # 绘制组件
+    for fg, bg, content in cells:
         screen.cursor.fg = fg
         screen.cursor.bg = bg
-        screen.draw(cell)
+        screen.draw(content)
+
     screen.cursor.fg = 0
     screen.cursor.bg = 0
 
@@ -183,9 +172,27 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
+    global REFRESH_TIMER_ID
+
+    # 1. 初始化定时器 (只运行一次)
+    if REFRESH_TIMER_ID is None:
+        REFRESH_TIMER_ID = add_timer(_redraw_tab_bar, Config.REFRESH_TIME, True)
+
+    # 2. 预先准备右侧状态栏数据
+    #    这样做是为了提前计算长度，传递给左侧绘制函数，防止重叠
+    now = _get_now_rounded()
+    right_cells = [
+        (ColorPalette.CLOCK_FG, ColorPalette.CLOCK_BG, now.strftime(" %H:%M:%S ")),
+        (ColorPalette.DATE_FG, ColorPalette.DATE_BG, now.strftime(" %Y/%m/%d ")),
+    ]
+
+    # 计算右侧总长度 (如果在第一个Tab就计算出来，后续Tab都知道右边被占用了多少)
+    right_status_len = sum(len(c[2]) for c in right_cells)
+
+    # 3. 绘制图标
     # _draw_icon(screen, index)
-    # Set cursor to where `left_status` ends, instead `right_status`,
-    # to enable `open new tab` feature
+
+    # 4. 绘制左侧 (传入右侧长度以限制标题宽度)
     end = _draw_left_status(
         draw_data,
         screen,
@@ -194,11 +201,10 @@ def draw_tab(
         max_title_length,
         index,
         is_last,
-        extra_data,
-        use_kitty_render_function=False,
+        right_status_len,
     )
-    _draw_right_status(
-        screen,
-        is_last,
-    )
+
+    # 5. 绘制右侧
+    _draw_right_status(screen, is_last, right_cells)
+
     return end
