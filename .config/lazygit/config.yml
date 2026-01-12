@@ -1,23 +1,13 @@
 gui:
   theme: # catppuccin palette of course
     selectedLineBgColor:
-      - "#6272A4"
+      - "black"
 
   authorColors:
     "*": "#b4befe"
   showBottomLine: false
   border: single
   nerdFontsVersion: "3"
-  spiner:
-    frames:
-      - ⣾
-      - ⣽
-      - ⣻
-      - ⢿
-      - ⡿
-      - ⣟
-      - ⣯
-      - ⣷
 
 os:
   editPreset: "nvim-remote"
@@ -25,6 +15,8 @@ promptToReturnFromSubprocess: false
 keybinding:
   universal:
     quit: Q
+    scrollUpMain: <c-k>
+    scrollDownMain: <c-j>
   commits:
     moveDownCommit: <c-x>
     moveUpCommit: <c-w>
