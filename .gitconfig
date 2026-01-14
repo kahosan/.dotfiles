@@ -5,6 +5,12 @@
     editor = nvim
 [init]
     defaultBranch = main
+[merge]
+    conflictstyle = zdiff3
+[diff]
+    algorithm = histogram
+[log]
+    date = iso
 [alias]
     undo = reset --soft HEAD^
     cancel = reset --hard HEAD^
