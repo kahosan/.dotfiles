@@ -2,6 +2,7 @@ local ui = {}
 
 ui['catppuccin/nvim'] = {
   name = 'catppuccin',
+  priority = 1000,
   config = require 'ui.catppuccin',
 }
 ui['wtfox/jellybeans.nvim'] = {
