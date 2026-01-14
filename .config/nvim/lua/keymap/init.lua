@@ -59,7 +59,8 @@ local mappings = {
       :with_desc 'lsp: signature_help',
   },
   git = {
-    ['n|<leader>G'] = map_cu('Git'):with_noremap():with_silent():with_desc 'git: Open git-fugitive',
+    ['n|<leader>Gs'] = map_cu('Git'):with_noremap():with_silent():with_desc 'git: Open git-fugitive',
+    ['n|<leader>Gd'] = map_cu('Git diff'):with_noremap():with_silent():with_desc 'git: diff',
     ['n|<leader>dh'] = map_cr('DiffviewFileHistory %')
       :with_silent()
       :with_noremap()
