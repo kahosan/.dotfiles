@@ -1,7 +1,7 @@
 gui:
   theme: # catppuccin palette of course
     selectedLineBgColor:
-      - "black"
+      - default
 
   authorColors:
     "*": "#b4befe"
