@@ -24,6 +24,9 @@ return {
       ['<C-k>'] = { 'select_prev', 'fallback' },
     },
     completion = {
+      trigger = {
+        show_on_x_blocked_trigger_characters = { ' ' },
+      },
       list = { selection = { preselect = false } },
       menu = { auto_show = true },
     },
