@@ -11,6 +11,12 @@ tool['nvim-neo-tree/neo-tree.nvim'] = {
     'MunifTanjim/nui.nvim',
   },
 }
+tool['santhosh-tekuri/quickfix.nvim'] = {
+  event = 'VeryLazy',
+  config = function()
+    vim.o.quickfixtextfunc = require('quickfix').quickfixtextfunc
+  end,
+}
 tool['stevearc/oil.nvim'] = {
   opts = {
     default_file_explorer = true,
