@@ -32,7 +32,12 @@ return {
         },
       },
     },
-    layout = 'vscode',
+    previewers = {
+      diff = {
+        style = 'syntax', ---@type "fancy"|"syntax"|"terminal"
+      },
+    },
+    layout = 'ivy_nop',
     layouts = {
       vscode = {
         preview = nil,
@@ -55,6 +60,23 @@ return {
           { win = 'preview', title = '{preview}', border = 'none' },
         },
       },
+      ivy_nop = {
+        layout = {
+          box = 'vertical',
+          backdrop = false,
+          row = -1,
+          width = 0,
+          height = 0.4,
+          border = 'none',
+          title = ' {title} {live} {flags}',
+          title_pos = 'left',
+          { win = 'input', height = 1, border = CUSTOM_BORDER },
+          {
+            win = 'list',
+            border = 'none',
+          },
+        },
+      },
       ivy = {
         layout = {
           box = 'vertical',
@@ -75,12 +97,11 @@ return {
       },
     },
     sources = {
-      lines = { layout = 'vscode' },
       git_diff = { layout = 'ivy' },
       undo = { layout = 'ivy' },
-      grep = { layout = 'ivy' },
-      grep_buffers = { layout = 'ivy' },
-      grep_word = { layout = 'ivy' },
+      grep = { layout = 'ivy_nop' },
+      grep_buffers = { layout = 'ivy_nop' },
+      grep_word = { layout = 'ivy_nop' },
     },
   },
 }
