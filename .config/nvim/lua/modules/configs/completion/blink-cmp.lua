@@ -24,9 +24,6 @@ return {
       ['<C-k>'] = { 'select_prev', 'fallback' },
     },
     completion = {
-      trigger = {
-        show_on_x_blocked_trigger_characters = { ' ' },
-      },
       list = { selection = { preselect = false } },
       menu = { auto_show = true },
     },
@@ -51,9 +48,20 @@ return {
     },
     menu = {
       draw = {
-        treesitter = { 'lsp' },
+        -- treesitter = { 'lsp' },
         gap = 2,
-        columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'source_name' } },
+        -- columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'source_name' } },
+        columns = { { 'kind_icon' }, { 'label', gap = 1 }, { 'source_name' } },
+        components = {
+          label = {
+            text = function(ctx)
+              return require('colorful-menu').blink_components_text(ctx)
+            end,
+            highlight = function(ctx)
+              return require('colorful-menu').blink_components_highlight(ctx)
+            end,
+          },
+        },
       },
     },
     documentation = {
