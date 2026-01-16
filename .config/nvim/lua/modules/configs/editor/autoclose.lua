@@ -16,6 +16,7 @@ return function()
       ["'"] = { escape = true, close = true, pair = "''", disabled_filetypes = { 'rust' } },
     },
     options = {
+      disable_command_mode = true,
       disable_when_touch = true,
       disabled_filetypes = {
         'alpha',
