@@ -5,6 +5,15 @@ ui['catppuccin/nvim'] = {
   priority = 1000,
   config = require 'ui.catppuccin',
 }
+ui['EdenEast/nightfox.nvim'] = {
+  name = 'nightfox',
+  priority = 1000,
+  config = function()
+    require('nightfox').setup {
+      groups = { all = { FloatBorder = { bg = 'bg0' } } },
+    }
+  end,
+}
 ui['wtfox/jellybeans.nvim'] = {
   opts = require 'ui.jellybeans',
 }
