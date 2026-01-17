@@ -399,7 +399,12 @@ M.ShowCmd = {
 
 M.SearchOccurrence = {
   condition = function()
-    return vim.v.hlsearch ~= 0
+    if vim.v.hlsearch == 0 then
+      return false
+    end
+
+    local ok, search = pcall(vim.fn.searchcount)
+    return ok and search.total > 0
   end,
   hl = { fg = palette.sky },
   init = function(self)
