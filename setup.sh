@@ -71,7 +71,6 @@ done
 echo ""
 
 ln -s ~/.dotfiles/scripts ~/.config/scripts
-ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 
 # Git ssh
