@@ -3,8 +3,8 @@
 # pylint: disable=E0401,C0116,C0103,W0603,R0913
 
 import datetime
-from typing import List, Tuple
 
+from kittens.ssh.utils import get_connection_data
 from kitty.boss import get_boss
 from kitty.fast_data_types import Screen, add_timer, get_options
 from kitty.tab_bar import (
@@ -15,6 +15,7 @@ from kitty.tab_bar import (
     draw_title,
 )
 from kitty.utils import color_as_int
+from kitty.window import Window
 
 # 获取 Kitty 配置
 opts = get_options()
@@ -28,16 +29,31 @@ class ColorPalette:
 
     try:
         COLOR1 = as_rgb(color_as_int(opts.color1))
+        COLOR2 = as_rgb(color_as_int(opts.color2))
+        COLOR3 = as_rgb(color_as_int(opts.color3))
+        COLOR4 = as_rgb(color_as_int(opts.color4))
+        COLOR5 = as_rgb(color_as_int(opts.color5))
+        COLOR6 = as_rgb(color_as_int(opts.color6))
+        COLOR7 = as_rgb(color_as_int(opts.color7))
         COLOR8 = as_rgb(color_as_int(opts.color8))
+        COLOR9 = as_rgb(color_as_int(opts.color9))
+        COLOR10 = as_rgb(color_as_int(opts.color10))
+        COLOR11 = as_rgb(color_as_int(opts.color11))
+        COLOR12 = as_rgb(color_as_int(opts.color12))
+        COLOR13 = as_rgb(color_as_int(opts.color13))
+        COLOR14 = as_rgb(color_as_int(opts.color14))
+        COLOR15 = as_rgb(color_as_int(opts.color15))
     except (AttributeError, ValueError):
-        COLOR1 = as_rgb(0xFFFFFF)
-        COLOR8 = as_rgb(0x000000)
+        pass
 
     # 自定义颜色
     CLOCK_FG = as_rgb(0xFFEFFFF)
     CLOCK_BG = as_rgb(0xF38BA8)
     DATE_FG = as_rgb(0xFFFFFF)
     DATE_BG = as_rgb(0x585B70)
+
+    SSH_FG = as_rgb(0x585B70)
+    SSH_BG = as_rgb(0x94E2D5)
 
     RESET = 0
 
@@ -135,7 +151,9 @@ def _draw_left_status(
     return screen.cursor.x
 
 
-def _draw_right_status(screen: Screen, is_last: bool, cells: List[Tuple[int, int, str]]) -> int:
+def _draw_right_status(
+    screen: Screen, is_last: bool, cells: list[tuple[int, int, str]]
+) -> int:
     """绘制右侧状态栏"""
     if not is_last:
         return screen.cursor.x
@@ -162,6 +180,25 @@ def _draw_right_status(screen: Screen, is_last: bool, cells: List[Tuple[int, int
     return screen.cursor.x
 
 
+def _get_ssh_status(active_window: Window) -> str | None:
+    ssh_cmdline = []
+    ssh_cmdline = active_window.ssh_kitten_cmdline()
+
+    try:
+        if ssh_cmdline != []:
+            ssh_cmdline = filter(lambda item: item != "-tt", ssh_cmdline)
+            conn_data = get_connection_data(ssh_cmdline)
+            if conn_data:
+                conn_data_hostname = conn_data.hostname
+                user_and_host = conn_data_hostname.split("@")
+                if len(user_and_host) == 1:
+                    return user_and_host[0]
+                elif len(user_and_host) == 2:
+                    return f"{user_and_host[0]}:{user_and_host[1]}"
+    except Exception:
+        return "error"
+
+
 def draw_tab(
     draw_data: DrawData,
     screen: Screen,
@@ -185,6 +222,14 @@ def draw_tab(
         (ColorPalette.CLOCK_FG, ColorPalette.CLOCK_BG, now.strftime(" %H:%M:%S ")),
         (ColorPalette.DATE_FG, ColorPalette.DATE_BG, now.strftime(" %Y/%m/%d ")),
     ]
+
+    ssh_status = _get_ssh_status(get_boss().active_tab_manager.active_window)
+    if ssh_status:
+        ssh_status = ssh_status.lower()
+        right_cells.insert(
+            0,
+            (ColorPalette.SSH_FG, ColorPalette.SSH_BG, f" ssh: {ssh_status} "),
+        )
 
     # 计算右侧总长度 (如果在第一个Tab就计算出来，后续Tab都知道右边被占用了多少)
     right_status_len = sum(len(c[2]) for c in right_cells)
