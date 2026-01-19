@@ -89,21 +89,6 @@ function digl
     dig $argv | nali
 end
 
-# node action
-# alias s "nr start"
-alias d "nr dev"
-alias b "nr build"
-alias bw "nr build --watch"
-alias t "nr test"
-alias tu "nr test -u"
-alias tw "nr test --watch"
-alias nw "nr watch"
-alias p "nr play"
-alias lint "nr lint"
-alias lintf "nr lint --fix"
-alias release "nr release"
-alias re "nr release"
-
 # rust
 alias r "cargo run"
 alias rr "cargo run --release"
@@ -119,12 +104,3 @@ else
     alias rm 'rm -i'
 end
 
-# function
-function yy
-    set tmp (mktemp -t "yazi-cwd.XXXXXX")
-    yazi $argv --cwd-file="$tmp"
-    if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-        cd -- "$cwd"
-    end
-    rm -f -- "$tmp"
-end
