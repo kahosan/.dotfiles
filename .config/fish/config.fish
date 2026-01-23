@@ -16,7 +16,7 @@ if status is-interactive
 end
 
 # bat
-set -x BAT_THEME "Nord"
+set -x BAT_THEME "TwoDark"
 set -x BAT_STYLE changes
 
 # ni
