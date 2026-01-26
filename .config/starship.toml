@@ -9,12 +9,12 @@ $directory\
 $git_branch\
 $git_commit\
 $git_state\
-$git_metrics\
 $git_status\
 $nodejs\
 $rust\
 $golang\
 $python\
+$cmd_duration\
 $fill\
 $time\
 $line_break\
@@ -23,6 +23,9 @@ $character\
 
 [fill]
 symbol = " "
+
+[cmd_duration]
+format = "[$duration]($style) "
 
 [character]
 success_symbol = "[](bold red)"
@@ -42,6 +45,7 @@ disabled = false
 
 [directory]
 truncation_length = 5
+fish_style_pwd_dir_length = 1
 format = "\\[[$path]($style)[$lock_symbol]($lock_style)\\] "
 
 [git_branch]
@@ -57,19 +61,18 @@ style = "bold white"
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
 
 [git_status]
-disabled = true
-format = '([$all_status]($style) )'
+format = '([$all_status$ahead_behind]($style)" )'
 conflicted = "*"
-# ahead = ">"
-# behind = "<"
-# diverged = "_"
-untracked = "+"
-stashed = "#"
+ahead = ">"
+behind = "<"
+diverged = "%"
+untracked = "?"
+stashed = "\\$"
 modified = "_"
-staged = "/"
+staged = "+"
 renamed = "="
 deleted = "-"
-style = "white"
+style = "purple"
 
 [nodejs]
 format = "via \\[[$version]($style)\\] "
