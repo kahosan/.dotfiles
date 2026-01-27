@@ -1,6 +1,17 @@
 local bind = require 'keymap.bind'
 local map_cr = bind.map_cr
 local map_cmd = bind.map_cmd
+local map_cb = bind.map_callback
+
+local function oil_pick(source, opts)
+  return function()
+    opts = opts or {}
+    if vim.bo.filetype == 'oil' then
+      opts.cwd = require('oil').get_current_dir()
+    end
+    Snacks.picker.pick(source, opts)
+  end
+end
 
 local mappings = {
   buffer = {
@@ -37,22 +48,16 @@ local mappings = {
       :with_noremap()
       :with_silent()
       :with_desc 'find: Find project',
-    ['n|<leader>fw'] = map_cr("lua Snacks.picker.pick('grep')")
-      :with_noremap()
-      :with_silent()
-      :with_desc 'find: Word in project',
-    ['x|<leader>fw'] = map_cr("lua Snacks.picker.pick('grep_word')")
+    ['n|<leader>fw'] = map_cb(oil_pick 'grep'):with_noremap():with_silent():with_desc 'find: Word in project',
+    ['x|<leader>fw'] = map_cb(oil_pick 'grep_word')
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in project by select word',
+    ['n|<leader>ff'] = map_cb(oil_pick 'files'):with_noremap():with_silent():with_desc 'find: File in project',
     ['n|<leader>fs'] = map_cr("lua Snacks.picker.pick('lines')")
       :with_noremap()
       :with_silent()
       :with_desc 'find: Word in buffer by select word',
-    ['n|<leader>ff'] = map_cr("lua Snacks.picker.pick('files')")
-      :with_noremap()
-      :with_silent()
-      :with_desc 'find: File in project',
     ['n|<leader>fc'] = map_cr("lua Snacks.picker.pick('colorschemes')")
       :with_noremap()
       :with_silent()
