@@ -7,7 +7,7 @@ return function()
 
   require('which-key').setup {
     preset = 'classic',
-    delay = 0,
+    delay = 500,
     plugins = {
       marks = true,
       registers = true,

@@ -47,12 +47,12 @@ local builtins = {
     :with_desc 'editi: insjump',
 
   -- Command mode
-  ['c|<C-b>'] = map_cmd('<Left>'):with_noremap():with_desc 'editc: Left',
-  ['c|<C-f>'] = map_cmd('<Right>'):with_noremap():with_desc 'editc: Right',
-  ['c|<C-a>'] = map_cmd('<Home>'):with_noremap():with_desc 'editc: Home',
-  ['c|<C-e>'] = map_cmd('<End>'):with_noremap():with_desc 'editc: End',
+  ['c|<C-h>'] = map_cmd('<Left>'):with_noremap():with_desc 'editc: Left',
+  ['c|<C-l>'] = map_cmd('<Right>'):with_noremap():with_desc 'editc: Right',
+  -- ['c|<C-a>'] = map_cmd('<Home>'):with_noremap():with_desc 'editc: Home',
+  -- ['c|<C-e>'] = map_cmd('<End>'):with_noremap():with_desc 'editc: End',
   ['c|<C-d>'] = map_cmd('<Del>'):with_noremap():with_desc 'editc: Delete',
-  ['c|<C-h>'] = map_cmd('<BS>'):with_noremap():with_desc 'editc: Backspace',
+  -- ['c|<C-h>'] = map_cmd('<BS>'):with_noremap():with_desc 'editc: Backspace',
   ['c|<C-t>'] = map_cmd([[<C-R>=expand("%:p:h") . "/" <CR>]])
     :with_noremap()
     :with_desc 'editc: Complete path of current file',
