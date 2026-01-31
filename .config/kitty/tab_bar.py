@@ -28,6 +28,7 @@ class ColorPalette:
     """颜色配置"""
 
     try:
+        COLOR0 = as_rgb(color_as_int(opts.color0))
         COLOR1 = as_rgb(color_as_int(opts.color1))
         COLOR2 = as_rgb(color_as_int(opts.color2))
         COLOR3 = as_rgb(color_as_int(opts.color3))
@@ -52,8 +53,8 @@ class ColorPalette:
     DATE_FG = as_rgb(0xFFFFFF)
     DATE_BG = as_rgb(0x585B70)
 
-    SSH_FG = as_rgb(0x585B70)
-    SSH_BG = as_rgb(0x94E2D5)
+    SSH_FG = as_rgb(0xFFFFFF)
+    SSH_BG = as_rgb(0x9ACBD0)
 
     RESET = 0
 
