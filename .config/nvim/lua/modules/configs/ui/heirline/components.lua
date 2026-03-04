@@ -431,33 +431,27 @@ M.SimpleIndicator = {
 }
 
 M.FileStatus = {
-  -- {
-  --   provider = '(',
-  -- },
+  {
+    provider = '[',
+  },
+  {
+    provider = function()
+      return vim.bo.fileformat
+    end,
+    hl = { fg = palette.sky },
+  },
+  {
+    provider = ' ',
+  },
   {
     provider = function()
       local enc = (vim.bo.fenc ~= '' and vim.bo.fenc) or vim.o.enc -- :h 'enc'
       return enc
     end,
   },
-  -- {
-  --   provider = '|',
-  -- },
-  -- {
-  --   provider = function()
-  --     local fmt = vim.bo.fileformat
-  --     if fmt == 'unix' then
-  --       return 'LF'
-  --     elseif fmt == 'dos' then
-  --       return 'CRLF'
-  --     elseif fmt == 'mac' then
-  --       return 'CR'
-  --     end
-  --   end,
-  -- },
-  -- {
-  --   provider = ')',
-  -- },
+  {
+    provider = ']',
+  },
 }
 
 M.CTime = {
@@ -465,6 +459,54 @@ M.CTime = {
     return os.date 'T(%H:%M:%S)'
   end,
   hl = { fg = palette.text },
+}
+
+M.IndentInfo = {
+  update = { 'BufEnter', 'BufWritePost', 'OptionSet' },
+
+  provider = function()
+    local indent_type -- "spaces" 或 "tabs"
+
+    if vim.bo.expandtab then
+      indent_type = 'spaces'
+    else
+      indent_type = 'tab'
+    end
+
+    return indent_type
+  end,
+  {
+    provider = '(',
+  },
+  {
+    provider = function()
+      local indent_size -- 缩进宽度
+
+      if vim.bo.expandtab then
+        indent_size = vim.bo.shiftwidth ~= 0 and vim.bo.shiftwidth or vim.bo.tabstop
+      else
+        indent_size = vim.bo.tabstop
+      end
+
+      return indent_size
+    end,
+    hl = { fg = palette.blue },
+  },
+  {
+    provider = ')',
+  },
+  on_click = {
+    callback = function()
+      if vim.bo.expandtab then
+        vim.bo.expandtab = false
+        vim.notify('Switched to Tabs (tabstop=' .. vim.bo.tabstop .. ')', vim.log.levels.INFO)
+      else
+        vim.bo.expandtab = true
+        vim.notify('Switched to Spaces (shiftwidth=' .. vim.bo.shiftwidth .. ')', vim.log.levels.INFO)
+      end
+    end,
+    name = 'heirline_indent_click',
+  },
 }
 
 return M

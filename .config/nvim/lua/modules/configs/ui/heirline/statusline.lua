@@ -5,6 +5,7 @@ return {
   -- M.RightPadding(M.Mode, 2),
   RightPadding(comp.FileNameBlock),
   RightPadding(comp.Diagnostics),
+  RightPadding(comp.IndentInfo),
   RightPadding(comp.CTime),
   RightPadding(comp.SearchOccurrence),
   comp.Fill,
