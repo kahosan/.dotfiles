@@ -5,8 +5,9 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 
 set -gx GOPATH $XDG_DATA_HOME/go
 set -gx PNPM_HOME $XDG_DATA_HOME/pnpm
+set -gx PNPM_BIN $PNPM_HOME/bin
 
-fish_add_path $PNPM_HOME
+fish_add_path $PNPM_BIN
 
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
