@@ -31,6 +31,10 @@ ui['rebelot/heirline.nvim'] = {
 ui['j-hui/fidget.nvim'] = {
   opts = {},
 }
+ui['lewis6991/hover.nvim'] = {
+  event = 'LspAttach',
+  opts = {},
+}
 ui['rachartier/tiny-inline-diagnostic.nvim'] = {
   event = 'LspAttach',
   opts = require 'ui.tiny-inline-diagnostic',
