@@ -55,6 +55,11 @@ echo ""
 SOURCE_DIR="$HOME/.dotfiles/.config"
 TARGET_DIR="$HOME/.config"
 
+if [[ ! -d "$TARGET_DIR" ]]; then
+	echo "mkdir .config folder"
+	mkdir -p "$TARGET_DIR"
+fi
+
 for item in "$SOURCE_DIR"/*; do
 	item_name=$(basename "$item")
 
