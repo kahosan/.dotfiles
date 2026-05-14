@@ -26,6 +26,7 @@ symbol = " "
 
 [cmd_duration]
 format = "[$duration]($style) "
+style = "yellow"
 
 [character]
 success_symbol = "[](bold red)"
