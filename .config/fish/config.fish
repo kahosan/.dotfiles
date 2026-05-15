@@ -28,7 +28,9 @@ if type -q fnm
 end
 
 function fnm_clean_up --on-event fish_exit
-    /bin/rm -r $FNM_MULTISHELL_PATH
+    if test -d $FNM_MULTISHELL_PATH
+        /bin/rm -r $FNM_MULTISHELL_PATH
+    end
 end
 
 # homebrew not auto update
