@@ -65,7 +65,7 @@ function M.gitsigns(bufnr)
       :with_buffer(bufnr)
       :with_noremap()
       :with_desc 'git: Reset buffer',
-    ['n|<leader>gp'] = map_callback(function()
+    ['nx|<leader>gp'] = map_callback(function()
         gitsigns.preview_hunk()
       end)
       :with_buffer(bufnr)
