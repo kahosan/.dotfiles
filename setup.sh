@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-packages="cmake git wget curl tmux unzip fish"
+packages="wget curl tmux fish eza bat"
 read -rp "have you installed ${packages} yet? [y/N] " confirm
 if [[ "$confirm" != "y" ]]; then
 	echo "please install the packages first"
