@@ -26,10 +26,7 @@ editor['nmac427/guess-indent.nvim'] = {
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------
-editor['nvim-treesitter/nvim-treesitter'] = {
-  lazy = false,
-  branch = 'main',
-  build = ':TSUpdate',
+editor['romus204/tree-sitter-manager.nvim'] = {
   config = require 'editor.treesitter',
   dependencies = {
     { 'windwp/nvim-ts-autotag', config = true },
