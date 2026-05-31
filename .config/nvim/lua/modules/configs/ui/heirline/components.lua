@@ -125,14 +125,13 @@ M.MacroRecording = {
       return self.reg_recording ~= ''
     end,
     {
-      provider = '󰻃 ',
+      provider = '@',
       hl = { fg = palette.maroon },
     },
     {
       provider = function(self)
         return self.reg_recording
       end,
-      hl = { fg = palette.maroon, italic = false, bold = true },
     },
     hl = { fg = palette.text, bg = palette.base },
   },
@@ -468,9 +467,9 @@ M.IndentInfo = {
     local indent_type -- "spaces" 或 "tabs"
 
     if vim.bo.expandtab then
-      indent_type = 'spaces'
+      indent_type = 's'
     else
-      indent_type = 'tab'
+      indent_type = 't'
     end
 
     return indent_type
