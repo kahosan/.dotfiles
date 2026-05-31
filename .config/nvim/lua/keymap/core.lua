@@ -26,6 +26,13 @@ local builtins = {
   ['n|<A-;>'] = map_cr('resize -2'):with_silent():with_desc 'window: Resize -2 horizontally',
   ["n|<A-'>"] = map_cr('resize +2'):with_silent():with_desc 'window: Resize +2 horizontally',
   ['n|g.'] = map_cmd('/\\V\\C<C-r>"<CR>cgn<C-a><Esc>'):with_silent():with_noremap():with_desc 'editn: Repeat last ciw',
+  ['n|dm'] = map_callback(function()
+      local mark = vim.fn.getcharstr()
+      vim.cmd('delmarks ' .. mark)
+    end)
+    :with_noremap()
+    :with_silent()
+    :with_desc 'editn: Delete mark',
 
   -- Insert mode
   ['i|<C-c>'] = map_cmd('<Esc>'):with_noremap():with_desc 'remap esc',
