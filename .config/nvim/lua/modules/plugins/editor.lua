@@ -22,6 +22,10 @@ editor['nmac427/guess-indent.nvim'] = {
   event = 'InsertEnter',
   opts = require 'editor.guess-indent',
 }
+editor['jake-stewart/multicursor.nvim'] = {
+  branch = '1.0',
+  config = require 'editor.multicursor',
+}
 
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
