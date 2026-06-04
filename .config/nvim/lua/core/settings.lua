@@ -37,6 +37,7 @@ settings['lsp_deps'] = {
   -- 'pyrefly'
   -- 'ruff',
   -- 'rust_analyzer',
+  -- 'go',
   'bashls',
   'lua_ls',
   'jsonls',

@@ -7,11 +7,6 @@ lang['ray-x/go.nvim'] = {
   config = require 'lang.go',
   dependencies = { 'ray-x/guihua.lua' },
 }
-lang['razak17/tailwind-fold.nvim'] = {
-  opts = {},
-  dependencies = { 'nvim-treesitter/nvim-treesitter' },
-  ft = { 'html', 'svelte', 'astro', 'vue', 'typescriptreact', 'php', 'blade' },
-}
 lang['mrcjkb/rustaceanvim'] = {
   ft = 'rust',
   init = require 'lang.rust',
