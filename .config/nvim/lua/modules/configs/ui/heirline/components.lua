@@ -133,7 +133,6 @@ M.MacroRecording = {
         return self.reg_recording
       end,
     },
-    hl = { fg = palette.text, bg = palette.base },
   },
   update = { 'RecordingEnter', 'RecordingLeave' },
 } -- MacroRecording
@@ -175,8 +174,6 @@ M.Git = {
       or (self.status_dict.removed or 0) ~= 0
       or (self.status_dict.changed or 0) ~= 0
   end,
-
-  hl = { fg = palette.text },
 
   { -- git branch name
     provider = function(self)
@@ -302,7 +299,6 @@ M.FileIcon = {
   provider = function(self)
     return self.icon and (self.icon .. ' ')
   end,
-  hl = { fg = palette.text },
 }
 -- we redefine the filename component, as we probably only want the tail and not the relative path
 M.FileName = {
@@ -312,7 +308,6 @@ M.FileName = {
     filename = filename == '' and '[No Name]' or vim.fn.fnamemodify(filename, ':t')
     return filename
   end,
-  hl = { fg = palette.text },
 }
 
 -- this looks exactly like the FileFlags component that we saw in
@@ -336,7 +331,6 @@ M.FileNameBlock = {
     local bufnr = self.bufnr and self.bufnr or 0
     self.filename = vim.api.nvim_buf_get_name(bufnr)
   end,
-  hl = { fg = palette.text },
   -- M.FileIcon,
   M.FileName,
   M.FileFlags,
@@ -457,7 +451,6 @@ M.CTime = {
   provider = function()
     return os.date 'T(%H:%M:%S)'
   end,
-  hl = { fg = palette.text },
 }
 
 M.IndentInfo = {

@@ -10,7 +10,8 @@ settings['use_ssh'] = false
 settings['load_big_files_faster'] = true
 
 -- Set the colorscheme to use here.
-settings['colorscheme'] = 'catppuccin'
+settings['colorscheme-dark'] = 'catppuccin'
+settings['colorscheme-light'] = 'jellybeans-muted-light'
 -- settings['colorscheme'] = 'jellybeans'
 -- settings["colorscheme"] = "default"
 

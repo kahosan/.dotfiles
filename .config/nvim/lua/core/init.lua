@@ -91,5 +91,9 @@ require 'core.pack'
 require 'core.event'
 require 'keymap'
 
-set_opts('background', settings.background, {})
-vim.cmd.colorscheme(settings.colorscheme)
+-- set_opts('background', settings.background, {})
+if vim.o.background == 'light' then
+  vim.cmd.colorscheme(settings['colorscheme-light'])
+else
+  vim.cmd.colorscheme(settings['colorscheme-dark'])
+end
