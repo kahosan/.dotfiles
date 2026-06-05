@@ -321,7 +321,7 @@ M.FileFlags = {
     end,
     provider = '[+]',
     hl = function(self)
-      return { fg = palette.text, bold = self.is_active }
+      return { bold = self.is_active }
     end,
   },
 }
