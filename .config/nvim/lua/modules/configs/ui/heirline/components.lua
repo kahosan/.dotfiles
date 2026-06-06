@@ -321,7 +321,7 @@ M.FileFlags = {
     end,
     provider = '[+]',
     hl = function(self)
-      return { bold = self.is_active }
+      return { fg = palette.text, bold = self.is_active }
     end,
   },
 }
@@ -397,12 +397,12 @@ M.SearchOccurrence = {
     end
 
     local ok, search = pcall(vim.fn.searchcount)
-    return ok and search.total > 0
+    return ok and search ~= nil and (search.total or 0) > 0
   end,
   hl = { fg = palette.sky },
   init = function(self)
     local ok, search = pcall(vim.fn.searchcount)
-    if ok and search.total then
+    if ok and search and search.total then
       self.search = search
     end
   end,
