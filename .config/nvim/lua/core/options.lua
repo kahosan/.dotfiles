@@ -67,7 +67,7 @@ o.termguicolors = false
 o.wrap = false
 o.conceallevel = 0
 o.winminwidth = 5
-o.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
+-- o.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 
 if vim.fn.has 'nvim-0.9.0' == 1 then
   o.splitkeep = 'screen'
