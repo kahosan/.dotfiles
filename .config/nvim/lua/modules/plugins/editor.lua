@@ -30,7 +30,10 @@ editor['jake-stewart/multicursor.nvim'] = {
 ----------------------------------------------------------------------
 --                  :treesitter related plugins                    --
 ----------------------------------------------------------------------
-editor['romus204/tree-sitter-manager.nvim'] = {
+editor['nvim-treesitter/nvim-treesitter'] = {
+  lazy = false,
+  branch = 'main',
+  build = ':TSUpdate',
   config = require 'editor.treesitter',
   dependencies = {
     { 'windwp/nvim-ts-autotag', config = true },
