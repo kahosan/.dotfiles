@@ -47,7 +47,8 @@ settings['lsp_deps'] = {
   -- 'emmet_language_server',
   -- 'eslint',
   -- 'ts_ls',
-  'vtsls',
+  -- 'vtsls',
+  -- 'tsgo',
   -- 'tailwindcss',
   'typos_lsp',
 }
