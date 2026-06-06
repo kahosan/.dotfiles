@@ -19,7 +19,7 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 })
 
 vim.api.nvim_create_augroup('setIndent', { clear = true })
-vim.api.nvim_create_autocmd('Filetype', {
+vim.api.nvim_create_autocmd('FileType', {
   group = 'setIndent',
   pattern = {
     'xml',
