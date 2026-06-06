@@ -85,7 +85,7 @@ format = "via \\[[$version]($style)\\] "
 style = "bold blue"
 
 [python]
-format = "via \\[[$version( $virtualenv)]($style)\\] "
+format = "via \\[[$version( [$virtualenv](bold yellow))]($style)\\] "
 style = "bold cyan"
 
 [rust]
