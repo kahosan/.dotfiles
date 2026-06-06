@@ -20,6 +20,7 @@ end
 if test (uname) = Darwin
     if test -f /opt/homebrew/bin/brew
         eval "$(/opt/homebrew/bin/brew shellenv)"
+        fish_add_path /opt/homebrew/opt/rustup/bin
         fish_add_path /opt/homebrew/opt/libpq/bin
     end
 
