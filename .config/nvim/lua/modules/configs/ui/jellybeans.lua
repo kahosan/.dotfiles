@@ -8,6 +8,8 @@ return {
     all = false,
     auto = true,
   },
-  on_highlights = function(highlights, colors) end,
-  on_colors = function(colors) end,
+  on_highlights = function(hl, c)
+    hl.MatchParen = { bg = '#575279', fg = '#faf4ed' }
+  end,
+  -- on_colors = function(c) end,
 }

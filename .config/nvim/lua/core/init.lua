@@ -91,9 +91,56 @@ require 'core.pack'
 require 'core.event'
 require 'keymap'
 
--- set_opts('background', settings.background, {})
-if vim.o.background == 'light' then
-  vim.cmd.colorscheme(settings['colorscheme-light'])
-else
+local function setup_theme(on_dark, on_light)
+  local current_theme = nil
+
+  if vim.o.background == 'light' then
+    on_light()
+  else
+    on_dark()
+  end
+
+  vim.api.nvim_create_autocmd('TermResponse', {
+    pattern = '*',
+    callback = function(args)
+      local sequence = args.data.sequence
+      local theme = nil
+
+      local r, g, b = sequence:match '\027%]11;rgb:(%x+)/(%x+)/(%x+)'
+
+      if r and g and b then
+        local rr = tonumber(r, 16) / 65535
+        local gg = tonumber(g, 16) / 65535
+        local bb = tonumber(b, 16) / 65535
+
+        -- Same luminance calculation as Neovim uses
+        local luminance = (0.299 * rr) + (0.587 * gg) + (0.114 * bb)
+
+        theme = luminance < 0.5 and 'dark' or 'light'
+      end
+
+      if theme ~= nil and theme ~= current_theme then
+        current_theme = theme
+        vim.schedule(function()
+          if theme == 'dark' then
+            on_dark()
+          elseif theme == 'light' then
+            on_light()
+          end
+
+          vim.cmd 'redraw!'
+        end)
+      end
+    end,
+  })
+end
+
+local function on_dark()
   vim.cmd.colorscheme(settings['colorscheme-dark'])
 end
+
+local function on_light()
+  vim.cmd.colorscheme(settings['colorscheme-light'])
+end
+
+setup_theme(on_dark, on_light)
