@@ -50,9 +50,15 @@ return function()
         col = 3,
       },
       fd = {
-        regex = '\\([/.~\\]\\?[A-Za-z0-9_-]\\+\\/.\\+$\\)',
+        regex = '\\([/.~\\]\\?[A-Za-z0-9_-]\\+\\/.\\+$\\|[A-Za-z0-9_-]\\+\\.[A-Za-z]\\+\\)',
         filename = 1,
         type = compile_mode.level.INFO,
+      },
+      rustc = {
+        regex = [[^\s*-->\s*\([^:]\+\):\(\d\+\):\(\d\+\)]],
+        filename = 1,
+        row = 2,
+        col = 3,
       },
     },
   }
