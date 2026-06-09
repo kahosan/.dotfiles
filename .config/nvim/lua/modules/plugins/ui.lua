@@ -24,7 +24,14 @@ ui['j-hui/fidget.nvim'] = {
 }
 ui['lewis6991/hover.nvim'] = {
   event = 'LspAttach',
-  opts = {},
+  opts = {
+    providers = {
+      'hover.providers.diagnostic',
+      'hover.providers.lsp',
+      'hover.providers.dap',
+      'hover.providers.man',
+    },
+  },
 }
 ui['rachartier/tiny-inline-diagnostic.nvim'] = {
   event = 'LspAttach',
