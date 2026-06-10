@@ -14,7 +14,8 @@ editor['catgoose/nvim-colorizer.lua'] = {
   event = { 'BufReadPre', 'BufNewFile' },
   opts = {},
 }
-editor['m4xshen/autoclose.nvim'] = {
+editor['autoclose'] = {
+  dev = true,
   event = 'InsertEnter',
   config = require 'editor.autoclose',
 }

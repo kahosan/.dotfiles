@@ -74,6 +74,9 @@ function Lazy:load_lazy()
       missing = true,
       colorscheme = { settings.colorscheme },
     },
+    dev = {
+      path = vim.fn.stdpath 'config' .. '/lua/modules/mine',
+    },
     ui = {
       -- a number <1 is a percentage., >1 is a fixed size
       size = { width = 0.88, height = 0.8 },
