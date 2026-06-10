@@ -1,7 +1,5 @@
 .config/mpv/_cache
 
-.config/nvim/lazy-lock.json
-
 # fish
 .config/fish/completions/docker.fish
 .config/fish/completions/kubectl.fish
