@@ -63,6 +63,10 @@ local function is_pair(pair)
   return false
 end
 
+local function is_quote_key(key)
+  return key == '"' or key == "'" or key == '`'
+end
+
 local function is_disabled(info)
   if config.disabled then
     return true
@@ -122,6 +126,11 @@ local function handler(key, info, mode)
       if count % 2 == 1 then
         return key
       end
+    end
+
+    -- don't pair quotes right after an alphanumeric character
+    if is_quote_key(key) and (pair:sub(1, 1) or ''):match '%w' then
+      return key
     end
 
     -- disable if the cursor touches alphanumeric character
