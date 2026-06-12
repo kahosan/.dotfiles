@@ -159,7 +159,11 @@ M.LSPActive = {
 
 M.FileType = {
   provider = function()
-    return vim.bo.filetype
+    local ft = vim.bo.filetype
+    if ft == '' then
+      return 'unknown'
+    end
+    return ft
   end,
   hl = { fg = utils.get_highlight('Type').fg, bold = true },
 }
@@ -321,7 +325,17 @@ M.FileFlags = {
     end,
     provider = '[+]',
     hl = function(self)
-      return { fg = palette.text, bold = self.is_active }
+      return { bold = self.is_active }
+    end,
+  },
+  {
+    condition = function(self)
+      return vim.api.nvim_get_option_value('readonly', { buf = self.bufnr })
+        or not vim.api.nvim_get_option_value('modifiable', { buf = self.bufnr })
+    end,
+    provider = '[RO]',
+    hl = function(self)
+      return { bold = self.is_active }
     end,
   },
 }
