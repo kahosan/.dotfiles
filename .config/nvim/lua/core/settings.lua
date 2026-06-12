@@ -50,7 +50,7 @@ settings['lsp_deps'] = {
   -- 'vtsls',
   -- 'tsgo',
   -- 'tailwindcss',
-  'typos_lsp',
+  -- 'typos_lsp',
 }
 
 -- Set the plugins to disable here.
