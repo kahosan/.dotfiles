@@ -40,12 +40,24 @@ function Lazy:load_plugins()
 
   append_nativertp()
 
+  local bigfile_whitelist = {
+    ['catppuccin/nvim'] = true,
+    ['wtfox/jellybeans.nvim'] = true,
+  }
+
   for _, m in ipairs(get_plugins_list()) do
     -- require modules returned from `get_plugins_list()` function.
     local modules = require(m:sub(0, #m - 4))
     if type(modules) == 'table' then
       for name, conf in pairs(modules) do
-        self.modules[#self.modules + 1] = vim.tbl_extend('force', { name }, conf)
+        if bigfile_whitelist[name] then
+          self.modules[#self.modules + 1] = vim.tbl_extend('force', { name }, conf)
+        else
+          self.modules[#self.modules + 1] = vim.tbl_extend('force', {
+            name,
+            cond = not global.is_bigfile,
+          }, conf)
+        end
       end
     end
   end

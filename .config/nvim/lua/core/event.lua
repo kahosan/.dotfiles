@@ -38,3 +38,27 @@ vim.api.nvim_create_autocmd('FileType', {
   },
   command = 'setlocal shiftwidth=2 tabstop=2 expandtab',
 })
+
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  group = vim.api.nvim_create_augroup('bigfile', { clear = true }),
+  pattern = 'bigfile',
+  callback = function(ev)
+    vim.api.nvim_buf_call(ev.buf, function()
+      local buf = ev.buf
+      local ft = vim.filetype.match { buf = ev.buf } or ''
+      if vim.fn.exists ':NoMatchParen' ~= 0 then
+        vim.cmd [[NoMatchParen]]
+      end
+      vim.b.completion = false
+      vim.wo.number = false
+      vim.wo.relativenumber = false
+      vim.b.minianimate_disable = true
+      vim.b.minihipatterns_disable = true
+      vim.schedule(function()
+        if vim.api.nvim_buf_is_valid(buf) then
+          vim.bo[buf].syntax = ft
+        end
+      end)
+    end)
+  end,
+})

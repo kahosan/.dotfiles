@@ -83,6 +83,11 @@ vim.filetype.add {
     ['.*/kitty/.+%.conf'] = 'kitty',
     ['.*/hypr/.+%.conf'] = 'hyprlang',
     ['%.env%.[%w_.-]+'] = 'sh',
+    ['.*'] = function()
+      if global.is_bigfile then
+        return 'bigfile'
+      end
+    end,
   },
 }
 
