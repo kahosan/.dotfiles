@@ -122,7 +122,7 @@ class ColorPalette:
     SSH_FG = as_rgb(0xFFFFFF)
     SSH_BG = as_rgb(0x9ACBD0)
 
-    FG = as_rgb(0xBBBBBB)
+    FG = 4
 
     RESET = 0
 
@@ -465,23 +465,23 @@ def _build_right_cells() -> list[RightCell]:
     active_layout_name = _get_active_layout_name()
     if active_layout_name == "stack":
         cells.append(
-            (ColorPalette.FG, ColorPalette.RESET, f"z: {active_layout_name}|"),
+            (ColorPalette.FG, ColorPalette.RESET, f"z: {active_layout_name} "),
         )
 
     ssh_status = _get_ssh_status(_get_active_window())
     if ssh_status:
         cells.append(
-            (ColorPalette.FG, ColorPalette.RESET, f"ssh: {ssh_status.lower()}|"),
+            (ColorPalette.FG, ColorPalette.RESET, f"ssh: {ssh_status.lower()} "),
         )
 
     net_status = _get_net_status()
     if net_status:
-        cells.append((ColorPalette.FG, ColorPalette.RESET, f"{net_status}|"))
+        cells.append((ColorPalette.FG, ColorPalette.RESET, f"({net_status}) "))
 
     cells.extend(
         [
-            (ColorPalette.DATE_FG, ColorPalette.RESET, now.strftime("%Y/%m/%d ")),
-            (ColorPalette.CLOCK_FG, ColorPalette.RESET, now.strftime("%H:%M:%S ")),
+            (ColorPalette.DATE_FG, ColorPalette.RESET, now.strftime("%Y/%m/%d\\")),
+            (ColorPalette.CLOCK_FG, ColorPalette.RESET, now.strftime("%H:%M:%S")),
         ]
     )
 
