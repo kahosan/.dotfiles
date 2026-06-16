@@ -43,6 +43,7 @@
   "schemastore.nvim": { "branch": "main", "commit": "0f3cd0e584b4ed221fc44eee5b0b6ce335f7e263" },
   "snacks.nvim": { "branch": "main", "commit": "882c996cf28183f4d63640de0b4c02ec886d01f2" },
   "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "e930d0a46031645040d5492595b46cdf6ab3514f" },
+  "ts-comments.nvim": { "branch": "main", "commit": "123a9fb12e7229342f807ec9e6de478b1102b041" },
   "vim-fugitive": { "branch": "master", "commit": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }

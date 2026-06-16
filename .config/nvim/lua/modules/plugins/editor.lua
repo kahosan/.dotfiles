@@ -42,6 +42,11 @@ editor['nvim-treesitter/nvim-treesitter'] = {
       'nvim-treesitter/nvim-treesitter-context',
       config = require 'editor.ts-context',
     },
+    {
+      'folke/ts-comments.nvim',
+      opts = {},
+      event = 'VeryLazy',
+    },
   },
 }
 
