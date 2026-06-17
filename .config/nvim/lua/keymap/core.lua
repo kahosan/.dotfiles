@@ -17,10 +17,6 @@ local builtins = {
   ['n|<C-l>'] = map_cmd('<C-w>l'):with_noremap():with_desc 'window: Focus right',
   ['n|<C-j>'] = map_cmd('<C-w>j'):with_noremap():with_desc 'window: Focus down',
   ['n|<C-k>'] = map_cmd('<C-w>k'):with_noremap():with_desc 'window: Focus up',
-  ['t|<C-h>'] = map_cmd('<Cmd>wincmd h<CR>'):with_silent():with_noremap():with_desc 'window: Focus left',
-  ['t|<C-l>'] = map_cmd('<Cmd>wincmd l<CR>'):with_silent():with_noremap():with_desc 'window: Focus right',
-  ['t|<C-j>'] = map_cmd('<Cmd>wincmd j<CR>'):with_silent():with_noremap():with_desc 'window: Focus down',
-  ['t|<C-k>'] = map_cmd('<Cmd>wincmd k<CR>'):with_silent():with_noremap():with_desc 'window: Focus up',
   ['n|<A-[>'] = map_cr('vertical resize -5'):with_silent():with_desc 'window: Resize -5 vertically',
   ['n|<A-]>'] = map_cr('vertical resize +5'):with_silent():with_desc 'window: Resize +5 vertically',
   ['n|<A-;>'] = map_cr('resize -2'):with_silent():with_desc 'window: Resize -2 horizontally',
@@ -73,6 +69,12 @@ local builtins = {
   -- X mode
   ['x|/'] = map_cmd('<Esc>/\\%V'):with_desc 'search within visual selection',
   ['x|<leader>r'] = map_cmd('y:%s/<C-R>"//g<Left><Left>'):with_noremap():with_desc 'search and replace selection',
+
+  -- Terminal mode
+  ['t|<C-h>'] = map_cmd('<Cmd>wincmd h<CR>'):with_silent():with_noremap():with_desc 'window: Focus left',
+  ['t|<C-l>'] = map_cmd('<Cmd>wincmd l<CR>'):with_silent():with_noremap():with_desc 'window: Focus right',
+  ['t|<C-j>'] = map_cmd('<Cmd>wincmd j<CR>'):with_silent():with_noremap():with_desc 'window: Focus down',
+  ['t|<C-k>'] = map_cmd('<Cmd>wincmd k<CR>'):with_silent():with_noremap():with_desc 'window: Focus up',
 }
 
 bind.nvim_load_mapping(builtins)

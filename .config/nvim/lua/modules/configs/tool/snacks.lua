@@ -4,7 +4,19 @@ return {
   quickfile = {
     exclude = { 'latex' },
   },
-  terminal = {},
+  terminal = {
+    shell = 'fish --private',
+    win = {
+      keys = {
+        term_normal = {
+          '<esc>',
+          '<C-\\><C-n>',
+          mode = 't',
+          desc = 'Escape to normal mode',
+        },
+      },
+    },
+  },
   indent = {
     indent = {
       char = '┊',
