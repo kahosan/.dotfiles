@@ -34,6 +34,13 @@ local mappings = {
       :with_noremap()
       :with_nowait()
       :with_desc 'lsp: hover',
+    ['n|gK'] = map_callback(function()
+        require('hover').enter()
+      end)
+      :with_silent()
+      :with_noremap()
+      :with_nowait()
+      :with_desc 'lsp: hover(enter)',
     ['n|dg'] = map_callback(function()
         vim.diagnostic.open_float(nil, { focusable = false, source = 'if_many' })
       end)
