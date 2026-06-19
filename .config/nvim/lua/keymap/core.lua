@@ -12,7 +12,7 @@ local builtins = {
 
   -- Normal mode
   ['n|<C-s>'] = map_cu('write'):with_noremap():with_silent():with_desc 'editn: Save file',
-  ['n|<C-q>'] = map_cmd(':q<CR>'):with_desc 'editn: Save file and quit',
+  ['n|<C-q>'] = map_cmd(':q<CR>'):with_desc 'editn: quit',
   ['n|<C-h>'] = map_cmd('<C-w>h'):with_noremap():with_desc 'window: Focus left',
   ['n|<C-l>'] = map_cmd('<C-w>l'):with_noremap():with_desc 'window: Focus right',
   ['n|<C-j>'] = map_cmd('<C-w>j'):with_noremap():with_desc 'window: Focus down',
@@ -36,7 +36,7 @@ local builtins = {
   ['i|<C-b>'] = map_cmd('<Left>'):with_noremap():with_desc 'editi: Move cursor to left',
   ['i|<C-a>'] = map_cmd('<Esc>^i'):with_noremap():with_desc 'editi: Move cursor to line start',
   ['i|<C-s>'] = map_cmd('<Esc>:w<CR>'):with_desc 'editi: Save file',
-  ['i|<C-q>'] = map_cmd('<Esc>:wq<CR>'):with_desc 'editi: Save file and quit',
+  ['i|<C-q>'] = map_cmd('<Esc>:q<CR>'):with_desc 'editi: Save file and quit',
   ['i|<C-n>'] = map_cmd('<Nop>'):with_noremap():with_silent(),
   ['i|<C-p>'] = map_cmd('<Nop>'):with_noremap():with_silent(),
   ['i|<C-l>'] = map_callback(function()

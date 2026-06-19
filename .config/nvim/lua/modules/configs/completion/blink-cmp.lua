@@ -106,7 +106,7 @@ return {
     },
   },
   sources = {
-    default = { 'lsp', 'path', 'buffer', 'css_vars', 'ripgrep' },
+    default = { 'lsp', 'path', 'buffer', 'ripgrep' },
     providers = {
       lsp = {
         name = 'LSP',
@@ -116,12 +116,6 @@ return {
       path = { name = 'PATH' },
       buffer = { name = 'BUF', max_items = 5, score_offset = -3 },
       cmdline = { name = 'CL' },
-      css_vars = {
-        name = 'CSSV',
-        module = 'css-vars.blink',
-        async = true,
-        opts = { search_extensions = { '.js', '.ts', '.jsx', '.tsx' } },
-      },
       ripgrep = {
         name = 'RIP',
         module = 'blink-ripgrep',

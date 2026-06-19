@@ -31,7 +31,6 @@ completion['saghen/blink.cmp'] = {
   event = { 'InsertEnter', 'CmdlineEnter' },
   version = '1.*',
   dependencies = {
-    'jdrupal-dev/css-vars.nvim',
     'mikavilpas/blink-ripgrep.nvim',
     'xzbdmw/colorful-menu.nvim',
   },
