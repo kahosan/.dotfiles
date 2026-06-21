@@ -61,7 +61,7 @@ alias hr 'history --merge'
 alias dc 'docker compose'
 
 # kitty
-alias kssh "kitty +kitten ssh"
+alias kssh "kitten ssh"
 alias icat "kitten icat"
 alias kd "kitten diff"
 
