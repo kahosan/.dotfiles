@@ -1,6 +1,7 @@
 local completion = {}
 
 completion['mason-org/mason-lspconfig.nvim'] = {
+  cond = not vim.opt.diff:get(),
   config = require 'completion.lsp',
   dependencies = {
     { 'mason-org/mason.nvim' },
