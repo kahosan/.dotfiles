@@ -51,7 +51,10 @@ tool['folke/snacks.nvim'] = {
   opts = require 'tool.snacks',
 }
 tool['m-demare/attempt.nvim'] = {
-  opts = {},
+  lazy = false,
+  opts = {
+    list_buffers = true,
+  },
 }
 tool['ej-shafran/compile-mode.nvim'] = {
   event = 'VeryLazy',
