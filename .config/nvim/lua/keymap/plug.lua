@@ -104,9 +104,6 @@ local mappings = {
       :with_silent()
       :with_desc 'replace: Search word in current file',
   },
-  compile_mode = {
-    ['n|cm'] = map_cmd('<Cmd>Compile<CR>'):with_noremap():with_silent():with_desc 'tool: Compile command',
-  },
   attempt = {
     ['n|<leader>ti'] = map_cr("lua require('attempt').new_input_ext()"):with_silent():with_desc 'tool: Create scratch',
     ['n|<leader>td'] = map_cr("lua require('attempt').delete_buf()"):with_silent():with_desc 'tool: Delete scratch',

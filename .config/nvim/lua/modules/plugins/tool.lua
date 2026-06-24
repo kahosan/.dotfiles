@@ -56,16 +56,5 @@ tool['m-demare/attempt.nvim'] = {
     list_buffers = true,
   },
 }
-tool['ej-shafran/compile-mode.nvim'] = {
-  event = 'VeryLazy',
-  cmd = { 'Compile', 'Recompile' },
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    -- if you want to enable coloring of ANSI escape codes in
-    -- compilation output, add:
-    -- { "m00qek/baleia.nvim", tag = "v1.3.0" },
-  },
-  config = require 'tool.compile-mode',
-}
 
 return tool
