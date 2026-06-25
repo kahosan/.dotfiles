@@ -106,7 +106,26 @@ return {
     },
     sources = {
       git_diff = { layout = 'ivy' },
-      undo = { layout = 'ivy' },
+      undo = {
+        layout = 'ivy',
+        win = {
+          input = {
+            keys = {
+              ['<c-d>'] = { 'undo_diff_current', mode = { 'i', 'n' } },
+              D = { 'undo_diff_current', mode = 'n' },
+            },
+          },
+          list = {
+            keys = {
+              ['<c-d>'] = 'undo_diff_current',
+              D = 'undo_diff_current',
+            },
+          },
+        },
+        actions = {
+          undo_diff_current = require('modules.utils.snacks_undo').diff_current,
+        },
+      },
       grep = { layout = 'ivy' },
       grep_buffers = { layout = 'ivy_nop' },
       grep_word = { layout = 'ivy_nop' },
