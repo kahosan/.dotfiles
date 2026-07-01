@@ -1,24 +1,17 @@
 return function()
   local formatters_by_ft = {
-    -- 配置此项后，有 LSP 的格式化功能但不在表里的，都不会生效了
-    _ = { 'trim_whitespace' },
+    _ = { 'trim_whitespace', lsp_format = 'first' },
     lua = { 'stylua' },
     go = { 'goimports', 'gofmt' },
-    rust = { 'rustfmt' },
     sh = { 'shfmt' },
     python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
   }
 
   local prettier_ft = { 'css', 'json', 'yaml', 'scss' }
-  local eslint_ft = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' }
   local clang_ft = { 'c', 'cpp' }
 
   for _, ft in ipairs(prettier_ft) do
     formatters_by_ft[ft] = { 'prettierd', 'prettier', stop_after_first = true }
-  end
-
-  for _, ft in ipairs(eslint_ft) do
-    formatters_by_ft[ft] = { lsp_format = 'first' }
   end
 
   for _, ft in ipairs(clang_ft) do
@@ -26,9 +19,11 @@ return function()
   end
 
   require('conform').setup {
+    default_format_opts = {
+      lsp_format = 'fallback',
+    },
     format_on_save = {
       timeout_ms = 500,
-      lsp_format = 'fallback',
     },
     formatters = {
       clang_format = {
