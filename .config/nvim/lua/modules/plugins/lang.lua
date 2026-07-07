@@ -5,7 +5,6 @@ lang['ray-x/go.nvim'] = {
   -- manually install
   -- build = ':GoInstallBinaries',
   config = require 'lang.go',
-  dependencies = { 'ray-x/guihua.lua' },
 }
 lang['mrcjkb/rustaceanvim'] = {
   ft = 'rust',
