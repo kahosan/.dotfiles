@@ -189,13 +189,19 @@ def _draw_left_status(
     index: int,
     is_last: bool,
     right_status_length: int,  # 新增参数：右侧长度
+    ssh_status: str | None = None,
 ) -> int:
     """绘制左侧 Tab 标题"""
 
     if draw_data.leading_spaces:
         screen.draw(" " * draw_data.leading_spaces)
 
-    draw_title(draw_data, screen, tab, index)
+    if ssh_status:
+        fg, bg = screen.cursor.fg, screen.cursor.bg
+        screen.draw(f" {ssh_status} ")
+        screen.cursor.fg, screen.cursor.bg = fg, bg
+    else:
+        draw_title(draw_data, screen, tab, index)
 
     trailing_spaces = min(max_title_length - 1, draw_data.trailing_spaces)
     max_title_length -= trailing_spaces
@@ -427,6 +433,17 @@ def _get_active_window() -> Window | None:
     return tm.active_window
 
 
+def _get_window_for_tab(tab_id: int) -> Window | None:
+    """根据 tab_id 获取该 tab 自己的活动窗口（而非全局活动窗口）"""
+    tm = get_boss().active_tab_manager
+    if tm is None:
+        return None
+    for t in tm.tabs:
+        if t.id == tab_id:
+            return t.active_window
+    return None
+
+
 def _get_active_layout_name() -> str:
     """获取当前活动 Tab 的布局名"""
     tm = get_boss().active_tab_manager
@@ -468,12 +485,6 @@ def _build_right_cells() -> list[RightCell]:
             (ColorPalette.FG, ColorPalette.RESET, f"z: {active_layout_name} "),
         )
 
-    ssh_status = _get_ssh_status(_get_active_window())
-    if ssh_status:
-        cells.append(
-            (ColorPalette.FG, ColorPalette.RESET, f"ssh: {ssh_status.lower()} "),
-        )
-
     net_status = _get_net_status()
     if net_status:
         cells.append((ColorPalette.FG, ColorPalette.RESET, f"({net_status}) "))
@@ -508,6 +519,8 @@ def draw_tab(
     # 计算右侧总长度 (如果在第一个Tab就计算出来，后续Tab都知道右边被占用了多少)
     right_status_len = _cells_length(right_cells)
 
+    ssh_status = _get_ssh_status(_get_window_for_tab(tab.tab_id))
+
     # 4. 绘制左侧 (传入右侧长度以限制标题宽度)
     end = _draw_left_status(
         draw_data,
@@ -518,6 +531,7 @@ def draw_tab(
         index,
         is_last,
         right_status_len,
+        ssh_status,
     )
 
     # 5. 绘制右侧
