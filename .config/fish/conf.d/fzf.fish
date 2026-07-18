@@ -15,7 +15,7 @@ function fzf-history -d "Show command history"
             --bind=ctrl-e:ignore \
             --bind=ctrl-p:ignore \
             --gutter=' ' \
-            --color=bg:-1,bg+:-1,fg:-1,fg+:-1,hl:-1,hl+:-1,prompt:-1,pointer:8,info:-1,border:-1,gutter:-1 \
+            --color=bg:-1,bg+:-1,fg:-1,fg+:-1,hl:3,hl+:3,prompt:-1,pointer:8,info:-1,border:-1,gutter:-1 \
             --color=fg+:regular,hl:regular,hl+:regular,prompt:regular,query:regular \
             --query=(commandline) \
         | string split0
