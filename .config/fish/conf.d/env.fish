@@ -43,3 +43,6 @@ if test (uname) = Linux
     end
 end
 
+if test "$fish_private_mode" = 1
+    set -x ST_PREFIX private
+end
