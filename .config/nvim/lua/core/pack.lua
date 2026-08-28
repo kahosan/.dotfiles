@@ -50,13 +50,15 @@ function Lazy:load_plugins()
     local modules = require(m:sub(0, #m - 4))
     if type(modules) == 'table' then
       for name, conf in pairs(modules) do
+        local mod = vim.tbl_extend('force', { name }, conf)
+
         if bigfile_whitelist[name] then
-          self.modules[#self.modules + 1] = vim.tbl_extend('force', { name }, conf)
+          self.modules[#self.modules + 1] = mod
         else
-          self.modules[#self.modules + 1] = vim.tbl_extend('force', {
-            name,
-            cond = not global.is_bigfile,
-          }, conf)
+          if global.is_bigfile then
+            mod.cond = false
+          end
+          self.modules[#self.modules + 1] = mod
         end
       end
     end
