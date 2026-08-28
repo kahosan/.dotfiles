@@ -48,7 +48,7 @@ settings['lsp_deps'] = {
   -- 'eslint',
   -- 'ts_ls',
   -- 'vtsls',
-  -- 'tsgo',
+  -- 'tsc',
   -- 'tailwindcss',
   -- 'typos_lsp',
 }
