@@ -69,7 +69,7 @@ local builtins = {
   -- X mode
   ['x|/'] = map_cmd('<Esc>/\\%V'):with_desc 'search within visual selection',
   ['x|<leader>r'] = map_cmd('y:%s/<C-R>"//g<Left><Left>'):with_noremap():with_desc 'search and replace selection',
-  ['x|p'] = map_cmd('"_dp"'):with_noremap():with_silent():with_desc 'paste replacement without overwriting registers',
+  ['x|p'] = map_cmd('P'):with_noremap():with_silent():with_desc 'paste replacement without overwriting registers',
 
   -- Terminal mode
   ['t|<C-h>'] = map_cmd('<Cmd>wincmd h<CR>'):with_silent():with_noremap():with_desc 'window: Focus left',
