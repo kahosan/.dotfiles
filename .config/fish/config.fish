@@ -27,12 +27,6 @@ if type -q fnm
     fnm env --use-on-cd --shell fish | source
 end
 
-function fnm_clean_up --on-event fish_exit
-    if test -d "$FNM_MULTISHELL_PATH"
-        /bin/rm -r $FNM_MULTISHELL_PATH
-    end
-end
-
 # homebrew not auto update
 set -x HOMEBREW_NO_AUTO_UPDATE 1
 set -x HOMEBREW_NO_UPGRADE_AUTO_UPDATES_CASKS 1
@@ -91,10 +85,6 @@ end
 function digl
     dig $argv | nali
 end
-
-# rust
-alias r "cargo run"
-alias rr "cargo run --release"
 
 # custom
 alias ntr nexttrace
