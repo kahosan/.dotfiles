@@ -2,13 +2,11 @@ gui:
   theme: # catppuccin palette of course
     selectedLineBgColor:
       - default
-
-  authorColors:
-    "*": "#b4befe"
+    authorColors:
+      "*": "#b4befe"
   showBottomLine: false
   border: single
   nerdFontsVersion: "3"
-
 os:
   editPreset: "nvim-remote"
 promptToReturnFromSubprocess: false
