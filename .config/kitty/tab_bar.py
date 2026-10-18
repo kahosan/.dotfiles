@@ -5,12 +5,14 @@
 import ctypes
 import ctypes.util
 import datetime
+import os
 import sys
 import time
 from pathlib import Path
 
-from kittens.ssh.utils import get_connection_data
+from kittens.ssh.utils import get_connection_data, is_kitten_cmdline
 from kitty.boss import get_boss
+from kitty.child import processes_in_group
 from kitty.fast_data_types import Screen, add_timer, get_options
 from kitty.tab_bar import (
     DrawData,
@@ -19,7 +21,7 @@ from kitty.tab_bar import (
     as_rgb,
     draw_title,
 )
-from kitty.utils import color_as_int
+from kitty.utils import color_as_int, log_error
 from kitty.window import Window
 
 # 获取 Kitty 配置
@@ -32,6 +34,10 @@ RightCell = tuple[int, int, str]
 NetSample = tuple[float, int, int]
 NET_SAMPLE: NetSample | None = None
 NET_STATUS: str | None = None
+
+# window_id -> (采样时间, 前台进程组, 扫描得到的 ssh cmdline)
+# 只缓存"需要扫描进程表"的慢路径，快速路径不缓存
+SSH_SCAN_CACHE: dict[int, tuple[float, int, list[str] | None]] = {}
 
 AF_LINK = 18
 IFF_LOOPBACK = 0x8
@@ -140,6 +146,11 @@ class Config:
     REFRESH_TIME: float = 1.0
     # 网络采样频率 (秒)，略小于刷新频率，避免定时器轻微抖动导致隔轮更新
     NET_SAMPLE_INTERVAL: float = 0.8
+    # ssh 状态缓存有效期 (秒)。draw_tab 每次刷新会被调用多轮（布局测量 + 正式绘制），
+    # 缓存后同一秒内只会真正探测一次
+    SSH_CACHE_TTL: float = 1.0
+    # 缓存条目超过该时间未被访问则清理 (秒)，防止已关闭的 tab 残留
+    SSH_CACHE_STALE: float = 30.0
 
 
 def _redraw_tab_bar(timer_id: int | None) -> None:
@@ -452,26 +463,104 @@ def _get_active_layout_name() -> str:
     return tm.active_tab.current_layout.name or ""
 
 
+def _is_ssh_exe(cmdline: list[str]) -> bool:
+    return bool(cmdline) and Path(cmdline[0]).name.lower() in ("ssh", "ssh.exe")
+
+
+def _find_ssh_cmdline(window: Window) -> list[str] | None:
+    """找出窗口前台进程里的 ssh 命令行（优先 kitten ssh，其次普通 ssh）
+
+    相比直接调用 window.ssh_kitten_cmdline() / window.child_is_remote /
+    child.foreground_processes：
+      * 它们每次都会全量扫描系统进程表（tab bar 绘制时没有启用缓存），
+        且 foreground_processes 还会为每个进程额外读取 cwd；
+      * 这里先用 tcgetpgrp 做 O(1) 快速判断，绝大多数时候前台就是 shell，直接返回；
+      * 必须扫描时也只扫一次，并且只读取 cmdline。
+    """
+    child = window.child
+    child_fd = getattr(child, "child_fd", None)
+    if child_fd is None:
+        return None
+
+    try:
+        pgrp = os.tcgetpgrp(child_fd)
+    except OSError:
+        return None
+    if pgrp < 0:
+        return None
+
+    # 快速路径：前台进程组就是 shell 自己 → 没有子进程在跑。
+    # 唯一例外是 `exec ssh ...` 这种 shell 被替换成 ssh 的情况，读一次 cmdline 确认。
+    if pgrp == child.pid:
+        own = child.cmdline_of_pid(child.pid)
+        if _is_ssh_exe(own):
+            return own
+        if own and is_kitten_cmdline(own):
+            return own
+        return None
+
+    # 慢路径：需要扫描系统进程表。按窗口缓存一小段时间；
+    # 前台进程组一变（比如刚启动/退出了某个程序）就立即失效。
+    now = time.monotonic()
+    hit = SSH_SCAN_CACHE.get(window.id)
+    if hit is not None and hit[1] == pgrp and now - hit[0] < Config.SSH_CACHE_TTL:
+        return hit[2]
+
+    result = _scan_group_for_ssh(child, pgrp)
+    SSH_SCAN_CACHE[window.id] = (now, pgrp, result)
+
+    # 顺手清理已关闭窗口的残留
+    for key in [k for k, v in SSH_SCAN_CACHE.items() if now - v[0] > Config.SSH_CACHE_STALE]:
+        del SSH_SCAN_CACHE[key]
+
+    return result
+
+
+def _scan_group_for_ssh(child, pgrp: int) -> list[str] | None:
+    """扫描前台进程组，返回 ssh 命令行（kitten ssh 优先）"""
+    plain_ssh: list[str] | None = None
+    for pid in sorted(processes_in_group(pgrp)):
+        cmd = child.cmdline_of_pid(pid)
+        if not cmd:
+            continue
+        # --hold-after-ssh 会多包一层 kitten run-shell
+        if len(cmd) > 3 and os.path.basename(cmd[0]) == "kitten" and cmd[1] == "run-shell":
+            cmd = cmd[2:]
+        if is_kitten_cmdline(cmd):
+            return cmd  # kitten ssh 优先，找到即返回
+        if plain_ssh is None and _is_ssh_exe(cmd):
+            plain_ssh = cmd
+    return plain_ssh
+
+
+def _compute_ssh_status(window: Window) -> str | None:
+    ssh_cmdline = _find_ssh_cmdline(window)
+    if not ssh_cmdline:
+        return None
+
+    ssh_cmdline = [item for item in ssh_cmdline if item != "-tt"]
+    conn_data = get_connection_data(ssh_cmdline)
+    if not conn_data:
+        return None
+
+    user_and_host = conn_data.hostname.split("@")
+    if len(user_and_host) == 1:
+        return user_and_host[0]
+    if len(user_and_host) == 2:
+        return f"{user_and_host[0]}:{user_and_host[1]}"
+    return None
+
+
 def _get_ssh_status(active_window: Window | None) -> str | None:
+    """获取 ssh 状态（缓存只发生在 _find_ssh_cmdline 的慢路径里）"""
     if active_window is None:
         return None
 
-    ssh_cmdline = active_window.ssh_kitten_cmdline()
-
     try:
-        if ssh_cmdline:
-            ssh_cmdline = [item for item in ssh_cmdline if item != "-tt"]
-            conn_data = get_connection_data(ssh_cmdline)
-            if conn_data:
-                conn_data_hostname = conn_data.hostname
-                user_and_host = conn_data_hostname.split("@")
-                if len(user_and_host) == 1:
-                    return user_and_host[0]
-                elif len(user_and_host) == 2:
-                    return f"{user_and_host[0]}:{user_and_host[1]}"
-    except Exception:
+        return _compute_ssh_status(active_window)
+    except Exception as exc:  # pylint: disable=broad-except
+        log_error(f"tab_bar: ssh status failed: {exc!r}")
         return "error"
-    return None
 
 
 def _build_right_cells() -> list[RightCell]:
@@ -519,6 +608,7 @@ def draw_tab(
     # 计算右侧总长度 (如果在第一个Tab就计算出来，后续Tab都知道右边被占用了多少)
     right_status_len = _cells_length(right_cells)
 
+    # 3. ssh 状态（快速路径实时判断，慢路径带缓存）
     ssh_status = _get_ssh_status(_get_window_for_tab(tab.tab_id))
 
     # 4. 绘制左侧 (传入右侧长度以限制标题宽度)
