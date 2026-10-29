@@ -510,7 +510,9 @@ def _find_ssh_cmdline(window: Window) -> list[str] | None:
     SSH_SCAN_CACHE[window.id] = (now, pgrp, result)
 
     # 顺手清理已关闭窗口的残留
-    for key in [k for k, v in SSH_SCAN_CACHE.items() if now - v[0] > Config.SSH_CACHE_STALE]:
+    for key in [
+        k for k, v in SSH_SCAN_CACHE.items() if now - v[0] > Config.SSH_CACHE_STALE
+    ]:
         del SSH_SCAN_CACHE[key]
 
     return result
@@ -524,7 +526,11 @@ def _scan_group_for_ssh(child, pgrp: int) -> list[str] | None:
         if not cmd:
             continue
         # --hold-after-ssh 会多包一层 kitten run-shell
-        if len(cmd) > 3 and os.path.basename(cmd[0]) == "kitten" and cmd[1] == "run-shell":
+        if (
+            len(cmd) > 3
+            and os.path.basename(cmd[0]) == "kitten"
+            and cmd[1] == "run-shell"
+        ):
             cmd = cmd[2:]
         if is_kitten_cmdline(cmd):
             return cmd  # kitten ssh 优先，找到即返回
@@ -609,7 +615,8 @@ def draw_tab(
     right_status_len = _cells_length(right_cells)
 
     # 3. ssh 状态（快速路径实时判断，慢路径带缓存）
-    ssh_status = _get_ssh_status(_get_window_for_tab(tab.tab_id))
+    # ssh_status = _get_ssh_status(_get_window_for_tab(tab.tab_id))
+    ssh_status = None
 
     # 4. 绘制左侧 (传入右侧长度以限制标题宽度)
     end = _draw_left_status(
