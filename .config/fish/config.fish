@@ -87,7 +87,7 @@ function digl
 end
 
 # custom
-alias ntr nexttrace
+alias ntr "nexttrace -M"
 
 # https://github.com/sindresorhus/trash-cli
 # or use default rm -i
