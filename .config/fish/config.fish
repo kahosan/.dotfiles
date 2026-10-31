@@ -39,6 +39,7 @@ set -x COREPACK_ENABLE_AUTO_PIN 0
 
 # alias
 alias vim nvim
+alias view "nvim -M"
 alias ls "eza --git --icons auto"
 alias ll "ls --long --time-style=long-iso"
 alias l ll
